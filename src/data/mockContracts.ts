@@ -9,7 +9,7 @@ export const mockContracts: PublicContract[] = [
     contracting_authority: 'Krajská nemocnice Praha',
     sector: 'ICT',
     region: 'Hlavní město Praha',
-    barometer: 'high',
+    riskScore: 82,
     status: 'active',
     additional_info: 'Projekt je součástí digitalizace zdravotnictví v regionu.',
     created_at: '2024-06-01',
@@ -25,7 +25,7 @@ export const mockContracts: PublicContract[] = [
     contracting_authority: 'Město Brno',
     sector: 'Stavebnictví',
     region: 'Jihomoravský kraj',
-    barometer: 'medium',
+    riskScore: 61,
     status: 'active',
     created_at: '2024-06-02',
     analysis: `Zadavatel je aktivní v oblasti investic do školských zařízení. Má zpracované interní metodiky pro zadávání VZ. U předchozí veřejné zakázky v roce 2022 došlo k opožděnému ukončení výběrového řízení. Riziko je nízké, doporučuje se však sledovat harmonogram.`
@@ -40,7 +40,7 @@ export const mockContracts: PublicContract[] = [
     contracting_authority: 'Moravskoslezský kraj',
     sector: 'Doprava',
     region: 'Moravskoslezský kraj',
-    barometer: 'low',
+    riskScore: 18,
     status: 'active',
     created_at: '2024-06-03',
     analysis: `Zadavatel pravidelně realizuje dopravní zakázky financované z národních zdrojů. Poslední kontrola CRR z roku 2023 neodhalila žádné závažné pochybení. Riziko je považováno za minimální.`
@@ -55,7 +55,7 @@ export const mockContracts: PublicContract[] = [
     contracting_authority: 'Město Ostrava',
     sector: 'Energetika',
     region: 'Moravskoslezský kraj',
-    barometer: 'high',
+    riskScore: 97,
     status: 'bookmarked',
     additional_info: 'Strategický projekt pro energetickou transformaci regionu.',
     created_at: '2024-06-04',
@@ -71,7 +71,7 @@ export const mockContracts: PublicContract[] = [
     contracting_authority: 'Poliklinika Ústí nad Labem',
     sector: 'Zdravotnictví',
     region: 'Ústecký kraj',
-    barometer: 'medium',
+    riskScore: 39,
     status: 'active',
     created_at: '2024-06-05',
     analysis: `Zadavatel realizoval menší zakázky převážně z vlastního rozpočtu. Nejsou známy větší zkušenosti s fondy EU. Vhodné prověřit kvalifikační předpoklady a schopnost správného vedení projektové dokumentace.`
@@ -86,7 +86,7 @@ export const mockContracts: PublicContract[] = [
     contracting_authority: 'Město České Budějovice',
     sector: 'Životní prostředí',
     region: 'Jihočeský kraj',
-    barometer: 'low',
+    riskScore: 46,
     status: 'hidden',
     created_at: '2024-06-06',
     analysis: `Zadavatel má dlouhodobé zkušenosti s údržbou veřejného prostoru. Jedná se o opakující se typ zakázky bez známých pochybení. Riziko je minimální.`
