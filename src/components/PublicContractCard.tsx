@@ -1,23 +1,20 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Eye, EyeOff, Bookmark, Check, FileText, ArrowUp, ArrowDown, Search } from "lucide-react";
+import { Eye, EyeOff, Bookmark, Check, FileText } from "lucide-react";
 import { PublicContract, ContractStatus } from "@/types/contract";
 import { ContractDetailDialog } from "./ContractDetailDialog";
 
 interface PublicContractCardProps {
   contract: PublicContract;
   onStatusChange: (id: string, status: ContractStatus) => void;
-  onDeepSearch: (ico: string, name: string) => void;
-  onMove: (id: string, direction: "up" | "down") => void;
 }
 
 export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   contract,
-  onStatusChange,
-  onDeepSearch,
-  onMove,
+  onStatusChange
 }) => {
   const [showDetail, setShowDetail] = useState(false);
 
@@ -63,7 +60,6 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                 <Badge variant="outline">{contract.region}</Badge>
               </div>
             </div>
-
             <div className="flex gap-2 ml-4">
               <Button
                 variant="outline"
@@ -76,38 +72,25 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() =>
-                  onStatusChange(
-                    contract.id,
-                    contract.status === 'bookmarked' ? 'active' : 'bookmarked'
-                  )
-                }
-                className={
-                  contract.status === 'bookmarked'
-                    ? 'text-yellow-600 hover:text-yellow-700'
-                    : 'text-gray-600 hover:text-gray-700'
+                onClick={() => onStatusChange(contract.id, 
+                  contract.status === 'bookmarked' ? 'active' : 'bookmarked'
+                )}
+                className={contract.status === 'bookmarked' 
+                  ? 'text-yellow-600 hover:text-yellow-700' 
+                  : 'text-gray-600 hover:text-gray-700'
                 }
               >
-                <Bookmark
-                  className={`h-4 w-4 ${contract.status === 'bookmarked' ? 'fill-current' : ''}`}
-                />
+                <Bookmark className={`h-4 w-4 ${contract.status === 'bookmarked' ? 'fill-current' : ''}`} />
               </Button>
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() =>
-                  onStatusChange(
-                    contract.id,
-                    contract.status === 'hidden' ? 'active' : 'hidden'
-                  )
-                }
+                onClick={() => onStatusChange(contract.id, 
+                  contract.status === 'hidden' ? 'active' : 'hidden'
+                )}
                 className="text-gray-600 hover:text-gray-700"
               >
-                {contract.status === 'hidden' ? (
-                  <EyeOff className="h-4 w-4" />
-                ) : (
-                  <Eye className="h-4 w-4" />
-                )}
+                {contract.status === 'hidden' ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </Button>
               <Button
                 variant="outline"
@@ -117,26 +100,9 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               >
                 <Check className="h-4 w-4" />
               </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => onMove(contract.id, "up")}
-                className="text-gray-600 hover:text-gray-800"
-              >
-                <ArrowUp className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => onMove(contract.id, "down")}
-                className="text-gray-600 hover:text-gray-800"
-              >
-                <ArrowDown className="h-4 w-4" />
-              </Button>
             </div>
           </div>
         </CardHeader>
-
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div>
@@ -145,50 +111,11 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
             </div>
             <div>
               <span className="font-medium text-gray-700">Termín podání:</span>
-              <p className="text-gray-900">
-                {new Date(contract.deadline).toLocaleDateString('cs-CZ')}
-              </p>
+              <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
             </div>
             <div>
               <span className="font-medium text-gray-700">Zadavatel:</span>
-              <div className="flex items-center justify-between">
-                <p className="text-gray-900">{contract.contracting_authority}</p>
-                {contract.contracting_authority_ico && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() =>
-                      onDeepSearch(
-                        contract.contracting_authority_ico,
-                        contract.contracting_authority
-                      )
-                    }
-                    className="text-indigo-600 hover:text-indigo-800"
-                  >
-                    Prověřit
-                    <Search className="h-4 w-4 ml-1" />
-                  </Button>
-                )}
-              </div>
-            </div>
-            <div>
-              <span className="font-medium text-gray-700">Dodavatel:</span>
-              <div className="flex items-center justify-between">
-                <p className="text-gray-900">{contract.supplier_name}</p>
-                {contract.supplier_ico && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() =>
-                      onDeepSearch(contract.supplier_ico, contract.supplier_name)
-                    }
-                    className="text-indigo-600 hover:text-indigo-800"
-                  >
-                    Prověřit
-                    <Search className="h-4 w-4 ml-1" />
-                  </Button>
-                )}
-              </div>
+              <p className="text-gray-900">{contract.contracting_authority}</p>
             </div>
           </div>
           <div className="mt-3">
