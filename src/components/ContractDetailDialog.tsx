@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -9,42 +9,64 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { PublicContract } from "@/types/contract";
+import { deepSearch } from "@/lib/deepSearch";
 
 interface ContractDetailDialogProps {
   contract: PublicContract;
   isOpen: boolean;
   onClose: () => void;
-  onDeepSearch: (name: string) => void;
 }
 
 export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   contract,
   isOpen,
   onClose,
-  onDeepSearch
 }) => {
+  const [analysis, setAnalysis] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleDeepSearch = async () => {
+    try {
+      setLoading(true);
+      const result = await deepSearch(contract.contracting_authority);
+      setAnalysis(result);
+    } catch (err) {
+      setAnalysis("Nepodařilo se načíst výsledek.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const getBarometerColor = (level: string) => {
     switch (level) {
-      case 'high': return 'bg-red-500 text-white';
-      case 'medium': return 'bg-orange-500 text-white';
-      case 'low': return 'bg-green-500 text-white';
-      default: return 'bg-gray-500 text-white';
+      case "high":
+        return "bg-red-500 text-white";
+      case "medium":
+        return "bg-orange-500 text-white";
+      case "low":
+        return "bg-green-500 text-white";
+      default:
+        return "bg-gray-500 text-white";
     }
   };
 
   const getBarometerText = (level: string) => {
     switch (level) {
-      case 'high': return 'Vysoká';
-      case 'medium': return 'Střední';
-      case 'low': return 'Nízká';
-      default: return level;
+      case "high":
+        return "Vysoká";
+      case "medium":
+        return "Střední";
+      case "low":
+        return "Nízká";
+      default:
+        return level;
     }
   };
 
   const formatValue = (value: number) => {
-    return new Intl.NumberFormat('cs-CZ', {
-      style: 'currency',
-      currency: 'CZK'
+    return new Intl.NumberFormat("cs-CZ", {
+      style: "currency",
+      currency: "CZK",
     }).format(value);
   };
 
@@ -54,7 +76,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         <DialogHeader>
           <DialogTitle className="text-xl">{contract.title}</DialogTitle>
         </DialogHeader>
-        
+
         <div className="space-y-6">
           <div className="flex flex-wrap gap-2">
             <Badge className={getBarometerColor(contract.barometer)}>
@@ -75,22 +97,23 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   </div>
                   <div>
                     <span className="font-medium text-gray-700">Termín podání:</span>
-                    <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
+                    <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString("cs-CZ")}</p>
                   </div>
-                  <div>
-                    <span className="font-medium text-gray-700">Zadavatel:</span>
-                    <div className="flex items-center justify-between">
+                  <div className="flex justify-between items-center gap-2">
+                    <div>
+                      <span className="font-medium text-gray-700">Zadavatel:</span>
                       <p className="text-gray-900">{contract.contracting_authority}</p>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => onDeepSearch(contract.contracting_authority)}
-                        className="text-indigo-600 hover:text-indigo-800"
-                      >
-                        Prověřit
-                        <Search className="h-4 w-4 ml-1" />
-                      </Button>
                     </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleDeepSearch}
+                      className="text-indigo-600 hover:text-indigo-800"
+                      disabled={loading}
+                    >
+                      {loading ? "Analyzuji..." : "Prověřit"}
+                      <Search className="ml-1 w-4 h-4" />
+                    </Button>
                   </div>
                   <div>
                     <span className="font-medium text-gray-700">Region:</span>
@@ -109,9 +132,9 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   <div>
                     <span className="font-medium text-gray-700">Kategorie hodnoty:</span>
                     <p className="text-gray-900">
-                      {contract.valueCategory === 'low' && 'Do 500 tisíc Kč'}
-                      {contract.valueCategory === 'medium' && 'Do 5 milionů Kč'}
-                      {contract.valueCategory === 'high' && 'Nad 5 milionů Kč'}
+                      {contract.valueCategory === "low" && "Do 500 tisíc Kč"}
+                      {contract.valueCategory === "medium" && "Do 5 milionů Kč"}
+                      {contract.valueCategory === "high" && "Nad 5 milionů Kč"}
                     </p>
                   </div>
                 </div>
@@ -128,6 +151,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             <div>
               <h3 className="font-semibold text-gray-900 mb-2">Dodatečné informace</h3>
               <p className="text-gray-900 text-sm leading-relaxed">{contract.additional_info}</p>
+            </div>
+          )}
+
+          {analysis && (
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-2">DeepSearch výsledek</h3>
+              <p className="text-gray-900 text-sm whitespace-pre-line">{analysis}</p>
             </div>
           )}
         </div>
