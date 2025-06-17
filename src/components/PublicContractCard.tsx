@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, Bookmark, Check, FileText, ArrowUp, ArrowDown } from "lucide-react";
 import { PublicContract, ContractStatus } from "@/types/contract";
 import { ContractDetailDialog } from "./ContractDetailDialog";
+import { ScoreCircle } from '@/components/ScoreCircle';
+
 
 interface PublicContractCardProps {
   contract: PublicContract;
@@ -50,6 +52,12 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     <>
       <Card className="hover:shadow-md transition-shadow">
         <CardHeader className="pb-3">
+          {/* 🔵 Score kruh v pravom hornom rohu */}
+{contract.riskScore !== undefined && (
+  <div className="absolute top-2 right-2 z-10">
+    <ScoreCircle score={contract.riskScore} size={40} />
+  </div>
+)}
           <div className="flex justify-between items-start">
             <div className="flex-1">
               <CardTitle className="text-lg mb-2">{contract.title}</CardTitle>
