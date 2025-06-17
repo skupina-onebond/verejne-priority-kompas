@@ -118,12 +118,16 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               </section>
             )}
 
-            {analysisResult && (
-              <section className="bg-indigo-50 border border-indigo-200 p-4 rounded-lg">
-                <h3 className="text-sm font-semibold text-indigo-800 mb-2">Analýza zadavatele</h3>
-                <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
-              </section>
-            )}
+            </div> {/* koniec gridu */}
+
+{analysisResult && (
+  <div className="mt-8">
+    <section className="bg-indigo-50 border border-indigo-200 p-6 rounded-lg">
+      <h3 className="text-sm font-semibold text-indigo-800 mb-2">🧾 Analýza zadavatele</h3>
+      <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
+    </section>
+  </div>
+)}
           </div>
         </div>
       </DialogContent>
