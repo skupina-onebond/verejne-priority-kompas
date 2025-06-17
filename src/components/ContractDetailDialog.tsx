@@ -97,7 +97,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           <div className="space-y-6">
             {contract.riskScore !== undefined && (
               <section>
-                <h3 className="text-sm font-semibold text-slate-800 mb-2">🎯 Rizikový barometr</h3>
                 <Barometer score={contract.riskScore} size="md" showLabel />
                 <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md text-sm text-slate-800">
                   <strong>Doporučení pro auditora:</strong>
