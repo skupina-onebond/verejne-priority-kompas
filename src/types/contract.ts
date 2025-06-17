@@ -19,4 +19,6 @@ export interface PublicContract {
   status: ContractStatus;
   additional_info?: string;
   created_at: string;
+  riskScore?: number;
+  analysisResult?: string;
 }
