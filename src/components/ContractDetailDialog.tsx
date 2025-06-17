@@ -26,15 +26,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   onDeepSearch,
   analysisResult
 }) => {
-  const getBarometerText = (level: string) => {
-    switch (level) {
-      case 'high': return 'Vysoká';
-      case 'medium': return 'Střední';
-      case 'low': return 'Nízká';
-      default: return level;
-    }
-  };
-
   const formatValue = (value: number) => {
     return new Intl.NumberFormat('cs-CZ', {
       style: 'currency',
@@ -57,6 +48,12 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
           {/* LEFT SIDE */}
           <div className="space-y-6">
+            {/* Popis */}
+            <section>
+              <h3 className="font-semibold text-slate-800 mb-2">Popis zakázky</h3>
+              <p className="leading-relaxed text-slate-900">{contract.description}</p>
+            </section>
+
             {/* Základní info */}
             <section>
               <h3 className="font-semibold text-slate-800 mb-2">Základní informace</h3>
@@ -85,7 +82,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               }</p>
             </section>
 
-            {/* Dodatečné informace */}
             {contract.additional_info && (
               <section>
                 <h3 className="font-semibold text-slate-800 mb-2">Dodatečné informace</h3>
@@ -95,43 +91,36 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           </div>
 
           {/* RIGHT SIDE */}
-<div className="space-y-6">
-  {contract.riskScore !== undefined && (
-    <section>
-      <h3 className="text-sm font-semibold text-slate-800 mb-2">🎯 Rizikový barometr</h3>
-      <Barometer score={contract.riskScore} size="md" showLabel />
+          <div className="space-y-6">
+            {contract.riskScore !== undefined && (
+              <section>
+                <h3 className="text-sm font-semibold text-slate-800 mb-2">🎯 Rizikový barometr</h3>
+                <Barometer score={contract.riskScore} size="md" showLabel />
 
-      {/* Odporúčanie */}
-      <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md text-sm text-slate-800">
-        <strong>Doporučení pro auditora:</strong>
-        <p className="mt-1">
-          {contract.riskScore <= 40 && (
-            <>Zakázka vykazuje nízkou úroveň rizika. Doporučujeme standardní monitoring a pravidelnou dokumentaci průběhu zakázky.</>
-          )}
-          {contract.riskScore > 40 && contract.riskScore <= 70 && (
-            <>Zakázka vyžaduje zvýšenou pozornost. Prověřte historii dodavatele a zajistěte přehlednou evidenci klíčových rozhodnutí a výdajů.</>
-          )}
-          {contract.riskScore > 70 && (
-            <>Zakázka je vysoce riziková. Doporučujeme detailní kontrolu každé fáze, transparentní výběrové řízení a auditní dohled nad plněním.</>
-          )}
-        </p>
-      </div>
-    </section>
-  )}
+                <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md text-sm text-slate-800">
+                  <strong>Doporučení pro auditora:</strong>
+                  <p className="mt-1">
+                    {contract.riskScore <= 40 && (
+                      <>Zakázka vykazuje nízkou úroveň rizika. Doporučujeme standardní monitoring, kontrolu dodržování podmínek smlouvy a pravidelnou dokumentaci průběhu zakázky.</>
+                    )}
+                    {contract.riskScore > 40 && contract.riskScore <= 70 && (
+                      <>Zakázka vyžaduje zvýšenou pozornost. Prověřte historii dodavatele, posuďte možné střety zájmů a zajistěte přehlednou evidenci klíčových rozhodnutí a výdajů.</>
+                    )}
+                    {contract.riskScore > 70 && (
+                      <>Zakázka je vysoce riziková. Doporučujeme detailní kontrolu každé fáze, přizvání interního auditora, transparentní výběrové řízení a nezávislý dohled nad plněním.</>
+                    )}
+                  </p>
+                </div>
+              </section>
+            )}
 
-  {/* Popis */}
-  <section>
-    <h3 className="font-semibold text-slate-800 mb-2">Popis zakázky</h3>
-    <p className="leading-relaxed text-slate-900">{contract.description}</p>
-  </section>
-
-  {analysisResult && (
-    <section className="bg-indigo-50 border border-indigo-200 p-4 rounded-lg">
-      <h3 className="text-sm font-semibold text-indigo-800 mb-2">📊 Analýza dodavatele</h3>
-      <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
-    </section>
-  )}
-</div>
+            {analysisResult && (
+              <section className="bg-indigo-50 border border-indigo-200 p-4 rounded-lg">
+                <h3 className="text-sm font-semibold text-indigo-800 mb-2">📊 Analýza dodavatele</h3>
+                <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
+              </section>
+            )}
+          </div>
         </div>
       </DialogContent>
     </Dialog>
