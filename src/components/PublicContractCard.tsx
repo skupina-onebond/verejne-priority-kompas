@@ -28,6 +28,14 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     }
   };
 
+  const handleDeepSearch = (ico: string, name: string) => {
+  if (!ico || !name) return;
+
+  const query = encodeURIComponent(`${name} ${ico}`);
+  const url = `/deepsearch?query=${query}`;
+  window.open(url, '_blank');
+};
+
   const getBarometerText = (level: string) => {
     switch (level) {
       case 'high': return 'Vysoká';
@@ -132,9 +140,24 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
             </div>
             <div>
-              <span className="font-medium text-gray-700">Zadavatel:</span>
-              <p className="text-gray-900">{contract.contracting_authority}</p>
-            </div>
+  <span className="font-medium text-gray-700">Zadavatel:</span>
+  <div className="flex items-center gap-2">
+    <p className="text-gray-900">{contract.contracting_authority}</p>
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={() =>
+        handleDeepSearch(
+          contract.contracting_authority_ico,
+          contract.contracting_authority
+        )
+      }
+      className="text-xs text-blue-600 hover:text-blue-800 underline p-0 h-auto"
+    >
+      Prověřit subjekt
+    </Button>
+  </div>
+</div>
           </div>
 
           <div className="mt-3">
