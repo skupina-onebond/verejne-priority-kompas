@@ -56,8 +56,8 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     onDeepSearch(subjectName);
     
     setTimeout(() => {
-      if (contract.analysisResult) {
-        setAnalysisResult(contract.analysisResult);
+      if (contract.analysis) {
+        setAnalysisResult(contract.analysis);
       } else {
         setAnalysisResult("⚠️ Analýza zadavatele není dostupná.");
       }
