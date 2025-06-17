@@ -7,21 +7,26 @@ import { PublicContract, ContractStatus } from "@/types/contract";
 import { ContractDetailDialog } from "./ContractDetailDialog";
 import { ScoreCircle } from '@/components/ScoreCircle';
 
-
 interface PublicContractCardProps {
   contract: PublicContract;
   onStatusChange: (id: string, status: ContractStatus) => void;
   onMove: (id: string, direction: "up" | "down") => void;
     onDeepSearch: (subjectName: string) => void;
-
 }
 
 export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   contract,
   onStatusChange,
-  onMove
+  onMove,
+  onDeepSearch
 }) => {
   const [showDetail, setShowDetail] = useState(false);
+  const [analysisResult, setAnalysisResult] = useState<string>();
+
+  const handleDeepSearch = async (subjectName: string) => {
+    // Placeholder implementace - později můžeme připojit skutečnou analýzu
+    setAnalysisResult("Analýza probíhá...");
+  };
 
   const getBarometerColor = (level: string) => {
     switch (level) {
@@ -57,13 +62,12 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           <div className="flex justify-between items-start">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-  <CardTitle className="text-lg">{contract.title}</CardTitle>
-  {contract.riskScore !== undefined && (
-    <ScoreCircle score={contract.riskScore} size={32} />
-  )}
-</div>
+                <CardTitle className="text-lg">{contract.title}</CardTitle>
+                {contract.riskScore !== undefined && (
+                  <ScoreCircle score={contract.riskScore} size={32} />
+                )}
+              </div>
               <div className="flex flex-wrap gap-2 mb-2">
-               
                 <Badge variant="outline">{contract.sector}</Badge>
                 <Badge variant="outline">{contract.region}</Badge>
               </div>
@@ -156,6 +160,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
         isOpen={showDetail}
         onClose={() => setShowDetail(false)}
         onDeepSearch={onDeepSearch}
+        analysisResult={analysisResult}
       />
     </>
   );
