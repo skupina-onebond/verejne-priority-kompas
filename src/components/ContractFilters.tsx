@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,8 +14,7 @@ interface ContractFiltersProps {
     sector: string;
     region: string;
     value: string;
-    sortBy: string; // přejmenováno z barometer
-;
+    sortBy: string;
   };
   onFiltersChange: (filters: any) => void;
 }
@@ -43,11 +41,11 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
   ];
 
   const sortOptions = [
-  { value: 'risk_low', label: 'Nízká → Vysoká závažnost' },
-  { value: 'risk_high', label: 'Vysoká → Nízká závažnost' },
-  { value: 'value_high', label: 'Nejdražší zakázky' },
-  { value: 'value_low', label: 'Nejlevnější zakázky' }
-];
+    { value: 'risk_low', label: 'Nízká → Vysoká závažnost' },
+    { value: 'risk_high', label: 'Vysoká → Nízká závažnost' },
+    { value: 'value_high', label: 'Nejdražší zakázky' },
+    { value: 'value_low', label: 'Nejlevnější zakázky' }
+  ];
 
   const updateFilter = (key: string, value: string) => {
     onFiltersChange({
@@ -57,20 +55,21 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
   };
 
   const clearFilters = () => {
-  onFiltersChange({
-    sector: '',
-    region: '',
-    value: '',
-    sortBy: ''
-  });
-};
+    onFiltersChange({
+      sector: '',
+      region: '',
+      value: '',
+      sortBy: ''
+    });
+  };
 
   return (
     <Card className="mb-6">
       <CardContent className="p-4">
         <div className="flex flex-wrap gap-3 items-center">
           <span className="font-medium text-gray-700">Filtry:</span>
-          
+
+          {/* Odvětví */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="justify-between min-w-[120px]">
@@ -91,6 +90,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* Region */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="justify-between min-w-[120px]">
@@ -111,6 +111,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* Hodnota */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="justify-between min-w-[140px]">
@@ -131,47 +132,29 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* Řazení */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="justify-between min-w-[140px]">
-                {barometerLevels.find(b => b.value === filters.barometer)?.label || 'Závažnost'}
+              <Button variant="outline" className="justify-between min-w-[180px]">
+                {sortOptions.find(s => s.value === filters.sortBy)?.label || 'Řadit podle'}
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              {barometerLevels.map(level => (
+              {sortOptions.map(option => (
                 <DropdownMenuItem
-                  key={level.value}
-                  onClick={() => updateFilter('barometer', level.value)}
-                  className={filters.barometer === level.value ? 'bg-blue-50' : ''}
+                  key={option.value}
+                  onClick={() => updateFilter('sortBy', option.value)}
+                  className={filters.sortBy === option.value ? 'bg-blue-50' : ''}
                 >
-                  {level.label}
+                  {option.label}
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <DropdownMenu>
-  <DropdownMenuTrigger asChild>
-    <Button variant="outline" className="justify-between min-w-[180px]">
-      {sortOptions.find(s => s.value === filters.sortBy)?.label || 'Řadit podle'}
-      <ChevronDown className="h-4 w-4" />
-    </Button>
-  </DropdownMenuTrigger>
-  <DropdownMenuContent>
-    {sortOptions.map(option => (
-      <DropdownMenuItem
-        key={option.value}
-        onClick={() => updateFilter('sortBy', option.value)}
-        className={filters.sortBy === option.value ? 'bg-blue-50' : ''}
-      >
-        {option.label}
-      </DropdownMenuItem>
-    ))}
-  </DropdownMenuContent>
-</DropdownMenu>
-
-          {(filters.sector || filters.region || filters.value || filters.barometer) && (
+          {/* Reset */}
+          {(filters.sector || filters.region || filters.value || filters.sortBy) && (
             <Button variant="ghost" onClick={clearFilters} className="text-red-600">
               Zrušit filtry
             </Button>
