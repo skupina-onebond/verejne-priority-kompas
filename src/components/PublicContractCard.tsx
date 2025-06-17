@@ -52,15 +52,14 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     <>
       <Card className="hover:shadow-md transition-shadow">
         <CardHeader className="pb-3">
-          {/* 🔵 Score kruh v pravom hornom rohu */}
-{contract.riskScore !== undefined && (
-  <div className="absolute top-2 right-2 z-10">
-    <ScoreCircle score={contract.riskScore} size={40} />
-  </div>
-)}
           <div className="flex justify-between items-start">
             <div className="flex-1">
-              <CardTitle className="text-lg mb-2">{contract.title}</CardTitle>
+              <div className="flex items-center gap-2 mb-2">
+  <CardTitle className="text-lg">{contract.title}</CardTitle>
+  {contract.riskScore !== undefined && (
+    <ScoreCircle score={contract.riskScore} size={32} />
+  )}
+</div>
               <div className="flex flex-wrap gap-2 mb-2">
                
                 <Badge variant="outline">{contract.sector}</Badge>
