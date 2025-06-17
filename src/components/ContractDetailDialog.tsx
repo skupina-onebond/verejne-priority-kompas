@@ -94,40 +94,42 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           </div>
 
           {/* RIGHT */}
-          <div className="space-y-6">
-            {contract.riskScore !== undefined && (
-              <section>
-                <Barometer score={contract.riskScore} size="md" showLabel />
-                <strong>Doporučení pro kontrolní orgán:</strong>
-<div className="mt-2">
-  <div className="bg-slate-100 border border-slate-300 rounded-md p-4 text-sm text-gray-800 space-y-1">
-    {contract.riskScore <= 40 && (
-      <ul className="list-disc list-inside">
-        <li>Zakázka byla vyhodnocena jako nízce riziková.</li>
-        <li>Doporučujeme běžný dohled dle interních postupů.</li>
-        <li>Kontrolujte plnění smlouvy a uchovávejte dokumentaci.</li>
-      </ul>
-    )}
+<div className="space-y-6">
+  {contract.riskScore !== undefined && (
+    <section>
+      <Barometer score={contract.riskScore} size="md" showLabel />
+      <strong>Doporučení pro kontrolní orgán:</strong>
+      <div className="mt-2">
+        <div className="bg-slate-100 border border-slate-300 rounded-md p-4 text-sm text-gray-800 space-y-1">
+          {contract.riskScore <= 40 && (
+            <ul className="list-disc list-inside">
+              <li>Zakázka byla vyhodnocena jako nízce riziková.</li>
+              <li>Doporučujeme běžný dohled dle interních postupů.</li>
+              <li>Kontrolujte plnění smlouvy a uchovávejte dokumentaci.</li>
+            </ul>
+          )}
 
-    {contract.riskScore > 40 && contract.riskScore <= 70 && (
-      <ul className="list-disc list-inside">
-        <li>Zakázka vyžaduje zvýšenou pozornost.</li>
-        <li>Prověřte historii dodavatele a případné střety zájmů.</li>
-        <li>Zajistěte přehlednou evidenci rozhodnutí a výdajů.</li>
-      </ul>
-    )}
+          {contract.riskScore > 40 && contract.riskScore <= 70 && (
+            <ul className="list-disc list-inside">
+              <li>Zakázka vyžaduje zvýšenou pozornost.</li>
+              <li>Prověřte historii dodavatele a případné střety zájmů.</li>
+              <li>Zajistěte přehlednou evidenci rozhodnutí a výdajů.</li>
+            </ul>
+          )}
 
-    {contract.riskScore > 70 && (
-      <ul className="list-disc list-inside">
-        <li>Zakázka byla označena jako vysoce riziková.</li>
-        <li>Doporučujeme podrobný dohled nad všemi fázemi zakázky.</li>
-        <li>Zvažte zapojení nezávislého dohledu nebo interního auditora.</li>
-        <li>Vyžadujte detailní dokumentaci a transparentní výběrové řízení.</li>
-      </ul>
-    )}
-  </div>
-</div>
-        </div> {/* koniec GRID */}
+          {contract.riskScore > 70 && (
+            <ul className="list-disc list-inside">
+              <li>Zakázka byla označena jako vysoce riziková.</li>
+              <li>Doporučujeme podrobný dohled nad všemi fázemi zakázky.</li>
+              <li>Zvažte zapojení nezávislého dohledu nebo interního auditora.</li>
+              <li>Vyžadujte detailní dokumentaci a transparentní výběrové řízení.</li>
+            </ul>
+          )}
+        </div>
+      </div>
+    </section> // ← chýbajúce ukončenie
+  )}
+</div> {/* koniec GRID */}
 
         {/* ANALÝZA POD GRIDOM */}
         {analysisResult && (
