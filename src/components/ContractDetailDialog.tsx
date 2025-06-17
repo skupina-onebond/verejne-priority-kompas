@@ -87,9 +87,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
         <div className="space-y-6">
           <div className="flex flex-wrap gap-2">
-            <Badge className={getBarometerColor(contract.barometer)}>
-              {getBarometerText(contract.barometer)} závažnost
-            </Badge>
             <Badge variant="outline">{contract.sector}</Badge>
             <Badge variant="outline">{contract.region}</Badge>
           </div>
