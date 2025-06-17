@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, Bookmark, Check, FileText } from "lucide-react";
 import { PublicContract, ContractStatus } from "@/types/contract";
 import { ContractDetailDialog } from "./ContractDetailDialog";
+import { ArrowUp, ArrowDown } from "lucide-react"; 
+
 
 interface PublicContractCardProps {
   contract: PublicContract;
@@ -61,6 +63,68 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               </div>
             </div>
             <div className="flex gap-2 ml-4">
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => setShowDetail(true)}
+    className="text-blue-600 hover:text-blue-700"
+  >
+    <FileText className="h-4 w-4" />
+  </Button>
+
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => onStatusChange(contract.id, 
+      contract.status === 'bookmarked' ? 'active' : 'bookmarked'
+    )}
+    className={contract.status === 'bookmarked' 
+      ? 'text-yellow-600 hover:text-yellow-700' 
+      : 'text-gray-600 hover:text-gray-700'}
+  >
+    <Bookmark className={`h-4 w-4 ${contract.status === 'bookmarked' ? 'fill-current' : ''}`} />
+  </Button>
+
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => onStatusChange(contract.id, 
+      contract.status === 'hidden' ? 'active' : 'hidden'
+    )}
+    className="text-gray-600 hover:text-gray-700"
+  >
+    {contract.status === 'hidden' ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+  </Button>
+
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => onStatusChange(contract.id, 'completed')}
+    className="text-green-600 hover:text-green-700"
+  >
+    <Check className="h-4 w-4" />
+  </Button>
+
+  {/* 🔼 Šipka hore */}
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => onMove(contract.id, "up")}
+    className="text-gray-600 hover:text-gray-800"
+  >
+    <ArrowUp className="h-4 w-4" />
+  </Button>
+
+  {/* 🔽 Šipka dole */}
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => onMove(contract.id, "down")}
+    className="text-gray-600 hover:text-gray-800"
+  >
+    <ArrowDown className="h-4 w-4" />
+  </Button>
+</div>
               <Button
                 variant="outline"
                 size="sm"
