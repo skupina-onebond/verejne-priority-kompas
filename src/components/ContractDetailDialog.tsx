@@ -120,7 +120,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
             {analysisResult && (
               <section className="bg-indigo-50 border border-indigo-200 p-4 rounded-lg">
-                <h3 className="text-sm font-semibold text-indigo-800 mb-2">Analýza dodavatele</h3>
+                <h3 className="text-sm font-semibold text-indigo-800 mb-2">Analýza zadavatele</h3>
                 <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
               </section>
             )}
