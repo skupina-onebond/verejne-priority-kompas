@@ -99,18 +99,38 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               <section>
                 <Barometer score={contract.riskScore} size="md" showLabel />
                 <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md text-sm text-slate-800">
-                  <strong>Doporučení pro auditora:</strong>
-                  <p className="mt-1">
-                    {contract.riskScore <= 40 && (
-                      <>Zakázka vykazuje nízkou úroveň rizika. Doporučujeme standardní monitoring, kontrolu dodržování podmínek smlouvy a pravidelnou dokumentaci průběhu zakázky.</>
-                    )}
-                    {contract.riskScore > 40 && contract.riskScore <= 70 && (
-                      <>Zakázka vyžaduje zvýšenou pozornost. Prověřte historii dodavatele, posuďte možné střety zájmů a zajistěte přehlednou evidenci klíčových rozhodnutí a výdajů.</>
-                    )}
-                    {contract.riskScore > 70 && (
-                      <>Zakázka je vysoce riziková. Doporučujeme detailní kontrolu každé fáze, přizvání interního auditora, transparentní výběrové řízení a nezávislý dohled nad plněním.</>
-                    )}
-                  </p>
+                  <strong>Doporučení pro kontrolní orgán:</strong>
+<p className="mt-2">
+  {contract.riskScore <= 40 && (
+    <ul className="list-disc list-inside mt-1 text-gray-700 space-y-1">
+      <li>Zakázka byla vyhodnocena jako nízce riziková.</li>
+      <li>Doporučujeme provádět běžný dohled dle interních standardů.</li>
+      <li>Pravidelně kontrolujte dodržování smluvních podmínek a termínů plnění.</li>
+      <li>Zajišťujte průběžnou archivaci relevantní dokumentace a komunikace.</li>
+    </ul>
+  )}
+
+  {contract.riskScore > 40 && contract.riskScore <= 70 && (
+    <ul className="list-disc list-inside mt-1 text-gray-700 space-y-1">
+      <li>Zakázka byla vyhodnocena jako středně riziková.</li>
+      <li>Doporučuje se provést důkladnější prověření důvěryhodnosti dodavatele.</li>
+      <li>Zajistěte přehlednou evidenci klíčových rozhodnutí, výdajů a schvalovacích procesů.</li>
+      <li>Prověřte potenciální střety zájmů a soulad s pravidly pro zadávání veřejných zakázek.</li>
+      <li>Pravidelně informujte vedení o průběhu a případných rizicích.</li>
+    </ul>
+  )}
+
+  {contract.riskScore > 70 && (
+    <ul className="list-disc list-inside mt-1 text-gray-700 space-y-1">
+      <li>Zakázka byla vyhodnocena jako vysoce riziková.</li>
+      <li>Doporučujeme zapojení interního kontrolního útvaru již ve fázi realizace.</li>
+      <li>Každou etapu zakázky je vhodné podrobit samostatné kontrole plnění a souladu.</li>
+      <li>Požadujte detailní dokumentaci rozhodovacích procesů a výběrových řízení.</li>
+      <li>Zvažte přizvání nezávislého odborného dohledu.</li>
+      <li>Transparentnost a dohled by měly být prioritou po celou dobu trvání zakázky.</li>
+    </ul>
+  )}
+</p>
                 </div>
               </section>
             )}
