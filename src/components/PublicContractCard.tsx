@@ -12,6 +12,8 @@ interface PublicContractCardProps {
   contract: PublicContract;
   onStatusChange: (id: string, status: ContractStatus) => void;
   onMove: (id: string, direction: "up" | "down") => void;
+    onDeepSearch: (subjectName: string) => void;
+
 }
 
 export const PublicContractCard: React.FC<PublicContractCardProps> = ({
@@ -153,6 +155,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
         contract={contract}
         isOpen={showDetail}
         onClose={() => setShowDetail(false)}
+        onDeepSearch={onDeepSearch}
       />
     </>
   );
