@@ -1,11 +1,8 @@
-
-import { PublicContract } from '@/types/contract';
-
 export const mockContracts: PublicContract[] = [
   {
     id: '1',
     title: 'Modernizace IT infrastruktury nemocnice',
-    description: 'Komplexní modernizace IT systémů a síťové infrastruktury v krajské nemocnici. Projekt zahrnuje výměnu serverů, síťových prvků a implementaci nového nemocničního informačního systému.',
+    description: 'Komplexní modernizace IT systémů a síťové infrastruktury v krajské nemocnici...',
     value: 2500000,
     valueCategory: 'medium',
     deadline: '2024-07-15',
@@ -15,12 +12,13 @@ export const mockContracts: PublicContract[] = [
     barometer: 'high',
     status: 'active',
     additional_info: 'Projekt je součástí digitalizace zdravotnictví v regionu.',
-    created_at: '2024-06-01'
+    created_at: '2024-06-01',
+    analysis: `Zadavatel má dlouhodobé zkušenosti s projekty z fondů EU. V minulosti realizoval 5 projektů v oblasti zdravotnictví. Nebyla zaznamenána žádná závažná pochybení. Riziko plynoucí z kapacity IT oddělení bylo v předchozích kontrolách označeno jako střední.`
   },
   {
     id: '2',
     title: 'Rekonstrukce základní školy',
-    description: 'Kompletní rekonstrukce budovy základní školy včetně výměny oken, zateplení fasády a modernizace učeben. Projekt zahrnuje také vybudování bezbariérových přístupů.',
+    description: 'Kompletní rekonstrukce budovy základní školy...',
     value: 750000,
     valueCategory: 'medium',
     deadline: '2024-08-20',
@@ -29,12 +27,13 @@ export const mockContracts: PublicContract[] = [
     region: 'Jihomoravský kraj',
     barometer: 'medium',
     status: 'active',
-    created_at: '2024-06-02'
+    created_at: '2024-06-02',
+    analysis: `Zadavatel je aktivní v oblasti investic do školských zařízení. Má zpracované interní metodiky pro zadávání VZ. U předchozí veřejné zakázky v roce 2022 došlo k opožděnému ukončení výběrového řízení. Riziko je nízké, doporučuje se však sledovat harmonogram.`
   },
   {
     id: '3',
     title: 'Dodávka školních autobusů',
-    description: 'Nákup 5 nových školních autobusů pro zajištění dopravy žáků ve venkovském regionu. Autobusy musí splňovat nejnovější bezpečnostní a ekologické standardy.',
+    description: 'Nákup 5 nových školních autobusů...',
     value: 450000,
     valueCategory: 'low',
     deadline: '2024-07-30',
@@ -43,12 +42,13 @@ export const mockContracts: PublicContract[] = [
     region: 'Moravskoslezský kraj',
     barometer: 'low',
     status: 'active',
-    created_at: '2024-06-03'
+    created_at: '2024-06-03',
+    analysis: `Zadavatel pravidelně realizuje dopravní zakázky financované z národních zdrojů. Poslední kontrola CRR z roku 2023 neodhalila žádné závažné pochybení. Riziko je považováno za minimální.`
   },
   {
     id: '4',
     title: 'Výstavba fotovoltaické elektrárny',
-    description: 'Návrh a výstavba fotovoltaické elektrárny s výkonem 2 MW na území města. Projekt je součástí strategie energetické nezávislosti a snižování uhlíkové stopy.',
+    description: 'Návrh a výstavba fotovoltaické elektrárny...',
     value: 8500000,
     valueCategory: 'high',
     deadline: '2024-09-15',
@@ -58,12 +58,13 @@ export const mockContracts: PublicContract[] = [
     barometer: 'high',
     status: 'bookmarked',
     additional_info: 'Strategický projekt pro energetickou transformaci regionu.',
-    created_at: '2024-06-04'
+    created_at: '2024-06-04',
+    analysis: `Zadavatel byl v minulosti kontrolován v souvislosti s projektem Zelená energie 2021. Byla zjištěna pochybení v oblasti výběrového řízení. Doporučuje se zvýšená kontrola kvalifikace dodavatele a transparentnosti hodnotících kritérií. Riziko střední až vysoké.`
   },
   {
     id: '5',
     title: 'Dodávka zdravotnických přístrojů',
-    description: 'Nákup moderních diagnostických přístrojů pro polikliniku včetně RTG zařízení, ultrazvuku a laboratorních analyzátorů.',
+    description: 'Nákup moderních diagnostických přístrojů...',
     value: 1200000,
     valueCategory: 'medium',
     deadline: '2024-08-10',
@@ -72,12 +73,13 @@ export const mockContracts: PublicContract[] = [
     region: 'Ústecký kraj',
     barometer: 'medium',
     status: 'active',
-    created_at: '2024-06-05'
+    created_at: '2024-06-05',
+    analysis: `Zadavatel realizoval menší zakázky převážně z vlastního rozpočtu. Nejsou známy větší zkušenosti s fondy EU. Vhodné prověřit kvalifikační předpoklady a schopnost správného vedení projektové dokumentace.`
   },
   {
     id: '6',
     title: 'Čištění veřejných prostranství',
-    description: 'Komplexní služby čištění a údržby veřejných prostranství, parků a komunikací ve městě na období 3 let.',
+    description: 'Komplexní služby čištění a údržby veřejných prostranství...',
     value: 320000,
     valueCategory: 'low',
     deadline: '2024-07-25',
@@ -86,6 +88,7 @@ export const mockContracts: PublicContract[] = [
     region: 'Jihočeský kraj',
     barometer: 'low',
     status: 'hidden',
-    created_at: '2024-06-06'
+    created_at: '2024-06-06',
+    analysis: `Zadavatel má dlouhodobé zkušenosti s údržbou veřejného prostoru. Jedná se o opakující se typ zakázky bez známých pochybení. Riziko je minimální.`
   }
 ];
