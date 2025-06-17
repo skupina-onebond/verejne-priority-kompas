@@ -26,16 +26,24 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [loading, setLoading] = useState(false);
 
   const handleDeepSearch = async () => {
-    try {
-      setLoading(true);
-      const result = await deepSearch(contract.contracting_authority);
-      setAnalysis(result);
-    } catch (err) {
-      setAnalysis("Nepodařilo se načíst výsledek.");
-    } finally {
-      setLoading(false);
+  try {
+    setLoading(true);
+
+    // 🧠 Použi predvyplnenú analýzu z mock dát, ak je dostupná
+    if (contract.analysis) {
+      setAnalysis(contract.analysis);
+      return;
     }
-  };
+
+    // 🌍 Inak spusti API DeepSearch
+    const result = await deepSearch(contract.contracting_authority);
+    setAnalysis(result);
+  } catch (err) {
+    setAnalysis("❌ Nepodařilo se načíst výsledek.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const getBarometerColor = (level: string) => {
     switch (level) {
