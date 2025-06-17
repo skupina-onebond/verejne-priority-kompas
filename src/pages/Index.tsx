@@ -1,10 +1,7 @@
-
 import React, { useState, useMemo } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Eye, EyeOff, Bookmark, Check, FileText } from "lucide-react";
 import { PublicContractCard } from "@/components/PublicContractCard";
 import { ContractFilters } from "@/components/ContractFilters";
 import { mockContracts } from "@/data/mockContracts";
@@ -16,11 +13,11 @@ const Index = () => {
     sector: '',
     region: '',
     value: '',
-    barometer: ''
+    sortBy: ''
   });
 
   const updateContractStatus = (id: string, status: ContractStatus) => {
-    setContracts(prev => prev.map(contract => 
+    setContracts(prev => prev.map(contract =>
       contract.id === id ? { ...contract, status } : contract
     ));
   };
@@ -29,15 +26,15 @@ const Index = () => {
     setContracts(prev => {
       const currentIndex = prev.findIndex(contract => contract.id === id);
       if (currentIndex === -1) return prev;
-      
-      const newIndex = direction === "up" 
+
+      const newIndex = direction === "up"
         ? Math.max(0, currentIndex - 1)
         : Math.min(prev.length - 1, currentIndex + 1);
-      
+
       const newContracts = [...prev];
       const [movedContract] = newContracts.splice(currentIndex, 1);
       newContracts.splice(newIndex, 0, movedContract);
-      
+
       return newContracts;
     });
   };
@@ -51,19 +48,36 @@ const Index = () => {
       if (filters.sector && contract.sector !== filters.sector) return false;
       if (filters.region && contract.region !== filters.region) return false;
       if (filters.value && contract.valueCategory !== filters.value) return false;
-      if (filters.barometer && contract.barometer !== filters.barometer) return false;
       return true;
     });
   }, [contracts, filters]);
 
-  const activeContracts = filteredContracts.filter(c => c.status === 'active');
-  const hiddenContracts = filteredContracts.filter(c => c.status === 'hidden');
-  const bookmarkedContracts = filteredContracts.filter(c => c.status === 'bookmarked');
+  const sortContracts = (contracts: PublicContract[]) => {
+    const sorted = [...contracts];
 
-  const sortByBarometer = (contracts: PublicContract[]) => {
-    const priority = { 'high': 3, 'medium': 2, 'low': 1 };
-    return [...contracts].sort((a, b) => priority[b.barometer] - priority[a.barometer]);
+    switch (filters.sortBy) {
+      case 'risk_high':
+        return sorted.sort((a, b) => b.riskScore - a.riskScore);
+      case 'risk_low':
+        return sorted.sort((a, b) => a.riskScore - b.riskScore);
+      case 'value_high':
+        return sorted.sort((a, b) => b.value - a.value);
+      case 'value_low':
+        return sorted.sort((a, b) => a.value - b.value);
+      default:
+        return sorted;
+    }
   };
+
+  const activeContracts = sortContracts(
+    filteredContracts.filter(c => c.status === 'active')
+  );
+  const bookmarkedContracts = sortContracts(
+    filteredContracts.filter(c => c.status === 'bookmarked')
+  );
+  const hiddenContracts = sortContracts(
+    filteredContracts.filter(c => c.status === 'hidden')
+  );
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Open Sans, sans-serif' }}>
@@ -96,7 +110,7 @@ const Index = () => {
           </TabsList>
 
           <TabsContent value="active" className="space-y-4">
-            {sortByBarometer(activeContracts).map(contract => (
+            {activeContracts.map(contract => (
               <PublicContractCard
                 key={contract.id}
                 contract={contract}
@@ -115,7 +129,7 @@ const Index = () => {
           </TabsContent>
 
           <TabsContent value="bookmarked" className="space-y-4">
-            {sortByBarometer(bookmarkedContracts).map(contract => (
+            {bookmarkedContracts.map(contract => (
               <PublicContractCard
                 key={contract.id}
                 contract={contract}
@@ -134,7 +148,7 @@ const Index = () => {
           </TabsContent>
 
           <TabsContent value="hidden" className="space-y-4">
-            {sortByBarometer(hiddenContracts).map(contract => (
+            {hiddenContracts.map(contract => (
               <PublicContractCard
                 key={contract.id}
                 contract={contract}
