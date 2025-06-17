@@ -95,26 +95,43 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="space-y-6">
-            <section>
-              <h3 className="font-semibold text-slate-800 mb-2">Popis zakázky</h3>
-              <p className="leading-relaxed text-slate-900">{contract.description}</p>
-            </section>
+<div className="space-y-6">
+  {contract.riskScore !== undefined && (
+    <section>
+      <h3 className="text-sm font-semibold text-slate-800 mb-2">🎯 Rizikový barometr</h3>
+      <Barometer score={contract.riskScore} size="md" showLabel />
 
-            {analysisResult && (
-              <section className="bg-indigo-50 border border-indigo-200 p-4 rounded-lg">
-                <h3 className="text-sm font-semibold text-indigo-800 mb-2">📊 Analýza dodavatele</h3>
-                <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
-              </section>
-            )}
+      {/* Odporúčanie */}
+      <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md text-sm text-slate-800">
+        <strong>Doporučení pro auditora:</strong>
+        <p className="mt-1">
+          {contract.riskScore <= 40 && (
+            <>Zakázka vykazuje nízkou úroveň rizika. Doporučujeme standardní monitoring a pravidelnou dokumentaci průběhu zakázky.</>
+          )}
+          {contract.riskScore > 40 && contract.riskScore <= 70 && (
+            <>Zakázka vyžaduje zvýšenou pozornost. Prověřte historii dodavatele a zajistěte přehlednou evidenci klíčových rozhodnutí a výdajů.</>
+          )}
+          {contract.riskScore > 70 && (
+            <>Zakázka je vysoce riziková. Doporučujeme detailní kontrolu každé fáze, transparentní výběrové řízení a auditní dohled nad plněním.</>
+          )}
+        </p>
+      </div>
+    </section>
+  )}
 
-            {contract.riskScore !== undefined && (
-              <section>
-                <h3 className="text-sm font-semibold text-slate-800 mb-2">🎯 Rizikový barometr</h3>
-                <Barometer score={contract.riskScore} size="md" showLabel />
-              </section>
-            )}
-          </div>
+  {/* Popis */}
+  <section>
+    <h3 className="font-semibold text-slate-800 mb-2">Popis zakázky</h3>
+    <p className="leading-relaxed text-slate-900">{contract.description}</p>
+  </section>
+
+  {analysisResult && (
+    <section className="bg-indigo-50 border border-indigo-200 p-4 rounded-lg">
+      <h3 className="text-sm font-semibold text-indigo-800 mb-2">📊 Analýza dodavatele</h3>
+      <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
+    </section>
+  )}
+</div>
         </div>
       </DialogContent>
     </Dialog>
