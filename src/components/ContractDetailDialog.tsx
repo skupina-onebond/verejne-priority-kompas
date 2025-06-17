@@ -127,7 +127,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           )}
         </div>
       </div>
-    </section> // ← chýbajúce ukončenie
+    </section>
   )}
 </div> {/* koniec GRID */}
 
