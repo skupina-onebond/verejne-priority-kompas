@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -9,7 +8,6 @@ import { PublicContractCard } from "@/components/PublicContractCard";
 import { ContractFilters } from "@/components/ContractFilters";
 import { mockContracts } from "@/data/mockContracts";
 import { PublicContract, ContractStatus } from "@/types/contract";
-
 const Index = () => {
   const [contracts, setContracts] = useState<PublicContract[]>(mockContracts);
   const [filters, setFilters] = useState({
@@ -18,13 +16,12 @@ const Index = () => {
     value: '',
     barometer: ''
   });
-
   const updateContractStatus = (id: string, status: ContractStatus) => {
-    setContracts(prev => prev.map(contract => 
-      contract.id === id ? { ...contract, status } : contract
-    ));
+    setContracts(prev => prev.map(contract => contract.id === id ? {
+      ...contract,
+      status
+    } : contract));
   };
-
   const filteredContracts = useMemo(() => {
     return contracts.filter(contract => {
       if (filters.sector && contract.sector !== filters.sector) return false;
@@ -34,23 +31,23 @@ const Index = () => {
       return true;
     });
   }, [contracts, filters]);
-
   const activeContracts = filteredContracts.filter(c => c.status === 'active');
   const hiddenContracts = filteredContracts.filter(c => c.status === 'hidden');
   const bookmarkedContracts = filteredContracts.filter(c => c.status === 'bookmarked');
-
   const sortByBarometer = (contracts: PublicContract[]) => {
-    const priority = { 'high': 3, 'medium': 2, 'low': 1 };
+    const priority = {
+      'high': 3,
+      'medium': 2,
+      'low': 1
+    };
     return [...contracts].sort((a, b) => priority[b.barometer] - priority[a.barometer]);
   };
-
-  return (
-    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+  return <div className="min-h-screen bg-gray-50" style={{
+    fontFamily: 'Open Sans, sans-serif'
+  }}>
       <div className="container mx-auto p-6">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Fronta veřejných zakázek
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Fronta  zakázek</h1>
           <p className="text-gray-600">
             Přehledná správa a sledování veřejných zakázek podle závažnosti
           </p>
@@ -75,59 +72,33 @@ const Index = () => {
           </TabsList>
 
           <TabsContent value="active" className="space-y-4">
-            {sortByBarometer(activeContracts).map(contract => (
-              <PublicContractCard
-                key={contract.id}
-                contract={contract}
-                onStatusChange={updateContractStatus}
-              />
-            ))}
-            {activeContracts.length === 0 && (
-              <Card>
+            {sortByBarometer(activeContracts).map(contract => <PublicContractCard key={contract.id} contract={contract} onStatusChange={updateContractStatus} />)}
+            {activeContracts.length === 0 && <Card>
                 <CardContent className="p-8 text-center">
                   <p className="text-gray-500">Žádné aktivní zakázky</p>
                 </CardContent>
-              </Card>
-            )}
+              </Card>}
           </TabsContent>
 
           <TabsContent value="bookmarked" className="space-y-4">
-            {sortByBarometer(bookmarkedContracts).map(contract => (
-              <PublicContractCard
-                key={contract.id}
-                contract={contract}
-                onStatusChange={updateContractStatus}
-              />
-            ))}
-            {bookmarkedContracts.length === 0 && (
-              <Card>
+            {sortByBarometer(bookmarkedContracts).map(contract => <PublicContractCard key={contract.id} contract={contract} onStatusChange={updateContractStatus} />)}
+            {bookmarkedContracts.length === 0 && <Card>
                 <CardContent className="p-8 text-center">
                   <p className="text-gray-500">Žádné záložky</p>
                 </CardContent>
-              </Card>
-            )}
+              </Card>}
           </TabsContent>
 
           <TabsContent value="hidden" className="space-y-4">
-            {sortByBarometer(hiddenContracts).map(contract => (
-              <PublicContractCard
-                key={contract.id}
-                contract={contract}
-                onStatusChange={updateContractStatus}
-              />
-            ))}
-            {hiddenContracts.length === 0 && (
-              <Card>
+            {sortByBarometer(hiddenContracts).map(contract => <PublicContractCard key={contract.id} contract={contract} onStatusChange={updateContractStatus} />)}
+            {hiddenContracts.length === 0 && <Card>
                 <CardContent className="p-8 text-center">
                   <p className="text-gray-500">Žádné skryté zakázky</p>
                 </CardContent>
-              </Card>
-            )}
+              </Card>}
           </TabsContent>
         </Tabs>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
