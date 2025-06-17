@@ -25,6 +25,27 @@ const Index = () => {
     ));
   };
 
+  const moveContract = (id: string, direction: "up" | "down") => {
+    setContracts(prev => {
+      const currentIndex = prev.findIndex(contract => contract.id === id);
+      if (currentIndex === -1) return prev;
+      
+      const newIndex = direction === "up" 
+        ? Math.max(0, currentIndex - 1)
+        : Math.min(prev.length - 1, currentIndex + 1);
+      
+      const newContracts = [...prev];
+      const [movedContract] = newContracts.splice(currentIndex, 1);
+      newContracts.splice(newIndex, 0, movedContract);
+      
+      return newContracts;
+    });
+  };
+
+  const handleDeepSearch = (subjectName: string) => {
+    console.log('Deep search for:', subjectName);
+  };
+
   const filteredContracts = useMemo(() => {
     return contracts.filter(contract => {
       if (filters.sector && contract.sector !== filters.sector) return false;
@@ -80,6 +101,8 @@ const Index = () => {
                 key={contract.id}
                 contract={contract}
                 onStatusChange={updateContractStatus}
+                onMove={moveContract}
+                onDeepSearch={handleDeepSearch}
               />
             ))}
             {activeContracts.length === 0 && (
@@ -97,6 +120,8 @@ const Index = () => {
                 key={contract.id}
                 contract={contract}
                 onStatusChange={updateContractStatus}
+                onMove={moveContract}
+                onDeepSearch={handleDeepSearch}
               />
             ))}
             {bookmarkedContracts.length === 0 && (
@@ -114,6 +139,8 @@ const Index = () => {
                 key={contract.id}
                 contract={contract}
                 onStatusChange={updateContractStatus}
+                onMove={moveContract}
+                onDeepSearch={handleDeepSearch}
               />
             ))}
             {hiddenContracts.length === 0 && (

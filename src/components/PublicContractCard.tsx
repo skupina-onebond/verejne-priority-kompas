@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,7 +12,7 @@ interface PublicContractCardProps {
   contract: PublicContract;
   onStatusChange: (id: string, status: ContractStatus) => void;
   onMove: (id: string, direction: "up" | "down") => void;
-    onDeepSearch: (subjectName: string) => void;
+  onDeepSearch: (subjectName: string) => void;
 }
 
 export const PublicContractCard: React.FC<PublicContractCardProps> = ({
@@ -48,6 +49,19 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
       return `${(value / 1000).toFixed(0)} tis. Kč`;
     }
     return `${value} Kč`;
+  };
+
+  const handleDeepSearch = (subjectName: string) => {
+    setAnalysisResult("⏳ Načítání analýzy zadavatele...");
+    onDeepSearch(subjectName);
+    
+    setTimeout(() => {
+      if (contract.analysisResult) {
+        setAnalysisResult(contract.analysisResult);
+      } else {
+        setAnalysisResult("⚠️ Analýza zadavatele není dostupná.");
+      }
+    }, 1500);
   };
 
   return (
@@ -154,16 +168,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
         contract={contract}
         isOpen={showDetail}
         onClose={() => setShowDetail(false)}
-        onDeepSearch={() => {
-  setAnalysisResult("⏳ Načítání analýzy zadavatele...");
-  setTimeout(() => {
-    if (contract.analysis) {
-      setAnalysisResult(contract.analysis); // opraveno
-    } else {
-      setAnalysisResult("⚠️ Analýza zadavatele není dostupná.");
-    }
-  }, 1500);
-}}
+        onDeepSearch={handleDeepSearch}
         analysisResult={analysisResult}
       />
     </>

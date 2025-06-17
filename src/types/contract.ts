@@ -21,4 +21,5 @@ export interface PublicContract {
   created_at: string;
   riskScore?: number;
   analysisResult?: string;
+  analysis?: string;
 }
