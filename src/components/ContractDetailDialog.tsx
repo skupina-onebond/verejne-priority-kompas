@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   Dialog,
@@ -7,18 +6,22 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Search } from "lucide-react";
 import { PublicContract } from "@/types/contract";
 
 interface ContractDetailDialogProps {
   contract: PublicContract;
   isOpen: boolean;
   onClose: () => void;
+  onDeepSearch: (ico: string, name: string) => void;
 }
 
 export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   contract,
   isOpen,
-  onClose
+  onClose,
+  onDeepSearch
 }) => {
   const getBarometerColor = (level: string) => {
     switch (level) {
@@ -76,12 +79,44 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   </div>
                   <div>
                     <span className="font-medium text-gray-700">Zadavatel:</span>
-                    <p className="text-gray-900">{contract.contracting_authority}</p>
+                    <div className="flex justify-between items-center gap-2">
+                      <p className="text-gray-900">{contract.contracting_authority}</p>
+                      {contract.contracting_authority_ico && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => onDeepSearch(contract.contracting_authority_ico!, contract.contracting_authority)}
+                          className="text-indigo-600 hover:text-indigo-800"
+                        >
+                          Prověřit
+                          <Search className="h-4 w-4 ml-1" />
+                        </Button>
+                      )}
+                    </div>
                   </div>
                   <div>
                     <span className="font-medium text-gray-700">Region:</span>
                     <p className="text-gray-900">{contract.region}</p>
                   </div>
+                  {contract.supplier_name && (
+                    <div>
+                      <span className="font-medium text-gray-700">Dodavatel:</span>
+                      <div className="flex justify-between items-center gap-2">
+                        <p className="text-gray-900">{contract.supplier_name}</p>
+                        {contract.supplier_ico && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => onDeepSearch(contract.supplier_ico!, contract.supplier_name)}
+                            className="text-indigo-600 hover:text-indigo-800"
+                          >
+                            Prověřit
+                            <Search className="h-4 w-4 ml-1" />
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
