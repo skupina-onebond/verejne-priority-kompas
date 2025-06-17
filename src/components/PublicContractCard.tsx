@@ -1,0 +1,135 @@
+
+import React, { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Eye, EyeOff, Bookmark, Check, FileText } from "lucide-react";
+import { PublicContract, ContractStatus } from "@/types/contract";
+import { ContractDetailDialog } from "./ContractDetailDialog";
+
+interface PublicContractCardProps {
+  contract: PublicContract;
+  onStatusChange: (id: string, status: ContractStatus) => void;
+}
+
+export const PublicContractCard: React.FC<PublicContractCardProps> = ({
+  contract,
+  onStatusChange
+}) => {
+  const [showDetail, setShowDetail] = useState(false);
+
+  const getBarometerColor = (level: string) => {
+    switch (level) {
+      case 'high': return 'bg-red-500 text-white';
+      case 'medium': return 'bg-orange-500 text-white';
+      case 'low': return 'bg-green-500 text-white';
+      default: return 'bg-gray-500 text-white';
+    }
+  };
+
+  const getBarometerText = (level: string) => {
+    switch (level) {
+      case 'high': return 'Vysoká';
+      case 'medium': return 'Stredná';
+      case 'low': return 'Nízka';
+      default: return level;
+    }
+  };
+
+  const formatValue = (value: number) => {
+    if (value >= 1000000) {
+      return `${(value / 1000000).toFixed(1)} mil. €`;
+    } else if (value >= 1000) {
+      return `${(value / 1000).toFixed(0)} tis. €`;
+    }
+    return `${value} €`;
+  };
+
+  return (
+    <>
+      <Card className="hover:shadow-md transition-shadow">
+        <CardHeader className="pb-3">
+          <div className="flex justify-between items-start">
+            <div className="flex-1">
+              <CardTitle className="text-lg mb-2">{contract.title}</CardTitle>
+              <div className="flex flex-wrap gap-2 mb-2">
+                <Badge className={getBarometerColor(contract.barometer)}>
+                  {getBarometerText(contract.barometer)} závažnosť
+                </Badge>
+                <Badge variant="outline">{contract.sector}</Badge>
+                <Badge variant="outline">{contract.region}</Badge>
+              </div>
+            </div>
+            <div className="flex gap-2 ml-4">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowDetail(true)}
+                className="text-blue-600 hover:text-blue-700"
+              >
+                <FileText className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onStatusChange(contract.id, 
+                  contract.status === 'bookmarked' ? 'active' : 'bookmarked'
+                )}
+                className={contract.status === 'bookmarked' 
+                  ? 'text-yellow-600 hover:text-yellow-700' 
+                  : 'text-gray-600 hover:text-gray-700'
+                }
+              >
+                <Bookmark className={`h-4 w-4 ${contract.status === 'bookmarked' ? 'fill-current' : ''}`} />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onStatusChange(contract.id, 
+                  contract.status === 'hidden' ? 'active' : 'hidden'
+                )}
+                className="text-gray-600 hover:text-gray-700"
+              >
+                {contract.status === 'hidden' ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onStatusChange(contract.id, 'completed')}
+                className="text-green-600 hover:text-green-700"
+              >
+                <Check className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <div>
+              <span className="font-medium text-gray-700">Hodnota zákazky:</span>
+              <p className="text-gray-900 font-semibold">{formatValue(contract.value)}</p>
+            </div>
+            <div>
+              <span className="font-medium text-gray-700">Termín podania:</span>
+              <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('sk-SK')}</p>
+            </div>
+            <div>
+              <span className="font-medium text-gray-700">Obstarávateľ:</span>
+              <p className="text-gray-900">{contract.contracting_authority}</p>
+            </div>
+          </div>
+          <div className="mt-3">
+            <span className="font-medium text-gray-700">Popis:</span>
+            <p className="text-gray-900 text-sm mt-1 line-clamp-2">{contract.description}</p>
+          </div>
+        </CardContent>
+      </Card>
+
+      <ContractDetailDialog
+        contract={contract}
+        isOpen={showDetail}
+        onClose={() => setShowDetail(false)}
+      />
+    </>
+  );
+};

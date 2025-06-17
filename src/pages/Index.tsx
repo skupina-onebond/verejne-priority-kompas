@@ -1,11 +1,130 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState, useMemo } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Eye, EyeOff, Bookmark, Check, FileText } from "lucide-react";
+import { PublicContractCard } from "@/components/PublicContractCard";
+import { ContractFilters } from "@/components/ContractFilters";
+import { mockContracts } from "@/data/mockContracts";
+import { PublicContract, ContractStatus } from "@/types/contract";
 
 const Index = () => {
+  const [contracts, setContracts] = useState<PublicContract[]>(mockContracts);
+  const [filters, setFilters] = useState({
+    sector: '',
+    region: '',
+    value: '',
+    barometer: ''
+  });
+
+  const updateContractStatus = (id: string, status: ContractStatus) => {
+    setContracts(prev => prev.map(contract => 
+      contract.id === id ? { ...contract, status } : contract
+    ));
+  };
+
+  const filteredContracts = useMemo(() => {
+    return contracts.filter(contract => {
+      if (filters.sector && contract.sector !== filters.sector) return false;
+      if (filters.region && contract.region !== filters.region) return false;
+      if (filters.value && contract.valueCategory !== filters.value) return false;
+      if (filters.barometer && contract.barometer !== filters.barometer) return false;
+      return true;
+    });
+  }, [contracts, filters]);
+
+  const activeContracts = filteredContracts.filter(c => c.status === 'active');
+  const hiddenContracts = filteredContracts.filter(c => c.status === 'hidden');
+  const bookmarkedContracts = filteredContracts.filter(c => c.status === 'bookmarked');
+
+  const sortByBarometer = (contracts: PublicContract[]) => {
+    const priority = { 'high': 3, 'medium': 2, 'low': 1 };
+    return [...contracts].sort((a, b) => priority[b.barometer] - priority[a.barometer]);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+      <div className="container mx-auto p-6">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Fronta verejných zákaziek
+          </h1>
+          <p className="text-gray-600">
+            Prehľadná správa a sledovanie verejných zákaziek podľa závažnosti
+          </p>
+        </div>
+
+        <ContractFilters filters={filters} onFiltersChange={setFilters} />
+
+        <Tabs defaultValue="active" className="w-full">
+          <TabsList className="grid w-full grid-cols-3 mb-6">
+            <TabsTrigger value="active" className="flex items-center gap-2">
+              Aktívne zákazky
+              <Badge variant="secondary">{activeContracts.length}</Badge>
+            </TabsTrigger>
+            <TabsTrigger value="bookmarked" className="flex items-center gap-2">
+              Záložky
+              <Badge variant="secondary">{bookmarkedContracts.length}</Badge>
+            </TabsTrigger>
+            <TabsTrigger value="hidden" className="flex items-center gap-2">
+              Skryté
+              <Badge variant="secondary">{hiddenContracts.length}</Badge>
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="active" className="space-y-4">
+            {sortByBarometer(activeContracts).map(contract => (
+              <PublicContractCard
+                key={contract.id}
+                contract={contract}
+                onStatusChange={updateContractStatus}
+              />
+            ))}
+            {activeContracts.length === 0 && (
+              <Card>
+                <CardContent className="p-8 text-center">
+                  <p className="text-gray-500">Žiadne aktívne zákazky</p>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
+
+          <TabsContent value="bookmarked" className="space-y-4">
+            {sortByBarometer(bookmarkedContracts).map(contract => (
+              <PublicContractCard
+                key={contract.id}
+                contract={contract}
+                onStatusChange={updateContractStatus}
+              />
+            ))}
+            {bookmarkedContracts.length === 0 && (
+              <Card>
+                <CardContent className="p-8 text-center">
+                  <p className="text-gray-500">Žiadne záložky</p>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
+
+          <TabsContent value="hidden" className="space-y-4">
+            {sortByBarometer(hiddenContracts).map(contract => (
+              <PublicContractCard
+                key={contract.id}
+                contract={contract}
+                onStatusChange={updateContractStatus}
+              />
+            ))}
+            {hiddenContracts.length === 0 && (
+              <Card>
+                <CardContent className="p-8 text-center">
+                  <p className="text-gray-500">Žiadne skryté zákazky</p>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
