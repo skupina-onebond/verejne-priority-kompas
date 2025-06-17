@@ -14,12 +14,14 @@ interface ContractDetailDialogProps {
   contract: PublicContract;
   isOpen: boolean;
   onClose: () => void;
+  onDeepSearch: (name: string) => void;
 }
 
 export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   contract,
   isOpen,
-  onClose
+  onClose,
+  onDeepSearch
 }) => {
   const getBarometerColor = (level: string) => {
     switch (level) {
@@ -82,8 +84,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => console.log("TODO: DeepSearch for zadavatel")}
-                        className="text-indigo-600 hover:text-indigo-800 ml-2"
+                        onClick={() => onDeepSearch(contract.contracting_authority)}
+                        className="text-indigo-600 hover:text-indigo-800"
                       >
                         Prověřit
                         <Search className="h-4 w-4 ml-1" />
