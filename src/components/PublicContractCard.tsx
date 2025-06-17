@@ -54,9 +54,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
             <div className="flex-1">
               <CardTitle className="text-lg mb-2">{contract.title}</CardTitle>
               <div className="flex flex-wrap gap-2 mb-2">
-                <Badge className={getBarometerColor(contract.barometer)}>
-                  {getBarometerText(contract.barometer)} závažnost
-                </Badge>
+               
                 <Badge variant="outline">{contract.sector}</Badge>
                 <Badge variant="outline">{contract.region}</Badge>
               </div>
