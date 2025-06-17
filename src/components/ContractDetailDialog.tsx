@@ -26,6 +26,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   onDeepSearch,
   analysisResult
 }) => {
+  const [showAnalysis, setShowAnalysis] = useState(false);
   const formatValue = (value: number) => {
     return new Intl.NumberFormat('cs-CZ', {
       style: 'currency',
@@ -64,7 +65,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 variant="ghost"
                 size="sm"
                 className="mt-1 pl-0 text-indigo-600 hover:text-indigo-800"
-                onClick={() => onDeepSearch(contract.contracting_authority)}
+                onClick={() => setShowAnalysis(true)}
               >
                 Prověřit <Search className="h-4 w-4 ml-1" />
               </Button>
@@ -116,7 +117,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
             {analysisResult && (
               <section className="bg-indigo-50 border border-indigo-200 p-4 rounded-lg">
-                <h3 className="text-sm font-semibold text-indigo-800 mb-2">📊 Analýza dodavatele</h3>
+                <h3 className="text-sm font-semibold text-indigo-800 mb-2">Analýza dodavatele</h3>
                 <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
               </section>
             )}
