@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   Dialog,
@@ -7,6 +6,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Search } from "lucide-react";
 import { PublicContract } from "@/types/contract";
 
 interface ContractDetailDialogProps {
@@ -76,7 +77,18 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   </div>
                   <div>
                     <span className="font-medium text-gray-700">Zadavatel:</span>
-                    <p className="text-gray-900">{contract.contracting_authority}</p>
+                    <div className="flex items-center justify-between">
+                      <p className="text-gray-900">{contract.contracting_authority}</p>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => console.log("TODO: DeepSearch for zadavatel")}
+                        className="text-indigo-600 hover:text-indigo-800 ml-2"
+                      >
+                        Prověřit
+                        <Search className="h-4 w-4 ml-1" />
+                      </Button>
+                    </div>
                   </div>
                   <div>
                     <span className="font-medium text-gray-700">Region:</span>
