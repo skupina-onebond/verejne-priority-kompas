@@ -151,6 +151,26 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
             </DropdownMenuContent>
           </DropdownMenu>
 
+          <DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="outline" className="justify-between min-w-[180px]">
+      {sortOptions.find(s => s.value === filters.sortBy)?.label || 'Řadit podle'}
+      <ChevronDown className="h-4 w-4" />
+    </Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    {sortOptions.map(option => (
+      <DropdownMenuItem
+        key={option.value}
+        onClick={() => updateFilter('sortBy', option.value)}
+        className={filters.sortBy === option.value ? 'bg-blue-50' : ''}
+      >
+        {option.label}
+      </DropdownMenuItem>
+    ))}
+  </DropdownMenuContent>
+</DropdownMenu>
+
           {(filters.sector || filters.region || filters.value || filters.barometer) && (
             <Button variant="ghost" onClick={clearFilters} className="text-red-600">
               Zrušit filtry
