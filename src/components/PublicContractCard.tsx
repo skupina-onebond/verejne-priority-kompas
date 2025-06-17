@@ -23,11 +23,6 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   const [showDetail, setShowDetail] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<string>();
 
-  const handleDeepSearch = async (subjectName: string) => {
-    // Placeholder implementace - později můžeme připojit skutečnou analýzu
-    setAnalysisResult("Analýza probíhá...");
-  };
-
   const getBarometerColor = (level: string) => {
     switch (level) {
       case 'high': return 'bg-red-500 text-white';
@@ -159,7 +154,16 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
         contract={contract}
         isOpen={showDetail}
         onClose={() => setShowDetail(false)}
-        onDeepSearch={onDeepSearch}
+        onDeepSearch={() => {
+  setAnalysisResult("⏳ Načítání analýzy dodavatele...");
+  setTimeout(() => {
+    if (contract.analysisResult) {
+      setAnalysisResult(contract.analysisResult);
+    } else {
+      setAnalysisResult("⚠️ Analýza dodavatele není dostupná.");
+    }
+  }, 1500); // 1.5 sekundy "načítání"
+}}
         analysisResult={analysisResult}
       />
     </>
