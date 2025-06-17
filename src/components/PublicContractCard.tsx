@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Eye, EyeOff, Bookmark, Check, FileText, ArrowUp, ArrowDown } from "lucide-react";
+import { Eye, EyeOff, Bookmark, Check, FileText, ArrowUp, ArrowDown, Search } from "lucide-react";
 import { PublicContract, ContractStatus } from "@/types/contract";
 import { ContractDetailDialog } from "./ContractDetailDialog";
 
@@ -10,12 +10,14 @@ interface PublicContractCardProps {
   contract: PublicContract;
   onStatusChange: (id: string, status: ContractStatus) => void;
   onMove: (id: string, direction: "up" | "down") => void;
+  onDeepSearch: (ico: string, name: string) => void;
 }
 
 export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   contract,
   onStatusChange,
-  onMove
+  onMove,
+  onDeepSearch,
 }) => {
   const [showDetail, setShowDetail] = useState(false);
 
@@ -27,14 +29,6 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
       default: return 'bg-gray-500 text-white';
     }
   };
-
-  const handleDeepSearch = (ico: string, name: string) => {
-  if (!ico || !name) return;
-
-  const query = encodeURIComponent(`${name} ${ico}`);
-  const url = `/deepsearch?query=${query}`;
-  window.open(url, '_blank');
-};
 
   const getBarometerText = (level: string) => {
     switch (level) {
@@ -69,8 +63,6 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                 <Badge variant="outline">{contract.region}</Badge>
               </div>
             </div>
-
-            {/* Akcie */}
             <div className="flex gap-2 ml-4">
               <Button
                 variant="outline"
@@ -80,25 +72,26 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               >
                 <FileText className="h-4 w-4" />
               </Button>
-
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => onStatusChange(contract.id, contract.status === 'bookmarked' ? 'active' : 'bookmarked')}
-                className={contract.status === 'bookmarked' ? 'text-yellow-600 hover:text-yellow-700' : 'text-gray-600 hover:text-gray-700'}
+                onClick={() => onStatusChange(contract.id,
+                  contract.status === 'bookmarked' ? 'active' : 'bookmarked')}
+                className={contract.status === 'bookmarked'
+                  ? 'text-yellow-600 hover:text-yellow-700'
+                  : 'text-gray-600 hover:text-gray-700'}
               >
                 <Bookmark className={`h-4 w-4 ${contract.status === 'bookmarked' ? 'fill-current' : ''}`} />
               </Button>
-
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => onStatusChange(contract.id, contract.status === 'hidden' ? 'active' : 'hidden')}
+                onClick={() => onStatusChange(contract.id,
+                  contract.status === 'hidden' ? 'active' : 'hidden')}
                 className="text-gray-600 hover:text-gray-700"
               >
                 {contract.status === 'hidden' ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </Button>
-
               <Button
                 variant="outline"
                 size="sm"
@@ -107,7 +100,6 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               >
                 <Check className="h-4 w-4" />
               </Button>
-
               <Button
                 variant="outline"
                 size="sm"
@@ -116,7 +108,6 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               >
                 <ArrowUp className="h-4 w-4" />
               </Button>
-
               <Button
                 variant="outline"
                 size="sm"
@@ -128,7 +119,6 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
             </div>
           </div>
         </CardHeader>
-
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div>
@@ -140,26 +130,18 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
             </div>
             <div>
-  <span className="font-medium text-gray-700">Zadavatel:</span>
-  <div className="flex items-center gap-2">
-    <p className="text-gray-900">{contract.contracting_authority}</p>
-    <Button
-      variant="ghost"
-      size="sm"
-      onClick={() =>
-        handleDeepSearch(
-          contract.contracting_authority_ico,
-          contract.contracting_authority
-        )
-      }
-      className="text-xs text-blue-600 hover:text-blue-800 underline p-0 h-auto"
-    >
-      Prověřit subjekt
-    </Button>
-  </div>
-</div>
+              <span className="font-medium text-gray-700">Zadavatel:</span>
+              <p className="text-gray-900">{contract.contracting_authority}</p>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onDeepSearch(contract.contracting_authority_ico, contract.contracting_authority)}
+                className="mt-1 text-gray-600 hover:text-gray-800"
+              >
+                Prověřit subjekt
+              </Button>
+            </div>
           </div>
-
           <div className="mt-3">
             <span className="font-medium text-gray-700">Popis:</span>
             <p className="text-gray-900 text-sm mt-1 line-clamp-2">{contract.description}</p>
