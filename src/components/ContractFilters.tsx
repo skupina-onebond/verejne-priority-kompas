@@ -15,7 +15,8 @@ interface ContractFiltersProps {
     sector: string;
     region: string;
     value: string;
-    barometer: string;
+    sortBy: string; // přejmenováno z barometer
+;
   };
   onFiltersChange: (filters: any) => void;
 }
@@ -41,11 +42,12 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
     { value: 'high', label: 'Nad 5 milionů Kč' }
   ];
 
-  const barometerLevels = [
-    { value: 'low', label: 'Nízká závažnost' },
-    { value: 'medium', label: 'Střední závažnost' },
-    { value: 'high', label: 'Vysoká závažnost' }
-  ];
+  const sortOptions = [
+  { value: 'risk_low', label: 'Nízká → Vysoká závažnost' },
+  { value: 'risk_high', label: 'Vysoká → Nízká závažnost' },
+  { value: 'value_high', label: 'Nejdražší zakázky' },
+  { value: 'value_low', label: 'Nejlevnější zakázky' }
+];
 
   const updateFilter = (key: string, value: string) => {
     onFiltersChange({
@@ -55,13 +57,13 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
   };
 
   const clearFilters = () => {
-    onFiltersChange({
-      sector: '',
-      region: '',
-      value: '',
-      barometer: ''
-    });
-  };
+  onFiltersChange({
+    sector: '',
+    region: '',
+    value: '',
+    sortBy: ''
+  });
+};
 
   return (
     <Card className="mb-6">
