@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from 'react';
 import {
   Dialog,
   DialogContent,
@@ -9,162 +9,112 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { PublicContract } from "@/types/contract";
-import { deepSearch } from "@/lib/deepSearch";
+import { Barometer } from "@/components/Barometer";
 
 interface ContractDetailDialogProps {
   contract: PublicContract;
   isOpen: boolean;
   onClose: () => void;
+  onDeepSearch: (subjectName: string) => void;
+  analysisResult?: string;
 }
 
 export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   contract,
   isOpen,
   onClose,
+  onDeepSearch,
+  analysisResult
 }) => {
-  const [analysis, setAnalysis] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  const handleDeepSearch = async () => {
-  try {
-    setLoading(true);
-
-    // 🧠 Použi predvyplnenú analýzu z mock dát, ak je dostupná
-    if (contract.analysis) {
-      setAnalysis(contract.analysis);
-      return;
-    }
-
-    // 🌍 Inak spusti API DeepSearch
-    const result = await deepSearch(contract.contracting_authority);
-    setAnalysis(result);
-  } catch (err) {
-    setAnalysis("❌ Nepodařilo se načíst výsledek.");
-  } finally {
-    setLoading(false);
-  }
-};
-
-  const getBarometerColor = (level: string) => {
-    switch (level) {
-      case "high":
-        return "bg-red-500 text-white";
-      case "medium":
-        return "bg-orange-500 text-white";
-      case "low":
-        return "bg-green-500 text-white";
-      default:
-        return "bg-gray-500 text-white";
-    }
-  };
-
   const getBarometerText = (level: string) => {
     switch (level) {
-      case "high":
-        return "Vysoká";
-      case "medium":
-        return "Střední";
-      case "low":
-        return "Nízká";
-      default:
-        return level;
+      case 'high': return 'Vysoká';
+      case 'medium': return 'Střední';
+      case 'low': return 'Nízká';
+      default: return level;
     }
   };
 
   const formatValue = (value: number) => {
-    return new Intl.NumberFormat("cs-CZ", {
-      style: "currency",
-      currency: "CZK",
+    return new Intl.NumberFormat('cs-CZ', {
+      style: 'currency',
+      currency: 'CZK'
     }).format(value);
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-6 py-8">
         <DialogHeader>
-          <DialogTitle className="text-xl">{contract.title}</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-slate-900">{contract.title}</DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-6">
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="outline">{contract.sector}</Badge>
-            <Badge variant="outline">{contract.region}</Badge>
+        <div className="flex flex-wrap gap-2 mb-6">
+          <Badge>{contract.sector}</Badge>
+          <Badge>{contract.region}</Badge>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+          {/* LEFT SIDE */}
+          <div className="space-y-6">
+            {/* Základní info */}
+            <section>
+              <h3 className="font-semibold text-slate-800 mb-2">Základní informace</h3>
+              <p><strong>Hodnota zakázky:</strong> {formatValue(contract.value)}</p>
+              <p><strong>Termín podání:</strong> {new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
+              <p><strong>Zadavatel:</strong> {contract.contracting_authority}</p>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="mt-1 pl-0 text-indigo-600 hover:text-indigo-800"
+                onClick={() => onDeepSearch(contract.contracting_authority)}
+              >
+                Prověřit <Search className="h-4 w-4 ml-1" />
+              </Button>
+              <p><strong>Region:</strong> {contract.region}</p>
+            </section>
+
+            {/* Kategorizace */}
+            <section>
+              <h3 className="font-semibold text-slate-800 mb-2">Kategorizace</h3>
+              <p><strong>Odvětví:</strong> {contract.sector}</p>
+              <p><strong>Kategorie hodnoty:</strong> {
+                contract.valueCategory === 'low' ? 'Do 500 tisíc Kč' :
+                contract.valueCategory === 'medium' ? 'Do 5 milionů Kč' :
+                'Nad 5 milionů Kč'
+              }</p>
+            </section>
+
+            {/* Dodatečné informace */}
+            {contract.additional_info && (
+              <section>
+                <h3 className="font-semibold text-slate-800 mb-2">Dodatečné informace</h3>
+                <p>{contract.additional_info}</p>
+              </section>
+            )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Základní informace</h3>
-                <div className="space-y-2 text-sm">
-                  <div>
-                    <span className="font-medium text-gray-700">Hodnota zakázky:</span>
-                    <p className="text-gray-900">{formatValue(contract.value)}</p>
-                  </div>
-                  <div>
-                    <span className="font-medium text-gray-700">Termín podání:</span>
-                    <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString("cs-CZ")}</p>
-                  </div>
-                  <div className="flex justify-between items-center gap-2">
-                    <div>
-                      <span className="font-medium text-gray-700">Zadavatel:</span>
-                      <p className="text-gray-900">{contract.contracting_authority}</p>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={handleDeepSearch}
-                      className="text-indigo-600 hover:text-indigo-800"
-                      disabled={loading}
-                    >
-                      {loading ? "Analyzuji..." : "Prověřit"}
-                      <Search className="ml-1 w-4 h-4" />
-                    </Button>
-                  </div>
-                  <div>
-                    <span className="font-medium text-gray-700">Region:</span>
-                    <p className="text-gray-900">{contract.region}</p>
-                  </div>
-                </div>
-              </div>
+          {/* RIGHT SIDE */}
+          <div className="space-y-6">
+            <section>
+              <h3 className="font-semibold text-slate-800 mb-2">Popis zakázky</h3>
+              <p className="leading-relaxed text-slate-900">{contract.description}</p>
+            </section>
 
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Kategorizace</h3>
-                <div className="space-y-2 text-sm">
-                  <div>
-                    <span className="font-medium text-gray-700">Odvětví:</span>
-                    <p className="text-gray-900">{contract.sector}</p>
-                  </div>
-                  <div>
-                    <span className="font-medium text-gray-700">Kategorie hodnoty:</span>
-                    <p className="text-gray-900">
-                      {contract.valueCategory === "low" && "Do 500 tisíc Kč"}
-                      {contract.valueCategory === "medium" && "Do 5 milionů Kč"}
-                      {contract.valueCategory === "high" && "Nad 5 milionů Kč"}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {analysisResult && (
+              <section className="bg-indigo-50 border border-indigo-200 p-4 rounded-lg">
+                <h3 className="text-sm font-semibold text-indigo-800 mb-2">📊 Analýza dodavatele</h3>
+                <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
+              </section>
+            )}
 
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Popis zakázky</h3>
-              <p className="text-gray-900 text-sm leading-relaxed">{contract.description}</p>
-            </div>
+            {contract.riskScore !== undefined && (
+              <section>
+                <h3 className="text-sm font-semibold text-slate-800 mb-2">🎯 Rizikový barometr</h3>
+                <Barometer score={contract.riskScore} size="md" showLabel />
+              </section>
+            )}
           </div>
-
-          {contract.additional_info && (
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Dodatečné informace</h3>
-              <p className="text-gray-900 text-sm leading-relaxed">{contract.additional_info}</p>
-            </div>
-          )}
-
-          {analysis && (
-  <div className="rounded-xl border border-blue-200 bg-blue-50 p-4">
-    <h3 className="font-semibold text-blue-900 text-lg mb-2">Analýza zadavatele</h3>
-    <p className="text-sm text-blue-800 whitespace-pre-line">{analysis}</p>
-  </div>
-)}
         </div>
       </DialogContent>
     </Dialog>
