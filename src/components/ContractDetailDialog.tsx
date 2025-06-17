@@ -102,7 +102,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   <strong>Doporučení pro kontrolní orgán:</strong>
 <p className="mt-2">
   {contract.riskScore <= 40 && (
-    <ul className="list-disc list-inside mt-1 text-gray-700 space-y-1">
+    <ul className="list-disc list-inside mt-1 text-blue-700 space-y-1">
       <li>Zakázka byla vyhodnocena jako nízce riziková.</li>
       <li>Doporučujeme provádět běžný dohled dle interních standardů.</li>
       <li>Pravidelně kontrolujte dodržování smluvních podmínek a termínů plnění.</li>
@@ -111,7 +111,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   )}
 
   {contract.riskScore > 40 && contract.riskScore <= 70 && (
-    <ul className="list-disc list-inside mt-1 text-gray-700 space-y-1">
+    <ul className="list-disc list-inside mt-1 text-blue-700 space-y-1">
       <li>Zakázka byla vyhodnocena jako středně riziková.</li>
       <li>Doporučuje se provést důkladnější prověření důvěryhodnosti dodavatele.</li>
       <li>Zajistěte přehlednou evidenci klíčových rozhodnutí, výdajů a schvalovacích procesů.</li>
@@ -121,7 +121,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   )}
 
   {contract.riskScore > 70 && (
-    <ul className="list-disc list-inside mt-1 text-gray-700 space-y-1">
+    <ul className="list-disc list-inside mt-1 text-blue-700 space-y-1">
       <li>Zakázka byla vyhodnocena jako vysoce riziková.</li>
       <li>Doporučujeme zapojení interního kontrolního útvaru již ve fázi realizace.</li>
       <li>Každou etapu zakázky je vhodné podrobit samostatné kontrole plnění a souladu.</li>
