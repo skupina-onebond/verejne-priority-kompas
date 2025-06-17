@@ -1,3 +1,5 @@
+import { PublicContract } from "@/types/contract";
+
 export const mockContracts: PublicContract[] = [
   {
     id: '1',
