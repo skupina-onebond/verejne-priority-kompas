@@ -65,7 +65,10 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 variant="ghost"
                 size="sm"
                 className="mt-1 pl-0 text-indigo-600 hover:text-indigo-800"
-                onClick={() => setShowAnalysis(true)}
+                  onClick={() => {
+    setShowAnalysis(true);
+    onDeepSearch(contract.contracting_authority); // <- voláme funkciu!
+  }}
               >
                 Prověřit <Search className="h-4 w-4 ml-1" />
               </Button>
