@@ -15,7 +15,7 @@ export interface PublicContract {
   contracting_authority: string;
   sector: string;
   region: string;
-  barometer: BarometerLevel;
+  barometer: any;
   status: ContractStatus;
   additional_info?: string;
   created_at: string;
