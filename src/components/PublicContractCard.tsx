@@ -155,14 +155,14 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
         isOpen={showDetail}
         onClose={() => setShowDetail(false)}
         onDeepSearch={() => {
-  setAnalysisResult("⏳ Načítání analýzy dodavatele...");
+  setAnalysisResult("⏳ Načítání analýzy zadavatele...");
   setTimeout(() => {
-    if (contract.analysisResult) {
-      setAnalysisResult(contract.analysisResult);
+    if (contract.analysis) {
+      setAnalysisResult(contract.analysis); // opraveno
     } else {
-      setAnalysisResult("⚠️ Analýza dodavatele není dostupná.");
+      setAnalysisResult("⚠️ Analýza zadavatele není dostupná.");
     }
-  }, 1500); // 1.5 sekundy "načítání"
+  }, 1500);
 }}
         analysisResult={analysisResult}
       />
