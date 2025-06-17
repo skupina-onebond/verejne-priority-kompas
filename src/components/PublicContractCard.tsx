@@ -30,19 +30,19 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   const getBarometerText = (level: string) => {
     switch (level) {
       case 'high': return 'Vysoká';
-      case 'medium': return 'Stredná';
-      case 'low': return 'Nízka';
+      case 'medium': return 'Střední';
+      case 'low': return 'Nízká';
       default: return level;
     }
   };
 
   const formatValue = (value: number) => {
     if (value >= 1000000) {
-      return `${(value / 1000000).toFixed(1)} mil. €`;
+      return `${(value / 1000000).toFixed(1)} mil. Kč`;
     } else if (value >= 1000) {
-      return `${(value / 1000).toFixed(0)} tis. €`;
+      return `${(value / 1000).toFixed(0)} tis. Kč`;
     }
-    return `${value} €`;
+    return `${value} Kč`;
   };
 
   return (
@@ -54,7 +54,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               <CardTitle className="text-lg mb-2">{contract.title}</CardTitle>
               <div className="flex flex-wrap gap-2 mb-2">
                 <Badge className={getBarometerColor(contract.barometer)}>
-                  {getBarometerText(contract.barometer)} závažnosť
+                  {getBarometerText(contract.barometer)} závažnost
                 </Badge>
                 <Badge variant="outline">{contract.sector}</Badge>
                 <Badge variant="outline">{contract.region}</Badge>
@@ -106,15 +106,15 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div>
-              <span className="font-medium text-gray-700">Hodnota zákazky:</span>
+              <span className="font-medium text-gray-700">Hodnota zakázky:</span>
               <p className="text-gray-900 font-semibold">{formatValue(contract.value)}</p>
             </div>
             <div>
-              <span className="font-medium text-gray-700">Termín podania:</span>
-              <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('sk-SK')}</p>
+              <span className="font-medium text-gray-700">Termín podání:</span>
+              <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
             </div>
             <div>
-              <span className="font-medium text-gray-700">Obstarávateľ:</span>
+              <span className="font-medium text-gray-700">Zadavatel:</span>
               <p className="text-gray-900">{contract.contracting_authority}</p>
             </div>
           </div>

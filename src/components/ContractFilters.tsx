@@ -25,25 +25,26 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
   onFiltersChange
 }) => {
   const sectors = [
-    'ICT', 'Zdravotníctvo', 'Stavebníctvo', 'Doprava', 'Vzdelávanie',
-    'Energetika', 'Životné prostredie', 'Sociálne služby'
+    'ICT', 'Zdravotnictví', 'Stavebnictví', 'Doprava', 'Vzdělávání',
+    'Energetika', 'Životní prostředí', 'Sociální služby'
   ];
 
   const regions = [
-    'Bratislavský kraj', 'Trnavský kraj', 'Trenčiansky kraj', 'Nitriansky kraj',
-    'Žilinský kraj', 'Banskobystrický kraj', 'Prešovský kraj', 'Košický kraj'
+    'Hlavní město Praha', 'Jihomoravský kraj', 'Moravskoslezský kraj', 'Ústecký kraj',
+    'Plzeňský kraj', 'Jihočeský kraj', 'Pardubický kraj', 'Královéhradecký kraj',
+    'Vysočina', 'Olomoucký kraj', 'Zlínský kraj', 'Liberecký kraj', 'Karlovarský kraj', 'Středočeský kraj'
   ];
 
   const valueCategories = [
-    { value: 'low', label: 'Do 500 tisíc €' },
-    { value: 'medium', label: 'Do 5 miliónov €' },
-    { value: 'high', label: 'Nad 5 miliónov €' }
+    { value: 'low', label: 'Do 500 tisíc Kč' },
+    { value: 'medium', label: 'Do 5 milionů Kč' },
+    { value: 'high', label: 'Nad 5 milionů Kč' }
   ];
 
   const barometerLevels = [
-    { value: 'low', label: 'Nízka závažnosť' },
-    { value: 'medium', label: 'Stredná závažnosť' },
-    { value: 'high', label: 'Vysoká závažnosť' }
+    { value: 'low', label: 'Nízká závažnost' },
+    { value: 'medium', label: 'Střední závažnost' },
+    { value: 'high', label: 'Vysoká závažnost' }
   ];
 
   const updateFilter = (key: string, value: string) => {
@@ -66,12 +67,12 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
     <Card className="mb-6">
       <CardContent className="p-4">
         <div className="flex flex-wrap gap-3 items-center">
-          <span className="font-medium text-gray-700">Filtre:</span>
+          <span className="font-medium text-gray-700">Filtry:</span>
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="justify-between min-w-[120px]">
-                {filters.sector || 'Odvetvie'}
+                {filters.sector || 'Odvětví'}
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -91,7 +92,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="justify-between min-w-[120px]">
-                {filters.region || 'Región'}
+                {filters.region || 'Region'}
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -111,7 +112,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="justify-between min-w-[140px]">
-                {valueCategories.find(v => v.value === filters.value)?.label || 'Hodnota zákazky'}
+                {valueCategories.find(v => v.value === filters.value)?.label || 'Hodnota zakázky'}
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -131,7 +132,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="justify-between min-w-[140px]">
-                {barometerLevels.find(b => b.value === filters.barometer)?.label || 'Závažnosť'}
+                {barometerLevels.find(b => b.value === filters.barometer)?.label || 'Závažnost'}
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -150,7 +151,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
 
           {(filters.sector || filters.region || filters.value || filters.barometer) && (
             <Button variant="ghost" onClick={clearFilters} className="text-red-600">
-              Zrušiť filtre
+              Zrušit filtry
             </Button>
           )}
         </div>

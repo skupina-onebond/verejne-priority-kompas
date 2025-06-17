@@ -49,10 +49,10 @@ const Index = () => {
       <div className="container mx-auto p-6">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Fronta verejných zákaziek
+            Fronta veřejných zakázek
           </h1>
           <p className="text-gray-600">
-            Prehľadná správa a sledovanie verejných zákaziek podľa závažnosti
+            Přehledná správa a sledování veřejných zakázek podle závažnosti
           </p>
         </div>
 
@@ -61,7 +61,7 @@ const Index = () => {
         <Tabs defaultValue="active" className="w-full">
           <TabsList className="grid w-full grid-cols-3 mb-6">
             <TabsTrigger value="active" className="flex items-center gap-2">
-              Aktívne zákazky
+              Aktivní zakázky
               <Badge variant="secondary">{activeContracts.length}</Badge>
             </TabsTrigger>
             <TabsTrigger value="bookmarked" className="flex items-center gap-2">
@@ -85,7 +85,7 @@ const Index = () => {
             {activeContracts.length === 0 && (
               <Card>
                 <CardContent className="p-8 text-center">
-                  <p className="text-gray-500">Žiadne aktívne zákazky</p>
+                  <p className="text-gray-500">Žádné aktivní zakázky</p>
                 </CardContent>
               </Card>
             )}
@@ -102,7 +102,7 @@ const Index = () => {
             {bookmarkedContracts.length === 0 && (
               <Card>
                 <CardContent className="p-8 text-center">
-                  <p className="text-gray-500">Žiadne záložky</p>
+                  <p className="text-gray-500">Žádné záložky</p>
                 </CardContent>
               </Card>
             )}
@@ -119,7 +119,7 @@ const Index = () => {
             {hiddenContracts.length === 0 && (
               <Card>
                 <CardContent className="p-8 text-center">
-                  <p className="text-gray-500">Žiadne skryté zákazky</p>
+                  <p className="text-gray-500">Žádné skryté zakázky</p>
                 </CardContent>
               </Card>
             )}

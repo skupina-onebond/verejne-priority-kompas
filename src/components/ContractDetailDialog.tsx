@@ -32,16 +32,16 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const getBarometerText = (level: string) => {
     switch (level) {
       case 'high': return 'Vysoká';
-      case 'medium': return 'Stredná';
-      case 'low': return 'Nízka';
+      case 'medium': return 'Střední';
+      case 'low': return 'Nízká';
       default: return level;
     }
   };
 
   const formatValue = (value: number) => {
-    return new Intl.NumberFormat('sk-SK', {
+    return new Intl.NumberFormat('cs-CZ', {
       style: 'currency',
-      currency: 'EUR'
+      currency: 'CZK'
     }).format(value);
   };
 
@@ -55,7 +55,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         <div className="space-y-6">
           <div className="flex flex-wrap gap-2">
             <Badge className={getBarometerColor(contract.barometer)}>
-              {getBarometerText(contract.barometer)} závažnosť
+              {getBarometerText(contract.barometer)} závažnost
             </Badge>
             <Badge variant="outline">{contract.sector}</Badge>
             <Badge variant="outline">{contract.region}</Badge>
@@ -64,40 +64,40 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Základné informácie</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">Základní informace</h3>
                 <div className="space-y-2 text-sm">
                   <div>
-                    <span className="font-medium text-gray-700">Hodnota zákazky:</span>
+                    <span className="font-medium text-gray-700">Hodnota zakázky:</span>
                     <p className="text-gray-900">{formatValue(contract.value)}</p>
                   </div>
                   <div>
-                    <span className="font-medium text-gray-700">Termín podania:</span>
-                    <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('sk-SK')}</p>
+                    <span className="font-medium text-gray-700">Termín podání:</span>
+                    <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
                   </div>
                   <div>
-                    <span className="font-medium text-gray-700">Obstarávateľ:</span>
+                    <span className="font-medium text-gray-700">Zadavatel:</span>
                     <p className="text-gray-900">{contract.contracting_authority}</p>
                   </div>
                   <div>
-                    <span className="font-medium text-gray-700">Región:</span>
+                    <span className="font-medium text-gray-700">Region:</span>
                     <p className="text-gray-900">{contract.region}</p>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Kategorizácia</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">Kategorizace</h3>
                 <div className="space-y-2 text-sm">
                   <div>
-                    <span className="font-medium text-gray-700">Odvetvie:</span>
+                    <span className="font-medium text-gray-700">Odvětví:</span>
                     <p className="text-gray-900">{contract.sector}</p>
                   </div>
                   <div>
-                    <span className="font-medium text-gray-700">Kategória hodnoty:</span>
+                    <span className="font-medium text-gray-700">Kategorie hodnoty:</span>
                     <p className="text-gray-900">
-                      {contract.valueCategory === 'low' && 'Do 500 tisíc €'}
-                      {contract.valueCategory === 'medium' && 'Do 5 miliónov €'}
-                      {contract.valueCategory === 'high' && 'Nad 5 miliónov €'}
+                      {contract.valueCategory === 'low' && 'Do 500 tisíc Kč'}
+                      {contract.valueCategory === 'medium' && 'Do 5 milionů Kč'}
+                      {contract.valueCategory === 'high' && 'Nad 5 milionů Kč'}
                     </p>
                   </div>
                 </div>
@@ -105,14 +105,14 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             </div>
 
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Popis zákazky</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Popis zakázky</h3>
               <p className="text-gray-900 text-sm leading-relaxed">{contract.description}</p>
             </div>
           </div>
 
           {contract.additional_info && (
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Dodatočné informácie</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Dodatečné informace</h3>
               <p className="text-gray-900 text-sm leading-relaxed">{contract.additional_info}</p>
             </div>
           )}
