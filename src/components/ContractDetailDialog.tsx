@@ -27,6 +27,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   analysisResult
 }) => {
   const [showAnalysis, setShowAnalysis] = useState(false);
+
   const formatValue = (value: number) => {
     return new Intl.NumberFormat('cs-CZ', {
       style: 'currency',
@@ -46,16 +47,15 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           <Badge>{contract.region}</Badge>
         </div>
 
+        {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
-          {/* LEFT SIDE */}
+          {/* LEFT */}
           <div className="space-y-6">
-            {/* Popis */}
             <section>
               <h3 className="font-semibold text-slate-800 mb-2">Popis zakázky</h3>
               <p className="leading-relaxed text-slate-900">{contract.description}</p>
             </section>
 
-            {/* Základní info */}
             <section>
               <h3 className="font-semibold text-slate-800 mb-2">Základní informace</h3>
               <p><strong>Hodnota zakázky:</strong> {formatValue(contract.value)}</p>
@@ -65,17 +65,16 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 variant="ghost"
                 size="sm"
                 className="mt-1 pl-0 text-indigo-600 hover:text-indigo-800"
-                  onClick={() => {
-    setShowAnalysis(true);
-    onDeepSearch(contract.contracting_authority); // <- voláme funkciu!
-  }}
+                onClick={() => {
+                  setShowAnalysis(true);
+                  onDeepSearch(contract.contracting_authority);
+                }}
               >
                 Prověřit <Search className="h-4 w-4 ml-1" />
               </Button>
               <p><strong>Region:</strong> {contract.region}</p>
             </section>
 
-            {/* Kategorizace */}
             <section>
               <h3 className="font-semibold text-slate-800 mb-2">Kategorizace</h3>
               <p><strong>Odvětví:</strong> {contract.sector}</p>
@@ -94,13 +93,12 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             )}
           </div>
 
-          {/* RIGHT SIDE */}
+          {/* RIGHT */}
           <div className="space-y-6">
             {contract.riskScore !== undefined && (
               <section>
                 <h3 className="text-sm font-semibold text-slate-800 mb-2">🎯 Rizikový barometr</h3>
                 <Barometer score={contract.riskScore} size="md" showLabel />
-
                 <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md text-sm text-slate-800">
                   <strong>Doporučení pro auditora:</strong>
                   <p className="mt-1">
@@ -117,9 +115,10 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 </div>
               </section>
             )}
+          </div>
+        </div> {/* koniec GRID */}
 
-            </div> {/* koniec gridu */}
-{/* ANALÝZA POD GRIDOM */}
+        {/* ANALÝZA POD GRIDOM */}
         {analysisResult && (
           <div className="mt-8">
             <section className="bg-indigo-50 border border-indigo-200 p-6 rounded-lg">
