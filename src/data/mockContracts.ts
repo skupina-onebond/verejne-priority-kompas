@@ -266,3 +266,4 @@ export const mockContracts: PublicContract[] = [
     'Zvýšit transparentnost hodnoticích kritérií.'
   ]
 }
+];
