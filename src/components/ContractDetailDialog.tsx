@@ -37,20 +37,20 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-6 py-14">
+      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-6 py-8">
         <DialogHeader>
-          <div className="flex items-center justify-between">
-  <DialogTitle className="text-2xl font-bold text-slate-900">
-    {contract.title}
-  </DialogTitle>
+  <div className="flex items-start justify-between">
+    <DialogTitle className="text-2xl font-bold text-slate-900">
+      {contract.title}
+    </DialogTitle>
 
-  {contract.riskScore !== undefined && (
-    <div className="ml-4">
-      <RiskBarometerCircle score={contract.riskScore} size={80} />
-    </div>
-  )}
-</div>
-        </DialogHeader>
+    {contract.riskScore !== undefined && (
+      <div className="mt-2">
+        <RiskBarometerCircle score={contract.riskScore} size={80} />
+      </div>
+    )}
+  </div>
+</DialogHeader>
 
         <div className="flex flex-wrap gap-2 mb-6">
           <Badge>{contract.sector}</Badge>
