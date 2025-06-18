@@ -135,14 +135,13 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   </div>
 
   <Button
-    variant="ghost"
-    size="sm"
-    onClick={() => setShowDetail(true)}
-    className="absolute bottom-4 right-4 flex items-center gap-2 text-blue-600 hover:text-blue-800"
-  >
-    <FileText className="h-4 w-4" />
-    <span>Zobrazit detail</span>
-  </Button>
+  variant="ghost"
+  size="sm"
+  className="absolute bottom-4 right-4 flex items-center gap-2 text-[#215197] hover:text-[#1c467f]"
+>
+  <FileText className="h-4 w-4" />
+  <span>Zobrazit detail</span>
+</Button>
 </CardContent>
       </Card>
 
