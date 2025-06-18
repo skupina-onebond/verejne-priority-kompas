@@ -122,8 +122,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
       </div>
     </section>
   )}
-</div>
-
           {/* DOPORUČENÍ */}
           {contract.recommendations?.length > 0 && (
             <div className="col-span-2 mt-4">
