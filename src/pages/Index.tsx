@@ -8,8 +8,6 @@ const LandingPage = () => {
           Vítejte v systému pro analýzu veřejných zakázek
         </h1>
         <p className="text-slate-700 text-lg mb-8">
-          Tento nástroj byl vytvořen speciálně pro potřeby Centra pro regionální rozvoj (CRR).
-          Umožňuje efektivní kontrolu, třídění a hodnocení veřejných zakázek.
 Tento nástroj vznikl na míru potřebám Centra pro regionální rozvoj (CRR).
 Umožňuje efektivní kontrolu veřejných zakázek z hlediska jejich závažnosti a rizikovosti.
         </p>
