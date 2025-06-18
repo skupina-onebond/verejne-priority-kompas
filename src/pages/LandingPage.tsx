@@ -7,14 +7,9 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-[#f5f8fc] flex flex-col justify-center items-center text-center px-6 relative">
       <div className="max-w-xl text-center">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-10">
           Vítejte v systému pro analýzu veřejných zakázek
         </h1>
-
-        <p className="text-slate-500 text-sm italic mb-10 max-w-md mx-auto">
-          Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR).
-Umožňuje efektivní kontrolu veřejných zakázek z hlediska jejich závažnosti a rizikovosti.
-        </p>
 
         <button
           onClick={() => navigate("/seznam")}
@@ -23,6 +18,11 @@ Umožňuje efektivní kontrolu veřejných zakázek z hlediska jejich závažnos
           Vstoupit do systému
         </button>
       </div>
+
+      {/* Jemný doplnkový text úplne dole */}
+      <p className="absolute bottom-20 text-xs text-slate-500 max-w-md px-4">
+        Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR) a slouží k efektivní kontrole veřejných zakázek z hlediska jejich závažnosti a rizikovosti.
+      </p>
 
       <div className="absolute bottom-6">
         <img src="/CRR-logo.svg" alt="Logo CRR" className="h-12" />
