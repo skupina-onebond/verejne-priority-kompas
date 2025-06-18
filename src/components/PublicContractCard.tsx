@@ -66,7 +66,17 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
 
   return (
     <>
-      <Card className="hover:shadow-md transition-shadow">
+    <Card className="hover:shadow-md transition-shadow relative">
+  {/* Tlačítko Zobrazit detail */}
+  <Button
+    variant="ghost"
+    size="sm"
+    className="absolute top-4 right-4 flex items-center gap-2 text-blue-600 hover:text-blue-800"
+    onClick={() => setShowDetail(true)}
+  >
+    <FileText className="h-4 w-4" />
+    <span className="text-sm font-medium">Zobrazit detail</span>
+  </Button>
         <CardHeader className="pb-3">
           <div className="flex justify-between items-start">
             <div className="flex-1">
