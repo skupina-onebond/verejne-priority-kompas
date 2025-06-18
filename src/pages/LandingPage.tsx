@@ -11,7 +11,7 @@ const LandingPage = () => {
           Vítejte v systému pro analýzu veřejných zakázek
         </h1>
 
-        <p className="text-slate-600 text-base mb-10 max-w-md mx-auto">
+        <p className="text-slate-500 text-sm italic mb-10 max-w-md mx-auto">
           Tento nástroj vznikl na míru potřebám Centra pro regionální rozvoj (CRR).
 Umožňuje efektivní kontrolu veřejných zakázek z hlediska jejich závažnosti a rizikovosti.
         </p>
