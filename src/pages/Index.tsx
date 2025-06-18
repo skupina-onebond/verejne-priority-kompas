@@ -22,7 +22,7 @@ const LandingPage = () => {
       </div>
 
       <div className="absolute bottom-6 opacity-50">
-        <img src="/crr-logo.png" alt="Logo CRR" className="h-12" />
+        <img src="/CRR-logo.svg" alt="Logo CRR" className="h-12" />
       </div>
     </div>
   );
