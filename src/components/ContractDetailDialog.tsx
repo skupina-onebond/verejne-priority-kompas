@@ -145,3 +145,4 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     </DialogContent>
   </Dialog>
 );
+};
