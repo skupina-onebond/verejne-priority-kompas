@@ -37,7 +37,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-6 py-8">
+      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-6 py-10">
         <DialogHeader>
   <div className="flex items-start justify-between">
     <DialogTitle className="text-2xl font-bold text-slate-900">
@@ -105,23 +105,31 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             )}
           </div>
 
-          {/* RIGHT */}
+         {/* RIGHT */}
+<div className="space-y-6">
+  {contract.riskScore !== undefined && (
+    <section>
+      <RiskBarometerCircle score={contract.riskScore} size={80} />
 
-  {contract.findings?.length > 0 && (
-    <section className="pt-20"> {/* padding top kvôli barometru nad tým */}
-      <h3 className="font-semibold text-slate-900 mb-2">Zjištěné závažnosti</h3>
-      <div className="bg-rose-50 border border-rose-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
-        <ul className="list-disc list-inside space-y-1">
-          {contract.findings.map((finding, idx) => (
-            <li key={idx}>
-              <span className="font-medium">{finding.severity.toUpperCase()}</span>{' '}
-              – <em>{finding.category}</em>: {finding.description}
-            </li>
-          ))}
-        </ul>
-      </div>
+      {/* ZJIŠTĚNÉ ZÁVAŽNOSTI */}
+      {contract.findings?.length > 0 && (
+        <div className="mt-4">
+          <h3 className="font-semibold text-slate-900 mb-2">Zjištěné závažnosti</h3>
+          <div className="bg-rose-50 border border-rose-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+            <ul className="list-disc list-inside space-y-1">
+              {contract.findings.map((finding, idx) => (
+                <li key={idx}>
+                  <span className="font-medium">{finding.severity.toUpperCase()}</span>{' '}
+                  – <em>{finding.category}</em>: {finding.description}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </section>
   )}
+</div>
           {/* DOPORUČENÍ */}
           {contract.recommendations?.length > 0 && (
             <div className="col-span-2 mt-4">
