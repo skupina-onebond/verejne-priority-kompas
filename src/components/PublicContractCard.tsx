@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -24,24 +23,6 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   const [showDetail, setShowDetail] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<string>();
 
-  const getBarometerColor = (level: string) => {
-    switch (level) {
-      case 'high': return 'bg-red-500 text-white';
-      case 'medium': return 'bg-orange-500 text-white';
-      case 'low': return 'bg-green-500 text-white';
-      default: return 'bg-gray-500 text-white';
-    }
-  };
-
-  const getBarometerText = (level: string) => {
-    switch (level) {
-      case 'high': return 'Vysoká';
-      case 'medium': return 'Střední';
-      case 'low': return 'Nízká';
-      default: return level;
-    }
-  };
-
   const formatValue = (value: number) => {
     if (value >= 1000000) {
       return `${(value / 1000000).toFixed(1)} mil. Kč`;
@@ -54,7 +35,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   const handleDeepSearch = (subjectName: string) => {
     setAnalysisResult("⏳ Načítání analýzy zadavatele...");
     onDeepSearch(subjectName);
-    
+
     setTimeout(() => {
       if (contract.analysis) {
         setAnalysisResult(contract.analysis);
@@ -66,17 +47,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
 
   return (
     <>
-    <Card className="hover:shadow-md transition-shadow relative">
-  {/* Tlačítko Zobrazit detail */}
-  <Button
-    variant="ghost"
-    size="sm"
-    className="absolute top-4 right-4 flex items-center gap-2 text-blue-600 hover:text-blue-800"
-    onClick={() => setShowDetail(true)}
-  >
-    <FileText className="h-4 w-4" />
-    <span className="text-sm font-medium">Zobrazit detail</span>
-  </Button>
+      <Card className="hover:shadow-md transition-shadow">
         <CardHeader className="pb-3">
           <div className="flex justify-between items-start">
             <div className="flex-1">
@@ -94,15 +65,6 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
 
             {/* Akcie */}
             <div className="flex gap-2 ml-4">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowDetail(true)}
-                className="text-blue-600 hover:text-blue-700"
-              >
-                <FileText className="h-4 w-4" />
-              </Button>
-
               <Button
                 variant="outline"
                 size="sm"
@@ -151,7 +113,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           </div>
         </CardHeader>
 
-        <CardContent>
+        <CardContent className="relative">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div>
               <span className="font-medium text-gray-700">Hodnota zakázky:</span>
@@ -171,6 +133,17 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
             <span className="font-medium text-gray-700">Popis:</span>
             <p className="text-gray-900 text-sm mt-1 line-clamp-2">{contract.description}</p>
           </div>
+
+          {/* Zobrazit detail button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowDetail(true)}
+            className="absolute bottom-4 right-4 flex items-center gap-2 text-blue-600 hover:text-blue-800"
+          >
+            <FileText className="h-4 w-4" />
+            <span>Zobrazit detail</span>
+          </Button>
         </CardContent>
       </Card>
 
