@@ -1,174 +1,37 @@
-import React, { useState, useMemo } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
-import { PublicContractCard } from "@/components/PublicContractCard";
-import { ContractFilters } from "@/components/ContractFilters";
-import { mockContracts } from "@/data/mockContracts";
-import { PublicContract, ContractStatus } from "@/types/contract";
+import React from 'react';
+import { useRouter } from 'next/router';
+import { Button } from "@/components/ui/button";
 
-const Index = () => {
-  const [contracts, setContracts] = useState<PublicContract[]>(mockContracts);
-  const [filters, setFilters] = useState({
-    sector: '',
-    region: '',
-    value: '',
-    sortBy: ''
-  });
+const LandingPage = () => {
+  const router = useRouter();
 
-  const updateContractStatus = (id: string, status: ContractStatus) => {
-    setContracts(prev => prev.map(contract =>
-      contract.id === id ? { ...contract, status } : contract
-    ));
+  const handleEnter = () => {
+    router.push('/fronta');
   };
-
-  const moveContract = (id: string, direction: "up" | "down") => {
-    setContracts(prev => {
-      const currentIndex = prev.findIndex(contract => contract.id === id);
-      if (currentIndex === -1) return prev;
-
-      const newIndex = direction === "up"
-        ? Math.max(0, currentIndex - 1)
-        : Math.min(prev.length - 1, currentIndex + 1);
-
-      const newContracts = [...prev];
-      const [movedContract] = newContracts.splice(currentIndex, 1);
-      newContracts.splice(newIndex, 0, movedContract);
-
-      return newContracts;
-    });
-  };
-
-  const handleDeepSearch = (subjectName: string) => {
-    console.log('Deep search for:', subjectName);
-  };
-
-  const filteredContracts = useMemo(() => {
-    return contracts.filter(contract => {
-      if (filters.sector && contract.sector !== filters.sector) return false;
-      if (filters.region && contract.region !== filters.region) return false;
-      if (filters.value && contract.valueCategory !== filters.value) return false;
-      return true;
-    });
-  }, [contracts, filters]);
-
-  const sortContracts = (contracts: PublicContract[]) => {
-    const sorted = [...contracts];
-
-    switch (filters.sortBy) {
-      case 'risk_high':
-        return sorted.sort((a, b) => b.riskScore - a.riskScore);
-      case 'risk_low':
-        return sorted.sort((a, b) => a.riskScore - b.riskScore);
-      case 'value_high':
-        return sorted.sort((a, b) => b.value - a.value);
-      case 'value_low':
-        return sorted.sort((a, b) => a.value - b.value);
-      default:
-        return sorted;
-    }
-  };
-
-  const activeContracts = sortContracts(
-    filteredContracts.filter(c => c.status === 'active')
-  );
-  const bookmarkedContracts = sortContracts(
-    filteredContracts.filter(c => c.status === 'bookmarked')
-  );
-  const hiddenContracts = sortContracts(
-    filteredContracts.filter(c => c.status === 'hidden')
-  );
 
   return (
-<div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Open Sans, sans-serif' }}>
-      <div className="container mx-auto p-6">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Fronta veřejných zakázek
-          </h1>
-          <p className="text-gray-600">
-            Přehledná správa a sledování veřejných zakázek podle závažnosti
-          </p>
-        </div>
+    <div className="min-h-screen bg-[#f5f8fc] flex flex-col justify-center items-center text-center px-6">
+      <div className="max-w-xl">
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          Vítejte v systému pro analýzu veřejných zakázek
+        </h1>
+        <p className="text-slate-700 text-lg mb-8">
+          Tento nástroj byl vytvořen speciálně pro potřeby Centra pro regionální rozvoj (CRR).
+          Umožňuje efektivní kontrolu, třídění a hodnocení veřejných zakázek.
+        </p>
+        <Button
+          onClick={handleEnter}
+          className="bg-[#215197] hover:bg-[#1a3e78] text-white px-6 py-2 text-lg rounded-md"
+        >
+          Vstoupit do systému
+        </Button>
+      </div>
 
-        <ContractFilters filters={filters} onFiltersChange={setFilters} />
-
-        <Tabs defaultValue="active" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-6">
-            <TabsTrigger value="active" className="flex items-center gap-2">
-              Aktivní zakázky
-              <Badge variant="secondary">{activeContracts.length}</Badge>
-            </TabsTrigger>
-            <TabsTrigger value="bookmarked" className="flex items-center gap-2">
-              Záložky
-              <Badge variant="secondary">{bookmarkedContracts.length}</Badge>
-            </TabsTrigger>
-            <TabsTrigger value="hidden" className="flex items-center gap-2">
-              Skryté
-              <Badge variant="secondary">{hiddenContracts.length}</Badge>
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="active" className="space-y-4">
-            {activeContracts.map(contract => (
-              <PublicContractCard
-                key={contract.id}
-                contract={contract}
-                onStatusChange={updateContractStatus}
-                onMove={moveContract}
-                onDeepSearch={handleDeepSearch}
-              />
-            ))}
-            {activeContracts.length === 0 && (
-              <Card>
-                <CardContent className="p-8 text-center">
-                  <p className="text-gray-500">Žádné aktivní zakázky</p>
-                </CardContent>
-              </Card>
-            )}
-          </TabsContent>
-
-          <TabsContent value="bookmarked" className="space-y-4">
-            {bookmarkedContracts.map(contract => (
-              <PublicContractCard
-                key={contract.id}
-                contract={contract}
-                onStatusChange={updateContractStatus}
-                onMove={moveContract}
-                onDeepSearch={handleDeepSearch}
-              />
-            ))}
-            {bookmarkedContracts.length === 0 && (
-              <Card>
-                <CardContent className="p-8 text-center">
-                  <p className="text-gray-500">Žádné záložky</p>
-                </CardContent>
-              </Card>
-            )}
-          </TabsContent>
-
-          <TabsContent value="hidden" className="space-y-4">
-            {hiddenContracts.map(contract => (
-              <PublicContractCard
-                key={contract.id}
-                contract={contract}
-                onStatusChange={updateContractStatus}
-                onMove={moveContract}
-                onDeepSearch={handleDeepSearch}
-              />
-            ))}
-            {hiddenContracts.length === 0 && (
-              <Card>
-                <CardContent className="p-8 text-center">
-                  <p className="text-gray-500">Žádné skryté zakázky</p>
-                </CardContent>
-              </Card>
-            )}
-          </TabsContent>
-        </Tabs>
+      <div className="absolute bottom-6 opacity-50">
+        <img src="/crr-logo.png" alt="Logo CRR" className="h-12" />
       </div>
     </div>
   );
 };
 
-export default Index;
+export default LandingPage;
