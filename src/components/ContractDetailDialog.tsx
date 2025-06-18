@@ -77,7 +77,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               <Button
                 variant="default"
                 size="sm"
-                className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                className="bg-indigo-600 hover:bg-[#1c467f] text-white"
                 onClick={() => {
                   setShowAnalysis(true);
                   onDeepSearch(contract.contracting_authority);
