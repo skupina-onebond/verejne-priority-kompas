@@ -106,10 +106,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           </div>
 
          {/* RIGHT */}
-<div className="space-y-6">
-  {contract.riskScore !== undefined && (
-    <section>
-      <RiskBarometerCircle score={contract.riskScore} size={80} />
 
       {/* ZJIŠTĚNÉ ZÁVAŽNOSTI */}
       {contract.findings?.length > 0 && (
@@ -126,10 +122,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             </ul>
           </div>
         </div>
-      )}
-    </section>
   )}
-</div>
           {/* DOPORUČENÍ */}
           {contract.recommendations?.length > 0 && (
             <div className="col-span-2 mt-4">
