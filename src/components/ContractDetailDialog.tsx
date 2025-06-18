@@ -101,7 +101,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
       {/* ZJIŠTĚNÉ ZÁVAŽNOSTI – pod barometrem */}
       {contract.findings?.length > 0 && (
         <div className="mt-4">
-          <h3 className="text-sm font-semibold text-rose-800 mb-2">Zjištěné závažnosti</h3>
+          <h3 className="font-semibold text-slate-800 mb-2">Zjištěné závažnosti</h3>
           <div className="bg-rose-50 border border-rose-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
             <ul className="list-disc list-inside space-y-1">
               {contract.findings.map((finding, idx) => (
@@ -121,7 +121,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         {/* DOPORUČENÍ – full width */}
         {contract.recommendations?.length > 0 && (
           <div className="col-span-2 mt-4">
-            <h3 className="text-sm font-semibold text-indigo-800 mb-2">Doporučení pro kontrolní orgán</h3>
+            <h3 className="font-semibold text-slate-800 mb-2">Doporučení pro kontrolní orgán</h3>
             <div className="bg-indigo-50 border border-indigo-200 rounded-md p-4 text-sm text-slate-800 space-y-1">
               <ul className="list-disc list-inside space-y-1">
                 {contract.recommendations.map((rec, index) => (
