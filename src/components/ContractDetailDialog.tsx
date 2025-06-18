@@ -93,30 +93,30 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         </div>
 
         {/* RIGHT */}
-        <div className="space-y-6">
-          {contract.riskScore !== undefined && (
-            <section>
-              <Barometer score={contract.riskScore} size="md" showLabel />
-            </section>
-          )}
-        </div>
+<div className="space-y-6">
+  {contract.riskScore !== undefined && (
+    <section>
+      <Barometer score={contract.riskScore} size="md" showLabel />
 
-        {/* ZJIŠTĚNÉ ZÁVAŽNOSTI – full width */}
-        {contract.findings?.length > 0 && (
-          <div className="col-span-2 mt-4">
-            <h3 className="text-sm font-semibold text-rose-800 mb-2">Zjištěné závažnosti</h3>
-            <div className="bg-rose-50 border border-rose-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
-              <ul className="list-disc list-inside space-y-1">
-                {contract.findings.map((finding, idx) => (
-                  <li key={idx}>
-                    <span className="font-medium">{finding.severity.toUpperCase()}</span>{' '}
-                    – <em>{finding.category}</em>: {finding.description}
-                  </li>
-                ))}
-              </ul>
-            </div>
+      {/* ZJIŠTĚNÉ ZÁVAŽNOSTI – pod barometrem */}
+      {contract.findings?.length > 0 && (
+        <div className="mt-4">
+          <h3 className="text-sm font-semibold text-rose-800 mb-2">Zjištěné závažnosti</h3>
+          <div className="bg-rose-50 border border-rose-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+            <ul className="list-disc list-inside space-y-1">
+              {contract.findings.map((finding, idx) => (
+                <li key={idx}>
+                  <span className="font-medium">{finding.severity.toUpperCase()}</span>{' '}
+                  – <em>{finding.category}</em>: {finding.description}
+                </li>
+              ))}
+            </ul>
           </div>
-        )}
+        </div>
+      )}
+    </section>
+  )}
+</div>
 
         {/* DOPORUČENÍ – full width */}
         {contract.recommendations?.length > 0 && (
