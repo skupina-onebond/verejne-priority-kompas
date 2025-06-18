@@ -7,7 +7,7 @@ import { ContractFilters } from "@/components/ContractFilters";
 import { mockContracts } from "@/data/mockContracts";
 import { PublicContract, ContractStatus } from "@/types/contract";
 
-const Home = () => {
+const ContractListPage = () => {
   const [contracts, setContracts] = useState<PublicContract[]>(mockContracts);
   const [filters, setFilters] = useState({
     sector: '',
@@ -171,4 +171,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ContractListPage;
