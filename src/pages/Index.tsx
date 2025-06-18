@@ -21,7 +21,7 @@ const LandingPage = () => {
         </a>
       </div>
 
-      <div className="absolute bottom-6 opacity-50">
+      <div className="absolute bottom-6">
         <img src="/CRR-logo.svg" alt="Logo CRR" className="h-12" />
       </div>
     </div>
