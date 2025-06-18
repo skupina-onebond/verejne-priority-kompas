@@ -102,7 +102,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 {/* Findings Section */}
                 {contract.findings && contract.findings.length > 0 && (
                   <div className="bg-slate-100 border border-slate-300 rounded-md p-4 text-sm text-gray-800 space-y-3 mt-4">
-                    <h3 className="text-sm font-semibold text-slate-800 mb-2">📌 Zjištěná pochybení</h3>
+                    <h3 className="text-sm font-semibold text-slate-800 mb-2">Zjištěné závaťnosti</h3>
                     <ul className="space-y-2 list-disc list-inside">
                       {contract.findings.map((finding, idx) => (
                         <li key={idx}>
