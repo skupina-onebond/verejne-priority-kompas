@@ -93,4 +93,36 @@ export const mockContracts: PublicContract[] = [
     created_at: '2024-06-06',
     analysis: `Zadavatel má dlouhodobé zkušenosti s údržbou veřejného prostoru. Jedná se o opakující se typ zakázky bez známých pochybení. Pravidelně dochází k vyhodnocování efektivity služeb. Riziko je minimální, ale doporučuje se průběžná kontrola dodržování frekvence a kvality úklidu.`
   }
+{
+  id: '7',
+  title: 'Modernizace infrastruktury ZŠ Ruská a ZŠ PKH',
+  description: 'Zakázka se týká dodávky vybavení a modernizace infrastruktury dvou základních škol v Litvínově – ZŠ Ruská a ZŠ PKH. Součástí jsou i multimediální pomůcky a další výuková technika.',
+  value: 5300000,
+  valueCategory: 'high',
+  deadline: '2024-09-01',
+  contracting_authority: 'Město Litvínov',
+  sector: 'Vzdělávání',
+  region: 'Ústecký kraj',
+  riskScore: 89,
+  status: 'active',
+  created_at: '2024-06-08',
+  analysis: `Zadavatel Město Litvínov opakovaně realizuje projekty financované z evropských fondů v oblasti školství a infrastruktury. V minulosti byl však opakovaně upozorněn na nedostatečné zajištění principu nediskriminace v zadávacích dokumentacích. Konkrétně se jednalo o případy, kdy technické specifikace byly příliš úzce zaměřené na jednoho dodavatele. Záznamy z kontrolních mechanismů (CRR) poukazují na nedostatečnou reakci na doporučení v průběhu projektu. Doporučuje se zvýšený dohled nad výběrovými řízeními a metodickým vedením pracovníků odboru investic.`
+
+},
+{
+  id: '8',
+  title: 'Rekonstrukce obecního domu – Želechovice nad Dřevnicí',
+  description: 'Kompletní rekonstrukce obecního domu včetně střechy, oken, zateplení, přístupových cest a vybavení interiéru pro kulturní a komunitní účely.',
+  value: 4900000,
+  valueCategory: 'medium',
+  deadline: '2024-10-10',
+  contracting_authority: 'Obec Želechovice nad Dřevnicí',
+  sector: 'Stavebnictví',
+  region: 'Zlínský kraj',
+  riskScore: 31,
+  status: 'active',
+  created_at: '2024-06-09',
+  analysis: `Zadavatel Obec Želechovice nad Dřevnicí má zkušenosti s realizací menších infrastrukturních projektů s podporou z fondů IROP. V posledních letech nečelil žádným sankcím ani nálezům při kontrolách ze strany CRR. Dokumentace bývá zpracována ve spolupráci s externím poradcem, což přispívá k formální bezchybnosti. Obec je považována za spolehlivého příjemce dotací s důrazem na transparentní postupy. Riziko pochybení je nízké.`
+}
+  
 ];
