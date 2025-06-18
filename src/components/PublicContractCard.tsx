@@ -113,38 +113,37 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           </div>
         </CardHeader>
 
-        <CardContent className="relative">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div>
-              <span className="font-medium text-gray-700">Hodnota zakázky:</span>
-              <p className="text-gray-900 font-semibold">{formatValue(contract.value)}</p>
-            </div>
-            <div>
-              <span className="font-medium text-gray-700">Termín podání:</span>
-              <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
-            </div>
-            <div>
-              <span className="font-medium text-gray-700">Zadavatel:</span>
-              <p className="text-gray-900">{contract.contracting_authority}</p>
-            </div>
-          </div>
+        <CardContent className="relative pb-14">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+    <div>
+      <span className="font-medium text-gray-700">Hodnota zakázky:</span>
+      <p className="text-gray-900 font-semibold">{formatValue(contract.value)}</p>
+    </div>
+    <div>
+      <span className="font-medium text-gray-700">Termín podání:</span>
+      <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
+    </div>
+    <div>
+      <span className="font-medium text-gray-700">Zadavatel:</span>
+      <p className="text-gray-900">{contract.contracting_authority}</p>
+    </div>
+  </div>
 
-          <div className="mt-3">
-            <span className="font-medium text-gray-700">Popis:</span>
-            <p className="text-gray-900 text-sm mt-1 line-clamp-2">{contract.description}</p>
-          </div>
+  <div className="mt-3 pr-40"> {/* pr-40 pridá miesto vpravo pre button */}
+    <span className="font-medium text-gray-700">Popis:</span>
+    <p className="text-gray-900 text-sm mt-1 line-clamp-3">{contract.description}</p>
+  </div>
 
-          {/* Zobrazit detail button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowDetail(true)}
-            className="absolute bottom-4 right-4 flex items-center gap-2 text-blue-600 hover:text-blue-800"
-          >
-            <FileText className="h-4 w-4" />
-            <span>Zobrazit detail</span>
-          </Button>
-        </CardContent>
+  <Button
+    variant="ghost"
+    size="sm"
+    onClick={() => setShowDetail(true)}
+    className="absolute bottom-4 right-4 flex items-center gap-2 text-blue-600 hover:text-blue-800"
+  >
+    <FileText className="h-4 w-4" />
+    <span>Zobrazit detail</span>
+  </Button>
+</CardContent>
       </Card>
 
       <ContractDetailDialog
