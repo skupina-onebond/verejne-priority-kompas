@@ -11,8 +11,7 @@ export const ScoreCircle = ({ score, size = 56 }: ScoreCircleProps) => {
   const circumference = 2 * Math.PI * radius;
   const progress = (score / 100) * circumference;
 
-  const color = score <= 50 ? '#ef4444' : score <= 80 ? '#f97316' : '#22c55e'; // red, orange, green
-
+const color = score <= 40 ? '#22c55e' : score <= 70 ? '#f97316' : '#ef4444'; // green, orange, red
   // Dynamický font a strokeWidth pre malé veľkosti
   const fontSize = size <= 32 ? '0.6rem' : '0.75rem';
   const strokeWidth = size <= 32 ? 4 : 6;
