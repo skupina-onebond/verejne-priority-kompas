@@ -1,14 +1,6 @@
 import React from 'react';
-import { useRouter } from 'next/router';
-import { Button } from "@/components/ui/button";
 
 const LandingPage = () => {
-  const router = useRouter();
-
-  const handleEnter = () => {
-    router.push('/seznam');
-  };
-
   return (
     <div className="min-h-screen bg-[#f5f8fc] flex flex-col justify-center items-center text-center px-6">
       <div className="max-w-xl">
@@ -19,12 +11,14 @@ const LandingPage = () => {
           Tento nástroj byl vytvořen speciálně pro potřeby Centra pro regionální rozvoj (CRR).
           Umožňuje efektivní kontrolu, třídění a hodnocení veřejných zakázek.
         </p>
-        <Button
-          onClick={handleEnter}
-          className="bg-[#215197] hover:bg-[#1a3e78] text-white px-6 py-2 text-lg rounded-md"
+
+        {/* ✅ Obyčajný link namiesto tlačidla */}
+        <a
+          href="/seznam"
+          className="inline-block bg-[#215197] hover:bg-[#1a3e78] text-white px-6 py-2 text-lg rounded-md"
         >
           Vstoupit do systému
-        </Button>
+        </a>
       </div>
 
       <div className="absolute bottom-6 opacity-50">
