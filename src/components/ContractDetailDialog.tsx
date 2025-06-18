@@ -140,14 +140,14 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         </div>
 
         {/* ANALÝZA POD GRIDOM */}
-        {analysisResult && (
-          <div className="mt-8">
-            <section className="bg-slate-100 border border-slate-300 p-6 rounded-lg">
-              <h3 className="text-sm font-semibold text-slate-900 mb-2">🧾 Analýza zadavatele</h3>
-              <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
-            </section>
-          </div>
-        )}
+{analysisResult && (
+  <div className="mt-8">
+    <h3 className="font-semibold text-slate-900 mb-2">Analýza zadavatele</h3>
+    <section className="bg-slate-100 border border-slate-300 p-6 rounded-lg">
+      <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
+    </section>
+  </div>
+)}
       </DialogContent>
     </Dialog>
   );
