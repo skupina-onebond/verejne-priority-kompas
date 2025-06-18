@@ -37,7 +37,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-6 py-10">
+      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
         <DialogHeader>
   <div className="flex items-start justify-between">
     <DialogTitle className="text-2xl font-bold text-slate-900">
