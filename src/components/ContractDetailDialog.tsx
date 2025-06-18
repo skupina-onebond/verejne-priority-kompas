@@ -100,22 +100,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           {/* RIGHT */}
 <div className="space-y-6 relative">
   {contract.riskScore !== undefined && (
-    <div className="flex justify-end">
-      <div className="flex flex-col items-center">
-        <RiskBarometerCircle score={contract.riskScore} size={90} />
-        <span className="mt-2 text-sm font-medium text-slate-900">
-          {contract.riskScore <= 40
-            ? 'Nízké riziko'
-            : contract.riskScore <= 70
-            ? 'Střední riziko'
-            : 'Vysoké riziko'}
-        </span>
-      </div>
+    <div className="absolute top-0 right-0">
+      <RiskBarometerCircle score={contract.riskScore} size={80} />
     </div>
   )}
 
   {contract.findings?.length > 0 && (
-    <section>
+    <section className="pt-20"> {/* padding top kvôli barometru nad tým */}
       <h3 className="font-semibold text-slate-900 mb-2">Zjištěné závažnosti</h3>
       <div className="bg-rose-50 border border-rose-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
         <ul className="list-disc list-inside space-y-1">
