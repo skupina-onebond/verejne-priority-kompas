@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { PublicContract } from "@/types/contract";
-import { Barometer } from "@/components/Barometer";
+import { RiskBarometerCircle } from "@/components/RiskBarometerCircle";
 
 interface ContractDetailDialogProps {
   contract: PublicContract;
@@ -49,7 +49,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           <Badge>{contract.region}</Badge>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm relative">
           {/* LEFT */}
           <div className="space-y-6">
             <section>
@@ -65,7 +65,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               <p><strong>Region:</strong> {contract.region}</p>
             </section>
 
-            {/* PROVĚŘIT BUTTON */}
             <div>
               <Button
                 variant="default"
@@ -99,14 +98,16 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           </div>
 
           {/* RIGHT */}
-          <div className="space-y-6">
+          <div className="space-y-6 relative">
             {contract.riskScore !== undefined && (
-              <section>
-                <Barometer score={contract.riskScore} size="md" showLabel />
+              <section className="relative">
+                <div className="absolute top-0 right-0">
+                  <RiskBarometerCircle score={contract.riskScore} size={90} />
+                </div>
 
                 {/* ZJIŠTĚNÉ ZÁVAŽNOSTI */}
                 {contract.findings?.length > 0 && (
-                  <div className="mt-4">
+                  <div className="mt-24"> {/* miesto ponechané pre barometer */}
                     <h3 className="font-semibold text-slate-900 mb-2">Zjištěné závažnosti</h3>
                     <div className="bg-rose-50 border border-rose-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
                       <ul className="list-disc list-inside space-y-1">
@@ -139,15 +140,15 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           )}
         </div>
 
-        {/* ANALÝZA POD GRIDOM */}
-{analysisResult && (
-  <div className="mt-8">
-    <h3 className="font-semibold text-slate-900 mb-2">Analýza zadavatele</h3>
-    <section className="bg-slate-100 border border-slate-300 p-6 rounded-lg">
-      <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
-    </section>
-  </div>
-)}
+        {/* ANALÝZA */}
+        {analysisResult && (
+          <div className="mt-8">
+            <h3 className="font-semibold text-slate-900 mb-2">Analýza zadavatele</h3>
+            <section className="bg-slate-100 border border-slate-300 p-6 rounded-lg">
+              <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
+            </section>
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   );
