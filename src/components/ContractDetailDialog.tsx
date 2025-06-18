@@ -98,7 +98,24 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             {contract.riskScore !== undefined && (
               <section>
                 <Barometer score={contract.riskScore} size="md" showLabel />
-                <strong>Doporučení pro kontrolní orgán:</strong>
+
+                {/* Findings Section */}
+                {contract.findings && contract.findings.length > 0 && (
+                  <div className="bg-slate-100 border border-slate-300 rounded-md p-4 text-sm text-gray-800 space-y-3 mt-4">
+                    <h3 className="text-sm font-semibold text-slate-800 mb-2">📌 Zjištěná pochybení</h3>
+                    <ul className="space-y-2 list-disc list-inside">
+                      {contract.findings.map((finding, idx) => (
+                        <li key={idx}>
+                          <span className="font-medium">{finding.severity.toUpperCase()}</span>{' '}
+                          – <em>{finding.category}</em>: {finding.description}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Recommendation Section */}
+                <strong className="block mt-6">Doporučení pro kontrolní orgán:</strong>
                 <div className="mt-2">
                   <div className="bg-slate-100 border border-slate-300 rounded-md p-4 text-sm text-gray-800 space-y-1">
                     {contract.riskScore <= 40 && (
