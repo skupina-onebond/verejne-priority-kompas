@@ -6,7 +6,7 @@ const LandingPage = () => {
   const router = useRouter();
 
   const handleEnter = () => {
-    router.push('/fronta');
+    router.push('/seznam');
   };
 
   return (
