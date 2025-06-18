@@ -114,36 +114,16 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   </div>
                 )}
 
-                {/* Recommendation Section */}
-                <strong className="block mt-6">Doporučení pro kontrolní orgán:</strong>
-                <div className="mt-2">
-                  <div className="bg-slate-100 border border-slate-300 rounded-md p-4 text-sm text-gray-800 space-y-1">
-                    {contract.riskScore <= 40 && (
-                      <ul className="list-disc list-inside">
-                        <li>Zakázka byla vyhodnocena jako nízce riziková.</li>
-                        <li>Doporučujeme běžný dohled dle interních postupů.</li>
-                        <li>Kontrolujte plnění smlouvy a uchovávejte dokumentaci.</li>
-                      </ul>
-                    )}
-
-                    {contract.riskScore > 40 && contract.riskScore <= 70 && (
-                      <ul className="list-disc list-inside">
-                        <li>Zakázka vyžaduje zvýšenou pozornost.</li>
-                        <li>Prověřte historii dodavatele a případné střety zájmů.</li>
-                        <li>Zajistěte přehlednou evidenci rozhodnutí a výdajů.</li>
-                      </ul>
-                    )}
-
-                    {contract.riskScore > 70 && (
-                      <ul className="list-disc list-inside">
-                        <li>Zakázka byla označena jako vysoce riziková.</li>
-                        <li>Doporučujeme podrobný dohled nad všemi fázemi zakázky.</li>
-                        <li>Zvažte zapojení nezávislého dohledu nebo interního auditora.</li>
-                        <li>Vyžadujte detailní dokumentaci a transparentní výběrové řízení.</li>
-                      </ul>
-                    )}
-                  </div>
-                </div>
+                {contract.recommendations?.length > 0 && (
+  <div className="mt-6">
+    <h3 className="text-sm font-semibold text-slate-800 mb-2">Doporučení pro kontrolní orgán</h3>
+    <ul className="list-disc list-inside text-sm bg-slate-100 border border-slate-300 rounded-md p-4 text-gray-800 space-y-1">
+      {contract.recommendations.map((rec, index) => (
+        <li key={index}>{rec}</li>
+      ))}
+    </ul>
+  </div>
+)}
               </section>
             )}
           </div>
