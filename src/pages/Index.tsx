@@ -20,12 +20,13 @@ const LandingPage = () => {
           Nástroj vytvořený pro Centrum pro regionální rozvoj (CRR) pro efektivní kontrolu veřejných zakázek z hlediska jejich závažnosti a rizikovosti.
         </p>
 
-        <Button
-          onClick={handleEnter}
-          className="bg-[#215197] hover:bg-[#1a3e78] text-white px-6 py-2 text-lg rounded-md"
+        {/* ✅ Obyčajný link namiesto tlačidla */}Add commentMore actions
+        <a
+          href="/seznam"
+          className="inline-block bg-[#215197] hover:bg-[#1a3e78] text-white px-6 py-2 text-lg rounded-md"
         >
           Vstoupit do systému
-        </Button>
+        </a>
       </div>
 
       <div className="absolute bottom-6 opacity-50">
