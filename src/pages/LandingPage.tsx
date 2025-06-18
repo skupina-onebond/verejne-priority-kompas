@@ -12,7 +12,7 @@ const LandingPage = () => {
         </h1>
 
         <p className="text-slate-500 text-sm italic mb-10 max-w-md mx-auto">
-          Tento nástroj vznikl na míru potřebám Centra pro regionální rozvoj (CRR).
+          Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR).
 Umožňuje efektivní kontrolu veřejných zakázek z hlediska jejich závažnosti a rizikovosti.
         </p>
 
