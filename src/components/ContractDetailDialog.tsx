@@ -4,6 +4,10 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -154,15 +158,31 @@ const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
           </div>
         )}
 
-        {/* ANALÝZA */}
-        {analysisResult && (
-          <div className="mt-8">
-            <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Analýza zadavatele</h3>
-            <section className="bg-slate-100 border border-slate-300 p-6 rounded-lg">
-              <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
-            </section>
-          </div>
-        )}
+        <Accordion type="multiple" className="mt-8 space-y-4">
+  {/* Analýza zadavatele */}
+  {analysisResult && (
+    <AccordionItem value="zadavatel">
+      <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+        Analýza zadavatele
+      </AccordionTrigger>
+      <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+        {analysisResult}
+      </AccordionContent>
+    </AccordionItem>
+  )}
+
+  {/* Analýza dodavatele */}
+  {contract.supplierAnalyses && showSupplierAnalysis && (
+    <AccordionItem value="dodavatel">
+      <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+        Analýza dodavatele
+      </AccordionTrigger>
+      <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+        {contract.supplierAnalyses}
+      </AccordionContent>
+    </AccordionItem>
+  )}
+</Accordion>
       </DialogContent>
     </Dialog>
   );
