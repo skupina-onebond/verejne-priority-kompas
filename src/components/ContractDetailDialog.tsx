@@ -86,11 +86,11 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
     <DialogContent ref={contentRef} className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
-      <DialogHeader>
-  <div className="grid grid-cols-[1fr_auto_auto] items-start gap-4">
-    {/* ĽAVÁ časť – názov a štítky */}
-    <div className="min-w-0">
-      <DialogTitle className="text-2xl font-bold text-slate-900 mb-3 whitespace-normal">
+      <DialogHeader className="relative">
+  <div className="flex items-start justify-between">
+    {/* Ľavá časť: názov + štítky */}
+    <div className="flex-1 min-w-0">
+      <DialogTitle className="text-2xl font-bold text-slate-900 mb-3">
         {contract.title}
       </DialogTitle>
       <div className="flex gap-2 mb-2 flex-wrap">
@@ -99,8 +99,15 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
       </div>
     </div>
 
-    {/* STREDNÁ časť – tlačidlo Tisk */}
-    <div className="flex justify-center items-start mt-1">
+    {/* Pravá časť: RiskBarometer */}
+    {contract.riskScore !== undefined && (
+      <div className="ml-4">
+        <RiskBarometerCircle score={contract.riskScore} size={80} />
+      </div>
+    )}
+
+    {/* Tlačidlo Tisk s pevnou pozíciou */}
+    <div className="absolute right-[20%] top-0 mt-1">
       <Button
         variant="outline"
         size="sm"
@@ -110,13 +117,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         <Printer className="h-4 w-4 mr-2" />
         Tisk
       </Button>
-    </div>
-
-    {/* PRAVÁ časť – RiskBarometer */}
-    <div className="flex justify-end mt-1">
-      {contract.riskScore !== undefined && (
-        <RiskBarometerCircle score={contract.riskScore} size={80} />
-      )}
     </div>
   </div>
 </DialogHeader>
