@@ -172,13 +172,13 @@ const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
   )}
 
   {/* Analýza dodavatele */}
-  {contract.supplierAnalyses && showSupplierAnalysis && (
+  {contract.supplierAnalysis && showSupplierAnalysis && (
     <AccordionItem value="dodavatel">
       <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
         Analýza dodavatele
       </AccordionTrigger>
       <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-        {contract.supplierAnalyses}
+        {contract.supplierAnalysis}
       </AccordionContent>
     </AccordionItem>
   )}
