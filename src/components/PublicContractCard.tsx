@@ -133,16 +133,17 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   </div>
 </div>
 
-  <div className="mt-3 pr-40">
+  <div className="mt-3 flex justify-between items-start gap-4">
+  <div className="flex-1">
     <span className="font-medium text-gray-700">Popis:</span>
-    <p className="text-gray-900 text-sm mt-1 line-clamp-3">{contract.description}</p>
+    <p className="text-gray-900 text-sm mt-1 line-clamp-3">
+      {contract.description}
+    </p>
   </div>
-
-  <div className="flex justify-end mt-4">
   <Button
     variant="outline"
     size="sm"
-    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 mt-1"
     onClick={() => setShowDetail(true)}
   >
     <FileText className="w-4 h-4 mr-2" />
