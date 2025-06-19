@@ -144,6 +144,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 absolute bottom-4 right-4"
     onClick={() => setShowDetail(true)}
   >
+      <FileText className="w-4 h-4 mr-2" />
     Zobrazit detail
   </Button>
           
