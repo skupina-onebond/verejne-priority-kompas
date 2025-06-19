@@ -26,7 +26,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   onDeepSearch,
   analysisResult
 }) => {
-  const [showAnalysis, setShowAnalysis] = useState(false);
+const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);  
 
   const formatValue = (value: number) => {
     return new Intl.NumberFormat('cs-CZ', {
@@ -79,19 +79,30 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               )}
             </section>
 
-            <div>
-              <Button
-  variant="outline"
-  size="sm"
-  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-  onClick={() => {
-    setShowAnalysis(true);
-    onDeepSearch(contract.contracting_authority);
-  }}
->
-  Prověřit zadavatele <Search className="h-4 w-4 ml-1" />
-</Button>
-            </div>
+            <div className="flex gap-2 mt-2">
+  <Button
+    variant="outline"
+    size="sm"
+    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+    onClick={() => {
+      setShowAnalysis(true);
+      onDeepSearch(contract.contracting_authority);
+    }}
+  >
+    Prověřit zadavatele <Search className="h-4 w-4 ml-1" />
+  </Button>
+
+  {contract.supplier && (
+    <Button
+      variant="default"
+      size="sm"
+      className="bg-[#215197] hover:bg-[#1c467f] text-white"
+      onClick={() => setShowSupplierAnalysis(true)}
+    >
+      Prověřit dodavatele <Search className="h-4 w-4 ml-1" />
+    </Button>
+  )}
+</div>
 
             <section className="space-y-1">
               <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Kategorizace</h3>
