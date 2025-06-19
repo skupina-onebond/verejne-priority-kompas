@@ -23,4 +23,5 @@ export interface PublicContract {
   analysisResult?: string;
   analysis?: string;
   supplier?: string;
+  supplierAnalysis?: string;
 }
