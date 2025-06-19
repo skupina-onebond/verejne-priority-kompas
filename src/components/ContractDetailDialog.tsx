@@ -107,43 +107,19 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               </Button>
 
               {contract.supplier && (
-  <Button
-    variant="default"
-    size="sm"
-    className="bg-[#215197] hover:bg-[#1c467f] text-white"
-    onClick={() => {
-      setShowSupplierAnalysis(true);
-      scrollTo(dodavatelRef);
-    }}
-    disabled={showSupplierAnalysis} // zakáže kliknutí po prvním kliknutí
-  >
-    {showSupplierAnalysis ? (
-      <>
-        <svg className="animate-spin h-4 w-4 mr-2 text-white" viewBox="0 0 24 24">
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-            fill="none"
-          />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8v8z"
-          />
-        </svg>
-        Načítání...
-      </>
-    ) : (
-      <>
-        Prověřit dodavatele <Search className="h-4 w-4 ml-1" />
-      </>
-    )}
-  </Button>
-)}
+                <Button
+                  variant="default"
+                  size="sm"
+                  className="bg-[#215197] hover:bg-[#1c467f] text-white"
+                  onClick={() => {
+                    setShowSupplierAnalysis(true);
+                    scrollTo(dodavatelRef);
+                  }}
+                >
+                  Prověřit dodavatele <Search className="h-4 w-4 ml-1" />
+                </Button>
+              )}
+            </div>
 
             <section className="space-y-1">
               <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Kategorizace</h3>
