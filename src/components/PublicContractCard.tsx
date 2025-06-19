@@ -114,7 +114,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
         </CardHeader>
 
         <CardContent className="relative pb-14">
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+  <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 text-sm">
     <div>
       <span className="font-medium text-gray-700">Hodnota zakázky:</span>
       <p className="text-gray-900 font-semibold">{formatValue(contract.value)}</p>
@@ -127,13 +127,15 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
       <span className="font-medium text-gray-700">Zadavatel:</span>
       <p className="text-gray-900">{contract.contracting_authority}</p>
     </div>
-    <div>
+    <div />
+  </div>
+
+  <div className="mt-4 text-sm">
     <span className="font-medium text-gray-700">Dodavatel:</span>
     <p className="text-gray-900">{contract.supplier || "Neuveden"}</p>
   </div>
-  </div>
 
-  <div className="mt-3 pr-40"> {/* pr-40 pridá miesto vpravo pre button */}
+  <div className="mt-3 pr-40">
     <span className="font-medium text-gray-700">Popis:</span>
     <p className="text-gray-900 text-sm mt-1 line-clamp-3">{contract.description}</p>
   </div>
@@ -144,10 +146,9 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 absolute bottom-4 right-4"
     onClick={() => setShowDetail(true)}
   >
-      <FileText className="w-4 h-4 mr-2" />
+    <FileText className="w-4 h-4 mr-2" />
     Zobrazit detail
   </Button>
-          
 </CardContent>
       </Card>
 
