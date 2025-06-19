@@ -25,7 +25,7 @@ const LandingPage = () => {
         </button>
       </div>
 
-      <div className="absolute bottom-6 left-6 right-6 flex justify-between text-sm text-slate-600">
+      <div className="absolute bottom-6 left-6 right-6 flex center-left justify-between text-sm text-slate-600">
   <img src="/CRR-logo.svg" alt="Logo CRR" className="h-8" />
   <p className="ml-4">
     Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR)
