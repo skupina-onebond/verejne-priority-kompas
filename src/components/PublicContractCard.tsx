@@ -127,6 +127,10 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
       <span className="font-medium text-gray-700">Zadavatel:</span>
       <p className="text-gray-900">{contract.contracting_authority}</p>
     </div>
+    <div>
+    <span className="font-medium text-gray-700">Dodavatel:</span>
+    <p className="text-gray-900">{contract.supplier || "Neuveden"}</p>
+  </div>
   </div>
 
   <div className="mt-3 pr-40"> {/* pr-40 pridá miesto vpravo pre button */}
