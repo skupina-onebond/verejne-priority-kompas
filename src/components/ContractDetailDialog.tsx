@@ -64,7 +64,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   {/* LEFT */}
           <div className="space-y-6">
             <section>
-              <h3 className="text-base font-semibold text-slate-900 mb-4 uppercase tracking-wide">Popis zakázky</h3>
+              <h3 className="text-base font-semibold text-slate-900 mb-6 uppercase tracking-wide">Popis zakázky</h3>
               <p>{contract.description}</p>
             </section>
 
