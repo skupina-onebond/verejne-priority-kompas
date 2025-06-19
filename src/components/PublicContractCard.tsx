@@ -133,12 +133,13 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     </div>
   </div>
 
-  <div className="flex justify-between items-start gap-4">
-    <div className="flex-1">
-      <span className="font-medium text-gray-700">Popis:</span>
-      <p className="text-gray-900 text-sm mt-1">{contract.description}</p>
-    </div>
+  <div className="flex justify-between gap-4 mt-2">
+  <div className="flex-1">
+    <p className="text-gray-700 font-medium mb-1">Popis:</p>
+    <p className="text-gray-900 text-sm">{contract.description}</p>
+  </div>
 
+  <div className="self-start pt-[1.4rem]">
     <Button
       variant="outline"
       size="sm"
@@ -149,6 +150,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
       Zobrazit detail
     </Button>
   </div>
+</div>
 </CardContent>
       </Card>
 
