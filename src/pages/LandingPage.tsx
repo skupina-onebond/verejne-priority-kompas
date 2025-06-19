@@ -29,7 +29,7 @@ const LandingPage = () => {
   <img src="/CRR-logo.svg" alt="Logo CRR" className="h-8 mr-4" />
   <p className="text-left">
     Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR)
-    a slouží k efektivní kontrole veřejných zakázek z hlediska jejich závažnosti a rizikovosti.
+    a slouží k efektivní kontrole veřejných zakázek.
   </p>
 </div>
     </div>
