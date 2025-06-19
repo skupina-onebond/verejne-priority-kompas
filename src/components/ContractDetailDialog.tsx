@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { PublicContract } from "@/types/contract";
 import { RiskBarometerCircle } from "@/components/RiskBarometerCircle";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
+import LoadingOverlay from "@/components/LoadingOverlay"; // Uisti sa, že cesta sedí
 
 interface ContractDetailDialogProps {
   contract: PublicContract;
@@ -35,10 +35,10 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 }) => {
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
   const [showAnalysis, setShowAnalysis] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(false);
 
   const scrollTo = (ref: React.RefObject<HTMLElement>) => {
     setTimeout(() => {
@@ -54,10 +54,10 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   };
 
   return (
-    <>
-    {loading && <LoadingOverlay />}
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
+      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10 relative">
+        {loading && <LoadingOverlay />}
+
         <DialogHeader>
           <div className="flex items-start justify-between">
             <div>
@@ -77,7 +77,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           </div>
         </DialogHeader>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm relative items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm items-start">
           {/* LEFT */}
           <div className="space-y-6">
             <section>
@@ -106,7 +106,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   setShowAnalysis(true);
                   scrollTo(zadavatelRef);
                   onDeepSearch(contract.contracting_authority);
-                
+
                   setTimeout(() => {
                     setLoading(false);
                   }, 5000);
@@ -124,7 +124,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                     setLoading(true);
                     setShowSupplierAnalysis(true);
                     scrollTo(dodavatelRef);
-                  
+
                     setTimeout(() => {
                       setLoading(false);
                     }, 5000);
