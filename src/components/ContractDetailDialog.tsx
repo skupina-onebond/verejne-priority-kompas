@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -33,20 +33,10 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   analysisResult
 }) => {
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
-  const [loadingZadavatel, setLoadingZadavatel] = useState(false);
-  const [loadingDodavatel, setLoadingDodavatel] = useState(false);
+  const [showAnalysis, setShowAnalysis] = useState(false);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-  if (isOpen) {
-    setTimeout(() => {
-      setLoadingZadavatel(false);
-      setLoadingDodavatel(false);
-    }, 0);
-  }
-}, [isOpen]);
 
   const scrollTo = (ref: React.RefObject<HTMLElement>) => {
     setTimeout(() => {
@@ -61,194 +51,155 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     }).format(value);
   };
 
-  const loading = isOpen && (loadingZadavatel || loadingDodavatel);
   return (
-    <>
-      <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10 relative">
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
         <DialogHeader>
-            <div className="flex items-start justify-between">
-              <div>
-                <DialogTitle className="text-2xl font-bold text-slate-900 mb-3">
-                  {contract.title}
-                </DialogTitle>
-                <div className="flex gap-2">
-                  <Badge>{contract.sector}</Badge>
-                  <Badge>{contract.region}</Badge>
-                </div>
+          <div className="flex items-start justify-between">
+            <div>
+              <DialogTitle className="text-2xl font-bold text-slate-900 mb-3">
+                {contract.title}
+              </DialogTitle>
+              <div className="flex gap-2">
+                <Badge>{contract.sector}</Badge>
+                <Badge>{contract.region}</Badge>
               </div>
-              {contract.riskScore !== undefined && (
-                <div className="mt-2">
-                  <RiskBarometerCircle score={contract.riskScore} size={80} />
-                </div>
+            </div>
+            {contract.riskScore !== undefined && (
+              <div className="mt-2">
+                <RiskBarometerCircle score={contract.riskScore} size={80} />
+              </div>
+            )}
+          </div>
+        </DialogHeader>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm relative items-start">
+          {/* LEFT */}
+          <div className="space-y-6">
+            <section>
+              <h3 className="text-base font-semibold text-slate-900 mt-4 mb-2 uppercase tracking-wide">Popis zakázky</h3>
+              <p>{contract.description}</p>
+            </section>
+
+            <section className="space-y-1">
+              <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Základní informace</h3>
+              <p><span className="font-medium">Hodnota zakázky:</span> {formatValue(contract.value)}</p>
+              <p><span className="font-medium">Termín podání:</span> {new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
+              <p><span className="font-medium">Zadavatel:</span> {contract.contracting_authority}</p>
+              <p><span className="font-medium">Region:</span> {contract.region}</p>
+              {contract.supplier && (
+                <p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>
+              )}
+            </section>
+
+            <div className="flex gap-2 mt-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                onClick={() => {
+                  setShowAnalysis(true);
+                  scrollTo(zadavatelRef);
+                  onDeepSearch(contract.contracting_authority);
+                }}
+              >
+                Prověřit zadavatele <Search className="h-4 w-4 ml-1" />
+              </Button>
+
+              {contract.supplier && (
+                <Button
+                  variant="default"
+                  size="sm"
+                  className="bg-[#215197] hover:bg-[#1c467f] text-white"
+                  onClick={() => {
+                    setShowSupplierAnalysis(true);
+                    scrollTo(dodavatelRef);
+                  }}
+                >
+                  Prověřit dodavatele <Search className="h-4 w-4 ml-1" />
+                </Button>
               )}
             </div>
-          </DialogHeader>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm items-start">
-            <div className="space-y-6">
+            <section className="space-y-1">
+              <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Kategorizace</h3>
+              <p><span className="font-medium">Odvětví:</span> {contract.sector}</p>
+              <p><span className="font-medium">Kategorie hodnoty:</span> {
+                contract.valueCategory === 'low' ? 'Do 500 tisíc Kč' :
+                contract.valueCategory === 'medium' ? 'Do 5 milionů Kč' :
+                'Nad 5 milionů Kč'
+              }</p>
+            </section>
+
+            {contract.additional_info && (
               <section>
-                <h3 className="text-base font-semibold text-slate-900 mt-4 mb-2 uppercase tracking-wide">Popis zakázky</h3>
-                <p>{contract.description}</p>
+                <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Dodatečné informace</h3>
+                <p>{contract.additional_info}</p>
               </section>
-
-              <section className="space-y-1">
-                <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Základní informace</h3>
-                <p><span className="font-medium">Hodnota zakázky:</span> {formatValue(contract.value)}</p>
-                <p><span className="font-medium">Termín podání:</span> {new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
-                <p><span className="font-medium">Zadavatel:</span> {contract.contracting_authority}</p>
-                <p><span className="font-medium">Region:</span> {contract.region}</p>
-                {contract.supplier && (
-                  <p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>
-                )}
-              </section>
-              <div className="flex gap-2 mt-2">
-  <Button
-    variant="outline"
-    size="sm"
-    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-    onClick={() => {
-      setLoadingZadavatel(true);
-      scrollTo(zadavatelRef);
-      onDeepSearch(contract.contracting_authority);
-      setTimeout(() => {
-        setLoadingZadavatel(false);
-      }, 5000);
-    }}
-  >
-    {loadingZadavatel ? (
-      <>
-        <svg className="animate-spin h-4 w-4 mr-2 text-[#215197]" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-          />
-        </svg>
-        Načítám…
-      </>
-    ) : (
-      <>
-        Prověřit zadavatele <Search className="h-4 w-4 ml-1" />
-      </>
-    )}
-  </Button>
-
-  {contract.supplier && (
-    <Button
-      variant="default"
-      size="sm"
-      className="bg-[#215197] hover:bg-[#1c467f] text-white"
-      onClick={() => {
-        setLoadingDodavatel(true);
-        setShowSupplierAnalysis(true);
-        scrollTo(dodavatelRef);
-        setTimeout(() => {
-          setLoadingDodavatel(false);
-        }, 5000);
-      }}
-    >
-      {loadingDodavatel ? (
-        <>
-          <svg className="animate-spin h-4 w-4 mr-2 text-white" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-            />
-          </svg>
-          Načítám…
-        </>
-      ) : (
-        <>
-          Prověřit dodavatele <Search className="h-4 w-4 ml-1" />
-        </>
-      )}
-    </Button>
-  )}
-</div>
-
-              <section className="space-y-1">
-                <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Kategorizace</h3>
-                <p><span className="font-medium">Odvětví:</span> {contract.sector}</p>
-                <p><span className="font-medium">Kategorie hodnoty:</span> {
-                  contract.valueCategory === 'low' ? 'Do 500 tisíc Kč' :
-                  contract.valueCategory === 'medium' ? 'Do 5 milionů Kč' :
-                  'Nad 5 milionů Kč'
-                }</p>
-              </section>
-
-              {contract.additional_info && (
-                <section>
-                  <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Dodatečné informace</h3>
-                  <p>{contract.additional_info}</p>
-                </section>
-              )}
-            </div>
-
-            <div className="space-y-6">
-              {contract.findings?.length > 0 && (
-                <section className="mt-4">
-                  <h3 className="text-base font-semibold text-rose-700 mb-2 uppercase tracking-wide">Zjištěné závažnosti</h3>
-                  <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 space-y-3 text-sm">
-                    <ul className="list-disc list-inside space-y-1">
-                      {contract.findings.map((finding, idx) => (
-                        <li key={idx}>
-                          <span className="font-medium text-rose-800">{finding.severity.toUpperCase()}</span>{' '}
-                          – <em>{finding.category}</em>: {finding.description}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </section>
-              )}
-
-              {contract.recommendations?.length > 0 && (
-                <section className="mt-6">
-                  <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Doporučení pro kontrolní orgán</h3>
-                  <div className="bg-indigo-50 border border-indigo-200 rounded-md p-4 text-sm text-slate-800 space-y-1">
-                    <ul className="list-disc list-inside space-y-1">
-                      {contract.recommendations.map((rec, index) => (
-                        <li key={index}>{rec}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </section>
-              )}
-            </div>
+            )}
           </div>
 
-          <Accordion type="multiple" className="mt-8 space-y-4">
-            {analysisResult && (
-              <div ref={zadavatelRef}>
-                <AccordionItem value="zadavatel">
-                  <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
-                    Analýza zadavatele
-                  </AccordionTrigger>
-                  <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-                    {analysisResult}
-                  </AccordionContent>
-                </AccordionItem>
-              </div>
+          {/* RIGHT */}
+          <div className="space-y-6">
+            {contract.findings?.length > 0 && (
+              <section className="mt-4">
+                <h3 className="text-base font-semibold text-rose-700 mb-2 uppercase tracking-wide">Zjištěné závažnosti</h3>
+                <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 space-y-3 text-sm">
+                  <ul className="list-disc list-inside space-y-1">
+                    {contract.findings.map((finding, idx) => (
+                      <li key={idx}>
+                        <span className="font-medium text-rose-800">{finding.severity.toUpperCase()}</span>{' '}
+                        – <em>{finding.category}</em>: {finding.description}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
             )}
 
-            {contract.supplierAnalysis && showSupplierAnalysis && (
-              <div ref={dodavatelRef}>
-                <AccordionItem value="dodavatel">
-                  <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
-                    Analýza dodavatele
-                  </AccordionTrigger>
-                  <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-                    {contract.supplierAnalysis}
-                  </AccordionContent>
-                </AccordionItem>
-              </div>
+            {contract.recommendations?.length > 0 && (
+              <section className="mt-6">
+                <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Doporučení pro kontrolní orgán</h3>
+                <div className="bg-indigo-50 border border-indigo-200 rounded-md p-4 text-sm text-slate-800 space-y-1">
+                  <ul className="list-disc list-inside space-y-1">
+                    {contract.recommendations.map((rec, index) => (
+                      <li key={index}>{rec}</li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
             )}
-          </Accordion>
-        </DialogContent>
-      </Dialog>
-    </>
+          </div>
+        </div>
+
+        <Accordion type="multiple" className="mt-8 space-y-4">
+          {analysisResult && (
+            <div ref={zadavatelRef}>
+              <AccordionItem value="zadavatel">
+                <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                  Analýza zadavatele
+                </AccordionTrigger>
+                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+                  {analysisResult}
+                </AccordionContent>
+              </AccordionItem>
+            </div>
+          )}
+
+          {contract.supplierAnalysis && showSupplierAnalysis && (
+            <div ref={dodavatelRef}>
+              <AccordionItem value="dodavatel">
+                <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                  Analýza dodavatele
+                </AccordionTrigger>
+                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+                  {contract.supplierAnalysis}
+                </AccordionContent>
+              </AccordionItem>
+            </div>
+          )}
+        </Accordion>
+      </DialogContent>
+    </Dialog>
   );
 };
