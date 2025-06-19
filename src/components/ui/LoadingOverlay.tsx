@@ -2,7 +2,7 @@ import React from 'react';
 
 export const LoadingOverlay = () => {
   return (
-    <div className="fixed inset-0 z-50 bg-white/70 flex items-center justify-center">
+    <div className="absolute inset-0 z-20 bg-white/70 flex items-center justify-center rounded-lg">
       <img
         src="/CRR-logo.svg"
         alt="Loading"
