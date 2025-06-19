@@ -3,12 +3,14 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTitle,
+  DialogTitle
+} from "@/components/ui/dialog";
+import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "@/components/ui/dialog";
+} from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
@@ -31,6 +33,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   analysisResult
 }) => {
 const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);  
+const [showAnalysis, setShowAnalysis] = useState(false);
 
   const formatValue = (value: number) => {
     return new Intl.NumberFormat('cs-CZ', {
