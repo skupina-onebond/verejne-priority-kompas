@@ -51,6 +51,36 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     }).format(value);
   };
 
+  const handlePrint = () => {
+  const content = document.querySelector(".radix-dialog-content"); // nebo konkrétní className/DialogContent ref
+  if (!content) return;
+
+  const printWindow = window.open('', '', 'width=1024,height=768');
+  if (printWindow) {
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>${contract.title}</title>
+          <style>
+            body { font-family: sans-serif; padding: 20px; }
+            h3 { margin-top: 24px; }
+            .text-sm { font-size: 14px; }
+            .font-semibold { font-weight: 600; }
+            .uppercase { text-transform: uppercase; }
+            .text-slate-900 { color: #0f172a; }
+          </style>
+        </head>
+        <body>
+          ${content.innerHTML}
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+  }
+};
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
