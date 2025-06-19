@@ -14,7 +14,7 @@ const LandingPage = () => {
       {/* Hlavný obsah */}
       <div className="max-w-xl text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-10">
-          Vítejte v Doris! 
+          Vítejte v Doris  <br />
           Systému pro analýzu veřejných zakázek
         </h1>
 
@@ -22,7 +22,7 @@ const LandingPage = () => {
           onClick={() => navigate("/seznam")}
           className="bg-[#215197] hover:bg-[#1a3e78] text-white px-6 py-2 text-lg rounded-md"
         >
-          Vstoupit do systému
+          Vstoupit
         </button>
       </div>
 
