@@ -37,7 +37,6 @@ const LandingPage = () => {
         <div className="absolute bottom-6 right-6 text-sm text-slate-500 max-w-sm text-right">
           Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR).
         </div>
-      </div>
     </div>
   );
 };
