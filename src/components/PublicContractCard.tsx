@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Eye, EyeOff, Bookmark, Check, FileText } from "lucide-react";
+import { Eye, EyeOff, Bookmark, Check, FileText, ArrowUp, ArrowDown } from "lucide-react";
 import { PublicContract, ContractStatus } from "@/types/contract";
 import { ContractDetailDialog } from "./ContractDetailDialog";
 import { ScoreCircle } from '@/components/ScoreCircle';
@@ -10,7 +10,7 @@ import { ScoreCircle } from '@/components/ScoreCircle';
 interface PublicContractCardProps {
   contract: PublicContract;
   onStatusChange: (id: string, status: ContractStatus) => void;
-  onMove: (draggedId: string, targetId: string) => void;
+  onMove: (id: string, direction: "up" | "down") => void;
   onDeepSearch: (subjectName: string) => void;
 }
 
@@ -47,16 +47,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
 
   return (
     <>
-      <Card
-        className="hover:shadow-md transition-shadow"
-        draggable
-        onDragStart={(e) => e.dataTransfer.setData("text/plain", contract.id)}
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={(e) => {
-          const draggedId = e.dataTransfer.getData("text/plain");
-          onMove(draggedId, contract.id);
-        }}
-      >
+      <Card className="hover:shadow-md transition-shadow">
         <CardHeader className="pb-3">
           <div className="flex justify-between items-start">
             <div className="flex-1">
@@ -72,6 +63,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               </div>
             </div>
 
+            {/* Akcie */}
             <div className="flex gap-2 ml-4">
               <Button
                 variant="outline"
@@ -99,45 +91,64 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               >
                 <Check className="h-4 w-4" />
               </Button>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onMove(contract.id, "up")}
+                className="text-gray-600 hover:text-gray-800"
+              >
+                <ArrowUp className="h-4 w-4" />
+              </Button>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onMove(contract.id, "down")}
+                className="text-gray-600 hover:text-gray-800"
+              >
+                <ArrowDown className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </CardHeader>
 
         <CardContent className="relative pb-14">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div>
-              <span className="font-medium text-gray-700">Hodnota zakázky:</span>
-              <p className="text-gray-900 font-semibold">{formatValue(contract.value)}</p>
-            </div>
-            <div>
-              <span className="font-medium text-gray-700">Termín podání:</span>
-              <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
-            </div>
-            <div>
-              <span className="font-medium text-gray-700">Zadavatel:</span>
-              <p className="text-gray-900">{contract.contracting_authority}</p>
-            </div>
-            <div>
-              <span className="font-medium text-gray-700">Dodavatel:</span>
-              <p className="text-gray-900">{contract.supplier || "Neuveden"}</p>
-            </div>
-          </div>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+    <div>
+      <span className="font-medium text-gray-700">Hodnota zakázky:</span>
+      <p className="text-gray-900 font-semibold">{formatValue(contract.value)}</p>
+    </div>
+    <div>
+      <span className="font-medium text-gray-700">Termín podání:</span>
+      <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
+    </div>
+    <div>
+      <span className="font-medium text-gray-700">Zadavatel:</span>
+      <p className="text-gray-900">{contract.contracting_authority}</p>
+    </div>
+    <div>
+    <span className="font-medium text-gray-700">Dodavatel:</span>
+    <p className="text-gray-900">{contract.supplier || "Neuveden"}</p>
+  </div>
+  </div>
 
-          <div className="mt-3 pr-40">
-            <span className="font-medium text-gray-700">Popis:</span>
-            <p className="text-gray-900 text-sm mt-1 line-clamp-3">{contract.description}</p>
-          </div>
+  <div className="mt-3 pr-40"> {/* pr-40 pridá miesto vpravo pre button */}
+    <span className="font-medium text-gray-700">Popis:</span>
+    <p className="text-gray-900 text-sm mt-1 line-clamp-3">{contract.description}</p>
+  </div>
 
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 absolute bottom-4 right-4"
-            onClick={() => setShowDetail(true)}
-          >
-            <FileText className="w-4 h-4 mr-2" />
-            Zobrazit detail
-          </Button>
-        </CardContent>
+  <Button
+    variant="outline"
+    size="sm"
+    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 absolute bottom-4 right-4"
+    onClick={() => setShowDetail(true)}
+  >
+      <FileText className="w-4 h-4 mr-2" />
+    Zobrazit detail
+  </Button>
+          
+</CardContent>
       </Card>
 
       <ContractDetailDialog
