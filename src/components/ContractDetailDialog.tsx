@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { PublicContract } from "@/types/contract";
 import { RiskBarometerCircle } from "@/components/RiskBarometerCircle";
-import LoadingOverlay from "@/components/LoadingOverlay"; // Uisti sa, že cesta sedí
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 interface ContractDetailDialogProps {
   contract: PublicContract;
@@ -34,7 +34,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   analysisResult
 }) => {
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
-  const [showAnalysis, setShowAnalysis] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
@@ -78,7 +77,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         </DialogHeader>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm items-start">
-          {/* LEFT */}
           <div className="space-y-6">
             <section>
               <h3 className="text-base font-semibold text-slate-900 mt-4 mb-2 uppercase tracking-wide">Popis zakázky</h3>
@@ -103,7 +101,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
                 onClick={() => {
                   setLoading(true);
-                  setShowAnalysis(true);
                   scrollTo(zadavatelRef);
                   onDeepSearch(contract.contracting_authority);
 
@@ -153,7 +150,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             )}
           </div>
 
-          {/* RIGHT */}
           <div className="space-y-6">
             {contract.findings?.length > 0 && (
               <section className="mt-4">
