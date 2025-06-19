@@ -80,17 +80,13 @@ const ContractListPage = () => {
   );
 
   return (
-<div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Open Sans, sans-serif' }}>
-      <div className="container mx-auto p-6">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Fronta veřejných zakázek
-          </h1>
-          <p className="text-gray-600">
-            Přehledná správa a sledování veřejných zakázek podle závažnosti
-          </p>
-        </div>
+    <div className="min-h-screen bg-gray-50 relative" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+      {/* Logo vlevo nahoře */}
+      <div className="absolute top-6 left-6">
+        <img src="/Doris-logo.png" alt="Logo DORIS" className="h-8" />
+      </div>
 
+      <div className="container mx-auto p-6 pt-20">
         <ContractFilters filters={filters} onFiltersChange={setFilters} />
 
         <Tabs defaultValue="active" className="w-full">
