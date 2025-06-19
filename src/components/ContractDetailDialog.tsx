@@ -57,7 +57,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
   return (
     <>
-      {loading && <LoadingOverlay />}
+    {isOpen && loading && <LoadingOverlay />}
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10 relative">
           <DialogHeader>
