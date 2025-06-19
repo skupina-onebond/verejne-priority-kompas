@@ -58,7 +58,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         </DialogHeader>
 
         <div className="flex flex-wrap gap-2 mb-6">
-          <Badge>{contract.sector}</Badge>
           <Badge>{contract.region}</Badge>
         </div>
 
