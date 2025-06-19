@@ -25,13 +25,13 @@ const LandingPage = () => {
         </button>
       </div>
 
-      {/* Info text a logo CRR dole */}
-      <div className="absolute bottom-10 flex flex-col items-center text-slate-500 text-sm">
-        <p className="mb-2 px-4 max-w-2xl text-center">
+      {/* Text + logo CRR dole vľavo */}
+      <div className="absolute bottom-6 left-6 flex items-center gap-4 text-sm text-slate-600 max-w-md">
+        <img src="/CRR-logo.svg" alt="Logo CRR" className="h-8" />
+        <p>
           Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR)
           a slouží k efektivní kontrole veřejných zakázek z hlediska jejich závažnosti a rizikovosti.
         </p>
-        <img src="/CRR-logo.svg" alt="Logo CRR" className="h-8 opacity-60" />
       </div>
     </div>
   );
