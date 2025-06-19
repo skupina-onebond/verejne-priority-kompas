@@ -113,43 +113,42 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           </div>
         </CardHeader>
 
-        <CardContent className="relative pb-14">
- <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-2 text-sm">
-  <div>
-    <span className="font-medium text-gray-700">Hodnota zakázky:</span>
-    <p className="text-gray-900 font-semibold">{formatValue(contract.value)}</p>
+        <CardContent className="pb-6">
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm mb-4">
+    <div>
+      <span className="font-medium text-gray-700">Hodnota zakázky:</span>
+      <p className="text-gray-900 font-semibold">{formatValue(contract.value)}</p>
+    </div>
+    <div>
+      <span className="font-medium text-gray-700">Termín podání:</span>
+      <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
+    </div>
+    <div>
+      <span className="font-medium text-gray-700">Zadavatel:</span>
+      <p className="text-gray-900">{contract.contracting_authority}</p>
+    </div>
+    <div>
+      <span className="font-medium text-gray-700">Dodavatel:</span>
+      <p className="text-gray-900">{contract.supplier || "Neuveden"}</p>
+    </div>
   </div>
-  <div>
-    <span className="font-medium text-gray-700">Termín podání:</span>
-    <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
-  </div>
-  <div>
-    <span className="font-medium text-gray-700">Zadavatel:</span>
-    <p className="text-gray-900">{contract.contracting_authority}</p>
-  </div>
-  <div>
-    <span className="font-medium text-gray-700">Dodavatel:</span>
-    <p className="text-gray-900">{contract.supplier || "Neuveden"}</p>
-  </div>
-</div>
 
-  <div className="mt-3 flex justify-between items-start gap-4">
-  <div className="flex-1">
-    <span className="font-medium text-gray-700">Popis:</span>
-    <p className="text-gray-900 text-sm mt-1 line-clamp-3">
-      {contract.description}
-    </p>
+  <div className="flex justify-between items-start gap-4">
+    <div className="flex-1">
+      <span className="font-medium text-gray-700">Popis:</span>
+      <p className="text-gray-900 text-sm mt-1">{contract.description}</p>
+    </div>
+
+    <Button
+      variant="outline"
+      size="sm"
+      className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+      onClick={() => setShowDetail(true)}
+    >
+      <FileText className="w-4 h-4 mr-2" />
+      Zobrazit detail
+    </Button>
   </div>
-  <Button
-    variant="outline"
-    size="sm"
-    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 mt-1"
-    onClick={() => setShowDetail(true)}
-  >
-    <FileText className="w-4 h-4 mr-2" />
-    Zobrazit detail
-  </Button>
-</div>
 </CardContent>
       </Card>
 
