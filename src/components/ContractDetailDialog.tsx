@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -34,6 +34,15 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 }) => {
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
   const [showAnalysis, setShowAnalysis] = useState(false);
+
+  const zadavatelRef = useRef<HTMLDivElement>(null);
+  const dodavatelRef = useRef<HTMLDivElement>(null);
+
+  const scrollTo = (ref: React.RefObject<HTMLElement>) => {
+    setTimeout(() => {
+      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  };
 
   const formatValue = (value: number) => {
     return new Intl.NumberFormat('cs-CZ', {
@@ -90,6 +99,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
                 onClick={() => {
                   setShowAnalysis(true);
+                  scrollTo(zadavatelRef);
                   onDeepSearch(contract.contracting_authority);
                 }}
               >
@@ -101,7 +111,10 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   variant="default"
                   size="sm"
                   className="bg-[#215197] hover:bg-[#1c467f] text-white"
-                  onClick={() => setShowSupplierAnalysis(true)}
+                  onClick={() => {
+                    setShowSupplierAnalysis(true);
+                    scrollTo(dodavatelRef);
+                  }}
                 >
                   Prověřit dodavatele <Search className="h-4 w-4 ml-1" />
                 </Button>
@@ -145,7 +158,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             )}
 
             {contract.recommendations?.length > 0 && (
-              <section className="mt-4">
+              <section className="mt-6">
                 <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Doporučení pro kontrolní orgán</h3>
                 <div className="bg-indigo-50 border border-indigo-200 rounded-md p-4 text-sm text-slate-800 space-y-1">
                   <ul className="list-disc list-inside space-y-1">
@@ -161,25 +174,29 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
         <Accordion type="multiple" className="mt-8 space-y-4">
           {analysisResult && (
-            <AccordionItem value="zadavatel">
-              <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
-                Analýza zadavatele
-              </AccordionTrigger>
-              <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-                {analysisResult}
-              </AccordionContent>
-            </AccordionItem>
+            <div ref={zadavatelRef}>
+              <AccordionItem value="zadavatel">
+                <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                  Analýza zadavatele
+                </AccordionTrigger>
+                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+                  {analysisResult}
+                </AccordionContent>
+              </AccordionItem>
+            </div>
           )}
 
           {contract.supplierAnalysis && showSupplierAnalysis && (
-            <AccordionItem value="dodavatel">
-              <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
-                Analýza dodavatele
-              </AccordionTrigger>
-              <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-                {contract.supplierAnalysis}
-              </AccordionContent>
-            </AccordionItem>
+            <div ref={dodavatelRef}>
+              <AccordionItem value="dodavatel">
+                <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                  Analýza dodavatele
+                </AccordionTrigger>
+                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+                  {contract.supplierAnalysis}
+                </AccordionContent>
+              </AccordionItem>
+            </div>
           )}
         </Accordion>
       </DialogContent>
