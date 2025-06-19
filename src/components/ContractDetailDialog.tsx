@@ -37,6 +37,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
   const [loadingZadavatel, setLoadingZadavatel] = useState(false);
   const [loadingDodavatel, setLoadingDodavatel] = useState(false);
+  const [hasRequestedAnalysis, setHasRequestedAnalysis] = useState(false);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
@@ -44,6 +45,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   useEffect(() => {
   if (isOpen) {
     setTimeout(() => {
+      setHasRequestedAnalysis(false);
       setLoadingZadavatel(false);
       setLoadingDodavatel(false);
     }, 0);
@@ -68,8 +70,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     <>
       <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10 relative">
-        {(loadingZadavatel || loadingDodavatel) && <LoadingOverlay />}
-          <DialogHeader>
+{hasRequestedAnalysis && (loadingZadavatel || loadingDodavatel) && <LoadingOverlay />}
+        <DialogHeader>
             <div className="flex items-start justify-between">
               <div>
                 <DialogTitle className="text-2xl font-bold text-slate-900 mb-3">
@@ -112,6 +114,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   size="sm"
                   className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
                   onClick={() => {
+                    setHasRequestedAnalysis(true);
                     setLoadingZadavatel(true);
                     scrollTo(zadavatelRef);
                     onDeepSearch(contract.contracting_authority);
@@ -129,6 +132,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                     size="sm"
                     className="bg-[#215197] hover:bg-[#1c467f] text-white"
                     onClick={() => {
+                      setHasRequestedAnalysis(true);
                       setLoadingDodavatel(true);
                       setShowSupplierAnalysis(true);
                       scrollTo(dodavatelRef);
