@@ -66,12 +66,15 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             </section>
 
             <section>
-              <h3 className="font-semibold text-slate-800 mb-2">Základní informace</h3>
-              <p><strong>Hodnota zakázky:</strong> {formatValue(contract.value)}</p>
-              <p><strong>Termín podání:</strong> {new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
-              <p><strong>Zadavatel:</strong> {contract.contracting_authority}</p>
-              <p><strong>Region:</strong> {contract.region}</p>
-            </section>
+  <h3 className="font-semibold text-slate-800 mb-2">Základní informace</h3>
+  <p><strong>Hodnota zakázky:</strong> {formatValue(contract.value)}</p>
+  <p><strong>Termín podání:</strong> {new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
+  <p><strong>Zadavatel:</strong> {contract.contracting_authority}</p>
+  <p><strong>Region:</strong> {contract.region}</p>
+  {contract.supplier && (
+    <p><strong>Dodavatel:</strong> {contract.supplier}</p>
+  )}
+</section>
 
             <div>
               <Button
