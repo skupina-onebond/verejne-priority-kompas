@@ -60,8 +60,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         <div className="flex flex-wrap gap-2 mb-6">
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-sm leading-relaxed text-slate-800">
-          {/* LEFT */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm relative items-start">
+  {/* LEFT */}
           <div className="space-y-6">
             <section>
               <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Popis zakázky</h3>
