@@ -8,6 +8,7 @@ export const LoadingOverlay: React.FC = () => {
         alt="Loading"
         className="w-16 h-16 animate-spin"
       />
+      <span className="text-white text-sm">Generuji analýzu...</span>
     </div>
   );
 };
