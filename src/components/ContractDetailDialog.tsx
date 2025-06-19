@@ -40,9 +40,15 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
       <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
         <DialogHeader>
           <div className="flex items-start justify-between">
-            <DialogTitle className="text-2xl font-bold text-slate-900">
-              {contract.title}
-            </DialogTitle>
+            <div>
+              <DialogTitle className="text-2xl font-bold text-slate-900 mb-3">
+                {contract.title}
+              </DialogTitle>
+              <div className="flex gap-2">
+                <Badge>{contract.sector}</Badge>
+                <Badge>{contract.region}</Badge>
+              </div>
+            </div>
             {contract.riskScore !== undefined && (
               <div className="mt-2">
                 <RiskBarometerCircle score={contract.riskScore} size={80} />
