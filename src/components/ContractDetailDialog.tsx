@@ -14,6 +14,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
+import { Printer } from "lucide-react";
 import { PublicContract } from "@/types/contract";
 import { RiskBarometerCircle } from "@/components/RiskBarometerCircle";
 
@@ -52,7 +53,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   };
 
   const handlePrint = () => {
-  const content = document.querySelector(".radix-dialog-content"); // nebo konkrétní className/DialogContent ref
+  const content = document.querySelector(".radix-dialog-content");
   if (!content) return;
 
   const printWindow = window.open('', '', 'width=1024,height=768');
@@ -85,33 +86,37 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
         <DialogHeader>
-          <div className="flex items-start justify-between">
-            <div>
-              <DialogTitle className="text-2xl font-bold text-slate-900 mb-3">
-                {contract.title}
-              </DialogTitle>
-              <div className="flex gap-2">
-                <Badge>{contract.sector}</Badge>
-                <Badge>{contract.region}</Badge>
-              </div>
-            </div>
-            {contract.riskScore !== undefined && (
-  <div className="mt-2 flex items-start gap-2">
-    <RiskBarometerCircle score={contract.riskScore} size={80} />
-    <Button
-      size="icon"
-      variant="ghost"
-      className="mt-1"
-      onClick={handlePrint}
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M6 9V2h12v7h-2V4H8v5H6zM6 13v7h12v-7h-2v5H8v-5H6zm12.707-4.707a1 1 0 00-1.414 0L16 10.586V8a1 1 0 10-2 0v5a1 1 0 001 1h5a1 1 0 100-2h-2.586l1.293-1.293a1 1 0 000-1.414z" />
-      </svg>
-    </Button>
+  <div className="flex items-start justify-between">
+    <div className="flex-1">
+      <DialogTitle className="text-2xl font-bold text-slate-900 mb-3">
+        {contract.title}
+      </DialogTitle>
+
+      <div className="flex items-center justify-between flex-wrap">
+        <div className="flex gap-2 mb-2">
+          <Badge>{contract.sector}</Badge>
+          <Badge>{contract.region}</Badge>
+        </div>
+
+        <Button
+          variant="outline"
+          size="sm"
+          className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+          onClick={handlePrint}
+        >
+          <Printer className="h-4 w-4 mr-2" />
+          Tisk
+        </Button>
+      </div>
+    </div>
+
+    {contract.riskScore !== undefined && (
+      <div className="mt-2 ml-4">
+        <RiskBarometerCircle score={contract.riskScore} size={80} />
+      </div>
+    )}
   </div>
-)}
-          </div>
-        </DialogHeader>
+</DialogHeader>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm relative items-start">
           {/* LEFT */}
