@@ -17,6 +17,7 @@ import { Search } from "lucide-react";
 import { PublicContract } from "@/types/contract";
 import { RiskBarometerCircle } from "@/components/RiskBarometerCircle";
 import { LoadingOverlay } from "@/components/ui/LoadingOverlay";
+import React, { useState, useRef, useEffect } from 'react';
 
 interface ContractDetailDialogProps {
   contract: PublicContract;
@@ -39,6 +40,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+  if (isOpen) {
+    setLoadingZadavatel(false);
+    setLoadingDodavatel(false);
+  }
+}, [isOpen]);
 
   const scrollTo = (ref: React.RefObject<HTMLElement>) => {
     setTimeout(() => {
