@@ -13,10 +13,10 @@ const LandingPage = () => {
 
       <div className="max-w-xl text-center">
   <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-    Vítejte v Doris!
+    Vítejte v Doris
   </h1>
   <p className="text-lg text-slate-700 mb-10">
-    Systém pro analýzu veřejných zakázek
+    Systém pro analýzu veřejných zakázek a jejich efektivní kontrolu
   </p>
         <button
           onClick={() => navigate("/seznam")}
@@ -29,8 +29,7 @@ const LandingPage = () => {
       <div className="absolute bottom-6 left-6 right-6 flex items-center text-sm text-slate-600">
   <img src="/CRR-logo.svg" alt="Logo CRR" className="h-8 mr-4" />
   <p className="text-left">
-    Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR)
-    a slouží k efektivní kontrole veřejných zakázek.
+    Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR).
   </p>
 </div>
     </div>
