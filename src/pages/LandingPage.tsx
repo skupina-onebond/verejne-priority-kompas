@@ -5,16 +5,15 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-[#f5f8fc] font-sans">
-      <div className="container mx-auto p-6 relative flex flex-col justify-center items-center text-center">
+    <div className="min-h-screen bg-[#f5f8fc] relative flex flex-col">
+      {/* Logo DORIS hore vľavo */}
+      <div className="absolute top-6 left-6">
+        <img src="/Doris-logo.png" alt="Logo DORIS" className="h-7" />
+      </div>
 
-        {/* Logo DORIS hore vľavo */}
-        <div className="absolute top-6 left-6">
-          <img src="/Doris-logo.png" alt="Logo DORIS" className="h-7" />
-        </div>
-
-        {/* Hlavný obsah */}
-        <div className="mt-24 mb-12">
+      {/* Hlavný obsah vycentrovaný */}
+      <div className="flex flex-1 justify-center items-center">
+        <div className="text-center px-4">
           <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             Vítejte v Doris
           </h1>
@@ -29,14 +28,14 @@ const LandingPage = () => {
             Vstoupit do systému
           </button>
         </div>
+      </div>
 
-        {/* CRR info dole vľavo */}
-        <div className="absolute bottom-6 left-6 flex items-center gap-3 text-sm text-slate-500 pr-6 max-w-4xl">
-          <img src="/CRR-logo.svg" alt="Logo CRR" className="h-8" />
-          <p className="text-xs leading-snug">
-            Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR).
-          </p>
-        </div>
+      {/* CRR info dole vľavo */}
+      <div className="absolute bottom-6 left-6 flex items-center gap-3 pr-6 text-sm text-slate-500">
+        <img src="/CRR-logo.svg" alt="Logo CRR" className="h-8" />
+        <p className="text-xs leading-snug">
+          Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR).
+        </p>
       </div>
     </div>
   );
