@@ -10,7 +10,7 @@ export const mockContracts: PublicContract[] = [
     deadline: '2024-07-15',
     contracting_authority: 'Krajská nemocnice Praha',
     supplier: "Autocont a.s.",
-    supplierAnalyses: `Dodavatel Autocont a.s. má bohaté zkušenosti s digitalizací veřejné správy. V minulosti úspěšně realizoval řadu IT projektů pro krajské nemocnice. Riziko je hodnoceno jako nízké.`
+    supplierAnalyses: `Dodavatel Autocont a.s. má bohaté zkušenosti s digitalizací veřejné správy. V minulosti úspěšně realizoval řadu IT projektů pro krajské nemocnice. Riziko je hodnoceno jako nízké.`,
     sector: 'ICT',
     region: 'Hlavní město Praha',
     riskScore: 82,
