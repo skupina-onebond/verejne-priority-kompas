@@ -143,7 +143,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     variant="outline"
     size="sm"
     className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-    onClick={() => => setShowDetail(true)}
+    onClick={() => setShowDetail(true)}
   >
     Zobrazit detail
   </Button>
