@@ -25,14 +25,14 @@ const LandingPage = () => {
         </button>
       </div>
 
-      {/* Text + logo CRR dole vľavo */}
-      <div className="absolute bottom-6 left-6 flex items-center gap-4 text-sm text-slate-600 max-w-md">
-        <img src="/CRR-logo.svg" alt="Logo CRR" className="h-8" />
-        <p>
-          Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR)
-          a slouží k efektivní kontrole veřejných zakázek z hlediska jejich závažnosti a rizikovosti.
-        </p>
-      </div>
+      {/* Text + logo CRR dole vľavo bez zalamovania */}
+<div className="absolute bottom-6 left-6 flex items-center gap-4 text-sm text-slate-600">
+  <img src="/CRR-logo.svg" alt="Logo CRR" className="h-8" />
+  <p className="whitespace-nowrap">
+    Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR)
+    a slouží k efektivní kontrole veřejných zakázek z hlediska jejich závažnosti a rizikovosti.
+  </p>
+</div>
     </div>
   );
 };
