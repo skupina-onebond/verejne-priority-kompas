@@ -86,7 +86,7 @@ const ContractListPage = () => {
           <img src="/Doris-logo.png" alt="Logo Doris" className="h-8" />
         </div>
 
-        <div className="mb-8 mt-8">
+        <div className="mb-6 mt-10">
           <p className="text-gray-600">
             Přehledná správa a sledování veřejných zakázek
           </p>
