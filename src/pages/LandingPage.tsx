@@ -31,11 +31,12 @@ const LandingPage = () => {
       </div>
 
       {/* CRR info dole vľavo */}
-      <div className="absolute bottom-6 left-6 flex items-center gap-3 pr-6 text-sm text-slate-500">
+      <div className="absolute bottom-6 left-6">
         <img src="/CRR-logo.svg" alt="Logo CRR" className="h-8" />
-        <p className="text-xs leading-snug">
+      </div>
+        <div className="absolute bottom-6 right-6 text-sm text-slate-500 max-w-sm text-right">
           Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR).
-        </p>
+        </div>
       </div>
     </div>
   );
