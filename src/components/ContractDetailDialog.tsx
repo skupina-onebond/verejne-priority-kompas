@@ -129,7 +129,7 @@ const [showAnalysis, setShowAnalysis] = useState(false);
             )}
           </div>
 
-          {/* RIGHT */}
+         {/* RIGHT */}
 {contract.findings?.length > 0 && (
   <section className="mt-4">
     <h3 className="text-base font-semibold text-rose-700 mb-2 uppercase tracking-wide">Zjištěné závažnosti</h3>
@@ -145,6 +145,7 @@ const [showAnalysis, setShowAnalysis] = useState(false);
     </div>
   </section>
 )}
+</div> {/* ← ukonči grid layout */}
 
 {/* DOPORUČENÍ */}
 {contract.recommendations?.length > 0 && (
@@ -160,31 +161,32 @@ const [showAnalysis, setShowAnalysis] = useState(false);
   </section>
 )}
 
-        <Accordion type="multiple" className="mt-8 space-y-4">
-  {/* Analýza zadavatele */}
-  {analysisResult && (
-    <AccordionItem value="zadavatel">
-      <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
-        Analýza zadavatele
-      </AccordionTrigger>
-      <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-        {analysisResult}
-      </AccordionContent>
-    </AccordionItem>
-  )}
+{/* Accordion pre analýzy */}
+<div className="col-span-2 mt-8 space-y-4">
+  <Accordion type="multiple">
+    {analysisResult && (
+      <AccordionItem value="zadavatel">
+        <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+          Analýza zadavatele
+        </AccordionTrigger>
+        <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+          {analysisResult}
+        </AccordionContent>
+      </AccordionItem>
+    )}
 
-  {/* Analýza dodavatele */}
-  {contract.supplierAnalysis && showSupplierAnalysis && (
-    <AccordionItem value="dodavatel">
-      <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
-        Analýza dodavatele
-      </AccordionTrigger>
-      <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-        {contract.supplierAnalysis}
-      </AccordionContent>
-    </AccordionItem>
-  )}
-</Accordion>
+    {contract.supplierAnalysis && showSupplierAnalysis && (
+      <AccordionItem value="dodavatel">
+        <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+          Analýza dodavatele
+        </AccordionTrigger>
+        <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+          {contract.supplierAnalysis}
+        </AccordionContent>
+      </AccordionItem>
+    )}
+  </Accordion>
+</div>
       </DialogContent>
     </Dialog>
   );
