@@ -198,4 +198,20 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             )}
 
             {contract.supplierAnalysis && showSupplierAnalysis && (
-              <div ref={dodavatelRef
+              <div ref={dodavatelRef}>
+                <AccordionItem value="dodavatel">
+                  <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                    Analýza dodavatele
+                  </AccordionTrigger>
+                  <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+                    {contract.supplierAnalysis}
+                  </AccordionContent>
+                </AccordionItem>
+              </div>
+            )}
+          </Accordion>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
