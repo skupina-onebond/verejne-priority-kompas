@@ -220,33 +220,33 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           </div>
         </div>
 
-        <Accordion type="multiple" className="mt-8 space-y-4">
-          {analysisResult && (
-            <div ref={zadavatelRef}>
-              <AccordionItem value="zadavatel">
-                <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
-                  Analýza zadavatele
-                </AccordionTrigger>
-                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-                  {analysisResult}
-                </AccordionContent>
-              </AccordionItem>
-            </div>
-          )}
+       <Accordion type="multiple" defaultValue={["zadavatel", "dodavatel"]} className="mt-8 space-y-4">
+  {analysisResult && (
+    <div ref={zadavatelRef}>
+      <AccordionItem value="zadavatel">
+        <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+          Analýza zadavatele
+        </AccordionTrigger>
+        <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+          {analysisResult}
+        </AccordionContent>
+      </AccordionItem>
+    </div>
+  )}
 
-          {contract.supplierAnalysis && showSupplierAnalysis && (
-            <div ref={dodavatelRef}>
-              <AccordionItem value="dodavatel">
-                <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
-                  Analýza dodavatele
-                </AccordionTrigger>
-                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-                  {contract.supplierAnalysis}
-                </AccordionContent>
-              </AccordionItem>
-            </div>
-          )}
-        </Accordion>
+  {contract.supplierAnalysis && showSupplierAnalysis && (
+    <div ref={dodavatelRef}>
+      <AccordionItem value="dodavatel">
+        <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+          Analýza dodavatele
+        </AccordionTrigger>
+        <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+          {contract.supplierAnalysis}
+        </AccordionContent>
+      </AccordionItem>
+    </div>
+  )}
+</Accordion>
       </DialogContent>
     </Dialog>
   );
