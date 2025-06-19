@@ -22,4 +22,5 @@ export interface PublicContract {
   riskScore?: number;
   analysisResult?: string;
   analysis?: string;
+  supplier?: string;
 }
