@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -16,8 +16,6 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { PublicContract } from "@/types/contract";
 import { RiskBarometerCircle } from "@/components/RiskBarometerCircle";
-import { LoadingOverlay } from "@/components/ui/LoadingOverlay";
-import React, { useState, useRef, useEffect } from 'react';
 
 interface ContractDetailDialogProps {
   contract: PublicContract;
@@ -37,7 +35,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
   const [loadingZadavatel, setLoadingZadavatel] = useState(false);
   const [loadingDodavatel, setLoadingDodavatel] = useState(false);
-  const [hasRequestedAnalysis, setHasRequestedAnalysis] = useState(false);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
@@ -45,7 +42,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   useEffect(() => {
   if (isOpen) {
     setTimeout(() => {
-      setHasRequestedAnalysis(false);
       setLoadingZadavatel(false);
       setLoadingDodavatel(false);
     }, 0);
@@ -70,7 +66,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     <>
       <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10 relative">
-{hasRequestedAnalysis && (loadingZadavatel || loadingDodavatel) && <LoadingOverlay />}
         <DialogHeader>
             <div className="flex items-start justify-between">
               <div>
@@ -107,44 +102,73 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   <p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>
                 )}
               </section>
-
               <div className="flex gap-2 mt-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-                  onClick={() => {
-                    setHasRequestedAnalysis(true);
-                    setLoadingZadavatel(true);
-                    scrollTo(zadavatelRef);
-                    onDeepSearch(contract.contracting_authority);
-                    setTimeout(() => {
-                      setLoadingZadavatel(false);
-                    }, 5000);
-                  }}
-                >
-                  Prověřit zadavatele <Search className="h-4 w-4 ml-1" />
-                </Button>
+  <Button
+    variant="outline"
+    size="sm"
+    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+    onClick={() => {
+      setLoadingZadavatel(true);
+      scrollTo(zadavatelRef);
+      onDeepSearch(contract.contracting_authority);
+      setTimeout(() => {
+        setLoadingZadavatel(false);
+      }, 5000);
+    }}
+  >
+    {loadingZadavatel ? (
+      <>
+        <svg className="animate-spin h-4 w-4 mr-2 text-[#215197]" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+          />
+        </svg>
+        Načítám…
+      </>
+    ) : (
+      <>
+        Prověřit zadavatele <Search className="h-4 w-4 ml-1" />
+      </>
+    )}
+  </Button>
 
-                {contract.supplier && (
-                  <Button
-                    variant="default"
-                    size="sm"
-                    className="bg-[#215197] hover:bg-[#1c467f] text-white"
-                    onClick={() => {
-                      setHasRequestedAnalysis(true);
-                      setLoadingDodavatel(true);
-                      setShowSupplierAnalysis(true);
-                      scrollTo(dodavatelRef);
-                      setTimeout(() => {
-                        setLoadingDodavatel(false);
-                      }, 5000);
-                    }}
-                  >
-                    Prověřit dodavatele <Search className="h-4 w-4 ml-1" />
-                  </Button>
-                )}
-              </div>
+  {contract.supplier && (
+    <Button
+      variant="default"
+      size="sm"
+      className="bg-[#215197] hover:bg-[#1c467f] text-white"
+      onClick={() => {
+        setLoadingDodavatel(true);
+        setShowSupplierAnalysis(true);
+        scrollTo(dodavatelRef);
+        setTimeout(() => {
+          setLoadingDodavatel(false);
+        }, 5000);
+      }}
+    >
+      {loadingDodavatel ? (
+        <>
+          <svg className="animate-spin h-4 w-4 mr-2 text-white" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+            />
+          </svg>
+          Načítám…
+        </>
+      ) : (
+        <>
+          Prověřit dodavatele <Search className="h-4 w-4 ml-1" />
+        </>
+      )}
+    </Button>
+  )}
+</div>
 
               <section className="space-y-1">
                 <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Kategorizace</h3>
