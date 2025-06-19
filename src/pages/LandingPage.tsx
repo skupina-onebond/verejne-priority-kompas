@@ -6,9 +6,9 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-[#f5f8fc] flex flex-col justify-center items-center text-center px-6 relative">
-      {/* Logo hore vľavo */}
+      {/* Logo DORIS hore vľavo */}
       <div className="absolute top-6 left-6">
-        <img src="/CRR-logo.svg" alt="Logo CRR" className="h-10" />
+        <img src="/Doris-logo.png" alt="Logo DORIS" className="h-10" />
       </div>
 
       {/* Hlavný obsah */}
@@ -25,11 +25,14 @@ const LandingPage = () => {
         </button>
       </div>
 
-      {/* Info text dole – ale nech sa nezalamuje skoro */}
-      <p className="absolute bottom-20 text-sm text-slate-500 px-4 max-w-4xl">
-        Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR)
-        a slouží k efektivní kontrole veřejných zakázek z hlediska jejich závažnosti a rizikovosti.
-      </p>
+      {/* Info text a logo CRR dole */}
+      <div className="absolute bottom-10 flex flex-col items-center text-slate-500 text-sm">
+        <p className="mb-2 px-4 max-w-2xl text-center">
+          Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR)
+          a slouží k efektivní kontrole veřejných zakázek z hlediska jejich závažnosti a rizikovosti.
+        </p>
+        <img src="/CRR-logo.svg" alt="Logo CRR" className="h-8 opacity-60" />
+      </div>
     </div>
   );
 };
