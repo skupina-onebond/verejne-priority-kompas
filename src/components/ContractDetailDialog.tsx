@@ -130,36 +130,35 @@ const [showAnalysis, setShowAnalysis] = useState(false);
           </div>
 
           {/* RIGHT */}
-          {contract.findings?.length > 0 && (
-            <section className="mt-4">
-              <h3 className="text-base font-semibold text-rose-700 mb-2 uppercase tracking-wide">Zjištěné závažnosti</h3>
-              <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 space-y-3 text-sm">
-                <ul className="list-disc list-inside space-y-1">
-                  {contract.findings.map((finding, idx) => (
-                    <li key={idx}>
-                      <span className="font-medium text-rose-800">{finding.severity.toUpperCase()}</span>{' '}
-                      – <em>{finding.category}</em>: {finding.description}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </section>
-          )}
-        </div>
+{contract.findings?.length > 0 && (
+  <section className="mt-4">
+    <h3 className="text-base font-semibold text-rose-700 mb-2 uppercase tracking-wide">Zjištěné závažnosti</h3>
+    <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 space-y-3 text-sm">
+      <ul className="list-disc list-inside space-y-1">
+        {contract.findings.map((finding, idx) => (
+          <li key={idx}>
+            <span className="font-medium text-rose-800">{finding.severity.toUpperCase()}</span>{' '}
+            – <em>{finding.category}</em>: {finding.description}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
 
-        {/* DOPORUČENÍ */}
-        {contract.recommendations?.length > 0 && (
-          <div className="col-span-2 mt-6">
-            <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Doporučení pro kontrolní orgán</h3>
-            <div className="bg-indigo-50 border border-indigo-200 rounded-md p-4 text-sm text-slate-800 space-y-1">
-              <ul className="list-disc list-inside space-y-1">
-                {contract.recommendations.map((rec, index) => (
-                  <li key={index}>{rec}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        )}
+{/* DOPORUČENÍ */}
+{contract.recommendations?.length > 0 && (
+  <section className="mt-6">
+    <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Doporučení pro kontrolní orgán</h3>
+    <div className="bg-indigo-50 border border-indigo-200 rounded-md p-4 text-sm text-slate-800 space-y-1">
+      <ul className="list-disc list-inside space-y-1">
+        {contract.recommendations.map((rec, index) => (
+          <li key={index}>{rec}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
 
         <Accordion type="multiple" className="mt-8 space-y-4">
   {/* Analýza zadavatele */}
