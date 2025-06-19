@@ -64,7 +64,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   {/* LEFT */}
           <div className="space-y-6">
             <section>
-              <h3 className="text-base font-semibold text-slate-900 mb-6 uppercase tracking-wide">Popis zakázky</h3>
+              <h3 className="text-base font-semibold text-slate-900 mb-10 uppercase tracking-wide">Popis zakázky</h3>
               <p>{contract.description}</p>
             </section>
 
@@ -81,16 +81,16 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
             <div>
               <Button
-                variant="default"
-                size="sm"
-                className="bg-indigo-600 hover:bg-[#1c467f] text-white"
-                onClick={() => {
-                  setShowAnalysis(true);
-                  onDeepSearch(contract.contracting_authority);
-                }}
-              >
-                Prověřit zadavatele <Search className="h-4 w-4 ml-1" />
-              </Button>
+  variant="outline"
+  size="sm"
+  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+  onClick={() => {
+    setShowAnalysis(true);
+    onDeepSearch(contract.contracting_authority);
+  }}
+>
+  Prověřit zadavatele <Search className="h-4 w-4 ml-1" />
+</Button>
             </div>
 
             <section className="space-y-1">
