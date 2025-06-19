@@ -1,14 +1,13 @@
-import React from "react";
+import React from 'react';
 
-export const LoadingOverlay: React.FC = () => {
+export const LoadingOverlay = () => {
   return (
-    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 bg-white/70 flex items-center justify-center">
       <img
-        src="/CRR-logo.svg" 
+        src="/CRR-logo.svg"
         alt="Loading"
-        className="w-16 h-16 animate-spin"
+        className="h-12 w-12 animate-spin"
       />
-      <span className="text-white text-sm">Generuji analýzu...</span>
     </div>
   );
 };
