@@ -147,6 +147,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   >
     Zobrazit detail
   </Button>
+    </div>
           
 </CardContent>
       </Card>
