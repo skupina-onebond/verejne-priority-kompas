@@ -43,8 +43,10 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
   useEffect(() => {
   if (isOpen) {
-    setLoadingZadavatel(false);
-    setLoadingDodavatel(false);
+    setTimeout(() => {
+      setLoadingZadavatel(false);
+      setLoadingDodavatel(false);
+    }, 0);
   }
 }, [isOpen]);
 
@@ -61,8 +63,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     }).format(value);
   };
 
-  const loading = loadingZadavatel || loadingDodavatel;
-
+  const loading = isOpen && (loadingZadavatel || loadingDodavatel);
   return (
     <>
     {isOpen && loading && <LoadingOverlay />}
