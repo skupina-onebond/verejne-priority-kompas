@@ -88,23 +88,19 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     <DialogContent ref={contentRef} className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
       <DialogHeader>
   <div className="flex items-start justify-between gap-6">
-    {/* LEFT BLOCK */}
-    <div className="flex-1">
+    {/* LEFT */}
+    <div className="flex flex-col justify-start flex-1">
       <DialogTitle className="text-2xl font-bold text-slate-900 mb-3">
         {contract.title}
       </DialogTitle>
-
-      <div className="flex items-center gap-2 mb-2">
+      <div className="flex gap-2">
         <Badge>{contract.sector}</Badge>
         <Badge>{contract.region}</Badge>
       </div>
     </div>
 
-    {/* RIGHT BLOCK */}
-    <div className="flex flex-col items-center gap-3 mt-1">
-      {contract.riskScore !== undefined && (
-        <RiskBarometerCircle score={contract.riskScore} size={80} />
-      )}
+    {/* CENTER – BUTTON */}
+    <div className="flex items-center justify-center">
       <Button
         variant="outline"
         size="sm"
@@ -115,6 +111,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         Tisk
       </Button>
     </div>
+
+    {/* RIGHT – RISK SCORE */}
+    {contract.riskScore !== undefined && (
+      <div className="flex items-start">
+        <RiskBarometerCircle score={contract.riskScore} size={80} />
+      </div>
+    )}
   </div>
 </DialogHeader>
 
