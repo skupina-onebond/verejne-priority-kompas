@@ -52,7 +52,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   };
 
   const handlePrint = () => {
-    const content = document.querySelector(".dialog-print-area");
+    const content = document.querySelector(".radix-dialog-content");
     if (!content) return;
 
     const printWindow = window.open('', '', 'width=1024,height=768');
@@ -83,7 +83,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="dialog-print-area max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
+      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
         <DialogHeader>
           <div className="flex items-start justify-between">
             <div className="flex-1">
@@ -117,8 +117,132 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           </div>
         </DialogHeader>
 
-        {/* ...zbytek komponenty zůstává beze změny... */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm relative items-start">
+          {/* LEFT */}
+          <div className="space-y-6">
+            <section>
+              <h3 className="text-base font-semibold text-slate-900 mt-4 mb-2 uppercase tracking-wide">Popis zakázky</h3>
+              <p>{contract.description}</p>
+            </section>
 
+            <section className="space-y-1">
+              <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Základní informace</h3>
+              <p><span className="font-medium">Hodnota zakázky:</span> {formatValue(contract.value)}</p>
+              <p><span className="font-medium">Termín podání:</span> {new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
+              <p><span className="font-medium">Zadavatel:</span> {contract.contracting_authority}</p>
+              <p><span className="font-medium">Region:</span> {contract.region}</p>
+              {contract.supplier && (
+                <p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>
+              )}
+            </section>
+
+            <div className="flex gap-2 mt-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                onClick={() => {
+                  setShowAnalysis(true);
+                  scrollTo(zadavatelRef);
+                  onDeepSearch(contract.contracting_authority);
+                }}
+              >
+                Prověřit zadavatele <Search className="h-4 w-4 ml-1" />
+              </Button>
+
+              {contract.supplier && (
+                <Button
+                  variant="default"
+                  size="sm"
+                  className="bg-[#215197] hover:bg-[#1c467f] text-white"
+                  onClick={() => {
+                    setShowSupplierAnalysis(true);
+                    scrollTo(dodavatelRef);
+                  }}
+                >
+                  Prověřit dodavatele <Search className="h-4 w-4 ml-1" />
+                </Button>
+              )}
+            </div>
+
+            <section className="space-y-1">
+              <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Kategorizace</h3>
+              <p><span className="font-medium">Odvětví:</span> {contract.sector}</p>
+              <p><span className="font-medium">Kategorie hodnoty:</span> {
+                contract.valueCategory === 'low' ? 'Do 500 tisíc Kč' :
+                contract.valueCategory === 'medium' ? 'Do 5 milionů Kč' :
+                'Nad 5 milionů Kč'
+              }</p>
+            </section>
+
+            {contract.additional_info && (
+              <section>
+                <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Dodatečné informace</h3>
+                <p>{contract.additional_info}</p>
+              </section>
+            )}
+          </div>
+
+          {/* RIGHT */}
+          <div className="space-y-6">
+            {contract.findings?.length > 0 && (
+              <section className="mt-4">
+                <h3 className="text-base font-semibold text-rose-700 mb-2 uppercase tracking-wide">Zjištěné závažnosti</h3>
+                <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 space-y-3 text-sm">
+                  <ul className="list-disc list-inside space-y-1">
+                    {contract.findings.map((finding, idx) => (
+                      <li key={idx}>
+                        <span className="font-medium text-rose-800">{finding.severity.toUpperCase()}</span>{' '}
+                        – <em>{finding.category}</em>: {finding.description}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
+            )}
+
+            {contract.recommendations?.length > 0 && (
+              <section className="mt-6">
+                <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Doporučení pro kontrolní orgán</h3>
+                <div className="bg-indigo-50 border border-indigo-200 rounded-md p-4 text-sm text-slate-800 space-y-1">
+                  <ul className="list-disc list-inside space-y-1">
+                    {contract.recommendations.map((rec, index) => (
+                      <li key={index}>{rec}</li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
+            )}
+          </div>
+        </div>
+
+        <Accordion type="multiple" className="mt-8 space-y-4">
+          {analysisResult && (
+            <div ref={zadavatelRef}>
+              <AccordionItem value="zadavatel">
+                <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                  Analýza zadavatele
+                </AccordionTrigger>
+                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+                  {analysisResult}
+                </AccordionContent>
+              </AccordionItem>
+            </div>
+          )}
+
+          {contract.supplierAnalysis && showSupplierAnalysis && (
+            <div ref={dodavatelRef}>
+              <AccordionItem value="dodavatel">
+                <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                  Analýza dodavatele
+                </AccordionTrigger>
+                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+                  {contract.supplierAnalysis}
+                </AccordionContent>
+              </AccordionItem>
+            </div>
+          )}
+        </Accordion>
       </DialogContent>
     </Dialog>
   );
