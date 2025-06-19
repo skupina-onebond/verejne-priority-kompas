@@ -119,8 +119,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   size="sm"
                   className="bg-[#215197] hover:bg-[#1c467f] text-white"
                   onClick={() => {
+                    setLoading(true);
                     setShowSupplierAnalysis(true);
                     scrollTo(dodavatelRef);
+                  
+                    setTimeout(() => {
+                      setLoading(false);
+                    }, 5000);
                   }}
                 >
                   Prověřit dodavatele <Search className="h-4 w-4 ml-1" />
