@@ -66,11 +66,10 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const loading = isOpen && (loadingZadavatel || loadingDodavatel);
   return (
     <>
-    {isOpen && loading && <LoadingOverlay />}
       <Dialog open={isOpen} onOpenChange={onClose}>
-<DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10 relative">
-  {isOpen && loading && <LoadingOverlay />}
-    <DialogHeader>
+      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10 relative">
+        {(loadingZadavatel || loadingDodavatel) && <LoadingOverlay />}
+          <DialogHeader>
             <div className="flex items-start justify-between">
               <div>
                 <DialogTitle className="text-2xl font-bold text-slate-900 mb-3">
