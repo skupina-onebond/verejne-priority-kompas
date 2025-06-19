@@ -138,16 +138,14 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     <p className="text-gray-900 text-sm mt-1 line-clamp-3">{contract.description}</p>
   </div>
 
-  <div className="border border-slate-200 rounded-md bg-slate-50 px-4 py-2 inline-flex items-center">
   <Button
     variant="outline"
     size="sm"
-    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 absolute bottom-4 right-4"
     onClick={() => setShowDetail(true)}
   >
     Zobrazit detail
   </Button>
-    </div>
           
 </CardContent>
       </Card>
