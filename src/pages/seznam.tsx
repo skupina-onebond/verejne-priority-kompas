@@ -83,7 +83,7 @@ const ContractListPage = () => {
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Open Sans, sans-serif' }}>
       <div className="container mx-auto p-6 relative">
         <div className="absolute top-6 left-6">
-          <img src="/Doris-logo.png" alt="Logo Doris" className="h-8" />
+          <img src="/Doris-logo.png" alt="Logo Doris" className="h-7" />
         </div>
 
         <div className="mb-6 mt-10">
