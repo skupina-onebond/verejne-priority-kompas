@@ -16,7 +16,7 @@ const LandingPage = () => {
     Vítejte v Doris!
   </h1>
   <p className="text-lg text-slate-700 mb-10">
-    Jsem systém pro analýzu veřejných zakázek
+    Systém pro analýzu veřejných zakázek
   </p>
         <button
           onClick={() => navigate("/seznam")}
