@@ -14,7 +14,8 @@ const LandingPage = () => {
       {/* Hlavný obsah */}
       <div className="max-w-xl text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-10">
-          Vítejte v systému pro analýzu veřejných zakázek
+          Vítejte v Doris! 
+          Systému pro analýzu veřejných zakázek
         </h1>
 
         <button
