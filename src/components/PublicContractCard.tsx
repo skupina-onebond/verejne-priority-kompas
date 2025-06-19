@@ -114,26 +114,24 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
         </CardHeader>
 
         <CardContent className="relative pb-14">
-  <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 text-sm">
-    <div>
-      <span className="font-medium text-gray-700">Hodnota zakázky:</span>
-      <p className="text-gray-900 font-semibold">{formatValue(contract.value)}</p>
-    </div>
-    <div>
-      <span className="font-medium text-gray-700">Termín podání:</span>
-      <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
-    </div>
-    <div>
-      <span className="font-medium text-gray-700">Zadavatel:</span>
-      <p className="text-gray-900">{contract.contracting_authority}</p>
-    </div>
-    <div />
+ <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-2 text-sm">
+  <div>
+    <span className="font-medium text-gray-700">Hodnota zakázky:</span>
+    <p className="text-gray-900 font-semibold">{formatValue(contract.value)}</p>
   </div>
-
-  <div className="mt-4 text-sm">
+  <div>
+    <span className="font-medium text-gray-700">Termín podání:</span>
+    <p className="text-gray-900">{new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
+  </div>
+  <div>
+    <span className="font-medium text-gray-700">Zadavatel:</span>
+    <p className="text-gray-900">{contract.contracting_authority}</p>
+  </div>
+  <div>
     <span className="font-medium text-gray-700">Dodavatel:</span>
     <p className="text-gray-900">{contract.supplier || "Neuveden"}</p>
   </div>
+</div>
 
   <div className="mt-3 pr-40">
     <span className="font-medium text-gray-700">Popis:</span>
