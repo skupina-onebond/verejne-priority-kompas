@@ -87,13 +87,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     <Dialog open={isOpen} onOpenChange={onClose}>
     <DialogContent ref={contentRef} className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
       <DialogHeader>
-  <div className="grid grid-cols-3 items-start gap-4">
+  <div className="grid grid-cols-[1fr_auto_auto] items-start gap-4">
     {/* ĽAVÁ časť – názov a štítky */}
-    <div>
-      <DialogTitle className="text-2xl font-bold text-slate-900 mb-3">
+    <div className="min-w-0">
+      <DialogTitle className="text-2xl font-bold text-slate-900 mb-3 whitespace-normal">
         {contract.title}
       </DialogTitle>
-      <div className="flex gap-2 mb-2">
+      <div className="flex gap-2 mb-2 flex-wrap">
         <Badge>{contract.sector}</Badge>
         <Badge>{contract.region}</Badge>
       </div>
