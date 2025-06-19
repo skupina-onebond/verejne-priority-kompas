@@ -66,10 +66,20 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               </div>
             </div>
             {contract.riskScore !== undefined && (
-              <div className="mt-2">
-                <RiskBarometerCircle score={contract.riskScore} size={80} />
-              </div>
-            )}
+  <div className="mt-2 flex items-start gap-2">
+    <RiskBarometerCircle score={contract.riskScore} size={80} />
+    <Button
+      size="icon"
+      variant="ghost"
+      className="mt-1"
+      onClick={handlePrint}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M6 9V2h12v7h-2V4H8v5H6zM6 13v7h12v-7h-2v5H8v-5H6zm12.707-4.707a1 1 0 00-1.414 0L16 10.586V8a1 1 0 10-2 0v5a1 1 0 001 1h5a1 1 0 100-2h-2.586l1.293-1.293a1 1 0 000-1.414z" />
+      </svg>
+    </Button>
+  </div>
+)}
           </div>
         </DialogHeader>
 
