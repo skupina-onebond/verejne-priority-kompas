@@ -39,42 +39,41 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
         <DialogHeader>
-  <div className="flex items-start justify-between">
-    <DialogTitle className="text-2xl font-bold text-slate-900">
-      {contract.title}
-    </DialogTitle>
-
-    {contract.riskScore !== undefined && (
-      <div className="mt-2">
-        <RiskBarometerCircle score={contract.riskScore} size={80} />
-      </div>
-    )}
-  </div>
-</DialogHeader>
+          <div className="flex items-start justify-between">
+            <DialogTitle className="text-2xl font-bold text-slate-900">
+              {contract.title}
+            </DialogTitle>
+            {contract.riskScore !== undefined && (
+              <div className="mt-2">
+                <RiskBarometerCircle score={contract.riskScore} size={80} />
+              </div>
+            )}
+          </div>
+        </DialogHeader>
 
         <div className="flex flex-wrap gap-2 mb-6">
           <Badge>{contract.sector}</Badge>
           <Badge>{contract.region}</Badge>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-sm leading-relaxed text-slate-800">
           {/* LEFT */}
           <div className="space-y-6">
             <section>
-              <h3 className="font-semibold text-slate-800 mb-2">Popis zakázky</h3>
-              <p className="leading-relaxed text-slate-900">{contract.description}</p>
+              <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Popis zakázky</h3>
+              <p>{contract.description}</p>
             </section>
 
-            <section>
-  <h3 className="font-semibold text-slate-800 mb-2">Základní informace</h3>
-  <p><strong>Hodnota zakázky:</strong> {formatValue(contract.value)}</p>
-  <p><strong>Termín podání:</strong> {new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
-  <p><strong>Zadavatel:</strong> {contract.contracting_authority}</p>
-  <p><strong>Region:</strong> {contract.region}</p>
-  {contract.supplier && (
-    <p><strong>Dodavatel:</strong> {contract.supplier}</p>
-  )}
-</section>
+            <section className="space-y-1">
+              <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Základní informace</h3>
+              <p><span className="font-medium">Hodnota zakázky:</span> {formatValue(contract.value)}</p>
+              <p><span className="font-medium">Termín podání:</span> {new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
+              <p><span className="font-medium">Zadavatel:</span> {contract.contracting_authority}</p>
+              <p><span className="font-medium">Region:</span> {contract.region}</p>
+              {contract.supplier && (
+                <p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>
+              )}
+            </section>
 
             <div>
               <Button
@@ -90,10 +89,10 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               </Button>
             </div>
 
-            <section>
-              <h3 className="font-semibold text-slate-800 mb-2">Kategorizace</h3>
-              <p><strong>Odvětví:</strong> {contract.sector}</p>
-              <p><strong>Kategorie hodnoty:</strong> {
+            <section className="space-y-1">
+              <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Kategorizace</h3>
+              <p><span className="font-medium">Odvětví:</span> {contract.sector}</p>
+              <p><span className="font-medium">Kategorie hodnoty:</span> {
                 contract.valueCategory === 'low' ? 'Do 500 tisíc Kč' :
                 contract.valueCategory === 'medium' ? 'Do 5 milionů Kč' :
                 'Nad 5 milionů Kč'
@@ -102,49 +101,48 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
             {contract.additional_info && (
               <section>
-                <h3 className="font-semibold text-slate-800 mb-2">Dodatečné informace</h3>
+                <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Dodatečné informace</h3>
                 <p>{contract.additional_info}</p>
               </section>
             )}
           </div>
 
-         {/* RIGHT */}
-
-      {/* ZJIŠTĚNÉ ZÁVAŽNOSTI */}
-      {contract.findings?.length > 0 && (
-        <div className="mt-4">
-          <h3 className="font-semibold text-slate-900 mb-1">Zjištěné závažnosti</h3>
-          <div className="bg-rose-50 border border-rose-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
-            <ul className="list-disc list-inside space-y-1">
-              {contract.findings.map((finding, idx) => (
-                <li key={idx}>
-                  <span className="font-medium">{finding.severity.toUpperCase()}</span>{' '}
-                  – <em>{finding.category}</em>: {finding.description}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-  )}
-          {/* DOPORUČENÍ */}
-          {contract.recommendations?.length > 0 && (
-            <div className="col-span-2 mt-4">
-              <h3 className="font-semibold text-slate-900 mb-2">Doporučení pro kontrolní orgán</h3>
-              <div className="bg-indigo-50 border border-indigo-200 rounded-md p-4 text-sm text-slate-800 space-y-1">
+          {/* RIGHT */}
+          {contract.findings?.length > 0 && (
+            <section className="mt-4">
+              <h3 className="text-base font-semibold text-rose-700 mb-2 uppercase tracking-wide">Zjištěné závažnosti</h3>
+              <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 space-y-3 text-sm">
                 <ul className="list-disc list-inside space-y-1">
-                  {contract.recommendations.map((rec, index) => (
-                    <li key={index}>{rec}</li>
+                  {contract.findings.map((finding, idx) => (
+                    <li key={idx}>
+                      <span className="font-medium text-rose-800">{finding.severity.toUpperCase()}</span>{' '}
+                      – <em>{finding.category}</em>: {finding.description}
+                    </li>
                   ))}
                 </ul>
               </div>
-            </div>
+            </section>
           )}
         </div>
+
+        {/* DOPORUČENÍ */}
+        {contract.recommendations?.length > 0 && (
+          <div className="col-span-2 mt-6">
+            <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Doporučení pro kontrolní orgán</h3>
+            <div className="bg-indigo-50 border border-indigo-200 rounded-md p-4 text-sm text-slate-800 space-y-1">
+              <ul className="list-disc list-inside space-y-1">
+                {contract.recommendations.map((rec, index) => (
+                  <li key={index}>{rec}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
 
         {/* ANALÝZA */}
         {analysisResult && (
           <div className="mt-8">
-            <h3 className="font-semibold text-slate-900 mb-2">Analýza zadavatele</h3>
+            <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Analýza zadavatele</h3>
             <section className="bg-slate-100 border border-slate-300 p-6 rounded-lg">
               <p className="text-slate-900 whitespace-pre-wrap">{analysisResult}</p>
             </section>
