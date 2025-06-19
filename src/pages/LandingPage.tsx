@@ -8,7 +8,7 @@ const LandingPage = () => {
     <div className="min-h-screen bg-[#f5f8fc] flex flex-col justify-center items-center text-center px-6 relative">
       {/* Logo DORIS hore vľavo */}
       <div className="absolute top-6 left-6">
-        <img src="/Doris-logo.png" alt="Logo DORIS" className="h-10" />
+        <img src="/Doris-logo.png" alt="Logo DORIS" className="h-8" />
       </div>
 
       {/* Hlavný obsah */}
