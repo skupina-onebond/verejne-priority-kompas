@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { PublicContract } from "@/types/contract";
 import { RiskBarometerCircle } from "@/components/RiskBarometerCircle";
+import { LoadingOverlay } from "@/components/LoadingOverlay";
 
 interface ContractDetailDialogProps {
   contract: PublicContract;
@@ -37,6 +38,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(false);
 
   const scrollTo = (ref: React.RefObject<HTMLElement>) => {
     setTimeout(() => {
@@ -98,9 +100,14 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 size="sm"
                 className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
                 onClick={() => {
+                  setLoading(true);
                   setShowAnalysis(true);
                   scrollTo(zadavatelRef);
                   onDeepSearch(contract.contracting_authority);
+                
+                  setTimeout(() => {
+                    setLoading(false);
+                  }, 5000);
                 }}
               >
                 Prověřit zadavatele <Search className="h-4 w-4 ml-1" />
