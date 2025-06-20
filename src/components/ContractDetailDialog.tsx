@@ -293,7 +293,7 @@ useEffect(() => {
   <div className="fixed inset-0 z-[10050] pointer-events-auto">
     <div className="absolute inset-0 bg-transparent cursor-wait z-0" />
     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full bg-white/80 backdrop-blur-sm">
-      <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
+      <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
       <p className="text-sm text-slate-600">
         Načítám analýzu {showLoadingPopup === "zadavatel" ? "zadavatele" : "dodavatele"}…
       </p>
