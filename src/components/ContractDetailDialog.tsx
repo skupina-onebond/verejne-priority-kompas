@@ -290,17 +290,11 @@ useEffect(() => {
 </Accordion>
       </DialogContent>
       {showLoadingPopup && (
-  <div className="fixed inset-0 z-50 pointer-events-auto">
-    {/* Click-blocker (neviditeľný) */}
+  {showLoadingPopup && (
+  <div className="fixed inset-0 z-[10050] pointer-events-auto">
     <div className="absolute inset-0 bg-transparent cursor-wait z-0" />
-
-    {/* Obsah pop-upu */}
     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full bg-white/80 backdrop-blur-sm">
-      <img
-        src="/CRR-logo-gif.gif"
-        alt="Načítání..."
-        className="w-24 h-24 mb-4"
-      />
+      <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
       <p className="text-sm text-slate-600">
         Načítám analýzu {showLoadingPopup === "zadavatel" ? "zadavatele" : "dodavatele"}…
       </p>
