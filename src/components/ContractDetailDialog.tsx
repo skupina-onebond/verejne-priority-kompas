@@ -290,13 +290,16 @@ useEffect(() => {
 </Accordion>
       </DialogContent>
       {showLoadingPopup && (
-        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm">
-          <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
-        <p className="text-sm text-slate-600">
-          Načítám analýzu {showLoadingPopup === "zadavatel" ? "zadavatele" : "dodavatele"}…
-        </p>
-      </div>
-    )}
+  <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm pointer-events-auto">
+    {/* Zablokuje kliky mimo */}
+    <div className="absolute inset-0 bg-transparent cursor-wait" />
+
+    <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-4 z-10" />
+    <p className="text-sm text-slate-600 z-10">
+      Načítám analýzu {showLoadingPopup === "zadavatel" ? "zadavatele" : "dodavatele"}…
+    </p>
+  </div>
+)}
     </Dialog>
   );
 };
