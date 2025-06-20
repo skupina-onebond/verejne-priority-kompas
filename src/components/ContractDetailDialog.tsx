@@ -272,7 +272,7 @@ useEffect(() => {
         <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
   {isLoadingDodavatel ? (
     <div className="flex flex-col items-center justify-center py-4">
-      <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-2" />
+      <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-2" />
       <p className="text-sm text-slate-500">Načítám analýzu dodavatele…</p>
     </div>
   ) : contract.supplierAnalysis ? (
@@ -286,7 +286,7 @@ useEffect(() => {
       </DialogContent>
       {showLoadingPopup && (
         <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm">
-          <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
+          <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
         <p className="text-sm text-slate-600">
           Načítám analýzu {showLoadingPopup === "zadavatel" ? "zadavatele" : "dodavatele"}…
         </p>
