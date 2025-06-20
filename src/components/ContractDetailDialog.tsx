@@ -31,6 +31,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   onDeepSearch,
   analysisResult
 }) => {
+  
+  const [showLoadingPopup, setShowLoadingPopup] = useState<"zadavatel" | "dodavatel" | null>(null);
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
   const [showAnalysis, setShowAnalysis] = useState(false);
 
@@ -158,14 +160,17 @@ useEffect(() => {
                 size="sm"
                 className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
                 onClick={() => {
-                  setShowAnalysis(true);
-                  setIsLoadingZadavatel(true);
-                  scrollTo(zadavatelRef);
-                  onDeepSearch(contract.contracting_authority);
+                  setShowLoadingPopup("zadavatel");
+                  setTimeout(() => {
+                    setShowLoadingPopup(null);
+                    setShowAnalysis(true);
+                    scrollTo(zadavatelRef);
+                    onDeepSearch(contract.contracting_authority);
+                  }, 5000);
                 }}
               >
-                Prověřit zadavatele <Search className="h-4 w-4 ml-1" />
-              </Button>
+                Prověřit zadavatele<Search className="h-4 w-4 ml-1" />
+            </Button>
 
               {contract.supplier && (
                 <Button
@@ -173,12 +178,15 @@ useEffect(() => {
                   size="sm"
                   className="bg-[#215197] hover:bg-[#1c467f] text-white"
                   onClick={() => {
-                    setIsLoadingDodavatel(true);
-                    setShowSupplierAnalysis(true);
-                    scrollTo(dodavatelRef);
+                    setShowLoadingPopup("dodavatel");
+                    setTimeout(() => {
+                      setShowLoadingPopup(null);
+                      setShowSupplierAnalysis(true);
+                      scrollTo(dodavatelRef);
+                    }, 5000);
                   }}
                 >
-                  Prověřit dodavatele <Search className="h-4 w-4 ml-1" />
+                  Prověřit dodavatele<Search className="h-4 w-4 ml-1" />
                 </Button>
               )}
             </div>
@@ -276,6 +284,14 @@ useEffect(() => {
   )}
 </Accordion>
       </DialogContent>
+      {showLoadingPopup && (
+      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm">
+        <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
+        <p className="text-sm text-slate-600">
+          Načítám analýzu {showLoadingPopup === "zadavatel" ? "zadavatele" : "dodavatele"}…
+        </p>
+      </div>
+    )}
     </Dialog>
   );
 };
