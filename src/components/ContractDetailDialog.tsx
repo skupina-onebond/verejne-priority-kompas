@@ -31,6 +31,11 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   onDeepSearch,
   analysisResult
 }) => {
+
+  useEffect(() => {
+  const img = new Image();
+  img.src = "/CRR-logo-gif.gif";
+}, []);
   
   const [showLoadingPopup, setShowLoadingPopup] = useState<"zadavatel" | "dodavatel" | null>(null);
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
