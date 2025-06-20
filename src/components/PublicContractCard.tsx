@@ -33,7 +33,6 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   };
 
   const handleDeepSearch = (subjectName: string) => {
-    setAnalysisResult("⏳ Načítání analýzy zadavatele...");
     onDeepSearch(subjectName);
 
     setTimeout(() => {
