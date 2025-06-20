@@ -1,5 +1,4 @@
-import React, { useState, useRef } from 'react';
-import {
+import React, { useState, useRef, useEffect } from 'react';import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -51,10 +50,20 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     }).format(value);
   };
 
+
+  useEffect(() => {
+  if (analysisResult) setIsLoadingZadavatel(false);
+}, [analysisResult]);
+
+useEffect(() => {
+  if (contract.supplierAnalysis) setIsLoadingDodavatel(false);
+}, [contract.supplierAnalysis]);
+
   const contentRef = useRef<HTMLDivElement>(null);
 
   const handlePrint = () => {
   if (!contentRef.current) return;
+    
 
   const contentHTML = contentRef.current.innerHTML;
   const printWindow = window.open('', '', 'width=1024,height=768');
@@ -147,6 +156,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
                 onClick={() => {
                   setShowAnalysis(true);
+                  setIsLoadingZadavatel(true);
                   scrollTo(zadavatelRef);
                   onDeepSearch(contract.contracting_authority);
                 }}
@@ -160,6 +170,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   size="sm"
                   className="bg-[#215197] hover:bg-[#1c467f] text-white"
                   onClick={() => {
+                    setIsLoadingDodavatel(true);
                     setShowSupplierAnalysis(true);
                     scrollTo(dodavatelRef);
                   }}
@@ -228,8 +239,15 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           Analýza zadavatele
         </AccordionTrigger>
         <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-          {analysisResult}
-        </AccordionContent>
+  {isLoadingZadavatel ? (
+    <div className="flex flex-col items-center justify-center py-4">
+      <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-2" />
+      <p className="text-sm text-slate-500">Načítám analýzu zadavatele…</p>
+    </div>
+  ) : analysisResult ? (
+    <div>{analysisResult}</div>
+  ) : null}
+</AccordionContent>
       </AccordionItem>
     </div>
   )}
@@ -241,8 +259,15 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           Analýza dodavatele
         </AccordionTrigger>
         <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-          {contract.supplierAnalysis}
-        </AccordionContent>
+  {isLoadingDodavatel ? (
+    <div className="flex flex-col items-center justify-center py-4">
+      <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-2" />
+      <p className="text-sm text-slate-500">Načítám analýzu dodavatele…</p>
+    </div>
+  ) : contract.supplierAnalysis ? (
+    <div>{contract.supplierAnalysis}</div>
+  ) : null}
+</AccordionContent>
       </AccordionItem>
     </div>
   )}
