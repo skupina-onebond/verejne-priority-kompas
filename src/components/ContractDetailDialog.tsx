@@ -90,7 +90,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   <div className="flex items-start justify-between">
     {/* Ľavá časť: názov + štítky */}
     <div className="flex-1 min-w-0">
-      <DialogTitle className="text-2xl font-bold text-slate-900 mb-3">
+      <DialogTitle className="text-2xl font-bold text-slate-900 mb-3 break-words max-w-[70%]">
         {contract.title}
       </DialogTitle>
       <div className="flex gap-2 mb-2 flex-wrap">
