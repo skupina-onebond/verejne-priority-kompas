@@ -166,7 +166,7 @@ useEffect(() => {
                     setShowAnalysis(true);
                     scrollTo(zadavatelRef);
                     onDeepSearch(contract.contracting_authority);
-                  }, 5000);
+                  }, 7000);
                 }}
               >
                 Prověřit zadavatele<Search className="h-4 w-4 ml-1" />
@@ -183,7 +183,7 @@ useEffect(() => {
                       setShowLoadingPopup(null);
                       setShowSupplierAnalysis(true);
                       scrollTo(dodavatelRef);
-                    }, 5000);
+                    }, 7000);
                   }}
                 >
                   Prověřit dodavatele<Search className="h-4 w-4 ml-1" />
