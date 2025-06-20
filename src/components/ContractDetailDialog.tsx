@@ -34,6 +34,9 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
   const [showAnalysis, setShowAnalysis] = useState(false);
 
+  const [isLoadingZadavatel, setIsLoadingZadavatel] = useState(false);
+  const [isLoadingDodavatel, setIsLoadingDodavatel] = useState(false);
+
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
 
