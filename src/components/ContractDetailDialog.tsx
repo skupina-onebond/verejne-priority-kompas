@@ -289,7 +289,6 @@ useEffect(() => {
   )}
 </Accordion>
       </DialogContent>
-      {showLoadingPopup && (
   {showLoadingPopup && (
   <div className="fixed inset-0 z-[10050] pointer-events-auto">
     <div className="absolute inset-0 bg-transparent cursor-wait z-0" />
