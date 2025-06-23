@@ -15,6 +15,8 @@ import { Button } from "@/components/ui/button";
 import { Search, Printer } from "lucide-react";
 import { PublicContract } from "@/types/contract";
 import { RiskBarometerCircle } from "@/components/RiskBarometerCircle";
+import ReactMarkdown from 'react-markdown'
+
 
 interface ContractDetailDialogProps {
   contract: PublicContract;
@@ -281,7 +283,9 @@ useEffect(() => {
       <p className="text-sm text-slate-500">Načítám analýzu dodavatele…</p>
     </div>
   ) : contract.supplierAnalysis ? (
-    <div>{contract.supplierAnalysis}</div>
+    <ReactMarkdown className="prose prose-sm max-w-none text-slate-900">
+      {contract.supplierAnalysis}
+    </ReactMarkdown>
   ) : null}
 </AccordionContent>
       </AccordionItem>
