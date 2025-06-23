@@ -264,9 +264,15 @@ useEffect(() => {
       <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-2" />
       <p className="text-sm text-slate-500">Načítám analýzu zadavatele…</p>
     </div>
-  ) : analysisResult ? (
-    <div>{analysisResult}</div>
-  ) : null}
+ ) : analysisResult ? (
+      <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+          className="prose prose-sm max-w-none text-slate-900 [&>ul]:list-disc [&>ul]:ml-6 [&>ol]:list-decimal [&>ol]:ml-6"
+        >
+          {analysisResult}
+        </ReactMarkdown>
+    ) : null}
 </AccordionContent>
       </AccordionItem>
     </div>
