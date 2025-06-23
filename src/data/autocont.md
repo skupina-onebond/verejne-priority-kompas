@@ -14,17 +14,18 @@ Napriek pozitívam však existujú významné **reputačné a etické riziká**:
 
 ## Súhrn kľúčových ukazovateľov
 
-| Oblasť | Hodnota |
-|---|---|
-| Právna forma, vznik | Akciová spoločnosť, od 1994, dnes Aricoma Systems |
-| Skutoční majitelia | Karel Komárek (~96 %), Igor Rusek (zvyšok) |
-| Sankčné zoznamy | Nevyskytuje sa |
-| Zamestnanci | ~500–999 (2021), holding Aricoma: 3000+ |
-| Tržby | 2019: 3,97 mld. Kč, 2020: 4,45 mld., 2021: 3,58 mld. |
-| Zmluvy so štátom | ~2956 zmlúv, ~4 mld. Kč (Register zmlúv ČR) |
-| Rizikové zmluvy | 32 bez ceny, 70 podlimitných (delenie?) |
-| Kartelové pokuty | 11,4 mil. Kč (zatiaľ zrušené, nové konanie) |
-| Trestné stíhanie | Beží od 2015, stále nerozhodnuté |
+- **Právna forma, vznik:** Akciová spoločnosť, od 1994 (dnes Aricoma Systems)
+- **Skutoční majitelia:** Karel Komárek (~96 %), Igor Rusek (zvyšok)
+- **Sankčné zoznamy:** Nevyskytuje sa
+- **Zamestnanci:** ~500–999 (2021); holding Aricoma: 3000+
+- **Tržby:**  
+  - 2019: 3,97 mld. Kč  
+  - 2020: 4,45 mld. Kč  
+  - 2021: 3,58 mld. Kč
+- **Zmluvy so štátom:** ~2956 zmlúv v hodnote ~4 mld. Kč (Register zmlúv ČR)
+- **Rizikové zmluvy:** 32 bez ceny, 70 podlimitných (delenie?)
+- **Kartelové pokuty:** 11,4 mil. Kč (zatiaľ zrušené, nové konanie)
+- **Trestné stíhanie:** Beží od 2015, stále nerozhodnuté
 
 ## Detailná analýza rizík
 
