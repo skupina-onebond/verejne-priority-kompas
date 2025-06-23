@@ -77,34 +77,41 @@ useEffect(() => {
 
   const handlePrint = () => {
   if (!contentRef.current) return;
-    
 
   const contentHTML = contentRef.current.innerHTML;
+
   const printWindow = window.open('', '', 'width=1024,height=768');
-  if (printWindow) {
-    printWindow.document.write(`
-      <html>
-        <head>
-          <title>${contract.title}</title>
-          <style>
-            body { font-family: sans-serif; padding: 20px; }
-            h3 { margin-top: 24px; }
-            .text-sm { font-size: 14px; }
-            .font-semibold { font-weight: 600; }
-            .uppercase { text-transform: uppercase; }
-            .text-slate-900 { color: #0f172a; }
-          </style>
-        </head>
-        <body>
-          ${contentHTML}
-        </body>
-      </html>
-    `);
-    printWindow.document.close();
-    printWindow.focus();
-    printWindow.print();
-  }
+  if (!printWindow) return;
+
+  printWindow.document.write(`
+    <html>
+      <head>
+        <title>Tisk – ${contract.title}</title>
+        <style>
+          @media print {
+            body { font-family: system-ui, sans-serif; padding: 2rem; color: #0f172a; }
+            h1, h2, h3, h4 { margin-top: 1.5rem; }
+            .prose { max-width: none; }
+            ul, ol { margin-left: 1.25rem; }
+            code, pre { background: #f3f4f6; padding: 2px 4px; border-radius: 4px; }
+            table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+            th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; }
+            .badge, .btn, .riskbar { display: none !important; }
+          }
+          body { font-family: system-ui, sans-serif; padding: 2rem; color: #0f172a; }
+        </style>
+      </head>
+      <body>
+        ${contentHTML}
+      </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
 };
+  
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
