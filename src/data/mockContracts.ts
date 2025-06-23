@@ -1,6 +1,6 @@
 import { PublicContract } from '@/types/contract';
 import autocont from '@/data/autocont.md?raw';
-import autocont from '@/data/Fakultna nemocnice Praha.md?raw'
+import fakultniNemocnicePraha from '@/data/Fakultna nemocnice Praha.md?raw'
 
 
 
@@ -21,7 +21,7 @@ export const mockContracts: PublicContract[] = [
     status: 'active',
     additional_info: 'Projekt je součástí širší strategie digitalizace zdravotnictví v rámci regionálního operačního programu.',
     created_at: '2024-06-01',
-    analysis: 'Zadavatel má dlouhodobé zkušenosti s projekty z fondů EU. V minulosti úspěšně realizoval 5 projektů v oblasti zdravotnictví, včetně výstavby nových oddělení a IT modernizací. Nebyla zaznamenána žádná závažná pochybení. Riziko plynoucí z kapacity IT oddělení bylo v předchozích kontrolách označeno jako střední, zejména kvůli přetížení personálu a absenci některých interních směrnic.',
+    analysis: fakultniNemocnicePraha,
     findings: [
       {
         severity: 'vysoká',
