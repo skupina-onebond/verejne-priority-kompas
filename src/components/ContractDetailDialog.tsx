@@ -284,11 +284,15 @@ useEffect(() => {
       <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-2" />
       <p className="text-sm text-slate-500">Načítám analýzu dodavatele…</p>
     </div>
-  ) : contract.supplierAnalysis ? (
-    <ReactMarkdown className="prose prose-sm max-w-none text-slate-900">
-      {contract.supplierAnalysis}
-    </ReactMarkdown>
-  ) : null}
+     ) : contract.supplierAnalysis ? (
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
+        className="prose prose-sm max-w-none text-slate-900 prose-ul:list-disc prose-ul:ml-4"
+      >
+        {contract.supplierAnalysis}
+      </ReactMarkdown>
+    ) : null}
 </AccordionContent>
       </AccordionItem>
     </div>
