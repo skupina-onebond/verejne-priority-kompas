@@ -1,5 +1,7 @@
 import { PublicContract } from '@/types/contract';
 import autocont from '@/data/autocont.md?raw'
+import autocont from '@/data/Fakultna nemocnice Praha.md?raw'
+
 
 
 export const mockContracts: PublicContract[] = [
