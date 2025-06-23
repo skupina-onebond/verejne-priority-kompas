@@ -16,6 +16,8 @@ import { Search, Printer } from "lucide-react";
 import { PublicContract } from "@/types/contract";
 import { RiskBarometerCircle } from "@/components/RiskBarometerCircle";
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 
 
 interface ContractDetailDialogProps {
