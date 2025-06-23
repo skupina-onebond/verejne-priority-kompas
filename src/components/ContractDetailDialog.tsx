@@ -286,12 +286,12 @@ useEffect(() => {
     </div>
      ) : contract.supplierAnalysis ? (
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeRaw]}
-        className="prose prose-sm max-w-none text-slate-900 prose-ul:list-disc prose-ul:ml-4"
-      >
-        {contract.supplierAnalysis}
-      </ReactMarkdown>
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+          className="prose prose-sm max-w-none text-slate-900 [&>ul]:list-disc [&>ul]:ml-6 [&>ol]:list-decimal [&>ol]:ml-6"
+        >
+          {contract.supplierAnalysis}
+        </ReactMarkdown>
     ) : null}
 </AccordionContent>
       </AccordionItem>
