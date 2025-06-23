@@ -64,13 +64,15 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
 
             {/* Akcie */}
             <div className="flex gap-2 ml-4">
-              <Button
+             <Button
                 variant="outline"
                 size="sm"
                 onClick={() => onStatusChange(contract.id, contract.status === 'bookmarked' ? 'active' : 'bookmarked')}
                 className={contract.status === 'bookmarked' ? 'text-yellow-600 hover:text-yellow-700' : 'text-gray-600 hover:text-gray-700'}
               >
-                <Bookmark className={`h-4 w-4 ${contract.status === 'bookmarked' ? 'fill-current' : ''}`} />
+                <Bookmark
+                  className={`h-4 w-4 p-[2px] rounded-sm ring-1 ${contract.status === 'bookmarked' ? 'ring-yellow-500 stroke-yellow-600 fill-yellow-600' : 'ring-yellow-400 stroke-yellow-500'}`}
+                />
               </Button>
 
               <Button
@@ -79,7 +81,11 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                 onClick={() => onStatusChange(contract.id, contract.status === 'hidden' ? 'active' : 'hidden')}
                 className="text-gray-600 hover:text-gray-700"
               >
-                {contract.status === 'hidden' ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                {contract.status === 'hidden' ? (
+                  <EyeOff className="h-4 w-4 p-[2px] rounded-sm ring-1 ring-[#215197] stroke-[#215197]" />
+                ) : (
+                  <Eye className="h-4 w-4 p-[2px] rounded-sm ring-1 ring-[#215197] stroke-[#215197]" />
+                )}
               </Button>
 
               <Button
