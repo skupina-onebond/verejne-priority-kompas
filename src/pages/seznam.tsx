@@ -88,7 +88,7 @@ const ContractListPage = () => {
 
         <div className="mb-6 mt-10">
           <p className="text-gray-600">
-            Přehledná správa a sledování veřejných zakázek
+            Analýza veřejných zakázek a jejich efektivní kontrola
           </p>
         </div>
 
