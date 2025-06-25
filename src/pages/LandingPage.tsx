@@ -35,7 +35,7 @@ const LandingPage = () => {
         <img src="/CRR-logo.svg" alt="Logo CRR" className="h-8" />
       </div>
       <div className="absolute bottom-6 right-6 text-xs text-slate-500 whitespace-nowrap">
-          Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR) společností ONE BOND s.r.o.
+          Tento nástroj byl vytvořen pro potřeby Centra pro regionální rozvoj (CRR) společností FairCity s.r.o.
         </div>
     </div>
   );
