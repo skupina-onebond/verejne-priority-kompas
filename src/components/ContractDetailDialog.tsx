@@ -154,6 +154,11 @@ useEffect(() => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm relative items-start">
           {/* LEFT */}
           <div className="space-y-6">
+            <section>
+              <h3 className="text-base font-semibold text-slate-900 mt-4 mb-2 uppercase tracking-wide">Popis zakázky</h3>
+              <p>{contract.description}</p>
+            </section>
+
             <section className="space-y-1">
               <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Základní informace</h3>
               <p><span className="font-medium">Hodnota zakázky:</span> {formatValue(contract.value)}</p>
