@@ -184,6 +184,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     </Tooltip.Root>
   </Tooltip.Provider>
 </div>   
+            </div>   
             
           
         </CardHeader>
