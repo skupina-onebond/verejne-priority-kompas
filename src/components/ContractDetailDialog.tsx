@@ -261,10 +261,10 @@ useEffect(() => {
     </div>
  ) : analysisResult ? (
       <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          rehypePlugins={[rehypeRaw]}
-          className="prose prose-sm max-w-none text-slate-900 [&>ul]:list-disc [&>ul]:ml-6 [&>ol]:list-decimal [&>ol]:ml-6"
-        >
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
+        className="prose prose-sm max-w-none text-slate-900 leading-[1.2] [&>ul]:list-disc [&>ul]:ml-6 [&>ul]:space-y-[0.3rem] [&>ol]:list-decimal [&>ol]:ml-6 [&>ol]:space-y-[0.3rem]"
+      >
           {analysisResult}
         </ReactMarkdown>
     ) : null}
@@ -287,10 +287,10 @@ useEffect(() => {
     </div>
      ) : contract.supplierAnalysis ? (
       <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          rehypePlugins={[rehypeRaw]}
-          className="prose prose-sm max-w-none text-slate-900 [&>ul]:list-disc [&>ul]:ml-6 [&>ol]:list-decimal [&>ol]:ml-6"
-        >
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
+        className="prose prose-sm max-w-none text-slate-900 leading-[1.2] [&>ul]:list-disc [&>ul]:ml-6 [&>ul]:space-y-[0.3rem] [&>ol]:list-decimal [&>ol]:ml-6 [&>ol]:space-y-[0.3rem]"
+      >
           {contract.supplierAnalysis}
         </ReactMarkdown>
     ) : null}
