@@ -56,7 +56,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
       sector: '',
       region: '',
       valueMin: 0,
-      valueMax: 10000000,
+      valueMax: 100000000,
       sortBy: ''
     });
 };
