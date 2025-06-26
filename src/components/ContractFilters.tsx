@@ -1,3 +1,5 @@
+takto vyzerá moj contractfilters
+
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -114,84 +116,68 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
         </DropdownMenuContent>
       </DropdownMenu>
 
-{/* Cena (slider v dropdownu) */}
-<DropdownMenu>
-  <DropdownMenuTrigger asChild>
-    <Button variant="outline" className="justify-between min-w-[120px]">
-      Cena
-      <ChevronDown className="h-4 w-4" />
-    </Button>
-  </DropdownMenuTrigger>
-
-  <DropdownMenuContent className="w-[360px] p-4 shadow-md rounded-md border bg-white">
-    <div className="flex flex-col items-center space-y-2 w-full">
-      {/* Slider nadpis */}
-      <label className="text-center text-sm font-medium text-gray-700">
-        Hodnota zakázky (Kč)
-      </label>
-
-      {/* Dvojitý slider */}
-      <div className="w-full flex flex-col items-center">
-        <input
-          type="range"
-          min={0}
-          max={10000000}
-          step={100000}
-          value={filters.valueMin}
-          onChange={(e) =>
-            onFiltersChange({
-              ...filters,
-              valueMin: Number(e.target.value),
-            })
-          }
-          className="w-full mb-2"
-        />
-        <input
-          type="range"
-          min={0}
-          max={10000000}
-          step={100000}
-          value={filters.valueMax}
-          onChange={(e) =>
-            onFiltersChange({
-              ...filters,
-              valueMax: Number(e.target.value),
-            })
-          }
-          className="w-full mb-2"
-        />
-
-        {/* Manuálny vstup */}
-        <div className="flex items-center gap-2 mt-1">
-          <input
-            type="text"
-            value={filters.valueMin.toLocaleString('cs-CZ')}
-            onChange={(e) => {
-              const raw = e.target.value.replace(/\s/g, '').replace(/\./g, '');
-              const parsed = parseInt(raw, 10) || 0;
-              onFiltersChange({ ...filters, valueMin: parsed });
-            }}
-            className="border px-3 py-1 rounded w-[100px] text-right"
-            inputMode="numeric"
-          />
-          <span>-</span>
-          <input
-            type="text"
-            value={filters.valueMax.toLocaleString('cs-CZ')}
-            onChange={(e) => {
-              const raw = e.target.value.replace(/\s/g, '').replace(/\./g, '');
-              const parsed = parseInt(raw, 10) || 0;
-              onFiltersChange({ ...filters, valueMax: parsed });
-            }}
-            className="border px-3 py-1 rounded w-[100px] text-right"
-            inputMode="numeric"
-          />
-        </div>
-      </div>
+      {/* Hodnota zakázky – vlož sem slider kód, ako sme doladili */}
+<div className="flex flex-col items-center space-y-2 w-full">
+  <label className="text-center text-sm font-medium text-gray-700">
+    Hodnota zakázky (Kč)
+  </label>
+  <div className="w-full flex flex-col items-center">
+    <input
+      type="range"
+      min={0}
+      max={10000000}
+      step={100000}
+      value={filters.valueMin}
+      onChange={(e) =>
+        onFiltersChange({
+          ...filters,
+          valueMin: Number(e.target.value),
+        })
+      }
+      className="w-full mb-2"
+    />
+    <input
+      type="range"
+      min={0}
+      max={10000000}
+      step={100000}
+      value={filters.valueMax}
+      onChange={(e) =>
+        onFiltersChange({
+          ...filters,
+          valueMax: Number(e.target.value),
+        })
+      }
+      className="w-full mb-2"
+    />
+    <div className="flex items-center gap-2 mt-1">
+      <input
+        type="text"
+        value={filters.valueMin.toLocaleString('cs-CZ')}
+        onChange={(e) => {
+          const raw = e.target.value.replace(/\s/g, '').replace(/\./g, '');
+          const parsed = parseInt(raw, 10) || 0;
+          onFiltersChange({ ...filters, valueMin: parsed });
+        }}
+        className="border px-3 py-1 rounded w-[100px] text-right"
+        inputMode="numeric"
+      />
+      <span>-</span>
+      <input
+        type="text"
+        value={filters.valueMax.toLocaleString('cs-CZ')}
+        onChange={(e) => {
+          const raw = e.target.value.replace(/\s/g, '').replace(/\./g, '');
+          const parsed = parseInt(raw, 10) || 0;
+          onFiltersChange({ ...filters, valueMax: parsed });
+        }}
+        className="border px-3 py-1 rounded w-[100px] text-right"
+        inputMode="numeric"
+      />
     </div>
-  </DropdownMenuContent>
-</DropdownMenu>
-     
+  </div>
+</div>    </div>
+
     {/* Řazení */}
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -226,3 +212,6 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
     </Card>
   );
 };
+
+
+je tam niekde chyba?
