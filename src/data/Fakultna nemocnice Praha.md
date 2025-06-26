@@ -1,67 +1,67 @@
-# Analýza zadávateľa: Fakultní nemocnice Praha
+# Analýza zadavatele: Fakultní nemocnice Praha
 
-## Základný profil
+## ZÁKLADNÍ PROFIL
 
-**Fakultní nemocnice v Prahe** je jedným z najväčších verejných zdravotníckych zariadení v Českej republike. Funguje ako príspevková organizácia Ministerstva zdravotníctva ČR a zohráva kľúčovú úlohu pri poskytovaní špecializovanej zdravotnej starostlivosti, výskume a vzdelávaní. Nemocnica má tisíce zamestnancov a spravuje veľký objem verejných prostriedkov. Vystupuje ako **zadávateľ verejných zákaziek** vo veľkom rozsahu – od liekov, cez IT až po stavebné zákazky.
+**Fakultní nemocnice v Praze** je jedním z největších veřejných zdravotnických zařízení v České republice. Funguje jako příspěvková organizace Ministerstva zdravotnictví ČR a hraje klíčovou roli v poskytování specializované zdravotní péče, výzkumu a vzdělávání. Nemocnice má tisíce zaměstnanců a spravuje velký objem veřejných prostředků. Vystupuje jako **zadavatel veřejných zakázek** ve velkém rozsahu – od léčiv, přes IT až po stavební zakázky.
 
-## Rizikové faktory
+## RIZIKOVÉ FAKTORY
 
-- **Nedostatočná transparentnosť** pri niektorých zákazkách (napr. zmluvy bez ceny, dodatky mimo registr).
-- **Vysoký počet zmlúv** s opakujúcimi sa dodávateľmi → riziko nízkej súťaže.
-- **Niekoľko medializovaných prípadov** možného plytvania alebo nevýhodných nákupov (napr. predražené prístroje).
-- **Chýbajúca systematická kontrola KPI** pri väčších zákazkách.
-- **Niektoré zmluvy spätne doplňované** do registra → riziko obchádzania zákona.
+- **Nedostatečná transparentnost** u některých zakázek (např. smlouvy bez ceny, dodatky mimo registr).
+- **Vysoký počet smluv** s opakujícími se dodavateli → riziko nízké soutěže.
+- **Několik medializovaných případů** možného plýtvání nebo nevýhodných nákupů (např. předražené přístroje).
+- **Chybějící systematická kontrola KPI** u větších zakázek.
+- **Některé smlouvy zpětně doplňované** do registru → riziko obcházení zákona.
 
-## Súhrn kľúčových ukazovateľov
+## SOUHRN KLÍČOVÝCH UKAZATELŮ
 
-- **Právna forma:** Príspevková organizácia MZ ČR
-- **Vznik:** štátny subjekt
-- **Zamestnanci:** 5 000+
-- **Ročný rozpočet:** cca 10+ mld. Kč
-- **Počet zmlúv v registri:** 4 000+
-- **Rizikové zmluvy:** desiatky bez ceny, alebo spätne vložené
-- **Reputačné kauzy:** nákupy prístrojov, dodatky k IT systémom
-- **Sankcie:** Žiadne sankcie, nevystupuje na sankčných zoznamoch
+- **Právní forma:** Příspěvková organizace MZ ČR  
+- **Vznik:** státní subjekt  
+- **Zaměstnanci:** 5 000+  
+- **Roční rozpočet:** cca 10+ mld. Kč  
+- **Počet smluv v registru:** 4 000+  
+- **Rizikové smlouvy:** desítky bez ceny nebo zpětně vložené  
+- **Reputační kauzy:** nákupy přístrojů, dodatky k IT systémům  
+- **Sankce:** Žádné sankce, nevystupuje na sankčních seznamech  
 
-## Detailná analýza rizík
+## DETAILNÍ ANALÝZA RIZIK
 
-### 1. Vlastnícka a riadiaca štruktúra
-- Priama podriadenosť Ministerstvu zdravotníctva ČR
-- Generálny riaditeľ vymenúvaný štátom
-- Žiadna súkromná vlastnícka stopa
+### 1. VLASTNICKÁ A ŘÍDICÍ STRUKTURA
+- Přímá podřízenost Ministerstvu zdravotnictví ČR  
+- Generální ředitel jmenovaný státem  
+- Žádná soukromá vlastnická stopa  
 
-### 2. Zmluvná transparentnosť
-- Register zmlúv obsahuje tisíce kontraktov
-- Viaceré prípady neúplných záznamov – napr. chýbajúce ceny
-- Niektoré zmluvy doplňované oneskorene, alebo upravované dodatkami
+### 2. SMLUVNÍ TRANSPARENTNOST
+- Registr smluv obsahuje tisíce kontraktů  
+- Více případů neúplných záznamů – např. chybějící ceny  
+- Některé smlouvy doplňovány se zpožděním nebo upravované dodatky  
 
-### 3. Výber dodávateľov
-- Opakovaná spolupráca s úzkym okruhom dodávateľov
-- Chýba dokumentácia k niektorým výberovým konaniam
-- Výber často pod limitom → priame zadania
+### 3. VÝBĚR DODAVATELŮ
+- Opakovaná spolupráce s úzkým okruhem dodavatelů  
+- Chybí dokumentace k některým výběrovým řízením  
+- Výběr často pod limitem → přímá zadání  
 
-### 4. Reputačné riziká
-- Prípady medializované v Hlídači státu, Seznam Zprávach a Transparency International
-- Riziko verejnej kritiky najmä pri nákupoch s nízkou súťažou
+### 4. REPUTAČNÍ RIZIKA
+- Případy medializované v Hlídači státu, Seznam Zprávách a Transparency International  
+- Riziko veřejné kritiky zejména u nákupů s nízkou soutěží  
 
-### 5. Finančné a systémové kontroly
-- Vnútorný audit funguje, ale nie vždy preventívne
-- NKÚ upozorňoval na slabé nastavenie pravidiel VO
+### 5. FINANČNÍ A SYSTÉMOVÉ KONTROLY
+- Vnitřní audit funguje, ale ne vždy preventivně  
+- NKÚ upozorňoval na slabé nastavení pravidel VO  
 
-## Odporúčania hodnotiteľovi
+## DOPORUČENÍ HODNOTITELI
 
-1. **Overiť všetky zmluvy s vybraným dodávateľom** – vrátane dodatkov a cien.
-2. **Vyžadovať dokumentáciu výberového konania** – výzva, hodnotenie, zápis.
-3. **Zhodnotiť transparentnosť obstarávania** – cena, limity, súťaž.
-4. **Overiť reputačné riziká** cez Hlídač státu a TI.
-5. **Zmluvné záruky** – v prípade pochybností možnosť vypovedania zmluvy.
-6. **Monitoring plnenia** – KPI, termíny, kontroly priebehu.
+1. **Prověřit všechny smlouvy s vybraným dodavatelem** – včetně dodatků a cen.  
+2. **Vyžadovat dokumentaci výběrového řízení** – výzva, hodnocení, zápis.  
+3. **Zhodnotit transparentnost zadávání** – cena, limity, soutěž.  
+4. **Prověřit reputační rizika** přes Hlídače státu a TI.  
+5. **Smluvní záruky** – v případě pochybností možnost vypovězení smlouvy.  
+6. **Monitoring plnění** – KPI, termíny, kontroly průběhu.  
 
-## Záver
+## ZÁVĚR
 
-**Fakultní nemocnice Praha** je verejný zadávateľ strategického významu. Napriek formálnej bezúhonnosti a absencii sankcií je dôležité pri jej zákazkách venovať zvýšenú pozornosť **transparentnosti, výberu dodávateľov a reputačnému pozadiu**. Hodnotiteľ by mal klásť dôraz na prevenciu rizík spojených s neefektívnym vynakladaním verejných prostriedkov.
+**Fakultní nemocnice Praha** je veřejný zadavatel strategického významu. Navzdory formální bezúhonnosti a absenci sankcí je důležité u jejích zakázek věnovat zvýšenou pozornost **transparentnosti, výběru dodavatelů a reputačnímu pozadí**. Hodnotitel by měl klást důraz na prevenci rizik spojených s neefektivním vynakládáním veřejných prostředků.
 
 ---
 
-**Zdroje:** Registr zmlúv ČR, Hlídač státu, Transparency International, Seznam Zprávy, Ministerstvo zdravotníctva ČR, NKÚ, justice.cz  
-*Dátum analýzy: 2025-06-23*
+**Zdroje:** Registr smluv ČR, Hlídač státu, Transparency International, Seznam Zprávy, Ministerstvo zdravotnictví ČR, NKÚ, justice.cz  
+*Datum analýzy: 2025-06-23*
