@@ -100,7 +100,7 @@ const ContractListPage = () => {
         <ContractFilters filters={filters} onFiltersChange={setFilters} />
 
         <Tabs defaultValue="active" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-6">
+          <TabsList className="grid w-full grid-cols-4 mb-6">
             <TabsTrigger value="active" className="flex items-center gap-2">
               Aktivní
               <Badge variant="secondary">{activeContracts.length}</Badge>
