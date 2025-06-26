@@ -152,9 +152,9 @@ useEffect(() => {
 </DialogHeader>
 
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm relative items-start">
+          <div className="flex flex-col md:flex-row gap-8 text-sm relative items-start">
           {/* LEFT */}
-          <div className="space-y-6">
+          <div className="flex-1 space-y-6">
 
             {contract.description && (
               <section className="space-y-2">
@@ -214,7 +214,7 @@ useEffect(() => {
           </div>
 
           {/* RIGHT */}
-          <div className="space-y-6">
+  <div className="flex-1 space-y-6">
             {contract.findings?.length > 0 && (
               <section className="mt-4">
                 <h3 className="text-base font-semibold text-rose-700 mb-2 uppercase tracking-wide">Zjištěné závažnosti</h3>
