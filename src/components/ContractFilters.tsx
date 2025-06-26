@@ -184,6 +184,91 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
   </div>
 </div>
 
+          <DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="outline" className="justify-between min-w-[120px]">
+      Cena
+      <ChevronDown className="h-4 w-4" />
+    </Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent className="px-4 py-3">
+    {/* Hodnota zakázky – slider + ruční input s úpravami */}
+    <div className="flex flex-col items-center gap-1 min-w-[260px]">
+      <label className="text-sm text-gray-700 font-medium mb-1 text-center">
+        Hodnota zakázky (Kč)
+      </label>
+
+      {/* Slider */}
+      <div className="relative w-[240px] h-6 mb-1">
+        {/* Range min */}
+        <input
+          type="range"
+          min={0}
+          max={10000000}
+          step={50000}
+          value={filters.valueMin}
+          onChange={(e) =>
+            onFiltersChange({
+              ...filters,
+              valueMin: Math.min(Number(e.target.value), filters.valueMax),
+            })
+          }
+          className="absolute w-full pointer-events-none appearance-none bg-transparent z-10 top-1/2 -translate-y-1/2 [&::-webkit-slider-thumb]:pointer-events-auto"
+        />
+        {/* Range max */}
+        <input
+          type="range"
+          min={0}
+          max={10000000}
+          step={50000}
+          value={filters.valueMax}
+          onChange={(e) =>
+            onFiltersChange({
+              ...filters,
+              valueMax: Math.max(Number(e.target.value), filters.valueMin),
+            })
+          }
+          className="absolute w-full pointer-events-none appearance-none bg-transparent z-20 top-1/2 -translate-y-1/2 [&::-webkit-slider-thumb]:pointer-events-auto"
+        />
+        {/* Track background */}
+        <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-[4px] bg-gray-200 rounded-full" />
+      </div>
+
+      {/* Číselné inputy – centrované, formátované, bez šipek */}
+      <div className="flex items-center gap-2 mt-1">
+        <input
+          type="text"
+          inputMode="numeric"
+          value={filters.valueMin.toLocaleString("cs-CZ")}
+          onChange={(e) => {
+            const raw = parseInt(e.target.value.replace(/\s/g, '')) || 0;
+            onFiltersChange({
+              ...filters,
+              valueMin: Math.min(raw, filters.valueMax),
+            });
+          }}
+          className="w-[100px] border rounded px-2 py-1 text-sm text-right no-spinner"
+        />
+        <span className="text-sm text-gray-600">–</span>
+        <input
+          type="text"
+          inputMode="numeric"
+          value={filters.valueMax.toLocaleString("cs-CZ")}
+          onChange={(e) => {
+            const raw = parseInt(e.target.value.replace(/\s/g, '')) || 0;
+            onFiltersChange({
+              ...filters,
+              valueMax: Math.max(raw, filters.valueMin),
+            });
+          }}
+          className="w-[100px] border rounded px-2 py-1 text-sm text-right no-spinner"
+        />
+      </div>
+    </div>
+  </DropdownMenuContent>
+</DropdownMenu>
+          
+
           {/* Řazení */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
