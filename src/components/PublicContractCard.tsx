@@ -63,7 +63,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
             </div>
 
             {/* Akcie */}
-              <div className="flex gap-2 ml-4">
+           <div className="flex gap-2 ml-4">
   {/* Bookmark */}
   <Tooltip.Provider>
     <Tooltip.Root>
@@ -79,10 +79,12 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           />
         </Button>
       </Tooltip.Trigger>
-      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-        Uložit
-        <Tooltip.Arrow className="fill-white" />
-      </Tooltip.Content>
+      <Tooltip.Portal>
+        <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+          Uložit
+          <Tooltip.Arrow className="fill-white" />
+        </Tooltip.Content>
+      </Tooltip.Portal>
     </Tooltip.Root>
   </Tooltip.Provider>
 
@@ -103,10 +105,12 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           )}
         </Button>
       </Tooltip.Trigger>
-      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-        {contract.status === 'hidden' ? 'Zobrazit' : 'Skrýt'}
-        <Tooltip.Arrow className="fill-white" />
-      </Tooltip.Content>
+      <Tooltip.Portal>
+        <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+          {contract.status === 'hidden' ? 'Zobrazit' : 'Skrýt'}
+          <Tooltip.Arrow className="fill-white" />
+        </Tooltip.Content>
+      </Tooltip.Portal>
     </Tooltip.Root>
   </Tooltip.Provider>
 
@@ -115,67 +119,73 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     <Tooltip.Root>
       <Tooltip.Trigger asChild>
         <Button
-            variant={contract.status === 'completed' ? "default" : "outline"}
-            size="sm"
-            onClick={() => onStatusChange(contract.id, contract.status === 'completed' ? 'active' : 'completed')}
-            className={
-              contract.status === 'completed'
-                ? "bg-green-500 hover:bg-green-600 text-white"
-                : "text-green-600 hover:text-green-700"
-            }
-          >
-            <Check className={`h-4 w-4 ${contract.status === 'completed' ? 'stroke-white' : ''}`} />
-          </Button>
+          variant={contract.status === 'completed' ? "default" : "outline"}
+          size="sm"
+          onClick={() => onStatusChange(contract.id, contract.status === 'completed' ? 'active' : 'completed')}
+          className={
+            contract.status === 'completed'
+              ? "bg-green-500 hover:bg-green-600 text-white"
+              : "text-green-600 hover:text-green-700"
+          }
+        >
+          <Check className={`h-4 w-4 ${contract.status === 'completed' ? 'stroke-white' : ''}`} />
+        </Button>
       </Tooltip.Trigger>
-      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-        Zkontrolováno
-        <Tooltip.Arrow className="fill-white" />
-      </Tooltip.Content>
+      <Tooltip.Portal>
+        <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+          Zkontrolováno
+          <Tooltip.Arrow className="fill-white" />
+        </Tooltip.Content>
+      </Tooltip.Portal>
     </Tooltip.Root>
   </Tooltip.Provider>
 
   {/* Move up */}
-<Tooltip.Provider>
-  <Tooltip.Root>
-    <Tooltip.Trigger asChild>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => onMove(contract.id, "up")}
-        className="text-gray-600 hover:text-gray-800"
-      >
-        <ArrowUp className="h-4 w-4" />
-      </Button>
-    </Tooltip.Trigger>
-    <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-      Posunout nahoru
-      <Tooltip.Arrow className="fill-white" />
-    </Tooltip.Content>
-  </Tooltip.Root>
-</Tooltip.Provider>
+  <Tooltip.Provider>
+    <Tooltip.Root>
+      <Tooltip.Trigger asChild>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => onMove(contract.id, "up")}
+          className="text-gray-600 hover:text-gray-800"
+        >
+          <ArrowUp className="h-4 w-4" />
+        </Button>
+      </Tooltip.Trigger>
+      <Tooltip.Portal>
+        <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+          Posunout nahoru
+          <Tooltip.Arrow className="fill-white" />
+        </Tooltip.Content>
+      </Tooltip.Portal>
+    </Tooltip.Root>
+  </Tooltip.Provider>
 
-{/* Move down */}
-<Tooltip.Provider>
-  <Tooltip.Root>
-    <Tooltip.Trigger asChild>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => onMove(contract.id, "down")}
-        className="text-gray-600 hover:text-gray-800"
-      >
-        <ArrowDown className="h-4 w-4" />
-      </Button>
-    </Tooltip.Trigger>
-    <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-      Posunout dolů
-      <Tooltip.Arrow className="fill-white" />
-    </Tooltip.Content>
-  </Tooltip.Root>
-</Tooltip.Provider>
-
+  {/* Move down */}
+  <Tooltip.Provider>
+    <Tooltip.Root>
+      <Tooltip.Trigger asChild>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => onMove(contract.id, "down")}
+          className="text-gray-600 hover:text-gray-800"
+        >
+          <ArrowDown className="h-4 w-4" />
+        </Button>
+      </Tooltip.Trigger>
+      <Tooltip.Portal>
+        <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+          Posunout dolů
+          <Tooltip.Arrow className="fill-white" />
+        </Tooltip.Content>
+      </Tooltip.Portal>
+    </Tooltip.Root>
+  </Tooltip.Provider>
+</div>   
             
-          </div>
+          
         </CardHeader>
 
         <CardContent className="pb-6">
