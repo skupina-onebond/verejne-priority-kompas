@@ -156,6 +156,7 @@ useEffect(() => {
           <div className="space-y-6">
             <section className="space-y-1">
               <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Základní informace</h3>
+              <p><span className="font-medium">Odvětví:</span> {contract.sector}</p>
               <p><span className="font-medium">Hodnota zakázky:</span> {formatValue(contract.value)}</p>
               <p><span className="font-medium">Region:</span> {contract.region}</p>
               <p><span className="font-medium">Termín podání:</span> {new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
@@ -201,16 +202,6 @@ useEffect(() => {
                 </Button>
               )}
             </div>
-
-            <section className="space-y-1">
-              <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Kategorizace</h3>
-              <p><span className="font-medium">Odvětví:</span> {contract.sector}</p>
-              <p><span className="font-medium">Kategorie hodnoty:</span> {
-                contract.valueCategory === 'low' ? 'Do 500 tisíc Kč' :
-                contract.valueCategory === 'medium' ? 'Do 5 milionů Kč' :
-                'Nad 5 milionů Kč'
-              }</p>
-            </section>
           </div>
 
           {/* RIGHT */}
