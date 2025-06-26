@@ -27,7 +27,7 @@ export const RiskBarometerCircle: React.FC<RiskBarometerCircleProps> = ({
           cy={size / 2}
           r={radius}
           stroke="#e5e7eb"
-          strokeWidth={6}
+          strokeWidth={8}
           fill="none"
         />
         <circle
@@ -35,7 +35,7 @@ export const RiskBarometerCircle: React.FC<RiskBarometerCircleProps> = ({
           cy={size / 2}
           r={radius}
           stroke={getColor()}
-          strokeWidth={6}
+          strokeWidth={8}
           strokeDasharray={circumference}
           strokeDashoffset={circumference * progress}
           strokeLinecap="round"
