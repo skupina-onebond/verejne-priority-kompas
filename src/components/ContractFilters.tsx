@@ -109,7 +109,6 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Hodnota */}
           {/* Hodnota zakázky – rozsah */}
             <div className="flex flex-col gap-2 min-w-[220px]">
               <label className="text-sm text-gray-700 font-medium">Hodnota zakázky (Kč)</label>
@@ -139,7 +138,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
                   {filters.valueMax.toLocaleString('cs-CZ')} Kč
                 </span>
               </div>
-</div>
+            </div>
 
           {/* Řazení */}
           <DropdownMenu>
