@@ -13,7 +13,8 @@ interface ContractFiltersProps {
   filters: {
     sector: string;
     region: string;
-    value: string;
+    valueMin: number;
+    valueMax: number;
     sortBy: string;
   };
   onFiltersChange: (filters: any) => void;
@@ -34,11 +35,6 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
     'Vysočina', 'Olomoucký kraj', 'Zlínský kraj', 'Liberecký kraj', 'Karlovarský kraj', 'Středočeský kraj'
   ];
 
-  const valueCategories = [
-    { value: 'low', label: 'Do 500 tisíc Kč' },
-    { value: 'medium', label: 'Do 5 milionů Kč' },
-    { value: 'high', label: 'Nad 5 milionů Kč' }
-  ];
 
   const sortOptions = [
   { value: 'risk_low', label: 'Závažnost: Od nejnižší po nejvyšší' },
@@ -54,14 +50,16 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
     });
   };
 
+
   const clearFilters = () => {
     onFiltersChange({
       sector: '',
       region: '',
-      value: '',
+      valueMin: 0,
+      valueMax: 10000000,
       sortBy: ''
     });
-  };
+};
 
   return (
     <Card className="mb-6">
@@ -112,25 +110,36 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
           </DropdownMenu>
 
           {/* Hodnota */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="justify-between min-w-[140px]">
-                {valueCategories.find(v => v.value === filters.value)?.label || 'Hodnota zakázky'}
-                <ChevronDown className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {valueCategories.map(category => (
-                <DropdownMenuItem
-                  key={category.value}
-                  onClick={() => updateFilter('value', category.value)}
-                  className={filters.value === category.value ? 'bg-blue-50' : ''}
-                >
-                  {category.label}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* Hodnota zakázky – rozsah */}
+            <div className="flex flex-col gap-2 min-w-[220px]">
+              <label className="text-sm text-gray-700 font-medium">Hodnota zakázky (Kč)</label>
+              <div className="flex items-center gap-2">
+                <input
+                  type="range"
+                  min={0}
+                  max={10000000}
+                  step={50000}
+                  value={filters.valueMin}
+                  onChange={(e) => onFiltersChange({ ...filters, valueMin: Number(e.target.value) })}
+                />
+                <span className="text-sm text-gray-800 w-[90px] text-right">
+                  {filters.valueMin.toLocaleString('cs-CZ')} Kč
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="range"
+                  min={0}
+                  max={10000000}
+                  step={50000}
+                  value={filters.valueMax}
+                  onChange={(e) => onFiltersChange({ ...filters, valueMax: Number(e.target.value) })}
+                />
+                <span className="text-sm text-gray-800 w-[90px] text-right">
+                  {filters.valueMax.toLocaleString('cs-CZ')} Kč
+                </span>
+              </div>
+</div>
 
           {/* Řazení */}
           <DropdownMenu>
@@ -154,8 +163,8 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
           </DropdownMenu>
 
           {/* Reset */}
-          {(filters.sector || filters.region || filters.value || filters.sortBy) && (
-            <Button variant="ghost" onClick={clearFilters} className="text-red-600">
+        {(filters.sector || filters.region || filters.sortBy || filters.valueMin > 0 || filters.valueMax < 10000000) && (
+        <Button variant="ghost" onClick={clearFilters} className="text-red-600">
               Zrušit filtry
             </Button>
           )}
