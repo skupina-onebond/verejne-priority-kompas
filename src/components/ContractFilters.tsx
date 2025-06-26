@@ -109,13 +109,15 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Hodnota zakázky – slider + ručný input */}
-<div className="flex flex-col items-start gap-1 min-w-[260px]">
-  <label className="text-sm text-gray-700 font-medium mb-1">
+          
+          {/* Hodnota zakázky – slider + ruční input s úpravami */}
+<div className="flex flex-col items-center gap-1 min-w-[260px]">
+  <label className="text-sm text-gray-700 font-medium mb-1 text-center">
     Hodnota zakázky (Kč)
   </label>
 
-  <div className="relative w-full h-6 mb-1">
+  {/* Slider */}
+  <div className="relative w-[240px] h-6 mb-1">
     {/* Range min */}
     <input
       type="range"
@@ -150,36 +152,34 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
     <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-[4px] bg-gray-200 rounded-full" />
   </div>
 
-  {/* Manuální zadání čísel */}
-  <div className="flex gap-2 w-full">
+  {/* Číselné inputy – centrované, formátované, bez šipek */}
+  <div className="flex items-center gap-2 mt-1">
     <input
-      type="number"
-      min={0}
-      max={filters.valueMax}
-      step={50000}
-      value={filters.valueMin}
-      onChange={(e) =>
+      type="text"
+      inputMode="numeric"
+      value={filters.valueMin.toLocaleString("cs-CZ")}
+      onChange={(e) => {
+        const raw = parseInt(e.target.value.replace(/\s/g, '')) || 0;
         onFiltersChange({
           ...filters,
-          valueMin: Math.min(Number(e.target.value), filters.valueMax),
-        })
-      }
-      className="w-full border rounded px-2 py-1 text-sm text-right"
+          valueMin: Math.min(raw, filters.valueMax),
+        });
+      }}
+      className="w-[100px] border rounded px-2 py-1 text-sm text-right no-spinner"
     />
-    <span className="text-sm text-gray-600 self-center">–</span>
+    <span className="text-sm text-gray-600">–</span>
     <input
-      type="number"
-      min={filters.valueMin}
-      max={10000000}
-      step={50000}
-      value={filters.valueMax}
-      onChange={(e) =>
+      type="text"
+      inputMode="numeric"
+      value={filters.valueMax.toLocaleString("cs-CZ")}
+      onChange={(e) => {
+        const raw = parseInt(e.target.value.replace(/\s/g, '')) || 0;
         onFiltersChange({
           ...filters,
-          valueMax: Math.max(Number(e.target.value), filters.valueMin),
-        })
-      }
-      className="w-full border rounded px-2 py-1 text-sm text-right"
+          valueMax: Math.max(raw, filters.valueMin),
+        });
+      }}
+      className="w-[100px] border rounded px-2 py-1 text-sm text-right no-spinner"
     />
   </div>
 </div>
