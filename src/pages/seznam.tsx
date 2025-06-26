@@ -158,7 +158,7 @@ const ContractListPage = () => {
             {bookmarkedContracts.length === 0 && (
               <Card>
                 <CardContent className="p-8 text-center">
-                  <p className="text-gray-500">Žádné záložky</p>
+                  <p className="text-gray-500">Žádné uložené zakázky</p>
                 </CardContent>
               </Card>
             )}
