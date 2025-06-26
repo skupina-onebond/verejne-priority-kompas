@@ -140,49 +140,53 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     </Tooltip.Root>
   </Tooltip.Provider>
 
-  {/* Move up */}
-  <Tooltip.Provider>
-    <Tooltip.Root>
-      <Tooltip.Trigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onMove(contract.id, "up")}
-          className="text-gray-600 hover:text-gray-800"
-        >
-          <ArrowUp className="h-4 w-4" />
-        </Button>
-      </Tooltip.Trigger>
-      <Tooltip.Portal>
-        <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-          Posunout nahoru
-          <Tooltip.Arrow className="fill-white" />
-        </Tooltip.Content>
-      </Tooltip.Portal>
-    </Tooltip.Root>
-  </Tooltip.Provider>
+{/* Move up */}
+{/*
+<Tooltip.Provider>
+  <Tooltip.Root>
+    <Tooltip.Trigger asChild>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => onMove(contract.id, "up")}
+        className="text-gray-600 hover:text-gray-800"
+      >
+        <ArrowUp className="h-4 w-4" />
+      </Button>
+    </Tooltip.Trigger>
+    <Tooltip.Portal>
+      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+        Posunout nahoru
+        <Tooltip.Arrow className="fill-white" />
+      </Tooltip.Content>
+    </Tooltip.Portal>
+  </Tooltip.Root>
+</Tooltip.Provider>
+*/}
 
-  {/* Move down */}
-  <Tooltip.Provider>
-    <Tooltip.Root>
-      <Tooltip.Trigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onMove(contract.id, "down")}
-          className="text-gray-600 hover:text-gray-800"
-        >
-          <ArrowDown className="h-4 w-4" />
-        </Button>
-      </Tooltip.Trigger>
-      <Tooltip.Portal>
-        <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-          Posunout dolů
-          <Tooltip.Arrow className="fill-white" />
-        </Tooltip.Content>
-      </Tooltip.Portal>
-    </Tooltip.Root>
-  </Tooltip.Provider>
+{/* Move down */}
+{/*
+<Tooltip.Provider>
+  <Tooltip.Root>
+    <Tooltip.Trigger asChild>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => onMove(contract.id, "down")}
+        className="text-gray-600 hover:text-gray-800"
+      >
+        <ArrowDown className="h-4 w-4" />
+      </Button>
+    </Tooltip.Trigger>
+    <Tooltip.Portal>
+      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+        Posunout dolů
+        <Tooltip.Arrow className="fill-white" />
+      </Tooltip.Content>
+    </Tooltip.Portal>
+  </Tooltip.Root>
+</Tooltip.Provider>
+*/}
 </div>   
             </div>   
             
