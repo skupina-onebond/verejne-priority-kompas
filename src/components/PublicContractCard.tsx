@@ -138,7 +138,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     </div>
   </div>
 
-  <div className="flex justify-between gap-4 mt-2">
+ <div className="flex justify-between gap-4 mt-2">
   <div className="self-start pt-[1.4rem]">
     <Button
       variant="outline"
