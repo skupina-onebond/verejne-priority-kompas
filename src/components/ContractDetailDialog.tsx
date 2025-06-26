@@ -137,7 +137,7 @@ useEffect(() => {
     )}
 
     {/* Tlačidlo Tisk s pevnou pozíciou */}
-    <div className="absolute right-[15%] top-0 mt-1">
+    <div className="absolute right-[25%] top-0 mt-1">
       <Button
         variant="outline"
         size="sm"
