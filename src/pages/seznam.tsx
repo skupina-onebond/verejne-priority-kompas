@@ -86,12 +86,12 @@ const ContractListPage = () => {
 
   return (
       <div
-        className="min-h-screen"
-        style={{
-          fontFamily: 'Open Sans, sans-serif',
-          background: 'linear-gradient(to bottom right, #e0f2ff, #f5faff, #ffffff)'
-        }}
-      >      
+  className="min-h-screen"
+  style={{
+    fontFamily: 'Open Sans, sans-serif',
+    background: 'linear-gradient(to bottom, #e0f2ff, #f5faff, #ffffff)'
+  }}
+>   
   <div className="container mx-auto p-6 relative">
         <div className="absolute top-6 left-6">
           <img src="/Doris-logo.png" alt="Logo Doris" className="h-7" />
