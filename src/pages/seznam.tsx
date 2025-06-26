@@ -98,11 +98,11 @@ const ContractListPage = () => {
         <Tabs defaultValue="active" className="w-full">
           <TabsList className="grid w-full grid-cols-3 mb-6">
             <TabsTrigger value="active" className="flex items-center gap-2">
-              Aktivní zakázky
+              Aktivní
               <Badge variant="secondary">{activeContracts.length}</Badge>
             </TabsTrigger>
             <TabsTrigger value="bookmarked" className="flex items-center gap-2">
-              Záložky
+              Uložené
               <Badge variant="secondary">{bookmarkedContracts.length}</Badge>
             </TabsTrigger>
             <TabsTrigger value="hidden" className="flex items-center gap-2">
