@@ -115,17 +115,17 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     <Tooltip.Root>
       <Tooltip.Trigger asChild>
         <Button
-          variant={contract.status === 'completed' ? "default" : "outline"}
-          size="sm"
-          onClick={() => onStatusChange(contract.id, 'completed')}
-          className={
-            contract.status === 'completed'
-              ? "bg-green-600 hover:bg-green-700 text-white"
-              : "text-green-600 hover:text-green-700"
-          }
->
-          <Check className="h-4 w-4" />
-        </Button>
+            variant={contract.status === 'completed' ? "default" : "outline"}
+            size="sm"
+            onClick={() => onStatusChange(contract.id, contract.status === 'completed' ? 'active' : 'completed')}
+            className={
+              contract.status === 'completed'
+                ? "bg-green-600 hover:bg-green-700 text-white"
+                : "text-green-600 hover:text-green-700"
+            }
+          >
+            <Check className={`h-4 w-4 ${contract.status === 'completed' ? 'stroke-white' : ''}`} />
+          </Button>
       </Tooltip.Trigger>
       <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
         Zkontrolováno
