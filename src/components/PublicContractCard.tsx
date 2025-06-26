@@ -137,7 +137,13 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
       <p className="text-gray-900">{contract.supplier || "Neuveden"}</p>
     </div>
   </div>
-          
+
+  <div className="flex justify-between gap-4 mt-2">
+  <div className="flex-1">
+    <p className="text-gray-700 font-medium mb-1">Popis:</p>
+    <p className="text-gray-900 text-sm">{contract.description}</p>
+  </div>
+
   <div className="self-start pt-[1.4rem]">
     <Button
       variant="outline"
