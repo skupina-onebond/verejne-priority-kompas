@@ -210,6 +210,3 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
     </Card>
   );
 };
-
-
-je tam niekde chyba?
