@@ -132,7 +132,7 @@ useEffect(() => {
     {/* Pravá časť: RiskBarometer */}
     {contract.riskScore !== undefined && (
       <div className="ml-4">
-        <RiskBarometerCircle score={contract.riskScore} size={80} />
+        <RiskBarometerCircle score={contract.riskScore} size={90} />
       </div>
     )}
 
