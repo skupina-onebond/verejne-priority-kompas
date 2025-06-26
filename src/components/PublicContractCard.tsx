@@ -140,14 +140,14 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
 
  <div className="flex justify-end mt-2">
   <Button
-    variant="outline"
-    size="sm"
-    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-    onClick={() => setShowDetail(true)}
-  >
-    <FileText className="w-4 h-4 mr-2" />
-    Zobrazit detail
-  </Button>
+  variant="default"
+  size="sm"
+  className="bg-[#215197] hover:bg-[#1c467f] text-white"
+  onClick={() => setShowDetail(true)}
+>
+  <FileText className="w-4 h-4 mr-2" />
+  Zobrazit detail
+</Button>
 </div>
 </CardContent>
       </Card>
