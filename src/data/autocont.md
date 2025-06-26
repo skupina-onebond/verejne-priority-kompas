@@ -29,25 +29,25 @@ Navzdory pozitivům však existují významná **reputační a etická rizika**:
 
 ## DETAILNÍ ANALÝZA RIZIK
 
-### 1. VLASTNICKÁ STRUKTURA
+### **1. VLASTNICKÁ STRUKTURA**
 - Jasná, veřejně známá.  
 - Karel Komárek – silné finanční zázemí, ale i riziko kvůli předchozím vazbám na Rusko (Gazprom).  
 - V případě SR může být nutná nová identifikace konečných uživatelů výhod.  
 
-### 2. KARTEL OLOMOUCKÝ KRAJ
+### **2. KARTEL OLOMOUCKÝ KRAJ**
 - ÚOHS prokázal dohodu mezi 7 IT firmami, AutoCont jako lídr podal vítěznou nabídku s krycí konkurencí.  
 - Pokuta zatím zrušena kvůli procesním chybám, ale skutkový stav potvrzen.  
 - Trestní stíhání nadále probíhá – riziko pravomocného odsouzení v budoucnu.  
 
-### 3. TRANSPARENTNOST SMLUV
+### **3. TRANSPARENTNOST SMLUV**
 - V registru smluv desítky případů, kde nebyla uvedena cena, nebo byly smlouvy pod limitem → potenciál obcházení pravidel.  
 
-### 4. FINANČNÍ STABILITA
+### **4. FINANČNÍ STABILITA**
 - Tržby nad 3 mld. ročně, zisková firma, auditované výkazy.  
 - Žádné záznamy v insolvenčním rejstříku, nízké riziko selhání (dle ratingů).  
 - Součást KKCG → silné kapitálové zázemí.  
 
-### 5. REPUTAČNÍ HLEDISKO
+### **5. REPUTAČNÍ HLEDISKO**
 - Opakované medializace kartelu, zejména při výhrách AutoContu ve státních tendrech.  
 - Jinak žádné nové kauzy, ocenění v oboru.  
 
