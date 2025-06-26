@@ -12,7 +12,8 @@ const ContractListPage = () => {
   const [filters, setFilters] = useState({
     sector: '',
     region: '',
-    value: '',
+    valueMin: 0,
+    valueMax: 10000000,
     sortBy: ''
   });
 
@@ -47,7 +48,7 @@ const ContractListPage = () => {
     return contracts.filter(contract => {
       if (filters.sector && contract.sector !== filters.sector) return false;
       if (filters.region && contract.region !== filters.region) return false;
-      if (filters.value && contract.valueCategory !== filters.value) return false;
+      if (contract.value < filters.valueMin || contract.value > filters.valueMax) return false;
       return true;
     });
   }, [contracts, filters]);
