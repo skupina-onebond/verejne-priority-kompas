@@ -42,9 +42,9 @@ export const RiskBarometerCircle: React.FC<RiskBarometerCircleProps> = ({
           fill="none"
         />
       </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-xs font-semibold text-slate-900">
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-s font-semibold text-slate-900">
         <span className="text-lg">{score}</span>
-        <span className="text-[10px] tracking-wide">Závažnost</span>
+        <span className="text-[9px] tracking-wide">Závažnost</span>
       </div>
     </div>
   );
