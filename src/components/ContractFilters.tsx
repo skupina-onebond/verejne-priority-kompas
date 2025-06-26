@@ -41,10 +41,10 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
   ];
 
   const sortOptions = [
-    { value: 'risk_low', label: 'Nízká → Vysoká závažnost' },
-    { value: 'risk_high', label: 'Vysoká → Nízká závažnost' },
-    { value: 'value_high', label: 'Nejdražší zakázky' },
-    { value: 'value_low', label: 'Nejlevnější zakázky' }
+    { value: 'risk_low', label: 'Závažnost: Od nejnižší po nevyšší' },
+    { value: 'risk_high', label: 'Závažnost: Od nejvyšší po nejnižší' },
+    { value: 'value_high', label: 'Cena: Od nejdražší po nejlevnejši' },
+    { value: 'value_low', label: 'Cena: Od nejlevnejši po nejdražší' }
   ];
 
   const updateFilter = (key: string, value: string) => {
