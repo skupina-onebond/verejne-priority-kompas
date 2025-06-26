@@ -109,36 +109,40 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Hodnota zakázky – rozsah */}
-            <div className="flex flex-col gap-2 min-w-[220px]">
-              <label className="text-sm text-gray-700 font-medium">Hodnota zakázky (Kč)</label>
-              <div className="flex items-center gap-2">
-                <input
-                  type="range"
-                  min={0}
-                  max={10000000}
-                  step={50000}
-                  value={filters.valueMin}
-                  onChange={(e) => onFiltersChange({ ...filters, valueMin: Number(e.target.value) })}
-                />
-                <span className="text-sm text-gray-800 w-[90px] text-right">
-                  {filters.valueMin.toLocaleString('cs-CZ')} Kč
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <input
-                  type="range"
-                  min={0}
-                  max={10000000}
-                  step={50000}
-                  value={filters.valueMax}
-                  onChange={(e) => onFiltersChange({ ...filters, valueMax: Number(e.target.value) })}
-                />
-                <span className="text-sm text-gray-800 w-[90px] text-right">
-                  {filters.valueMax.toLocaleString('cs-CZ')} Kč
-                </span>
-              </div>
-            </div>
+          {/* Hodnota zakázky – jeden slider so zobrazením rozsahu */}
+<div className="flex flex-col gap-2 min-w-[260px]">
+  <label className="text-sm text-gray-700 font-medium">Hodnota zakázky (Kč)</label>
+  <div className="relative h-5">
+    <input
+      type="range"
+      min={0}
+      max={10000000}
+      step={50000}
+      value={filters.valueMin}
+      onChange={(e) =>
+        onFiltersChange({ ...filters, valueMin: Math.min(Number(e.target.value), filters.valueMax) })
+      }
+      className="absolute w-full pointer-events-none appearance-none bg-transparent z-10"
+    />
+    <input
+      type="range"
+      min={0}
+      max={10000000}
+      step={50000}
+      value={filters.valueMax}
+      onChange={(e) =>
+        onFiltersChange({ ...filters, valueMax: Math.max(Number(e.target.value), filters.valueMin) })
+      }
+      className="absolute w-full pointer-events-none appearance-none bg-transparent z-20"
+    />
+    <div className="h-[3px] bg-gray-300 rounded-full" />
+  </div>
+
+  <div className="flex justify-between text-xs text-gray-600">
+    <span>{filters.valueMin.toLocaleString("cs-CZ")} Kč</span>
+    <span>{filters.valueMax.toLocaleString("cs-CZ")} Kč</span>
+  </div>
+</div>
 
           {/* Řazení */}
           <DropdownMenu>
