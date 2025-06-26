@@ -129,7 +129,8 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
           valueMin: Math.min(Number(e.target.value), filters.valueMax),
         })
       }
-className="absolute w-full pointer-events-none appearance-none bg-transparent z-10 top-1/2 -translate-y-1/2 [&::-webkit-slider-thumb]:pointer-events-auto"    />
+      className="absolute w-full pointer-events-none appearance-none bg-transparent z-10 top-1/2 -translate-y-1/2 [&::-webkit-slider-thumb]:pointer-events-auto"
+    />
     {/* Range max */}
     <input
       type="range"
@@ -143,7 +144,7 @@ className="absolute w-full pointer-events-none appearance-none bg-transparent z-
           valueMax: Math.max(Number(e.target.value), filters.valueMin),
         })
       }
-className="absolute w-full pointer-events-none appearance-none bg-transparent z-10 top-1/2 -translate-y-1/2 [&::-webkit-slider-thumb]:pointer-events-auto"    />
+      className="absolute w-full pointer-events-none appearance-none bg-transparent z-20 top-1/2 -translate-y-1/2 [&::-webkit-slider-thumb]:pointer-events-auto"
     />
     {/* Track background */}
     <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-[4px] bg-gray-200 rounded-full" />
