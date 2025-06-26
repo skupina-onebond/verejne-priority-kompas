@@ -109,10 +109,14 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Hodnota zakázky – jeden slider so zobrazením rozsahu */}
-<div className="flex flex-col gap-2 min-w-[260px]">
-  <label className="text-sm text-gray-700 font-medium">Hodnota zakázky (Kč)</label>
-  <div className="relative h-5">
+          {/* Hodnota zakázky – optimalizovaný vzhled */}
+<div className="flex flex-col items-start gap-1 min-w-[240px]">
+  <label className="text-sm text-gray-700 font-medium mb-1">
+    Hodnota zakázky (Kč)
+  </label>
+
+  <div className="relative w-[240px] h-6">
+    {/* Range min */}
     <input
       type="range"
       min={0}
@@ -120,10 +124,14 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
       step={50000}
       value={filters.valueMin}
       onChange={(e) =>
-        onFiltersChange({ ...filters, valueMin: Math.min(Number(e.target.value), filters.valueMax) })
+        onFiltersChange({
+          ...filters,
+          valueMin: Math.min(Number(e.target.value), filters.valueMax),
+        })
       }
-      className="absolute w-full pointer-events-none appearance-none bg-transparent z-10"
+      className="absolute w-full pointer-events-none appearance-none bg-transparent z-10 [&::-webkit-slider-thumb]:pointer-events-auto"
     />
+    {/* Range max */}
     <input
       type="range"
       min={0}
@@ -131,14 +139,18 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
       step={50000}
       value={filters.valueMax}
       onChange={(e) =>
-        onFiltersChange({ ...filters, valueMax: Math.max(Number(e.target.value), filters.valueMin) })
+        onFiltersChange({
+          ...filters,
+          valueMax: Math.max(Number(e.target.value), filters.valueMin),
+        })
       }
-      className="absolute w-full pointer-events-none appearance-none bg-transparent z-20"
+      className="absolute w-full pointer-events-none appearance-none bg-transparent z-20 [&::-webkit-slider-thumb]:pointer-events-auto"
     />
-    <div className="h-[3px] bg-gray-300 rounded-full" />
+    {/* Track background */}
+    <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-[4px] bg-gray-200 rounded-full" />
   </div>
 
-  <div className="flex justify-between text-xs text-gray-600">
+  <div className="flex justify-between w-full text-xs text-gray-600 mt-1">
     <span>{filters.valueMin.toLocaleString("cs-CZ")} Kč</span>
     <span>{filters.valueMax.toLocaleString("cs-CZ")} Kč</span>
   </div>
