@@ -7,7 +7,7 @@ import fakultniNemocnicePraha from '@/data/Fakultna nemocnice Praha.md?raw'
 export const mockContracts: PublicContract[] = [
   {
     id: '1',
-    title: 'Modernizace IT infrastruktury nemocnice',
+    title: 'Modernizace IT infrastruktury Všeobecné fakultní nemocnice v Praze - 1.etapa',
     description: 'Cílem zakázky je kompletní modernizace serverových systémů, datových úložišť a síťové infrastruktury krajské nemocnice. Součástí je i školení personálu a implementace zálohovacích řešení.',
     value: 2500000,
     valueCategory: 'medium',
@@ -47,7 +47,7 @@ export const mockContracts: PublicContract[] = [
   },
   {
     id: '2',
-    title: 'Rekonstrukce základní školy',
+    title: 'Rekonstrukce základní umělecké školy, Ježkova 243/9, Brno',
     description: 'Předmětem zakázky je kompletní rekonstrukce budovy základní školy včetně zateplení, výměny oken a modernizace učeben s důrazem na energetickou úspornost a bezpečnost.',
     value: 750000,
     valueCategory: 'medium',
@@ -80,7 +80,7 @@ export const mockContracts: PublicContract[] = [
   },
   {
     id: '3',
-    title: 'Dodávka školních autobusů',
+    title: 'Dodávka školních autobusů v Moravskoslezském kraji',
     description: 'Zakázka zahrnuje nákup pěti nových školních autobusů s ekologickým pohonem pro potřeby krajských škol včetně dodání, registrace a zaškolení obsluhy.',
     value: 450000,
     valueCategory: 'low',
@@ -107,7 +107,7 @@ export const mockContracts: PublicContract[] = [
   },
   {
   id: '4',
-  title: 'Výstavba fotovoltaické elektrárny',
+  title: 'Výstavba fotovoltaické elektrárny v Ostravě, části Hrabové – 1. etapa',
   description: 'Zakázka se týká návrhu, dodávky a výstavby fotovoltaické elektrárny v průmyslové zóně včetně připojení na síť, zajištění měření a implementace monitorovacího systému.',
   value: 8500000,
   valueCategory: 'high',
@@ -147,7 +147,7 @@ export const mockContracts: PublicContract[] = [
 },
 {
   id: '5',
-  title: 'Dodávka zdravotnických přístrojů',
+  title: 'Dodávka zdravotnických přístrojů na polikliniku v Ústí nad Labem',
   description: 'Nákup moderních diagnostických a laboratorních přístrojů pro interní oddělení polikliniky včetně instalace, kalibrace a školení personálu.',
   value: 1200000,
   valueCategory: 'medium',
@@ -181,7 +181,7 @@ export const mockContracts: PublicContract[] = [
 },
 {
   id: '6',
-  title: 'Čištění veřejných prostranství',
+  title: 'Čištění veřejných prostranství ve městě České Budějovice',
   description: 'Zakázka zahrnuje komplexní služby v oblasti úklidu, zametání, odvozu odpadu a údržby zelených ploch v centru města a přilehlých obytných zónách.',
   value: 320000,
   valueCategory: 'low',
