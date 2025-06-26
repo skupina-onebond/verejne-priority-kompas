@@ -129,8 +129,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
           valueMin: Math.min(Number(e.target.value), filters.valueMax),
         })
       }
-      className="absolute w-full pointer-events-none appearance-none bg-transparent z-10 [&::-webkit-slider-thumb]:pointer-events-auto"
-    />
+className="absolute w-full pointer-events-none appearance-none bg-transparent z-10 top-1/2 -translate-y-1/2 [&::-webkit-slider-thumb]:pointer-events-auto"    />
     {/* Range max */}
     <input
       type="range"
