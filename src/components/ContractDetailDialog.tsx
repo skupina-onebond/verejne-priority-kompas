@@ -151,9 +151,18 @@ useEffect(() => {
   </div>
 </DialogHeader>
 
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm relative items-start">
           {/* LEFT */}
           <div className="space-y-6">
+
+            {contract.description && (
+              <section className="space-y-2">
+                <h3 className="text-base font-semibold text-slate-900 mb-1 uppercase tracking-wide">Popis zakázky</h3>
+                <p className="text-sm text-slate-800 whitespace-pre-line">{contract.description}</p>
+              </section>
+            )}
+            
             <section className="space-y-1">
               <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Základní informace</h3>
               <p><span className="font-medium">Odvětví:</span> {contract.sector}</p>
