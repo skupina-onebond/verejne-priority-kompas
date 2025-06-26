@@ -25,26 +25,26 @@
 
 ## DETAILNÍ ANALÝZA RIZIK
 
-### 1. VLASTNICKÁ A ŘÍDICÍ STRUKTURA
+### **1. VLASTNICKÁ A ŘÍDICÍ STRUKTURA**
 - Přímá podřízenost Ministerstvu zdravotnictví ČR  
 - Generální ředitel jmenovaný státem  
 - Žádná soukromá vlastnická stopa  
 
-### 2. SMLUVNÍ TRANSPARENTNOST
+### **2. SMLUVNÍ TRANSPARENTNOST**
 - Registr smluv obsahuje tisíce kontraktů  
 - Více případů neúplných záznamů – např. chybějící ceny  
 - Některé smlouvy doplňovány se zpožděním nebo upravované dodatky  
 
-### 3. VÝBĚR DODAVATELŮ
+### **3. VÝBĚR DODAVATELŮ**
 - Opakovaná spolupráce s úzkým okruhem dodavatelů  
 - Chybí dokumentace k některým výběrovým řízením  
 - Výběr často pod limitem → přímá zadání  
 
-### 4. REPUTAČNÍ RIZIKA
+### **4. REPUTAČNÍ RIZIKA**
 - Případy medializované v Hlídači státu, Seznam Zprávách a Transparency International  
 - Riziko veřejné kritiky zejména u nákupů s nízkou soutěží  
 
-### 5. FINANČNÍ A SYSTÉMOVÉ KONTROLY
+### **5. FINANČNÍ A SYSTÉMOVÉ KONTROLY**
 - Vnitřní audit funguje, ale ne vždy preventivně  
 - NKÚ upozorňoval na slabé nastavení pravidel VO  
 
