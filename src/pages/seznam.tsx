@@ -6,6 +6,7 @@ import { PublicContractCard } from "@/components/PublicContractCard";
 import { ContractFilters } from "@/components/ContractFilters";
 import { mockContracts } from "@/data/mockContracts";
 import { PublicContract, ContractStatus } from "@/types/contract";
+import { EyeOff, Star, ClipboardList, CheckCircle } from "lucide-react";
 
 const ContractListPage = () => {
   const [contracts, setContracts] = useState<PublicContract[]>(mockContracts);
@@ -79,7 +80,6 @@ const ContractListPage = () => {
   const hiddenContracts = sortContracts(
     filteredContracts.filter(c => c.status === 'hidden')
   );
-
   const completedContracts = sortContracts(
     filteredContracts.filter(c => c.status === 'completed')
   );
@@ -102,22 +102,28 @@ const ContractListPage = () => {
         <Tabs defaultValue="active" className="w-full">
           <TabsList className="grid w-full grid-cols-4 mb-6">
             <TabsTrigger value="active" className="flex items-center gap-2">
+              <ClipboardList className="w-4 h-4" />
               Aktivní
               <Badge variant="secondary">{activeContracts.length}</Badge>
             </TabsTrigger>
             <TabsTrigger value="bookmarked" className="flex items-center gap-2">
+              <Star className="w-4 h-4" />
               Uložené
               <Badge variant="secondary">{bookmarkedContracts.length}</Badge>
             </TabsTrigger>
             <TabsTrigger value="hidden" className="flex items-center gap-2">
+              <EyeOff className="w-4 h-4" />
               Skryté
               <Badge variant="secondary">{hiddenContracts.length}</Badge>
             </TabsTrigger>
-            <TabsTrigger value="completed" className="flex items-center gap-2">
+            <TabsTrigger
+              value="completed"
+              className="flex items-center gap-2 data-[state=active]:bg-green-500 data-[state=active]:text-white"
+            >
+              <CheckCircle className="w-4 h-4 text-green-500 data-[state=active]:text-white" />
               Zkontrolované
               <Badge variant="secondary">{completedContracts.length}</Badge>
             </TabsTrigger>
-            
           </TabsList>
 
           <TabsContent value="active" className="space-y-4">
@@ -194,7 +200,7 @@ const ContractListPage = () => {
                 </CardContent>
               </Card>
             )}
-</TabsContent>
+          </TabsContent>
         </Tabs>
       </div>
     </div>
