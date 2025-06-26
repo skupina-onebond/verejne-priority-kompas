@@ -54,7 +54,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               <div className="flex items-center gap-2 mb-2">
                 <CardTitle className="text-lg">{contract.title}</CardTitle>
                 {contract.riskScore !== undefined && (
-                  <ScoreCircle score={contract.riskScore} size={40} title="Závažnost" />                )}
+                  <ScoreCircle score={contract.riskScore} size={40}  />                )}
               </div>
               <div className="flex flex-wrap gap-2 mb-2">
                 <Badge className="bg-[#215197] text-white">{contract.sector}</Badge>
