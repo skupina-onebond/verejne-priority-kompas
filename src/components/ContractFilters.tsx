@@ -64,149 +64,155 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
   return (
     <Card className="mb-6">
       <CardContent className="p-4">
-  <div className="grid grid-cols-[auto_1fr_auto] gap-3 items-center flex-wrap">
-    {/* Popisek "Filtry:" */}
-    <span className="font-medium text-gray-700 whitespace-nowrap self-start pt-1">
-      Filtry:
-    </span>
+        <div className="flex flex-wrap gap-3 items-center">
+          <span className="font-medium text-gray-700">Filtry:</span>
 
-    {/* Filtračné dropdowny a rozsah */}
-    <div className="flex flex-wrap gap-3 items-center">
-      {/* Odvetví */}
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="justify-between min-w-[120px]">
-            {filters.sector || 'Odvětví'}
-            <ChevronDown className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          {sectors.map(sector => (
-            <DropdownMenuItem
-              key={sector}
-              onClick={() => updateFilter('sector', sector)}
-              className={filters.sector === sector ? 'bg-blue-50' : ''}
-            >
-              {sector}
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
+          {/* Odvětví */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="justify-between min-w-[120px]">
+                {filters.sector || 'Odvětví'}
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {sectors.map(sector => (
+                <DropdownMenuItem
+                  key={sector}
+                  onClick={() => updateFilter('sector', sector)}
+                  className={filters.sector === sector ? 'bg-blue-50' : ''}
+                >
+                  {sector}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-      {/* Region */}
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="justify-between min-w-[120px]">
-            {filters.region || 'Region'}
-            <ChevronDown className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          {regions.map(region => (
-            <DropdownMenuItem
-              key={region}
-              onClick={() => updateFilter('region', region)}
-              className={filters.region === region ? 'bg-blue-50' : ''}
-            >
-              {region}
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
+          {/* Region */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="justify-between min-w-[120px]">
+                {filters.region || 'Region'}
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {regions.map(region => (
+                <DropdownMenuItem
+                  key={region}
+                  onClick={() => updateFilter('region', region)}
+                  className={filters.region === region ? 'bg-blue-50' : ''}
+                >
+                  {region}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-      {/* Hodnota zakázky – vlož sem slider kód, ako sme doladili */}
-<div className="flex flex-col items-center space-y-2 w-full">
-  <label className="text-center text-sm font-medium text-gray-700">
+          
+          {/* Hodnota zakázky – slider + ruční input s úpravami */}
+<div className="flex flex-col items-center gap-1 min-w-[260px]">
+  <label className="text-sm text-gray-700 font-medium mb-1 text-center">
     Hodnota zakázky (Kč)
   </label>
-  <div className="w-full flex flex-col items-center">
+
+  {/* Slider */}
+  <div className="relative w-[240px] h-6 mb-1">
+    {/* Range min */}
     <input
       type="range"
       min={0}
       max={10000000}
-      step={100000}
+      step={50000}
       value={filters.valueMin}
       onChange={(e) =>
         onFiltersChange({
           ...filters,
-          valueMin: Number(e.target.value),
+          valueMin: Math.min(Number(e.target.value), filters.valueMax),
         })
       }
-      className="w-full mb-2"
+      className="absolute w-full pointer-events-none appearance-none bg-transparent z-10 top-1/2 -translate-y-1/2 [&::-webkit-slider-thumb]:pointer-events-auto"
     />
+    {/* Range max */}
     <input
       type="range"
       min={0}
       max={10000000}
-      step={100000}
+      step={50000}
       value={filters.valueMax}
       onChange={(e) =>
         onFiltersChange({
           ...filters,
-          valueMax: Number(e.target.value),
+          valueMax: Math.max(Number(e.target.value), filters.valueMin),
         })
       }
-      className="w-full mb-2"
+      className="absolute w-full pointer-events-none appearance-none bg-transparent z-20 top-1/2 -translate-y-1/2 [&::-webkit-slider-thumb]:pointer-events-auto"
     />
-    <div className="flex items-center gap-2 mt-1">
-      <input
-        type="text"
-        value={filters.valueMin.toLocaleString('cs-CZ')}
-        onChange={(e) => {
-          const raw = e.target.value.replace(/\s/g, '').replace(/\./g, '');
-          const parsed = parseInt(raw, 10) || 0;
-          onFiltersChange({ ...filters, valueMin: parsed });
-        }}
-        className="border px-3 py-1 rounded w-[100px] text-right"
-        inputMode="numeric"
-      />
-      <span>-</span>
-      <input
-        type="text"
-        value={filters.valueMax.toLocaleString('cs-CZ')}
-        onChange={(e) => {
-          const raw = e.target.value.replace(/\s/g, '').replace(/\./g, '');
-          const parsed = parseInt(raw, 10) || 0;
-          onFiltersChange({ ...filters, valueMax: parsed });
-        }}
-        className="border px-3 py-1 rounded w-[100px] text-right"
-        inputMode="numeric"
-      />
-    </div>
-  </div>
-</div>    </div>
-
-    {/* Řazení */}
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="justify-between min-w-[180px]">
-          {sortOptions.find(s => s.value === filters.sortBy)?.label || 'Řadit podle'}
-          <ChevronDown className="h-4 w-4" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {sortOptions.map(option => (
-          <DropdownMenuItem
-            key={option.value}
-            onClick={() => updateFilter('sortBy', option.value)}
-            className={filters.sortBy === option.value ? 'bg-blue-50' : ''}
-          >
-            {option.label}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    {/* Track background */}
+    <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-[4px] bg-gray-200 rounded-full" />
   </div>
 
-  {/* Reset tlačítko pod filtermi */}
-  {(filters.sector || filters.region || filters.sortBy || filters.valueMin > 0 || filters.valueMax < 10000000) && (
-    <div className="mt-2">
-      <Button variant="ghost" onClick={clearFilters} className="text-red-600">
-        Zrušit filtry
-      </Button>
-    </div>
-  )}
-</CardContent>
+  {/* Číselné inputy – centrované, formátované, bez šipek */}
+  <div className="flex items-center gap-2 mt-1">
+    <input
+      type="text"
+      inputMode="numeric"
+      value={filters.valueMin.toLocaleString("cs-CZ")}
+      onChange={(e) => {
+        const raw = parseInt(e.target.value.replace(/\s/g, '')) || 0;
+        onFiltersChange({
+          ...filters,
+          valueMin: Math.min(raw, filters.valueMax),
+        });
+      }}
+      className="w-[100px] border rounded px-2 py-1 text-sm text-right no-spinner"
+    />
+    <span className="text-sm text-gray-600">–</span>
+    <input
+      type="text"
+      inputMode="numeric"
+      value={filters.valueMax.toLocaleString("cs-CZ")}
+      onChange={(e) => {
+        const raw = parseInt(e.target.value.replace(/\s/g, '')) || 0;
+        onFiltersChange({
+          ...filters,
+          valueMax: Math.max(raw, filters.valueMin),
+        });
+      }}
+      className="w-[100px] border rounded px-2 py-1 text-sm text-right no-spinner"
+    />
+  </div>
+</div>
+
+          {/* Řazení */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="justify-between min-w-[180px]">
+                {sortOptions.find(s => s.value === filters.sortBy)?.label || 'Řadit podle'}
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {sortOptions.map(option => (
+                <DropdownMenuItem
+                  key={option.value}
+                  onClick={() => updateFilter('sortBy', option.value)}
+                  className={filters.sortBy === option.value ? 'bg-blue-50' : ''}
+                >
+                  {option.label}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Reset */}
+        {(filters.sector || filters.region || filters.sortBy || filters.valueMin > 0 || filters.valueMax < 10000000) && (
+        <Button variant="ghost" onClick={clearFilters} className="text-red-600">
+              Zrušit filtry
+            </Button>
+          )}
+        </div>
+      </CardContent>
     </Card>
   );
 };
