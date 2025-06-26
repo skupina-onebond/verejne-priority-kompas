@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as Tooltip from "@radix-ui/react-tooltip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -62,58 +63,95 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
             </div>
 
             {/* Akcie */}
-            <div className="flex gap-2 ml-4">
-             <Button
-                variant="outline"
-                size="sm"
-                onClick={() => onStatusChange(contract.id, contract.status === 'bookmarked' ? 'active' : 'bookmarked')}
-                className={contract.status === 'bookmarked' ? 'text-yellow-600 hover:text-yellow-700' : 'text-gray-600 hover:text-gray-700'}
-              >
-                <Bookmark
-                  className={`h-4 w-4 p-[2px] rounded-sm ring-1 ${contract.status === 'bookmarked' ? 'ring-yellow-500 stroke-yellow-600 fill-yellow-600' : 'ring-yellow-400 stroke-yellow-500'}`}
-                />
-              </Button>
+              <div className="flex gap-2 ml-4">
+  {/* Bookmark */}
+  <Tooltip.Provider>
+    <Tooltip.Root>
+      <Tooltip.Trigger asChild>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => onStatusChange(contract.id, contract.status === 'bookmarked' ? 'active' : 'bookmarked')}
+          className={contract.status === 'bookmarked' ? 'text-yellow-600 hover:text-yellow-700' : 'text-gray-600 hover:text-gray-700'}
+        >
+          <Bookmark
+            className={`h-4 w-4 p-[2px] rounded-sm ring-1 ${contract.status === 'bookmarked' ? 'ring-yellow-500 stroke-yellow-600 fill-yellow-600' : 'ring-yellow-400 stroke-yellow-500'}`}
+          />
+        </Button>
+      </Tooltip.Trigger>
+      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+        Uložit
+        <Tooltip.Arrow className="fill-white" />
+      </Tooltip.Content>
+    </Tooltip.Root>
+  </Tooltip.Provider>
 
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => onStatusChange(contract.id, contract.status === 'hidden' ? 'active' : 'hidden')}
-                className="text-gray-600 hover:text-gray-700"
-              >
-                {contract.status === 'hidden' ? (
-                  <EyeOff className="h-4 w-4 p-[2px] rounded-sm ring-1 ring-[#215197] stroke-[#215197]" />
-                ) : (
-                  <Eye className="h-4 w-4 p-[2px] rounded-sm ring-1 ring-[#215197] stroke-[#215197]" />
-                )}
-              </Button>
+  {/* Eye */}
+  <Tooltip.Provider>
+    <Tooltip.Root>
+      <Tooltip.Trigger asChild>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => onStatusChange(contract.id, contract.status === 'hidden' ? 'active' : 'hidden')}
+          className="text-gray-600 hover:text-gray-700"
+        >
+          {contract.status === 'hidden' ? (
+            <EyeOff className="h-4 w-4 p-[2px] rounded-sm ring-1 ring-[#215197] stroke-[#215197]" />
+          ) : (
+            <Eye className="h-4 w-4 p-[2px] rounded-sm ring-1 ring-[#215197] stroke-[#215197]" />
+          )}
+        </Button>
+      </Tooltip.Trigger>
+      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+        {contract.status === 'hidden' ? 'Zobrazit' : 'Skrýt'}
+        <Tooltip.Arrow className="fill-white" />
+      </Tooltip.Content>
+    </Tooltip.Root>
+  </Tooltip.Provider>
 
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => onStatusChange(contract.id, 'completed')}
-                className="text-green-600 hover:text-green-700"
-              >
-                <Check className="h-4 w-4" />
-              </Button>
+  {/* Completed */}
+  <Tooltip.Provider>
+    <Tooltip.Root>
+      <Tooltip.Trigger asChild>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => onStatusChange(contract.id, 'completed')}
+          className="text-green-600 hover:text-green-700"
+        >
+          <Check className="h-4 w-4" />
+        </Button>
+      </Tooltip.Trigger>
+      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+        Zkontrolováno
+        <Tooltip.Arrow className="fill-white" />
+      </Tooltip.Content>
+    </Tooltip.Root>
+  </Tooltip.Provider>
 
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => onMove(contract.id, "up")}
-                className="text-gray-600 hover:text-gray-800"
-              >
-                <ArrowUp className="h-4 w-4" />
-              </Button>
+  {/* Move up */}
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => onMove(contract.id, "up")}
+    className="text-gray-600 hover:text-gray-800"
+  >
+    <ArrowUp className="h-4 w-4" />
+  </Button>
 
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => onMove(contract.id, "down")}
-                className="text-gray-600 hover:text-gray-800"
-              >
-                <ArrowDown className="h-4 w-4" />
-              </Button>
-            </div>
+  {/* Move down */}
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => onMove(contract.id, "down")}
+    className="text-gray-600 hover:text-gray-800"
+  >
+    <ArrowDown className="h-4 w-4" />
+  </Button>
+</div>
+
+            
           </div>
         </CardHeader>
 
