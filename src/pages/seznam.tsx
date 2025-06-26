@@ -80,6 +80,10 @@ const ContractListPage = () => {
     filteredContracts.filter(c => c.status === 'hidden')
   );
 
+  const completedContracts = sortContracts(
+    filteredContracts.filter(c => c.status === 'completed')
+  );
+
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Open Sans, sans-serif' }}>
       <div className="container mx-auto p-6 relative">
@@ -109,6 +113,11 @@ const ContractListPage = () => {
               Skryté
               <Badge variant="secondary">{hiddenContracts.length}</Badge>
             </TabsTrigger>
+            <TabsTrigger value="completed" className="flex items-center gap-2">
+              Zkontrolované
+              <Badge variant="secondary">{completedContracts.length}</Badge>
+            </TabsTrigger>
+            
           </TabsList>
 
           <TabsContent value="active" className="space-y-4">
@@ -167,6 +176,25 @@ const ContractListPage = () => {
               </Card>
             )}
           </TabsContent>
+
+          <TabsContent value="completed" className="space-y-4">
+            {completedContracts.map(contract => (
+              <PublicContractCard
+                key={contract.id}
+                contract={contract}
+                onStatusChange={updateContractStatus}
+                onMove={moveContract}
+                onDeepSearch={handleDeepSearch}
+              />
+            ))}
+            {completedContracts.length === 0 && (
+              <Card>
+                <CardContent className="p-8 text-center">
+                  <p className="text-gray-500">Žádné zkontrolované zakázky</p>
+                </CardContent>
+              </Card>
+            )}
+</TabsContent>
         </Tabs>
       </div>
     </div>
