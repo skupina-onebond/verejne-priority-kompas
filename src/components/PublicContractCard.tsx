@@ -57,8 +57,8 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                 )}
               </div>
               <div className="flex flex-wrap gap-2 mb-2">
-                <Badge variant="outline">{contract.sector}</Badge>
-                <Badge variant="outline">{contract.region}</Badge>
+                <Badge className="bg-[#215197] text-white">{contract.sector}</Badge>
+                <Badge className="bg-[#215197] text-white">{contract.region}</Badge>
               </div>
             </div>
 
