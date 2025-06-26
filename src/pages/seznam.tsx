@@ -182,6 +182,7 @@ const ContractListPage = () => {
               <PublicContractCard
                 key={contract.id}
                 contract={contract}
+                currentTab="completed"
                 onStatusChange={updateContractStatus}
                 onMove={moveContract}
                 onDeepSearch={handleDeepSearch}
