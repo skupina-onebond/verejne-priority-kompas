@@ -11,7 +11,7 @@ export const ScoreCircle = ({ score, size = 56 }: ScoreCircleProps) => {
   const circumference = 2 * Math.PI * radius;
   const progress = (score / 100) * circumference;
 
-  const color = score <= 40 ? '#22c55e' : score <= 70 ? '#f97316' : '#ef4444'; // green, orange, red
+  const color = score <= 40 ? '#22c55e' : score <= 70 ? '#f97316' : '#ef4444';
   const fontSize = size <= 32 ? '0.6rem' : '0.75rem';
   const strokeWidth = size <= 32 ? 4 : 6;
 
@@ -56,10 +56,10 @@ export const ScoreCircle = ({ score, size = 56 }: ScoreCircleProps) => {
         <Tooltip.Content
           side="top"
           align="center"
-          className="bg-[#215197] text-white text-xs px-2 py-1 rounded shadow-md z-50"
+          className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50"
         >
           Závažnost
-          <Tooltip.Arrow className="fill-[#215197]" />
+          <Tooltip.Arrow className="fill-white" />
         </Tooltip.Content>
       </Tooltip.Root>
     </Tooltip.Provider>
