@@ -120,7 +120,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
             onClick={() => onStatusChange(contract.id, contract.status === 'completed' ? 'active' : 'completed')}
             className={
               contract.status === 'completed'
-                ? "bg-green-600 hover:bg-green-700 text-white"
+                ? "bg-green-500 hover:bg-green-600 text-white"
                 : "text-green-600 hover:text-green-700"
             }
           >
