@@ -89,7 +89,7 @@ const ContractListPage = () => {
   className="min-h-screen"
   style={{
     fontFamily: 'Open Sans, sans-serif',
-    background: 'linear-gradient(to bottom, #bed5e6, #dceaf4, #f4f9fc, #ffffff)'
+    background: 'linear-gradient(to bottom, #d8e4ed, #eaf1f6, #f6fafc, #ffffff)'
   }}
 >   
   <div className="container mx-auto p-6 relative">
