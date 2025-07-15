@@ -1,4 +1,4 @@
-import { PublicContract } from '@/types/contract';
+/*import { PublicContract } from '@/types/contract';
 import autocont from '@/data/autocont.md?raw';
 import fakultniNemocnicePraha from '@/data/Fakultna nemocnice Praha.md?raw'
 
