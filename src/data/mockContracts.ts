@@ -14,6 +14,7 @@ export const mockContracts: PublicContract[] = [
   deadline: '2025-12-31',
   contracting_authority: 'Gymnázium, základní škola a mateřská škola Hello s.r.o.',
   administrator: 'RECTE.CZ, s.r.o.',
+  administratorAnalysis: 'Administrátorem veřejné zakázky byla společnost **RECTE.CZ, s.r.o.**, zastoupená Janou Kobělušovou. Firma má sídlo na adrese Nádražní 612/36, Ostrava – Moravská Ostrava (IČO 61972690). Společnost zajišťovala kompletní administraci zadávacího řízení pro zadavatele Gymnázium, základní škola a mateřská škola Hello s.r.o. V průběhu soutěže nebyly podány žádosti o vysvětlení zadávací dokumentace, řízení proběhlo s jediným účastníkem. Podle stanovisek CRR nebyla zjištěna formální pochybení v rámci přípravy a průběhu zadávacího řízení, přičemž komunikace s administrátorem nebyla předmětem samostatného zkoumání. Ve fázi kontroly byla zodpovědnost za kvalifikační omezení připsána zadavateli.',
   supplier: 'Stavos Stavba a.s.',
   supplierAnalysis: StavosStavba,
   sector: 'Stavebnictví',
