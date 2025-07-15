@@ -16,7 +16,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
-interface Document {
+interface DocumentFile {
   id: string;
   name: string;
   file_type: string;
@@ -28,15 +28,15 @@ interface Document {
 
 interface DocumentViewerProps {
   contractId: string;
-  documents?: Document[];
+  documents?: DocumentFile[];
 }
 
 export const DocumentViewer: React.FC<DocumentViewerProps> = ({ 
   contractId, 
   documents = [] 
 }) => {
-  const [selectedDocument, setSelectedDocument] = useState<Document | null>(null);
-  const [contractDocuments, setContractDocuments] = useState<Document[]>([]);
+  const [selectedDocument, setSelectedDocument] = useState<DocumentFile | null>(null);
+  const [contractDocuments, setContractDocuments] = useState<DocumentFile[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isUploading, setIsUploading] = useState(false);
   const { toast } = useToast();
@@ -85,15 +85,15 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     return <File className="h-4 w-4" />;
   };
 
-  const handleViewDocument = (document: Document) => {
-    setSelectedDocument(document);
+  const handleViewDocument = (doc: DocumentFile) => {
+    setSelectedDocument(doc);
   };
 
-  const handleDownload = async (document: Document) => {
+  const handleDownload = async (doc: DocumentFile) => {
     try {
       const { data, error } = await supabase.storage
         .from('contract-documents')
-        .download(document.file_path);
+        .download(doc.file_path);
 
       if (error) {
         console.error('Error downloading file:', error);
@@ -107,17 +107,17 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
 
       // Create download link
       const url = URL.createObjectURL(data);
-      const a = document.createElement('a');
+      const a = window.document.createElement('a');
       a.href = url;
-      a.download = document.name;
-      document.body.appendChild(a);
+      a.download = doc.name;
+      window.document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);
+      window.document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
       toast({
         title: "Úspech",
-        description: `Súbor ${document.name} bol stiahnutý`,
+        description: `Súbor ${doc.name} bol stiahnutý`,
       });
     } catch (error) {
       console.error('Download error:', error);
@@ -130,7 +130,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   };
 
   const handleUpload = () => {
-    const input = document.createElement('input');
+    const input = window.document.createElement('input');
     input.type = 'file';
     input.multiple = true;
     input.accept = '.pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png';
@@ -241,21 +241,21 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         </Card>
       ) : (
         <div className="grid gap-3">
-          {displayDocuments.map((document) => (
-            <Card key={document.id} className="hover:shadow-md transition-shadow">
+          {displayDocuments.map((doc) => (
+            <Card key={doc.id} className="hover:shadow-md transition-shadow">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3 flex-1 min-w-0">
                     <div className="text-[#215197]">
-                      {getFileIcon(document.file_type)}
+                      {getFileIcon(doc.file_type)}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-slate-900 truncate">
-                        {document.name}
+                        {doc.name}
                       </p>
                       <div className="flex items-center space-x-4 text-xs text-slate-500">
-                        <span>{formatFileSize(document.file_size)}</span>
-                        <span>{new Date(document.uploaded_at).toLocaleDateString('sk-SK')}</span>
+                        <span>{formatFileSize(doc.file_size)}</span>
+                        <span>{new Date(doc.uploaded_at).toLocaleDateString('sk-SK')}</span>
                       </div>
                     </div>
                   </div>
@@ -263,7 +263,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => handleViewDocument(document)}
+                      onClick={() => handleViewDocument(doc)}
                       className="text-[#215197] hover:bg-[#215197]/10"
                     >
                       <Eye className="h-4 w-4" />
@@ -271,7 +271,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => handleDownload(document)}
+                      onClick={() => handleDownload(doc)}
                       className="text-[#215197] hover:bg-[#215197]/10"
                     >
                       <Download className="h-4 w-4" />
