@@ -1,9 +1,12 @@
-
 export type ContractStatus = 'active' | 'hidden' | 'bookmarked' | 'completed';
 
-export type BarometerLevel = 'low' | 'medium' | 'high';
-
 export type ValueCategory = 'low' | 'medium' | 'high';
+
+export interface Finding {
+  severity: 'nízká' | 'střední' | 'vysoká';
+  category: string;
+  description: string;
+}
 
 export interface PublicContract {
   id: string;
@@ -15,13 +18,21 @@ export interface PublicContract {
   contracting_authority: string;
   sector: string;
   region: string;
-  barometer: any;
   status: ContractStatus;
-  additional_info?: string;
   created_at: string;
-  riskScore?: number;
-  analysisResult?: string;
-  analysis?: string;
+
+  // Voliteľné, ale užitočné
   supplier?: string;
   supplierAnalysis?: string;
+  additional_info?: string;
+  analysis?: string;
+  analysisResult?: string;
+
+  // 💡 Dôležité pre kontrolóra
+  findings?: Finding[];
+  recommendations?: string[];
+
+  // 🔻 Tieto polia nebudeme používať
+  // riskScore?: number;
+  // barometer?: any;
 }
