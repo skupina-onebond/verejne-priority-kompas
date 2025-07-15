@@ -243,10 +243,11 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 className="text-[#215197] hover:underline"
                 onClick={() => setShowSimilar((prev) => !prev)}
               >
-                🔍 Najít podobné zakázky
+                Najít podobné zakázky
               </Button>
             </div>
-
+            
+            
             <section className="mb-6">
               <DocumentViewer contractId={contract.id} />
             </section>
@@ -356,26 +357,31 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           )}
         </Accordion>
 
-        {showSimilar && filteredSimilarContracts?.length > 0 && (
-          <section className="mt-10">
-            <h3 className="text-base font-semibold text-slate-900 mb-4 uppercase tracking-wide">
-              Najít podobné zakázky
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {filteredSimilarContracts.map((c) => (
-                <div key={c.id} onClick={() => onOpenContractDetail?.(c)} className="cursor-pointer">
-                  <PublicContractCard
-                    contract={c}
-                    onStatusChange={() => {}}
-                    onMove={() => {}}
-                    onDeepSearch={onDeepSearch}
-                    mode="summary"
-                  />
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+        {showSimilar && (() => {
+          console.log("similarContracts", similarContracts);
+          return filteredSimilarContracts?.length > 0 ? (
+            <section className="mt-10">
+              <h3 className="text-base font-semibold text-slate-900 mb-4 uppercase tracking-wide">
+                Najít podobné zakázky
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {filteredSimilarContracts.map((c) => (
+                  <div key={c.id} onClick={() => onOpenContractDetail?.(c)} className="cursor-pointer">
+                    <PublicContractCard
+                      contract={c}
+                      onStatusChange={() => {}}
+                      onMove={() => {}}
+                      onDeepSearch={onDeepSearch}
+                      mode="summary"
+                    />
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : (
+            <p className="text-sm text-slate-500">Nebyly nalezeny žádné podobné zakázky.</p>
+          );
+        })()}
 
         {/* Loading overlay */}
         {showLoadingPopup && (
@@ -397,5 +403,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         )}
       </DialogContent>
     </Dialog>
+    
   );
 };
