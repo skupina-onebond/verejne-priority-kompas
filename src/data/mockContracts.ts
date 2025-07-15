@@ -13,6 +13,7 @@ export const mockContracts: PublicContract[] = [
   valueCategory: 'high',
   deadline: '2025-12-31',
   contracting_authority: 'Gymnázium, základní škola a mateřská škola Hello s.r.o.',
+  administrator: 'RECTE.CZ, s.r.o.',
   supplier: 'Stavos Stavba a.s.',
   supplierAnalysis: StavosStavba,
   sector: 'Stavebnictví',
