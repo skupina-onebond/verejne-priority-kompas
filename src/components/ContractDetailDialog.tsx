@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';import {
+
+import React, { useState, useRef, useEffect } from 'react';
+import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -15,10 +17,10 @@ import { Button } from "@/components/ui/button";
 import { Search, Printer } from "lucide-react";
 import { PublicContract } from "@/types/contract";
 import { RiskBarometerCircle } from "@/components/RiskBarometerCircle";
+import { DocumentViewer } from "@/components/DocumentViewer";
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
-
 
 interface ContractDetailDialogProps {
   contract: PublicContract;
@@ -63,7 +65,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
       currency: 'CZK'
     }).format(value);
   };
-
 
   useEffect(() => {
   if (analysisResult) setIsLoadingZadavatel(false);
@@ -112,7 +113,6 @@ useEffect(() => {
   printWindow.print();
 };
   
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
     <DialogContent ref={contentRef} className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
@@ -151,7 +151,6 @@ useEffect(() => {
   </div>
 </DialogHeader>
 
-
           <div className="flex flex-col md:flex-row gap-8 text-sm relative items-start">
             {/* LEFT */}
             <div className="flex-1">
@@ -172,6 +171,11 @@ useEffect(() => {
                 {contract.supplier && (
                   <p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>
                 )}
+              </section>
+
+              {/* Dokumenty sekcia */}
+              <section className="mb-6">
+                <DocumentViewer contractId={contract.id} />
               </section>
           
               <div className="flex gap-2 mt-2">
