@@ -1,6 +1,6 @@
 import { PublicContract } from '@/types/contract';
 import StavosStavba from '@/data/Stavos-Stavba.md?raw';
-import ohlaAnalysis from '@/data/Fakultna nemocnice Praha.md?raw'
+import ohlaAnalysis from '@/data/Ohla-ZS.md?raw'
 
 export const mockContracts: PublicContract[] = [
   {
