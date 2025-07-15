@@ -50,6 +50,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     setShowAnalysis(false);
     setShowAdminAnalysis(false);
     setShowLoadingPopup(null);
+    setIsLoadingZadavatel(false);
+    setIsLoadingDodavatel(false);
   }
 }, [isOpen]);
   
