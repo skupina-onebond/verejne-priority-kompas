@@ -287,3 +287,5 @@ export const mockContracts: PublicContract[] = [
   ]
 }
 ];
+
+*/
