@@ -43,6 +43,15 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const img = new Image();
   img.src = "/CRR-logo-gif.gif";
 }, []);
+
+  useEffect(() => {
+  if (isOpen) {
+    setShowSupplierAnalysis(false);
+    setShowAnalysis(false);
+    setShowAdminAnalysis(false);
+    setShowLoadingPopup(null);
+  }
+}, [isOpen]);
   
   const [showLoadingPopup, setShowLoadingPopup] = useState<"zadavatel" | "dodavatel" | null>(null);
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
@@ -271,7 +280,14 @@ useEffect(() => {
             </div>
           </div>
 
-       <Accordion type="multiple" defaultValue={["zadavatel", "dodavatel"]} className="mt-8 space-y-4">
+       <Accordion
+          type="multiple"
+          defaultValue={[
+            analysisResult ? "zadavatel" : "",
+            contract.supplierAnalysis ? "dodavatel" : "",
+            contract.administratorAnalysis ? "administrator" : ""
+          ].filter(Boolean)}
+        >
   {analysisResult && (
     <div ref={zadavatelRef}>
       <AccordionItem value="zadavatel">
