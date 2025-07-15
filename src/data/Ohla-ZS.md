@@ -1,67 +1,71 @@
-# Analýza zadavatele: Fakultní nemocnice Praha
+# Analýza zadavatele: OHLA ŽS, a.s. 
 
 ## ZÁKLADNÍ PROFIL
 
-**Fakultní nemocnice v Praze** je jedním z největších veřejných zdravotnických zařízení v České republice. Funguje jako příspěvková organizace Ministerstva zdravotnictví ČR a hraje klíčovou roli v poskytování specializované zdravotní péče, výzkumu a vzdělávání. Nemocnice má tisíce zaměstnanců a spravuje velký objem veřejných prostředků. Vystupuje jako **zadavatel veřejných zakázek** ve velkém rozsahu – od léčiv, přes IT až po stavební zakázky.
+OHLA ŽS, a.s. je velká česká stavební společnost (akciová společnost) se sídlem v Brně. Vznikla privatizací státního podniku Železniční stavitelství Brno a do obchodního rejstříku byla zapsána v roce 1992 ￼ ￼. Sídlo firmy je v Brně (městská část Slatina, Tuřanka 1554/115b, PSČ 62700) ￼. Hlavní oblastí činnosti je dopravní a inženýrské stavitelství – zejména výstavba a modernizace silnic, železnic a dalších velkých stavebních celků ￼. Firma patří mezi pět největších stavebních společností v ČR ￼.
+
+OHLA ŽS je součástí mezinárodní stavební skupiny OHLA (Obrascón Huarte Lain) se sídlem ve Španělsku. Do roku 2021 nesla brněnská firma název OHL ŽS a poté jej změnila v souladu se změnou jména mateřské společnosti ￼. Skutečnými majiteli (beneficial owners) jsou nepřímo fyzické osoby z vedení skupiny OHLA – rejstřík skutečných majitelů uvádí k listopadu 2024 např. mexické investory Julio Mauricio Martín Amodio Herrera a Luis Fernando Amodio Giombini (Amodio) spolu s dalšími členy vrcholného vedení skupiny ￼. Jediným ovládajícím vlastníkem je tedy zahraniční mateřská firma; OHLA ŽS sama řídí několik dceřiných společností v ČR ￼.
 
 ## RIZIKOVÉ FAKTORY
 
-- **Nedostatečná transparentnost** u některých zakázek (např. smlouvy bez ceny, dodatky mimo registr).
-- **Vysoký počet smluv** s opakujícími se dodavateli → riziko nízké soutěže.
-- **Několik medializovaných případů** možného plýtvání nebo nevýhodných nákupů (např. předražené přístroje).
-- **Chybějící systematická kontrola KPI** u větších zakázek.
-- **Některé smlouvy zpětně doplňované** do registru → riziko obcházení zákona.
+- Historie kartelové dohody: V roce 2016 se společnost (tehdy ještě OHL ŽS) zapojila do kartelu stavebních firem, které koordinovaly nabídky ve veřejných zakázkách v Jihočeském kraji a na Vysočině. Úřad pro ochranu hospodářské soutěže (ÚOHS) za to původně udělil OHL ŽS pokutu cca 53,5 mil. Kč ￼. Tato pokuta byla následně soudně zrušena kvůli procesním pochybením ￼, nicméně samotná účast firmy v kartelu představuje vážné reputační riziko a zvýšený dohled regulátorů v oblasti hospodářské soutěže.
+- Závislost na veřejných zakázkách: OHLA ŽS realizuje významnou část svých tržeb z veřejných zakázek. Podle Registru smluv uzavřela firma od účinnosti zákona o registru smluv již přes 2300 smluv se státem v souhrnné hodnotě kolem 540 miliard Kč ￼. Dále vystupuje jako dodavatel ve více než 500 veřejných výběrových řízeních dle Věstníku veřejných zakázek ￼. Tato silná orientace na státní zakázky znamená, že případné změny ve vládních investicích, rozpočtu nebo regulaci veřejného zadávání mohou výrazně ovlivnit podnikání firmy. Zároveň účast ve velkém množství tendrů zvyšuje riziko administrativních pochybení či dalších soutěžních incidentů.
+- Finanční výkonnost a stabilita: V letech 2015–2017 firma opakovaně hospodařila se ztrátou ￼, což indikovalo finanční potíže. Po interní reorganizaci se však od roku 2018 vrátila k ziskovému hospodaření ￼. Aktuálně vykazuje relativně stabilní finanční zdraví – v roce 2023 dosáhla tržeb ~10,7 mld. Kč a čistého zisku 348 mil. Kč (meziroční nárůst zisku o 65 %) ￼. Udržení ziskovosti do budoucna bude záviset na pokračujícím získávání zakázek a efektivním řízení nákladů v konkurenčním prostředí stavebnictví. Případné zpomalení investic do infrastruktury či růst cen vstupů představují pro firmu tržní riziko, byť vedení společnosti prokázalo schopnost zajistit dostatek zakázek i navzdory predikovanému útlumu odvětví ￼.
+- Vlastnická struktura (zahraniční vliv): Skutečnost, že firmu vlastní zahraniční mateřská společnost, nese dvojí efekt. Na jedné straně zahraniční vlastník (skupina OHLA) poskytuje silné kapitálové zázemí, know-how a mezinárodní zázemí pro velké projekty. Na druhé straně může představovat určité riziko spojené s rozhodováním mimo ČR – strategická a finanční rozhodnutí jsou činěna v zahraničí a zisky mohou být převáděny do mateřské firmy. Nicméně vlastnická struktura je transparentní a v registru skutečných majitelů jsou přímo evidováni odpovědní členové vedení skupiny ￼. Firma sama má několik dceřiných společností, ale žádné složité křížové vlastnictví není z veřejných zdrojů patrné.
+- Právní a sankční rizika: Podle dostupných informací nemá OHLA ŽS žádný záznam v Rejstříku trestů právnických osob (žádné pravomocné odsouzení společnosti za trestný čin) a nevyskytuje se na žádných sankčních seznamech Evropské unie, USA ani České republiky (kontrolováno k červenci 2025). Firma ani její vrcholní představitelé nefigurují na sankcích vůči režimům či terorismu, takže v tomto směru jde o standardní podnik bez dodatečné regulatorní zátěže. OHLA ŽS také nevystupuje jako dlužník v insolvenčním rejstříku – v insolvenčních řízeních se objevuje pouze v pozici věřitele (celkem 26 případů) a ani jako insolvenční správce nikoliv ￼. To naznačuje, že společnost nemá problémy s platební neschopností. Dle ARES má firma registrováno 20 aktivních živnostenských oprávnění a 0 evidovaných exekucí (nebyla zjištěna žádná veřejná informace o vykonávané exekuci vůči ní).
+- Transparentnost a compliance: Z hlediska transparentnosti vůči státu a dodržování povinností je profil firmy poměrně příznivý. V Registru smluv zveřejňuje OHLA ŽS všechny požadované smlouvy; Hlídač státu identifikoval jen minimální počet nesrovnalostí – např. pouze cca 0,95 % smluv firmy bylo uzavřeno bez uvedení ceny a asi 2,2 % smluv mělo cenu těsně pod zákonným limitem pro zveřejnění, což je hodnoceno jako nízké riziko možného obcházení zákona ￼ ￼. V roce 2025 byl zjištěn pouze 1 kontrakt s vážnějšími nedostatky při zveřejnění (neúplné údaje) ￼. Firma obdržela také několik veřejných dotací (41 dotací v úhrnu cca 39 mil. Kč) a účastní se dotačních programů, avšak nejde o dominantní zdroj jejích příjmů ￼. Dosud nebyly odhaleny žádné korupční kauzy spojené s aktuálním vedením společnosti v médiích ani databázích (Transparency International, Hlídač státu aj. nezaznamenaly u firmy jiné problémy než výše zmíněný kartel z minulosti).
+
 
 ## SOUHRN KLÍČOVÝCH UKAZATELŮ
 
-- **Právní forma:** Příspěvková organizace MZ ČR  
-- **Vznik:** státní subjekt  
-- **Zaměstnanci:** 5 000+  
-- **Roční rozpočet:** cca 10+ mld. Kč  
-- **Počet smluv v registru:** 4 000+  
-- **Rizikové smlouvy:** desítky bez ceny nebo zpětně vložené  
-- **Reputační kauzy:** nákupy přístrojů, dodatky k IT systémům  
-- **Sankce:** Žádné sankce, nevystupuje na sankčních seznamech  
+- Rok založení: 1992 (právní nástupce státního podniku Železniční stavitelství Brno) ￼.
+- Právní forma: Akciová společnost, soukromá firma (nespadá do vlastnictví státu) ￼.
+- Sídlo: Brno – Slatina, Tuřanka 1554/115b, PSČ 627 00 ￼ (datová schránka ID: xbicgdt ￼).
+- Hlavní činnost: Dopravní a inženýrské stavby – výstavba silnic a železnic (CZ-NACE 42.12) ￼; dále široké portfolio stavebních a montážních činností.
+- Vlastnická struktura: 100% vlastněna španělskou skupinou OHLA (Obrascón Huarte Lain) – původní název OHL ŽS změněn v říjnu 2021 dle mateřské firmy ￼.
+- Skuteční majitelé: 9 nepřímých skutečných majitelů zapsaných v evidenci (členové vedení skupiny OHLA, mj. Mauricio a Luis Amodio) ￼.
+- Dceřiné společnosti: 4 společnosti v ČR plně vlastněné OHLA ŽS (holdingová struktura) ￼.
+- Tržby (2023): ~10,7 mld. Kč (nárůst +5 % oproti 2022) ￼.
+- Čistý zisk (2023): 348 mil. Kč (nárůst +65 % oproti 2022) ￼.
+- Počet zaměstnanců: ~1364 (k konce roku 2022/2023) ￼.
+- Veřejné zakázky (dodavatel): účast v ~503 tendrech jako dodavatel ￼ (mezi největší zakázky patří železniční a silniční stavby).
+- Registr smluv: evidováno 2301 smluv uzavřených s veřejnými institucemi v celkové hodnotě cca 540 miliard Kč ￼.
+- Dotace: přijaté dotace celkem 41 (souhrnná hodnota ~38,8 mil. Kč) ￼.
+- Insolvence: 0× jako dlužník; 26× jako věřitel v insolvenčních řízeních ￼.
+- Sankční seznamy: 0 záznamů – společnost ani její vlastníci nefigurují na sankčních listinách EU, USA ani ČR (ověřeno k 7/2025).
+- Právní compliance: 0 záznamů v rejstříku trestů právnických osob (bez úředně zjištěné trestné činnosti firmy).
+- Transparentnost smluv: pouze ~1 % smluv bez ceny či s jinými nedostatky (nízké riziko dle Hlídače státu) ￼.
 
 ## DETAILNÍ ANALÝZA RIZIK
 
 ### **1. VLASTNICKÁ A ŘÍDICÍ STRUKTURA**
-- Přímá podřízenost Ministerstvu zdravotnictví ČR  
-- Generální ředitel jmenovaný státem  
-- Žádná soukromá vlastnická stopa  
+Společnost OHLA ŽS je plně integrována do nadnárodní skupiny OHLA, což znamená, že její strategické řízení a kapitálové zabezpečení je zajištěno mateřskou firmou ve Španělsku. V evidenci skutečných majitelů jsou jako nepřímí majitelé uvedeni členové vedení této mateřské společnosti (včetně bratří Amodio, hlavních akcionářů OHLA) ￼. Tato transparentnost v evidenci skutečných majitelů ukazuje, že vlastnická struktura je formálně v souladu se zákonnými požadavky. Z pohledu rizikovosti může zahraniční vlastník představovat potenciální riziko, pokud by se mateřská společnost dostala do finančních potíží nebo změnila své globální priority – to by se mohlo nepřímo promítnout i do české pobočky. Nicméně aktuálně OHLA (mateřská firma) prošla v posledních letech stabilizací a změnou značky, což svědčí o snaze konsolidovat a dále rozvíjet své aktivity ￼. Organizačně má OHLA ŽS několik dceřiných společností (4 firmy), které pravděpodobně zajišťují specializované činnosti v rámci skupiny (např. projektová příprava, developerské projekty apod.). Vzhledem ke své velikosti (přes 1300 zaměstnanců) má firma zavedené struktury řízení a dozorčí rady odpovídající akciové společnosti, což snižuje riziko zásadních manažerských selhání na úrovni řízení.
 
-### **2. SMLUVNÍ TRANSPARENTNOST**
-- Registr smluv obsahuje tisíce kontraktů  
-- Více případů neúplných záznamů – např. chybějící ceny  
-- Některé smlouvy doplňovány se zpožděním nebo upravované dodatky  
 
-### **3. VÝBĚR DODAVATELŮ**
-- Opakovaná spolupráce s úzkým okruhem dodavatelů  
-- Chybí dokumentace k některým výběrovým řízením  
-- Výběr často pod limitem → přímá zadání  
+### **2. VEŘEJNÉ ZAKÁZKY A REPUTAČNÍ RIZIKA**
+OHLA ŽS je výrazně napojena na veřejné zakázky v oblasti dopravní infrastruktury. Historicky realizovala stovky projektů pro stát, kraje či obce – například modernizace železničních tratí Sudoměřice–Votice a Adamov–Blansko, či stavební práce pro nemocnice a univerzitní areály ￼. Velký objem zakázek ze státního sektoru zajišťuje firmě stabilní přísun práce i v době, kdy soukromé investice mohou klesat. Zároveň ale generuje reputační riziko, neboť jakékoliv selhání v realizaci (např. výrazné prodražení, zpoždění staveb) by bylo pod veřejnou kontrolou. Firmě se zatím daří projekty dokončovat – v roce 2023 dokončila 79 projektů v hodnotě ~16,9 mld. Kč ￼ – avšak pověst může ovlivnit i její minulá účast v kartelu. Zapojení do kartelové dohody v roce 2016 (koordinace nabídek u 11 stavebních zakázek) vrhlo stín na reputaci firmy v oblasti férovosti soutěže ￼ ￼. Ačkoli pokuty ~53,5 mil. Kč pro OHL ŽS byly soudně anulovány ￼, případ poukázal na nutnost důsledného compliance programu. Od té doby firma deklarovala posilování interních pravidel pro soutěžení zakázek (dle veřejně dostupných prohlášení o etice podnikání). Hlídač státu navíc u aktuálních zakázek firmy vyhodnotil jen nízké riziko manipulací – pouze 2,21 % smluv mělo cenu těsně pod limitem pro povinný tendr ￼, což nenasvědčuje systematickému obcházení zákona. Do budoucna je však nezbytné, aby si OHLA ŽS udržela vysoký standard transparentnosti a vyvarovala se praktik jako je dělení zakázek či domluvené nabídky, jinak jí hrozí vyloučení z tendrů nebo další sankce. Reputačně také musí firma pečlivě řídit své subdodavatele, protože jako generální dodavatel nese odpovědnost i za kvalitu a integritu celého dodavatelského řetězce. 
 
-### **4. REPUTAČNÍ RIZIKA**
-- Případy medializované v Hlídači státu, Seznam Zprávách a Transparency International  
-- Riziko veřejné kritiky zejména u nákupů s nízkou soutěží  
+### **3. FINANČNÍ ZDRAVÍ A HOSPODAŘENÍ**
+inanční situace OHLA ŽS se v posledních letech výrazně zlepšila. Po ztrátových letech 2015–2017 firma provedla reorganizaci, která vedla ke snížení nákladů a efektivnějšímu zaměření na rentabilní projekty. Od roku 2018 je společnost zisková ￼. Poslední dostupné výsledky (za rok 2023) ukazují tržby kolem 10,7 mld. Kč a čistý zisk 348 mil. Kč ￼, což naznačuje solidní ziskovou marži v kontextu stavebnictví. Firma dokázala zvýšit zisk i v době, kdy se obecně očekával pokles stavební výroby – díky velkému objemu nasmlouvaných zakázek vstupovala do roku 2023 s robustní zásobou práce ￼. Marže ve stavebnictví jsou však obecně nízké a odvětví je vysoce konkurenční; budoucí zakázky mohou být ovlivněny růstem cen stavebních materiálů, mezd nebo zpomalením ekonomiky. Určitým rizikem je též konkurence ostatních velkých stavebních firem (Metrostav, Strabag, Skanska aj.), které soupeří o stejné infrastrukturní projekty – tlak na ceny může snižovat ziskovost. Na druhou stranu, jako součást nadnárodní skupiny má OHLA ŽS přístup k většímu kapitálu a případně může získávat i projekty v zahraničí (nebo know-how ze zahraničí). Z veřejných zdrojů nevyplývá, že by firma měla problémy s likviditou: nevyskytuje se jako neplatič vůči státním institucím a pohledávky vůči ní nejsou evidovány v registru neplatičů DPH. Naopak v insolvenčním rejstříku figuruje jen jako věřitel v případech úpadků menších subdodavatelů či obchodních partnerů ￼, což je pro velkou firmu běžné (chrání svá práva při bankrotech jiných). Celkově lze finanční stabilitu OHLA ŽS vnímat jako dobrou, s pozitivním výhledem krátkodobě díky plnému portfoliu zakázek. Je však nutné sledovat, zda firma udrží tempo získávání nových projektů – v roce 2024 došlo k poklesu objemu nových smluv oproti rekordnímu roku 2023 ￼, což může odrážet cykličnost veřejných zakázek.
 
-### **5. FINANČNÍ A SYSTÉMOVÉ KONTROLY**
-- Vnitřní audit funguje, ale ne vždy preventivně  
-- NKÚ upozorňoval na slabé nastavení pravidel VO  
+### **4. PRÁVNÍ A REGULATORNÍ ASPEKTY**
+Z hlediska právních rizik nevykazuje OHLA ŽS žádné zásadní negativní záznamy. Sankční riziko je nulové – firma ani její vlastníci nejsou uvedeni na mezinárodních sankčních seznamech (EU, OFAC USA ani českém národním seznamu) a nepůsobí v zemích, na které by se vztahovaly embarga. Právní compliance uvnitř ČR je také v pořádku: společnost nemá žádné záznamy o pravomocném odsouzení za trestný čin (rejstřík trestů právnických osob je čistý). Dále firma plní povinnosti ve vztahu k obchodnímu rejstříku – pravidelně zveřejňuje účetní závěrky ve Sbírce listin (jak dokládá ČTK s odkazem na výroční zprávu za rok 2023 ￼) a uvádí aktuální údaje o vedení i majitelích. V ARES/OR není zaznamenáno, že by byla v likvidaci nebo pod dohledem regulátorů. Insolvenční riziko společnosti je aktuálně velmi nízké, vzhledem k ziskovosti posledních let a podpoře mateřské skupiny; firma není v úpadku ani reorganizaci. Jedinou významnější právní kauzou zůstává zmíněný antimonopolní případ kartelu. Kromě něj se v médiích či databázích (Hlídač státu, Transparency Intl.) neobjevily jiné korupční aféry spojené s OHLA ŽS nebo jejími manažery. To naznačuje, že firma se (po uvedeném incidentu) vyhýbá protiprávnímu jednání. V oblasti bezpečnosti práce či ekologických standardů nejsou veřejně známy žádné závažné incidenty, což by svědčilo o dodržování zákonných norem i v těchto oblastech.
 
-## DOPORUČENÍ HODNOTITELI
+### **5. DALŠÍ FAKTORY**
+Zindex a hodnocení zadavatelů: Portál Zindex.cz hodnotí primárně zadavatele veřejných zakázek, nikoliv dodavatele. Z nepřímých údajů (např. statistiky měst) vyplývá, že OHLA ŽS patří k významným dodavatelům napříč regiony, ale žádné alarmující signály (jako extrémní počet zakázek s jediným uchazečem apod.) ve spojení s touto firmou nebyly zaznamenány. Hlídač státu řadí OHLA ŽS mezi firmy s velkým objemem obchodů se státem, avšak s poměrně dobrými výsledky transparentnosti, jak zmíněno výše. Transparency International ČR se ve svých reportech soustředí na systémová rizika ve stavebnictví – zmiňuje např. obecné problémy s korupcí u infrastrukturních zakázek – ale konkrétní kauzy spojené s touto firmou nezveřejnila. Datlab a další open-data projekty uvádějí statistiky veřejných tendrů, kde OHLA ŽS dosahuje zhruba průměrné úspěšnosti (firmy tohoto typu běžně vyhrávají okolo 15–30 % soutěží, což odpovídá konkurenčnímu trhu).
 
-1. **Prověřit všechny smlouvy s vybraným dodavatelem** – včetně dodatků a cen.  
-2. **Vyžadovat dokumentaci výběrového řízení** – výzva, hodnocení, zápis.  
-3. **Zhodnotit transparentnost zadávání** – cena, limity, soutěž.  
-4. **Prověřit reputační rizika** přes Hlídače státu a TI.  
-5. **Smluvní záruky** – v případě pochybností možnost vypovězení smlouvy.  
-6. **Monitoring plnění** – KPI, termíny, kontroly průběhu.  
+Bonita a úvěrové hodnocení: Komerční databáze (Cribis, Creditcheck) hodnotí OHLA ŽS jako subjekt s dobrou bonitou – ve veřejných registrech nejsou zmínky o neuhrazených závazcích vůči státu či věřitelům. Společnost má přidělené DIČ CZ46342796 a není vedena jako nespolehlivý plátce DPH ￼. To naznačuje plnění daňových povinností včas. Velikost firmy a zázemí skupiny také usnadňují přístup k bankovním úvěrům nebo vydávání dluhopisů, pokud by potřebovala financovat kapitálově náročné projekty – dle dostupných údajů emitovala v minulosti vlastní dluhopisy prostřednictvím pražské burzy cenných papírů ￼, což svědčí o určité důvěryhodnosti na finančním trhu. Vzhledem k současné bilanční sumě okolo 6 mld. Kč a stabilnímu vlastnímu kapitálu nepředstavuje předlužení aktuální hrozbu (poměr dluhu k aktivům zůstává v přiměřených mezích).
 
-## ZÁVĚR
+## **DOPORUČENÍ HODNOTITELI**
 
-**Fakultní nemocnice Praha** je veřejný zadavatel strategického významu. Navzdory formální bezúhonnosti a absenci sankcí je důležité u jejích zakázek věnovat zvýšenou pozornost **transparentnosti, výběru dodavatelů a reputačnímu pozadí**. Hodnotitel by měl klást důraz na prevenci rizik spojených s neefektivním vynakládáním veřejných prostředků.
 
+## **ZÁVĚR**
+
+Shrnutí rizikovosti: Společnost OHLA ŽS, a.s. se profiluje jako stabilizovaný a etablovaný lídr českého stavebnictví v oblasti dopravní infrastruktury. Na základě veřejně dostupných informací nevykazuje závažné akutní rizikové faktory, které by ji činily nedůvěryhodnou pro obchodní partnery nebo veřejný sektor. Firma má transparentní vlastnickou strukturu (známý zahraniční majitel) a plní si zákonné povinnosti vůči státním registrům ￼ ￼. Finanční situace je v současnosti zdravá – po překonání minulých ztrát se vrátila k růstu tržeb i zisků a dokázala pokračovat v růstu navzdory méně příznivým podmínkám na trhu stavebních prací ￼. Právní compliance je taktéž na dobré úrovni: společnost není spojována s korupčními kauzami, neřeší insolvenční problémy a není zatížena regulatorními sankcemi.
+
+Hlavní identifikované riziko pramení z oblasti veřejných zakázek – historická účast v kartelu stavebních firem (byť sankcionovaná pokuta byla zrušena) ukazuje na nutnost trvalé obezřetnosti v soutěžním chování ￼ ￼. Do budoucna bude reputace OHLA ŽS záviset na tom, jak transparentně a férově dokáže soutěžit o zakázky a realizovat je bez skandálů. Dále firma zůstává závislá na veřejných investicích do infrastruktury, což ji činí citlivou na výkyvy státního rozpočtu a politické priority. Tento sektorový risk je však do značné míry vyvážen její silnou pozicí na trhu a schopností získávat projekty i v konkurenčním prostředí.
+
+Celkově lze rizikovost OHLA ŽS hodnotit jako střední až nižší než průměr v kontextu odvětví: společnost má robustní zázemí a historii, většina sledovaných indikátorů (finančních, právních i transparentnostních) vyznívá pozitivně, avšak určité reputační riziko spojené s minulostí a vysokou mírou zapojení do veřejných zakázek přetrvává. Při průběžném monitoringu veřejných rejstříků a zdrojů nebyly zjištěny žádné nové negativní informace. Naopak, dostupná data vypovídají o firmě, která se po dřívějších problémech konsolidovala a aktuálně plní standardy dobré praxe v oboru stavebnictví ￼ ￼. Pro zachování nízké rizikovosti bude zásadní, aby OHLA ŽS i nadále dbala na etické řízení zakázek, finanční opatrnost a otevřenou komunikaci s veřejnými partnery.
 ---
 
-**Zdroje:** Registr smluv ČR, Hlídač státu, Transparency International, Seznam Zprávy, Ministerstvo zdravotnictví ČR, NKÚ, justice.cz  
-*Datum analýzy: 2025-06-23*
+**Zdroje:** Analýza vychází z informací v obchodním rejstříku a ARES ￼ ￼, Registru skutečných majitelů ￼, Registru smluv a Věstníku veřejných zakázek ￼ ￼, insolvenčního rejstříku ￼, jakož i z otevřených datových zdrojů (Hlídač státu, dotační registry) a zpráv ČTK ￼ ￼. Uvedené citace odkazují na konkrétní pasáže z těchto veřejných zdrojů, které dokládají jednotlivá tvrzení analýzy.
