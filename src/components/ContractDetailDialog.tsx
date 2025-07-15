@@ -48,6 +48,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [isLoadingZadavatel, setIsLoadingZadavatel] = useState(false);
   const [isLoadingDodavatel, setIsLoadingDodavatel] = useState(false);
   const [isLoadingAdministrator, setIsLoadingAdministrator] = useState(false);
+  const [showSimilar, setShowSimilar] = useState(false);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
@@ -122,6 +123,11 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     printWindow.print();
   };
 
+  // Compute filtered similar contracts by sector (excluding self)
+  const filteredSimilarContracts = similarContracts?.filter(
+    (c) => c.id !== contract.id && c.sector === contract.sector
+  );
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent ref={contentRef} className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
@@ -174,7 +180,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               {contract.supplier && (<p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>)}
             </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6">
               <Button
                 variant="outline"
                 size="sm"
@@ -230,17 +236,14 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   Prověřit dodavatele<Search className="h-4 w-4 ml-1" />
                 </Button>
               )}
+
               <Button
                 variant="ghost"
                 size="sm"
-                className="col-span-2 text-[#215197] hover:underline"
-                onClick={() => {
-                  if (!similarContracts || similarContracts.length === 0) {
-                    alert("Pro tuto zakázku zatím nejsou dostupné podobné zakázky.");
-                  }
-                }}
+                className="text-[#215197] hover:underline"
+                onClick={() => setShowSimilar((prev) => !prev)}
               >
-                Najít podobné zakázky
+                🔍 Najít podobné zakázky
               </Button>
             </div>
 
@@ -353,13 +356,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           )}
         </Accordion>
 
-        {similarContracts?.length > 0 && (
+        {showSimilar && filteredSimilarContracts?.length > 0 && (
           <section className="mt-10">
             <h3 className="text-base font-semibold text-slate-900 mb-4 uppercase tracking-wide">
               Najít podobné zakázky
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {similarContracts.map((c) => (
+              {filteredSimilarContracts.map((c) => (
                 <div key={c.id} onClick={() => onOpenContractDetail?.(c)} className="cursor-pointer">
                   <PublicContractCard
                     contract={c}
