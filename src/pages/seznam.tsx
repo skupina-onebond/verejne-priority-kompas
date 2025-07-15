@@ -57,10 +57,10 @@ const ContractListPage = () => {
     const sorted = [...contracts];
 
     switch (filters.sortBy) {
-      case 'risk_high':
+      /*case 'risk_high':
         return sorted.sort((a, b) => b.riskScore - a.riskScore);
       case 'risk_low':
-        return sorted.sort((a, b) => a.riskScore - b.riskScore);
+        return sorted.sort((a, b) => a.riskScore - b.riskScore);*/
       case 'value_high':
         return sorted.sort((a, b) => b.value - a.value);
       case 'value_low':
