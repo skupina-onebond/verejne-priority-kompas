@@ -23,6 +23,7 @@ export interface PublicContract {
 
   // Voliteľné, ale užitočné
   administrator?: string;
+  administratorAnalysis?: string;
   supplier?: string;
   supplierAnalysis?: string;
   additional_info?: string;
