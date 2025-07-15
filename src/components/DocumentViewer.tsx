@@ -45,6 +45,12 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     fetchDocuments();
   }, [contractId]);
 
+  // Refresh documents when the component mounts or contractId changes
+  useEffect(() => {
+    const intervalId = setInterval(fetchDocuments, 30000); // Refresh every 30 seconds
+    return () => clearInterval(intervalId);
+  }, [contractId]);
+
   const fetchDocuments = async () => {
     try {
       const { data, error } = await supabase
