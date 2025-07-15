@@ -1,5 +1,5 @@
 import { PublicContract } from '@/types/contract';
-import Stavos-Stavba from '@/data/Stavos-Stavba.md?raw';
+import StavosStavba from '@/data/Stavos-Stavba.md?raw';
 import fakultniNemocnicePraha from '@/data/Fakultna nemocnice Praha.md?raw'
 
 
@@ -14,7 +14,7 @@ export const mockContracts: PublicContract[] = [
   deadline: '2025-12-31',
   contracting_authority: 'Gymnázium, základní škola a mateřská škola Hello s.r.o.',
   supplier: 'Stavos Stavba a.s.',
-  supplierAnalysis: Stavos-Stavba,
+  supplierAnalysis: StavosStavba,
   sector: 'Stavebnictví',
   region: 'Moravskoslezský kraj',
   status: 'active',
