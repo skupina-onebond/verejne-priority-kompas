@@ -52,10 +52,12 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     setShowLoadingPopup(null);
     setIsLoadingZadavatel(false);
     setIsLoadingDodavatel(false);
+    setIsLoadingAdministrator(false);
   }
 }, [isOpen]);
   
   const [showLoadingPopup, setShowLoadingPopup] = useState<"zadavatel" | "dodavatel" | null>(null);
+  
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
   const [showAnalysis, setShowAnalysis] = useState(false);
   const [showAdminAnalysis, setShowAdminAnalysis] = useState(false);
@@ -63,6 +65,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
   const [isLoadingZadavatel, setIsLoadingZadavatel] = useState(false);
   const [isLoadingDodavatel, setIsLoadingDodavatel] = useState(false);
+  const [isLoadingAdministrator, setIsLoadingAdministrator] = useState(false);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
@@ -217,9 +220,11 @@ useEffect(() => {
                     className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
                     onClick={() => {
                       setShowLoadingPopup("administrator");
+                      setIsLoadingAdministrator(true);
                       setTimeout(() => {
                         setShowLoadingPopup(null);
                         setShowAdminAnalysis(true);
+                        setIsLoadingAdministrator(false);
                         scrollTo(adminRef);
                         onDeepSearch(contract.administrator!);
                       }, 7000);
@@ -348,13 +353,20 @@ useEffect(() => {
         Analýza administrátora zakázky
       </AccordionTrigger>
       <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          rehypePlugins={[rehypeRaw]}
-          className="prose prose-sm max-w-none text-slate-900 leading-[1.2] [&>ul]:list-disc [&>ul]:ml-6 [&>ul]:space-y-[0.3rem] [&>ol]:list-decimal [&>ol]:ml-6 [&>ol]:space-y-[0.3rem]"
-        >
-          {contract.administratorAnalysis}
-        </ReactMarkdown>
+{isLoadingAdministrator ? (
+  <div className="flex flex-col items-center justify-center py-4">
+    <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-2" />
+    <p className="text-sm text-slate-500">Načítám analýzu administrátora…</p>
+  </div>
+) : (
+  <ReactMarkdown
+    remarkPlugins={[remarkGfm]}
+    rehypePlugins={[rehypeRaw]}
+    className="prose prose-sm max-w-none text-slate-900 leading-[1.2] [&>ul]:list-disc [&>ul]:ml-6 [&>ul]:space-y-[0.3rem] [&>ol]:list-decimal [&>ol]:ml-6 [&>ol]:space-y-[0.3rem]"
+  >
+    {contract.administratorAnalysis}
+  </ReactMarkdown>
+)}  
       </AccordionContent>
     </AccordionItem>
   </div>
