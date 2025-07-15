@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -188,7 +189,6 @@ const ContractListPage = () => {
               <PublicContractCard
                 key={contract.id}
                 contract={contract}
-                currentTab="completed"
                 onStatusChange={updateContractStatus}
                 onMove={moveContract}
                 onDeepSearch={handleDeepSearch}

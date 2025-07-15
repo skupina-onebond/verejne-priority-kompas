@@ -1,4 +1,5 @@
 
+
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Dialog,
@@ -16,7 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Search, Printer } from "lucide-react";
 import { PublicContract } from "@/types/contract";
-import { RiskBarometerCircle } from "@/components/RiskBarometerCircle";
+// import { RiskBarometerCircle } from "@/components/RiskBarometerCircle";
 import { DocumentViewer } from "@/components/DocumentViewer";
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -130,7 +131,7 @@ useEffect(() => {
     </div>
 
     {/* Pravá časť: RiskBarometer */}
-    {contract.riskScore !== undefined && (
+    {/* {contract.riskScore !== undefined && (
       <div className="ml-4">
         <RiskBarometerCircle score={contract.riskScore} size={90} />
       </div>

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, Bookmark, Check, FileText, ArrowUp, ArrowDown } from "lucide-react";
 import { PublicContract, ContractStatus } from "@/types/contract";
 import { ContractDetailDialog } from "./ContractDetailDialog";
-import { ScoreCircle } from '@/components/ScoreCircle';
+// import { ScoreCircle } from '@/components/ScoreCircle';
 
 interface PublicContractCardProps {
   contract: PublicContract;
