@@ -7,7 +7,7 @@ import {
   FileText, 
   Download, 
   Eye, 
-  Upload, 
+  // Upload, // Commented out for now
   File,
   FileSpreadsheet,
   Image,
@@ -38,7 +38,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   const [selectedDocument, setSelectedDocument] = useState<DocumentFile | null>(null);
   const [contractDocuments, setContractDocuments] = useState<DocumentFile[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isUploading, setIsUploading] = useState(false);
+  // const [isUploading, setIsUploading] = useState(false); // Commented out for now
   const { toast } = useToast();
 
   useEffect(() => {
@@ -129,6 +129,10 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     }
   };
 
+  /* 
+  // UPLOAD FUNCTIONALITY - COMMENTED OUT FOR NOW
+  // Will be used by administrators to upload documents directly to Supabase
+  
   const handleUpload = () => {
     const input = window.document.createElement('input');
     input.type = 'file';
@@ -187,13 +191,14 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         file_path: fileName,
         file_type: file.type,
         file_size: file.size,
-        uploaded_by: 'current_user' // You can replace this with actual user info
+        uploaded_by: 'admin' 
       });
 
     if (dbError) {
       throw dbError;
     }
   };
+  */
 
   const displayDocuments = contractDocuments.length > 0 ? contractDocuments : documents;
 
@@ -220,6 +225,8 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         <h3 className="text-base font-semibold text-slate-900 uppercase tracking-wide">
           Dokumenty ({displayDocuments.length})
         </h3>
+        {/* 
+        // UPLOAD BUTTON - COMMENTED OUT FOR NOW
         <Button
           variant="outline"
           size="sm"
@@ -230,6 +237,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
           <Upload className="h-4 w-4 mr-2" />
           {isUploading ? 'Nahrávam...' : 'Nahrať dokument'}
         </Button>
+        */}
       </div>
 
       {displayDocuments.length === 0 ? (
@@ -237,6 +245,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
           <CardContent className="p-6 text-center">
             <FileText className="h-12 w-12 mx-auto text-gray-400 mb-3" />
             <p className="text-gray-500">Žiadne dokumenty nie sú k dispozícii</p>
+            <p className="text-sm text-gray-400 mt-1">Dokumenty budú nahrané administrátorom</p>
           </CardContent>
         </Card>
       ) : (
