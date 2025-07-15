@@ -134,7 +134,7 @@ useEffect(() => {
       <div className="ml-4">
         <RiskBarometerCircle score={contract.riskScore} size={90} />
       </div>
-    )}
+    )} */}
 
     {/* Tlačidlo Tisk s pevnou pozíciou */}
     <div className="absolute right-[20%] top-0 mt-1">
