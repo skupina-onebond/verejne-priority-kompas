@@ -14,7 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      documents: {
+        Row: {
+          contract_id: string
+          file_path: string
+          file_size: number
+          file_type: string
+          id: string
+          name: string
+          uploaded_at: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          contract_id: string
+          file_path: string
+          file_size: number
+          file_type: string
+          id?: string
+          name: string
+          uploaded_at?: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          contract_id?: string
+          file_path?: string
+          file_size?: number
+          file_type?: string
+          id?: string
+          name?: string
+          uploaded_at?: string
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
