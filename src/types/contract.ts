@@ -22,6 +22,7 @@ export interface PublicContract {
   created_at: string;
 
   // Voliteľné, ale užitočné
+  administrator?: string;
   supplier?: string;
   supplierAnalysis?: string;
   additional_info?: string;
