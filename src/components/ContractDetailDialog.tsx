@@ -196,6 +196,19 @@ useEffect(() => {
                 Prověřit zadavatele<Search className="h-4 w-4 ml-1" />
             </Button>
 
+                {contract.administrator && (
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                    onClick={() => {
+                      onDeepSearch(contract.administrator!);
+                    }}
+                  >
+                    Prověřit administrátora VZ<Search className="h-4 w-4 ml-1" />
+                  </Button>
+                )}
+
               {contract.supplier && (
                 <Button
                   variant="default"
