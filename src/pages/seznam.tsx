@@ -14,7 +14,7 @@ const ContractListPage = () => {
     sector: '',
     region: '',
     valueMin: 0,
-    valueMax: 100000000,
+    valueMax: Infinity,
     sortBy: ''
   });
 
