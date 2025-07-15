@@ -20,6 +20,7 @@ import { DocumentViewer } from "@/components/DocumentViewer";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import { PublicContractCard } from "./PublicContractCard";
 
 interface ContractDetailDialogProps {
   contract: PublicContract;
@@ -27,6 +28,8 @@ interface ContractDetailDialogProps {
   onClose: () => void;
   onDeepSearch: (subjectName: string) => void;
   analysisResult?: string;
+  similarContracts?: PublicContract[];
+  onOpenContractDetail?: (contract: PublicContract) => void;
 }
 
 export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
@@ -34,7 +37,9 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   isOpen,
   onClose,
   onDeepSearch,
-  analysisResult
+  analysisResult,
+  similarContracts,
+  onOpenContractDetail
 }) => {
   const [showLoadingPopup, setShowLoadingPopup] = useState<"zadavatel" | "dodavatel" | "administrator" | null>(null);
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
@@ -335,6 +340,27 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             </div>
           )}
         </Accordion>
+
+        {similarContracts?.length > 0 && (
+          <section className="mt-10">
+            <h3 className="text-base font-semibold text-slate-900 mb-4 uppercase tracking-wide">
+              Najít podobné zakázky
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {similarContracts.map((c) => (
+                <div key={c.id} onClick={() => onOpenContractDetail?.(c)} className="cursor-pointer">
+                  <PublicContractCard
+                    contract={c}
+                    onStatusChange={() => {}}
+                    onMove={() => {}}
+                    onDeepSearch={onDeepSearch}
+                    mode="summary"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Loading overlay */}
         {showLoadingPopup && (
