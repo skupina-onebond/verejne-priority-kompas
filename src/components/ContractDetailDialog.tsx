@@ -169,9 +169,8 @@ useEffect(() => {
                 <p><span className="font-medium">Region:</span> {contract.region}</p>
                 <p><span className="font-medium">Termín podání:</span> {new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
                 <p><span className="font-medium">Zadavatel:</span> {contract.contracting_authority}</p>
-                {contract.supplier && (
-                  <p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>
-                )}
+                {contract.administrator && (<p><span className="font-medium">Administrátor zakázky:</span> {contract.administrator}</p>)}
+                {contract.supplier && ( <p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p> )}
               </section>
 
               {/* Dokumenty sekcia */}
