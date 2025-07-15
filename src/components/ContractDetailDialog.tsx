@@ -142,6 +142,10 @@ useEffect(() => {
       <DialogTitle className="text-2xl font-bold text-slate-900 mb-3 break-words max-w-[80%]">
         {contract.title}
       </DialogTitle>
+      <DialogDescription className="sr-only">
+        Tento dialog zobrazuje detail zakázky, informace o zadavateli, dodavateli a administrátorovi.
+      </DialogDescription>
+      
       <div className="flex gap-2 mb-2 flex-wrap">
         <Badge>{contract.sector}</Badge>
         <Badge>{contract.region}</Badge>
