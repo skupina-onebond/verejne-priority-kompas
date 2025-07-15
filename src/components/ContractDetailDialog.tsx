@@ -230,6 +230,18 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   Prověřit dodavatele<Search className="h-4 w-4 ml-1" />
                 </Button>
               )}
+              <Button
+                variant="ghost"
+                size="sm"
+                className="col-span-2 text-[#215197] hover:underline"
+                onClick={() => {
+                  if (!similarContracts || similarContracts.length === 0) {
+                    alert("Pro tuto zakázku zatím nejsou dostupné podobné zakázky.");
+                  }
+                }}
+              >
+                Najít podobné zakázky
+              </Button>
             </div>
 
             <section className="mb-6">
