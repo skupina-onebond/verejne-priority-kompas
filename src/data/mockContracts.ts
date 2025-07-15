@@ -32,7 +32,7 @@ export const mockContracts: PublicContract[] = [
     'V budoucích zakázkách umožnit prokazování kvalifikace i prostřednictvím jiných osob (§83 ZZVZ).',
     'Zvážit změnu systému fakturace na základě postupně provedených prací, aby se eliminovalo riziko diskriminace dodavatelů.'
   ]
-}
+},
   {
     id: '00006628',
     title: 'Modernizace a přístavba Základní školy Brno, Antonínská',
