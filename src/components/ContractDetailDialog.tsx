@@ -47,12 +47,15 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [showLoadingPopup, setShowLoadingPopup] = useState<"zadavatel" | "dodavatel" | null>(null);
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
   const [showAnalysis, setShowAnalysis] = useState(false);
+  const [showAdminAnalysis, setShowAdminAnalysis] = useState(false);
+
 
   const [isLoadingZadavatel, setIsLoadingZadavatel] = useState(false);
   const [isLoadingDodavatel, setIsLoadingDodavatel] = useState(false);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
+  const adminRef = useRef<HTMLDivElement>(null);
 
   const scrollTo = (ref: React.RefObject<HTMLElement>) => {
     setTimeout(() => {
@@ -202,7 +205,13 @@ useEffect(() => {
                     size="sm"
                     className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
                     onClick={() => {
-                      onDeepSearch(contract.administrator!);
+                      setShowLoadingPopup("administrator");
+                      setTimeout(() => {
+                        setShowLoadingPopup(null);
+                        setShowAdminAnalysis(true);
+                        scrollTo(adminRef);
+                        onDeepSearch(contract.administrator!);
+                      }, 7000);
                     }}
                   >
                     Prověřit administrátora VZ<Search className="h-4 w-4 ml-1" />
@@ -314,6 +323,25 @@ useEffect(() => {
       </AccordionItem>
     </div>
   )}
+{contract.administratorAnalysis && showAdminAnalysis && (
+  <div ref={adminRef}>
+    <AccordionItem value="administrator">
+      <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+        Analýza administrátora zakázky
+      </AccordionTrigger>
+      <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+          className="prose prose-sm max-w-none text-slate-900 leading-[1.2] [&>ul]:list-disc [&>ul]:ml-6 [&>ul]:space-y-[0.3rem] [&>ol]:list-decimal [&>ol]:ml-6 [&>ol]:space-y-[0.3rem]"
+        >
+          {contract.administratorAnalysis}
+        </ReactMarkdown>
+      </AccordionContent>
+    </AccordionItem>
+  </div>
+)}
+         
 </Accordion>
       </DialogContent>
   {showLoadingPopup && (
@@ -322,8 +350,13 @@ useEffect(() => {
     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full bg-white/80 backdrop-blur-sm">
       <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
       <p className="text-sm text-slate-600">
-        Načítám analýzu {showLoadingPopup === "zadavatel" ? "zadavatele" : "dodavatele"}…
-      </p>
+          Načítám analýzu{" "}
+          {showLoadingPopup === "zadavatel"
+            ? "zadavatele"
+            : showLoadingPopup === "dodavatel"
+            ? "dodavatele"
+            : "administrátora"}…
+        </p>
     </div>
   </div>
 )}
