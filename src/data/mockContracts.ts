@@ -1,6 +1,6 @@
 import { PublicContract } from '@/types/contract';
 import StavosStavba from '@/data/Stavos-Stavba.md?raw';
-import ohlaAnalysis from '@/data/Ohla-ZS.md?raw'
+import OhlaZS from '@/data/Ohla-ZS.md?raw'
 
 export const mockContracts: PublicContract[] = [
   {
@@ -46,7 +46,7 @@ export const mockContracts: PublicContract[] = [
     administratorAnalysis:
       'Administrátorem veřejné zakázky byla společnost **CENTRAL EUROPE FINANCE s.r.o.** (IČO: 25857186). Firma zajišťovala kompletní administraci zadávacího řízení. Podle stanovisek CRR byla část odpovědnosti za pochybení připsána právě administrátorovi, zejména při nastavení nesprávných kvalifikačních podmínek a při nejasné struktuře smluvních cen. Společnost má zkušenosti s veřejnými zakázkami, ale ve fázi kontroly byly zjištěny chyby, které mohou být částečně způsobeny nedostatečnou supervizí při přípravě zadání.',
     supplier: 'OHLA ŽS, a.s.',
-    supplierAnalysis: ohlaAnalysis,
+    supplierAnalysis: OhlaZS,
     sector: 'Stavebnictví',
     region: 'Jihomoravský kraj',
     status: 'active',
