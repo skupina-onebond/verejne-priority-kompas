@@ -579,8 +579,8 @@ Děkujeme za Vaše vyjádření.`;
             )}
           </Accordion>
 
-          {showLoadingPopup && (
-            <div className="fixed inset-0 z-[10050] pointer-events-auto">
+          {showLoadingPopup && !showAnalysis && !showAdminAnalysis && !showSupplierAnalysis && (
+            <div className="absolute inset-0 z-[10050] pointer-events-auto">
               <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
