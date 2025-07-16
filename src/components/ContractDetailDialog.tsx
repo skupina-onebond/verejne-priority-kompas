@@ -339,9 +339,9 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               {/* Move the "Navrhnout dotaz na zadavatele" button here */}
               <div className="flex justify-center mt-4">
                 <Button
-                  variant="secondary"
+                  variant="default"
                   size="sm"
-                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[220px]"
+                  className="bg-[#215197] hover:bg-[#1c467f] text-white min-w-[180px]"
                   onClick={() => {
                     setShowGeneratedQuery((prev) => !prev);
                     setTimeout(() => scrollTo(generatedQueryRef), 100);
@@ -377,6 +377,29 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   Děkujeme za Vaše vyjádření.
                 </p>
               </div>
+              <div className="flex justify-end mt-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                  onClick={() => {
+                    const emailText = `Vážený zadavateli,
+
+v rámci kontroly veřejné zakázky „Školní družina a školní klub ZŠ Hello, učebna informatiky, sanace spodní stavby“ bylo zjištěno, že technická kvalifikace byla nastavena způsobem, který vylučoval možnost jejího prokázání prostřednictvím jiných osob. Zakázku získala jediná firma bez konkurence.
+
+V této souvislosti se na Vás obracíme s dotazem:
+„Z jakého důvodu jste ve veřejné zakázce vyloučili možnost, aby dodavatelé prokazovali kvalifikaci prostřednictvím jiných subjektů? Byla zvažována možnost, že tím může být omezena účast více dodavatelů?“
+
+Děkujeme za Vaše vyjádření.`;
+
+                    navigator.clipboard.writeText(emailText).then(() => {
+                      alert("Text e-mailu byl zkopírován do schránky.");
+                    });
+                  }}
+                >
+                  Zkopírovat text e-mailu
+                </Button>
+              </div>
             </section>
           )}
 
@@ -395,6 +418,29 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   „Jak byly nastaveny interní kontrolní mechanismy pro posouzení kvalifikačních požadavků a navýšení ceny víceprací? Jaká byla role administrátora při tvorbě zadávací dokumentace?“<br /><br />
                   Děkujeme za Vaše vyjádření.
                 </p>
+              </div>
+              <div className="flex justify-end mt-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                  onClick={() => {
+                    const emailText = `Vážený zadavateli,
+
+v rámci kontroly veřejné zakázky „Modernizace a přístavba Základní školy Brno, Antonínská“ bylo zjištěno, že kvalifikační podmínky nebyly jasně definovány a došlo také k navýšení ceny víceprací bez odpovídající kontroly.
+
+V této souvislosti se na Vás obracíme s dotazem:
+„Jak byly nastaveny interní kontrolní mechanismy pro posouzení kvalifikačních požadavků a navýšení ceny víceprací? Jaká byla role administrátora při tvorbě zadávací dokumentace?“
+
+Děkujeme za Vaše vyjádření.`;
+
+                    navigator.clipboard.writeText(emailText).then(() => {
+                      alert("Text e-mailu byl zkopírován do schránky.");
+                    });
+                  }}
+                >
+                  Zkopírovat text e-mailu
+                </Button>
               </div>
             </section>
           )}
