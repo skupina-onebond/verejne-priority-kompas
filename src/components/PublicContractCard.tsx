@@ -13,7 +13,7 @@ interface PublicContractCardProps {
   onStatusChange: (id: string, status: ContractStatus) => void;
   onMove: (id: string, direction: "up" | "down") => void;
   onDeepSearch: (subjectName: string) => void;
-  mode?: 'default' | 'summary';
+  mode?: string;
   similarContracts?: PublicContract[];
 }
 
