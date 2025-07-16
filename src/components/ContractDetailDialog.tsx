@@ -217,16 +217,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 {/* Skupina 4 akčních buttonů ve speciálním boxu */}
                 <div className="w-full flex flex-wrap items-center justify-start gap-3 border border-blue-200 bg-blue-50 p-4 rounded-md mb-6">
                   <Button
-                    variant="default"
-                    size="sm"
-                    className="bg-[#215197] hover:bg-[#1c467f] text-white min-w-[180px]"
-                    onClick={() => {
-                      setSimilarContractsOpen((prev) => !prev);
-                    }}
-                  >
-                    Najít podobné zakázky
-                  </Button>
-                  <Button
                     variant="outline"
                     size="sm"
                     className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
