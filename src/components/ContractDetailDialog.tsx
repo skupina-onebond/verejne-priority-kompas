@@ -403,87 +403,95 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           ].filter(Boolean)}
         >
           {showGeneratedQuery && contract.id === '00001079' && (
-            <section className="section-spacing" ref={generatedQueryRef}>
-              <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">
-                Návrh dotazu na zadavatele
-              </h3>
-              <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
-                <p><strong>Předmět:</strong> Dotaz k veřejné zakázce č. 00001079 – kvalifikační podmínky</p>
-                <p><strong>Text e-mailu:</strong></p>
-                <p>
-                  Vážený zadavateli,<br /><br />
-                  v rámci kontroly veřejné zakázky <em>„Školní družina a školní klub ZŠ Hello, učebna informatiky, sanace spodní stavby“</em> bylo zjištěno, že technická kvalifikace byla nastavena způsobem, který vylučoval možnost jejího prokázání prostřednictvím jiných osob. Zakázku získala jediná firma bez konkurence.<br /><br />
-                  V této souvislosti se na Vás obracíme s dotazem:<br />
-                  „Z jakého důvodu jste ve veřejné zakázce vyloučili možnost, aby dodavatelé prokazovali kvalifikaci prostřednictvím jiných subjektů? Byla zvažována možnost, že tím může být omezena účast více dodavatelů?“<br /><br />
-                  Děkujeme za Vaše vyjádření.
-                </p>
-              </div>
-              <div className="flex justify-end mt-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-                  onClick={() => {
-                    const emailText = `Vážený zadavateli,
+            <div ref={generatedQueryRef}>
+              <AccordionItem value="generated-query-00001079">
+                <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                  Návrh dotazu na zadavatele
+                </AccordionTrigger>
+                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed">
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+                    <p><strong>Předmět:</strong> Dotaz k veřejné zakázce č. 00001079 – kvalifikační podmínky</p>
+                    <p><strong>Text e-mailu:</strong></p>
+                    <p>
+                      Vážený zadavateli,<br /><br />
+                      v rámci kontroly veřejné zakázky <em>„Školní družina a školní klub ZŠ Hello, učebna informatiky, sanace spodní stavby"</em> bylo zjištěno, že technická kvalifikace byla nastavena způsobem, který vylučoval možnost jejího prokázání prostřednictvím jiných osob. Zakázku získala jediná firma bez konkurence.<br /><br />
+                      V této souvislosti se na Vás obracíme s dotazem:<br />
+                      „Z jakého důvodu jste ve veřejné zakázce vyloučili možnost, aby dodavatelé prokazovali kvalifikaci prostřednictvím jiných subjektů? Byla zvažována možnost, že tím může být omezena účast více dodavatelů?"<br /><br />
+                      Děkujeme za Vaše vyjádření.
+                    </p>
+                  </div>
+                  <div className="flex justify-end mt-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                      onClick={() => {
+                        const emailText = `Vážený zadavateli,
 
-v rámci kontroly veřejné zakázky „Školní družina a školní klub ZŠ Hello, učebna informatiky, sanace spodní stavby“ bylo zjištěno, že technická kvalifikace byla nastavena způsobem, který vylučoval možnost jejího prokázání prostřednictvím jiných osob. Zakázku získala jediná firma bez konkurence.
+v rámci kontroly veřejné zakázky „Školní družina a školní klub ZŠ Hello, učebna informatiky, sanace spodní stavby" bylo zjištěno, že technická kvalifikace byla nastavena způsobem, který vylučoval možnost jejího prokázání prostřednictvím jiných osob. Zakázku získala jediná firma bez konkurence.
 
 V této souvislosti se na Vás obracíme s dotazem:
-„Z jakého důvodu jste ve veřejné zakázce vyloučili možnost, aby dodavatelé prokazovali kvalifikaci prostřednictvím jiných subjektů? Byla zvažována možnost, že tím může být omezena účast více dodavatelů?“
+„Z jakého důvodu jste ve veřejné zakázce vyloučili možnost, aby dodavatelé prokazovali kvalifikaci prostřednictvím jiných subjektů? Byla zvažována možnost, že tím může být omezena účast více dodavatelů?"
 
 Děkujeme za Vaše vyjádření.`;
 
-                    navigator.clipboard.writeText(emailText).then(() => {
-                      alert("Text e-mailu byl zkopírován do schránky.");
-                    });
-                  }}
-                >
-                  Zkopírovat text e-mailu
-                </Button>
-              </div>
-            </section>
+                        navigator.clipboard.writeText(emailText).then(() => {
+                          alert("Text e-mailu byl zkopírován do schránky.");
+                        });
+                      }}
+                    >
+                      Zkopírovat text e-mailu
+                    </Button>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </div>
           )}
 
           {showGeneratedQuery && contract.id === '00006628' && (
-            <section className="section-spacing" ref={generatedQueryRef}>
-              <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">
-                Návrh dotazu na zadavatele
-              </h3>
-              <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
-                <p><strong>Předmět:</strong> Dotaz k veřejné zakázce č. 00006628 – kvalifikace a vícepráce</p>
-                <p><strong>Text e-mailu:</strong></p>
-                <p>
-                  Vážený zadavateli,<br /><br />
-                  v rámci kontroly veřejné zakázky <em>„Modernizace a přístavba Základní školy Brno, Antonínská“</em> bylo zjištěno, že kvalifikační podmínky nebyly jasně definovány a došlo také k navýšení ceny víceprací bez odpovídající kontroly.<br /><br />
-                  V této souvislosti se na Vás obracíme s dotazem:<br />
-                  „Jak byly nastaveny interní kontrolní mechanismy pro posouzení kvalifikačních požadavků a navýšení ceny víceprací? Jaká byla role administrátora při tvorbě zadávací dokumentace?“<br /><br />
-                  Děkujeme za Vaše vyjádření.
-                </p>
-              </div>
-              <div className="flex justify-end mt-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-                  onClick={() => {
-                    const emailText = `Vážený zadavateli,
+            <div ref={generatedQueryRef}>
+              <AccordionItem value="generated-query-00006628">
+                <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                  Návrh dotazu na zadavatele
+                </AccordionTrigger>
+                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed">
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+                    <p><strong>Předmět:</strong> Dotaz k veřejné zakázce č. 00006628 – kvalifikace a vícepráce</p>
+                    <p><strong>Text e-mailu:</strong></p>
+                    <p>
+                      Vážený zadavateli,<br /><br />
+                      v rámci kontroly veřejné zakázky <em>„Modernizace a přístavba Základní školy Brno, Antonínská"</em> bylo zjištěno, že kvalifikační podmínky nebyly jasně definovány a došlo také k navýšení ceny víceprací bez odpovídající kontroly.<br /><br />
+                      V této souvislosti se na Vás obracíme s dotazem:<br />
+                      „Jak byly nastaveny interní kontrolní mechanismy pro posouzení kvalifikačních požadavků a navýšení ceny víceprací? Jaká byla role administrátora při tvorbě zadávací dokumentace?"<br /><br />
+                      Děkujeme za Vaše vyjádření.
+                    </p>
+                  </div>
+                  <div className="flex justify-end mt-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                      onClick={() => {
+                        const emailText = `Vážený zadavateli,
 
-v rámci kontroly veřejné zakázky „Modernizace a přístavba Základní školy Brno, Antonínská“ bylo zjištěno, že kvalifikační podmínky nebyly jasně definovány a došlo také k navýšení ceny víceprací bez odpovídající kontroly.
+v rámci kontroly veřejné zakázky „Modernizace a přístavba Základní školy Brno, Antonínská" bylo zjištěno, že kvalifikační podmínky nebyly jasně definovány a došlo také k navýšení ceny víceprací bez odpovídající kontroly.
 
 V této souvislosti se na Vás obracíme s dotazem:
-„Jak byly nastaveny interní kontrolní mechanismy pro posouzení kvalifikačních požadavků a navýšení ceny víceprací? Jaká byla role administrátora při tvorbě zadávací dokumentace?“
+„Jak byly nastaveny interní kontrolní mechanismy pro posouzení kvalifikačních požadavků a navýšení ceny víceprací? Jaká byla role administrátora při tvorbě zadávací dokumentace?"
 
 Děkujeme za Vaše vyjádření.`;
 
-                    navigator.clipboard.writeText(emailText).then(() => {
-                      alert("Text e-mailu byl zkopírován do schránky.");
-                    });
-                  }}
-                >
-                  Zkopírovat text e-mailu
-                </Button>
-              </div>
-            </section>
+                        navigator.clipboard.writeText(emailText).then(() => {
+                          alert("Text e-mailu byl zkopírován do schránky.");
+                        });
+                      }}
+                    >
+                      Zkopírovat text e-mailu
+                    </Button>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </div>
           )}
           
           {analysisResult && (
