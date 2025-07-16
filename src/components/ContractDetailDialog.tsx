@@ -164,7 +164,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent
           ref={contentRef}
-          className={`max-w-6xl max-h-[85vh] ${showLoadingPopup ? "overflow-hidden" : "overflow-y-auto"} px-10 py-10`}
+          className={`max-w-5xl max-h-[85vh] ${showLoadingPopup ? "overflow-hidden" : "overflow-y-auto"} px-10 py-10`}
         >
           <DialogHeader className="relative">
             <DialogDescription className="sr-only">Detail veřejné zakázky – {contract.title}</DialogDescription>
