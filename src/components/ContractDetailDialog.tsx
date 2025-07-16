@@ -132,7 +132,10 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent ref={contentRef} className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
+      <DialogContent
+        ref={contentRef}
+        className={`max-w-4xl max-h-[85vh] ${showLoadingPopup ? "overflow-hidden" : "overflow-y-auto"} px-10 py-10`}
+      >
         <DialogHeader className="relative">
           <div className="flex items-start justify-between">
             <div className="flex-1 min-w-0">
