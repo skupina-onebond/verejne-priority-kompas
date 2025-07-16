@@ -1,6 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription
+} from "@/components/ui/dialog";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Search, Printer } from "lucide-react";
@@ -10,6 +21,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { PublicContractCard } from "./PublicContractCard";
+
+
 interface ContractDetailDialogProps {
   contract: PublicContract;
   isOpen: boolean;
@@ -19,6 +32,7 @@ interface ContractDetailDialogProps {
   similarContracts?: PublicContract[];
   onOpenContractDetail?: (contract: PublicContract) => void;
 }
+
 export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   contract,
   isOpen,
@@ -37,10 +51,12 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [isLoadingDodavatel, setIsLoadingDodavatel] = useState(false);
   const [isLoadingAdministrator, setIsLoadingAdministrator] = useState(false);
   const [showSimilar, setShowSimilar] = useState(false);
+
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
   const adminRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (isOpen) {
       setShowSupplierAnalysis(false);
@@ -52,35 +68,39 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
       setIsLoadingAdministrator(false);
     }
   }, [isOpen]);
+
   useEffect(() => {
     const img = new Image();
     img.src = "/CRR-logo-gif.gif";
   }, []);
+
   useEffect(() => {
     if (analysisResult) setIsLoadingZadavatel(false);
   }, [analysisResult]);
+
   useEffect(() => {
     if (contract.supplierAnalysis) setIsLoadingDodavatel(false);
   }, [contract.supplierAnalysis]);
+
   const scrollTo = (ref: React.RefObject<HTMLElement>) => {
     setTimeout(() => {
-      ref.current?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
   };
+
   const formatValue = (value: number) => {
     return new Intl.NumberFormat('cs-CZ', {
       style: 'currency',
       currency: 'CZK'
     }).format(value);
   };
+
   const handlePrint = () => {
     if (!contentRef.current) return;
     const contentHTML = contentRef.current.innerHTML;
     const printWindow = window.open('', '', 'width=1024,height=768');
     if (!printWindow) return;
+
     printWindow.document.write(`
       <html>
         <head>
@@ -99,14 +119,19 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         <body>${contentHTML}</body>
       </html>
     `);
+
     printWindow.document.close();
     printWindow.focus();
     printWindow.print();
   };
 
   // Compute filtered similar contracts by sector (excluding self)
-  const filteredSimilarContracts = similarContracts?.filter(c => c.id !== contract.id && c.sector === contract.sector);
-  return <Dialog open={isOpen} onOpenChange={onClose}>
+  const filteredSimilarContracts = similarContracts?.filter(
+    (c) => c.id !== contract.id && c.sector === contract.sector
+  );
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent ref={contentRef} className="max-w-4xl max-h-[85vh] overflow-y-auto px-10 py-10">
         <DialogHeader className="relative">
           <div className="flex items-start justify-between">
@@ -124,7 +149,12 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             </div>
 
             <div className="absolute right-[20%] top-0 mt-1">
-              <Button variant="outline" size="sm" className="text-[#215197] border-[#215197] hover:bg-[#215197]/10" onClick={handlePrint}>
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                onClick={handlePrint}
+              >
                 <Printer className="h-4 w-4 mr-2" />
                 Tisk
               </Button>
@@ -134,10 +164,12 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
         <div className="flex flex-col md:flex-row gap-8 text-sm relative items-start">
           <div className="flex-1">
-            {contract.description && <section className="mb-6">
+            {contract.description && (
+              <section className="mb-6">
                 <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Popis zakázky</h3>
                 <p className="text-sm text-slate-800 whitespace-pre-line">{contract.description}</p>
-              </section>}
+              </section>
+            )}
 
             <section className="mb-6">
               <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Základní informace</h3>
@@ -146,51 +178,75 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               <p><span className="font-medium">Region:</span> {contract.region}</p>
               <p><span className="font-medium">Termín podání:</span> {new Date(contract.deadline).toLocaleDateString('cs-CZ')}</p>
               <p><span className="font-medium">Zadavatel:</span> {contract.contracting_authority}</p>
-              {contract.administrator && <p><span className="font-medium">Administrátor zakázky:</span> {contract.administrator}</p>}
-              {contract.supplier && <p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>}
+              {contract.administrator && (<p><span className="font-medium">Administrátor zakázky:</span> {contract.administrator}</p>)}
+              {contract.supplier && (<p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>)}
             </section>
 
             <div className="flex flex-col items-center gap-4 mb-6">
               <div className="flex flex-wrap gap-2 justify-center">
-                <Button variant="outline" size="sm" className="text-[#215197] border-[#215197] hover:bg-[#215197]/10" onClick={() => {
-                setShowLoadingPopup("zadavatel");
-                setTimeout(() => {
-                  setShowLoadingPopup(null);
-                  setShowAnalysis(true);
-                  scrollTo(zadavatelRef);
-                  onDeepSearch(contract.contracting_authority);
-                }, 7000);
-              }}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                  onClick={() => {
+                    setShowLoadingPopup("zadavatel");
+                    setTimeout(() => {
+                      setShowLoadingPopup(null);
+                      setShowAnalysis(true);
+                      scrollTo(zadavatelRef);
+                      onDeepSearch(contract.contracting_authority);
+                    }, 7000);
+                  }}
+                >
                   Prověřit zadavatele<Search className="h-4 w-4 ml-1" />
                 </Button>
 
-                {contract.administrator && <Button variant="secondary" size="sm" className="text-[#215197] border-[#215197] hover:bg-[#215197]/10" onClick={() => {
-                setShowLoadingPopup("administrator");
-                setIsLoadingAdministrator(true);
-                setTimeout(() => {
-                  setShowLoadingPopup(null);
-                  setShowAdminAnalysis(true);
-                  setIsLoadingAdministrator(false);
-                  scrollTo(adminRef);
-                  onDeepSearch(contract.administrator!);
-                }, 7000);
-              }}>
+                {contract.administrator && (
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                    onClick={() => {
+                      setShowLoadingPopup("administrator");
+                      setIsLoadingAdministrator(true);
+                      setTimeout(() => {
+                        setShowLoadingPopup(null);
+                        setShowAdminAnalysis(true);
+                        setIsLoadingAdministrator(false);
+                        scrollTo(adminRef);
+                        onDeepSearch(contract.administrator!);
+                      }, 7000);
+                    }}
+                  >
                     Prověřit administrátora VZ<Search className="h-4 w-4 ml-1" />
-                  </Button>}
+                  </Button>
+                )}
 
-                {contract.supplier && <Button variant="default" size="sm" className="bg-[#215197] hover:bg-[#1c467f] text-white" onClick={() => {
-                setShowLoadingPopup("dodavatel");
-                setTimeout(() => {
-                  setShowLoadingPopup(null);
-                  setShowSupplierAnalysis(true);
-                  scrollTo(dodavatelRef);
-                }, 7000);
-              }}>
+                {contract.supplier && (
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="bg-[#215197] hover:bg-[#1c467f] text-white"
+                    onClick={() => {
+                      setShowLoadingPopup("dodavatel");
+                      setTimeout(() => {
+                        setShowLoadingPopup(null);
+                        setShowSupplierAnalysis(true);
+                        scrollTo(dodavatelRef);
+                      }, 7000);
+                    }}
+                  >
                     Prověřit dodavatele<Search className="h-4 w-4 ml-1" />
-                  </Button>}
+                  </Button>
+                )}
               </div>
 
-              <Button variant="ghost" size="sm" className="text-[#215197] hover:underline" onClick={() => setShowSimilar(prev => !prev)}>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-[#215197] hover:underline"
+                onClick={() => setShowSimilar((prev) => !prev)}
+              >
                 Najít podobné zakázky
               </Button>
             </div>
@@ -198,105 +254,164 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             
             <Accordion type="multiple">
               <AccordionItem value="documents">
-                
+                <AccordionTrigger className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">
+                  Dokumenty
+                </AccordionTrigger>
                 <AccordionContent className="mb-6">
                   <DocumentViewer contractId={contract.id} />
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
 
-            {contract.findings?.length > 0 && <section className="mb-6">
+            {contract.findings?.length > 0 && (
+              <section className="mb-6">
                 <h3 className="text-base font-semibold text-rose-700 mb-2 uppercase tracking-wide">Zjištěné závažnosti</h3>
                 <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 space-y-3 text-sm">
                   <ul className="list-disc list-inside space-y-1">
-                    {contract.findings.map((finding, idx) => <li key={idx}>
+                    {contract.findings.map((finding, idx) => (
+                      <li key={idx}>
                         <span className="font-medium text-rose-800">{finding.severity.toUpperCase()}</span>{' '}
                         – <em>{finding.category}</em>: {finding.description}
-                      </li>)}
+                      </li>
+                    ))}
                   </ul>
                 </div>
-              </section>}
+              </section>
+            )}
 
-            {contract.recommendations?.length > 0 && <section>
+            {contract.recommendations?.length > 0 && (
+              <section>
                 <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Doporučení pro kontrolní orgán</h3>
                 <div className="bg-indigo-50 border border-indigo-200 rounded-md p-4 text-sm text-slate-800 space-y-1">
                   <ul className="list-disc list-inside space-y-1">
-                    {contract.recommendations.map((rec, index) => <li key={index}>{rec}</li>)}
+                    {contract.recommendations.map((rec, index) => (
+                      <li key={index}>{rec}</li>
+                    ))}
                   </ul>
                 </div>
-              </section>}
+              </section>
+            )}
           </div>
         </div>
 
-        <Accordion type="multiple" defaultValue={[analysisResult ? "zadavatel" : "", contract.supplierAnalysis ? "dodavatel" : "", contract.administratorAnalysis ? "administrator" : ""].filter(Boolean)}>
-          {analysisResult && <div ref={zadavatelRef}>
+        <Accordion
+          type="multiple"
+          defaultValue={[
+            analysisResult ? "zadavatel" : "",
+            contract.supplierAnalysis ? "dodavatel" : "",
+            contract.administratorAnalysis ? "administrator" : ""
+          ].filter(Boolean)}
+        >
+          {analysisResult && (
+            <div ref={zadavatelRef}>
               <AccordionItem value="zadavatel">
                 <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
                   Analýza zadavatele
                 </AccordionTrigger>
                 <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-                  {isLoadingZadavatel ? <div className="flex flex-col items-center justify-center py-4">
+                  {isLoadingZadavatel ? (
+                    <div className="flex flex-col items-center justify-center py-4">
                       <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-2" />
                       <p className="text-sm text-slate-500">Načítám analýzu zadavatele…</p>
-                    </div> : <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} className="prose prose-sm max-w-none">
+                    </div>
+                  ) : (
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      rehypePlugins={[rehypeRaw]}
+                      className="prose prose-sm max-w-none"
+                    >
                       {analysisResult}
-                    </ReactMarkdown>}
+                    </ReactMarkdown>
+                  )}
                 </AccordionContent>
               </AccordionItem>
-            </div>}
+            </div>
+          )}
 
-          {contract.supplierAnalysis && showSupplierAnalysis && <div ref={dodavatelRef}>
+          {contract.supplierAnalysis && showSupplierAnalysis && (
+            <div ref={dodavatelRef}>
               <AccordionItem value="dodavatel">
                 <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
                   Analýza dodavatele
                 </AccordionTrigger>
                 <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} className="prose prose-sm max-w-none">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeRaw]}
+                    className="prose prose-sm max-w-none"
+                  >
                     {contract.supplierAnalysis}
                   </ReactMarkdown>
                 </AccordionContent>
               </AccordionItem>
-            </div>}
+            </div>
+          )}
 
-          {contract.administratorAnalysis && showAdminAnalysis && <div ref={adminRef}>
+          {contract.administratorAnalysis && showAdminAnalysis && (
+            <div ref={adminRef}>
               <AccordionItem value="administrator">
                 <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
                   Analýza administrátora zakázky
                 </AccordionTrigger>
                 <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} className="prose prose-sm max-w-none">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeRaw]}
+                    className="prose prose-sm max-w-none"
+                  >
                     {contract.administratorAnalysis}
                   </ReactMarkdown>
                 </AccordionContent>
               </AccordionItem>
-            </div>}
+            </div>
+          )}
         </Accordion>
 
         {showSimilar && (() => {
-        console.log("similarContracts", similarContracts);
-        return filteredSimilarContracts?.length > 0 ? <section className="mt-10">
+          console.log("similarContracts", similarContracts);
+          return filteredSimilarContracts?.length > 0 ? (
+            <section className="mt-10">
               <h3 className="text-base font-semibold text-slate-900 mb-4 uppercase tracking-wide">
                 Najít podobné zakázky
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {filteredSimilarContracts.map(c => <div key={c.id} onClick={() => onOpenContractDetail?.(c)} className="cursor-pointer">
-                    <PublicContractCard contract={c} onStatusChange={() => {}} onMove={() => {}} onDeepSearch={onDeepSearch} mode="summary" />
-                  </div>)}
+                {filteredSimilarContracts.map((c) => (
+                  <div key={c.id} onClick={() => onOpenContractDetail?.(c)} className="cursor-pointer">
+                    <PublicContractCard
+                      contract={c}
+                      onStatusChange={() => {}}
+                      onMove={() => {}}
+                      onDeepSearch={onDeepSearch}
+                      mode="summary"
+                    />
+                  </div>
+                ))}
               </div>
-            </section> : <p className="text-sm text-slate-500">Nebyly nalezeny žádné podobné zakázky.</p>;
-      })()}
+            </section>
+          ) : (
+            <p className="text-sm text-slate-500">Nebyly nalezeny žádné podobné zakázky.</p>
+          );
+        })()}
 
-        {showLoadingPopup && <div className="fixed inset-0 z-[10050] pointer-events-auto">
+        {showLoadingPopup && (
+          <div className="fixed inset-0 z-[10050] pointer-events-auto">
             <div className="absolute inset-0 bg-transparent cursor-wait z-0" />
             <div className="relative z-10 flex flex-col items-center justify-center w-full h-full bg-white/80 backdrop-blur-sm">
               <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
               <p className="text-sm text-slate-600">
                 Načítám analýzu{' '}
-                {showLoadingPopup === "zadavatel" ? "zadavatele" : showLoadingPopup === "dodavatel" ? "dodavatele" : "administrátora"}
+                {showLoadingPopup === "zadavatel"
+                  ? "zadavatele"
+                  : showLoadingPopup === "dodavatel"
+                  ? "dodavatele"
+                  : "administrátora"}
                 …
               </p>
             </div>
-          </div>}
+          </div>
+        )}
       </DialogContent>
-    </Dialog>;
+    </Dialog>
+    
+  );
 };
