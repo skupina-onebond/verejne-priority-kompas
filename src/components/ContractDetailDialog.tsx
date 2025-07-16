@@ -229,6 +229,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                       className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
                       onClick={() => {
                         setShowLoadingPopup("administrator");
+                        setShowAnalysis(false);
                         setIsLoadingAdministrator(true);
                         setTimeout(() => {
                           setShowLoadingPopup(null);
@@ -580,8 +581,8 @@ Děkujeme za Vaše vyjádření.`;
 
           {showLoadingPopup && (
             <div className="fixed inset-0 z-[10050] pointer-events-auto">
-              <div className="fixed inset-0 bg-white/80 backdrop-blur-sm" />
-              <div className="fixed inset-0 flex flex-col items-center justify-center">
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
                 <p className="text-sm text-slate-600">
                   Načítám analýzu{' '}
