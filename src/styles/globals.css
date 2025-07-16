@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Vlastná pomocná trieda na rovnomerné odsadenie sekcií */
+.section-spacing {
+  @apply my-8;
+}

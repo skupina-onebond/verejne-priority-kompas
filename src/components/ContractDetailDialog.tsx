@@ -171,13 +171,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         <div className="flex flex-col md:flex-row gap-8 text-sm relative items-start">
           <div className="flex-1">
             {contract.description && (
-              <section className="mb-6">
+              <section className="section-spacing">
                 <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Popis zakázky</h3>
                 <p className="text-sm text-slate-800 whitespace-pre-line">{contract.description}</p>
               </section>
             )}
 
-            <section className="mb-6">
+            <section className="section-spacing">
               <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Základní informace</h3>
               <p><span className="font-medium">Odvětví:</span> {contract.sector}</p>
               <p><span className="font-medium">Hodnota zakázky:</span> {formatValue(contract.value)}</p>
@@ -260,7 +260,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             </div>
 
             {showSimilar && (
-              <section className="mt-10">
+              <section className="section-spacing">
                 <Collapsible open={similarContractsOpen} onOpenChange={setSimilarContractsOpen}>
                   <CollapsibleTrigger className="flex items-center justify-between w-full group">
                     <h3 className="text-base font-semibold text-slate-900 mb-4 uppercase tracking-wide">
@@ -292,12 +292,12 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               </section>
             )}
             
-            <section className="mb-6">
+            <section className="section-spacing">
               <DocumentViewer contractId={contract.id} />
             </section>
 
             {contract.findings?.length > 0 && (
-              <section className="mb-6">
+              <section className="section-spacing">
                 <h3 className="text-base font-semibold text-rose-700 mb-2 uppercase tracking-wide">Zjištěné závažnosti</h3>
                 <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 space-y-3 text-sm">
                   <ul className="list-disc list-inside space-y-1">
@@ -313,7 +313,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             )}
 
             {contract.recommendations?.length > 0 && (
-              <section>
+              <section className="section-spacing">
                 <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">Doporučení pro kontrolní orgán</h3>
                 <div className="bg-indigo-50 border border-indigo-200 rounded-md p-4 text-sm text-slate-800 space-y-1">
                   <ul className="list-disc list-inside space-y-1">
