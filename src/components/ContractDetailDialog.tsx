@@ -582,6 +582,48 @@ Děkujeme za Vaše vyjádření.`;
                     </div>
                   </AccordionContent>
                 </AccordionItem>
+                {/* --- NOVÝ ODDÍL: Ověření souladu nabídky se zadávacími podmínkami --- */}
+                {showTenderUniqueness && contract.id === '00001079' && (
+                  <AccordionItem value="tender-alignment-00001079">
+                    <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                      Ověření souladu nabídky se zadávacími podmínkami
+                    </AccordionTrigger>
+                    <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed">
+                      <div className="bg-blue-50 border border-blue-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+                        <p><strong>Kontrolované oblasti:</strong></p>
+                        <ul className="list-disc list-inside space-y-1">
+                          <li>Odpovídá nabídka technickým specifikacím?</li>
+                          <li>Byly splněny požadavky na kvalifikaci?</li>
+                          <li>Je doložena potřebná dokumentace?</li>
+                        </ul>
+                        <p><strong>Výsledek kontroly:</strong> V nabídce nebyly zjištěny zásadní nesrovnalosti se zadávacími podmínkami. Nabídka odpovídá požadavkům zadavatele.</p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                )}
+              </div>
+            )}
+
+            {/* --- NOVÝ ODDÍL pro 00006628 --- */}
+            {showTenderUniqueness && contract.id === '00006628' && (
+              <div ref={tenderUniquenessRef}>
+                {/* Zde není tender-uniqueness AccordionItem, pouze tender-alignment */}
+                <AccordionItem value="tender-alignment-00006628">
+                  <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                    Ověření souladu nabídky se zadávacími podmínkami
+                  </AccordionTrigger>
+                  <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed">
+                    <div className="bg-blue-50 border border-blue-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+                      <p><strong>Kontrolované oblasti:</strong></p>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Odpovídá nabídka technickým specifikacím?</li>
+                        <li>Byly dodrženy limity víceprací?</li>
+                        <li>Existuje jasný zápis změn ve smlouvě?</li>
+                      </ul>
+                      <p><strong>Výsledek kontroly:</strong> Bylo zjištěno navýšení víceprací bez doložení odpovídající dokumentace. Doporučujeme detailní prověření dodatečných nákladů.</p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
               </div>
             )}
           </Accordion>
