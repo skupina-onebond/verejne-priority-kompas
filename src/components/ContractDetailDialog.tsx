@@ -258,7 +258,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   <h3 className="text-base font-semibold text-slate-900 mb-4 uppercase tracking-wide">
                     Podobné zakázky
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="w-full flex flex-col gap-4">
                     {filteredSimilarContracts.map((c) => (
                       <div key={c.id} onClick={() => onOpenContractDetail?.(c)} className="cursor-pointer">
                         <PublicContractCard
