@@ -37,7 +37,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   const [selectedDocument, setSelectedDocument] = useState<DocumentFile | null>(null);
   const [contractDocuments, setContractDocuments] = useState<DocumentFile[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
   const { toast } = useToast();
 
   useEffect(() => {
