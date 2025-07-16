@@ -63,6 +63,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const dodavatelRef = useRef<HTMLDivElement>(null);
   const adminRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const generatedQueryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -258,15 +259,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 )}
               </div>
 
-              {/* New button for generating query */}
-              <Button
-                variant="secondary"
-                size="sm"
-                className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
-                onClick={() => setShowGeneratedQuery((prev) => !prev)}
-              >
-                Navrhnout dotaz na zadavatele
-              </Button>
 
                 {/* Oddelený button na podobné zakázky */}
                 <Button
@@ -344,6 +336,20 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   </div>
                 </section>
               )}
+              {/* Move the "Navrhnout dotaz na zadavatele" button here */}
+              <div className="flex justify-center mt-4">
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[220px]"
+                  onClick={() => {
+                    setShowGeneratedQuery((prev) => !prev);
+                    setTimeout(() => scrollTo(generatedQueryRef), 100);
+                  }}
+                >
+                  Navrhnout dotaz na zadavatele
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -356,44 +362,38 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           ].filter(Boolean)}
         >
           {showGeneratedQuery && contract.id === '00001079' && (
-            <section className="section-spacing">
+            <section className="section-spacing" ref={generatedQueryRef}>
               <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">
                 Návrh dotazu na zadavatele
               </h3>
               <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+                <p><strong>Předmět:</strong> Dotaz k veřejné zakázce č. 00001079 – kvalifikační podmínky</p>
+                <p><strong>Text e-mailu:</strong></p>
                 <p>
-                  <strong>Skutkové okolnosti:</strong> V zadávacím řízení byla technická kvalifikace nastavena způsobem, který znemožňoval prokazování prostřednictvím jiných osob. Zakázku získala jediná firma, bez konkurence.
-                </p>
-                <p>
-                  <strong>Možné porušení:</strong> § 83 odst. 1 a § 6 odst. 2 ZZVZ – diskriminace dodavatelů a omezení soutěže.
-                </p>
-                <p>
-                  <strong>Dotaz na zadavatele:</strong> „Z jakého důvodu jste ve veřejné zakázce vyloučili možnost, aby dodavatelé prokazovali kvalifikaci prostřednictvím jiných subjektů? Byla zvažována možnost, že tím může být omezena účast více dodavatelů?“
-                </p>
-                <p className="text-xs italic text-slate-500">
-                  * Podobné případy se objevují např. v rozhodnutích ÚOHS (např. S0375/2020), doporučujeme ověřit i v datech CRR.
+                  Vážený zadavateli,<br /><br />
+                  v rámci kontroly veřejné zakázky <em>„Školní družina a školní klub ZŠ Hello, učebna informatiky, sanace spodní stavby“</em> bylo zjištěno, že technická kvalifikace byla nastavena způsobem, který vylučoval možnost jejího prokázání prostřednictvím jiných osob. Zakázku získala jediná firma bez konkurence.<br /><br />
+                  V této souvislosti se na Vás obracíme s dotazem:<br />
+                  „Z jakého důvodu jste ve veřejné zakázce vyloučili možnost, aby dodavatelé prokazovali kvalifikaci prostřednictvím jiných subjektů? Byla zvažována možnost, že tím může být omezena účast více dodavatelů?“<br /><br />
+                  Děkujeme za Vaše vyjádření.
                 </p>
               </div>
             </section>
           )}
 
           {showGeneratedQuery && contract.id === '00006628' && (
-            <section className="section-spacing">
+            <section className="section-spacing" ref={generatedQueryRef}>
               <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">
                 Návrh dotazu na zadavatele
               </h3>
               <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+                <p><strong>Předmět:</strong> Dotaz k veřejné zakázce č. 00006628 – kvalifikace a vícepráce</p>
+                <p><strong>Text e-mailu:</strong></p>
                 <p>
-                  <strong>Skutkové okolnosti:</strong> V zakázce nebyly jasně definovány podmínky pro prokázání odborné způsobilosti ani subdodavatelské vztahy. Navíc došlo k vícepracím bez adekvátní kontroly přiměřenosti ceny.
-                </p>
-                <p>
-                  <strong>Možné porušení:</strong> § 36 odst. 3 a § 46 ZZVZ – netransparentnost kvalifikace a nekontrolované navyšování ceny.
-                </p>
-                <p>
-                  <strong>Dotaz na zadavatele:</strong> „Jak byly nastaveny interní kontrolní mechanismy pro posouzení kvalifikačních požadavků a navýšení ceny víceprací? Jaká byla role administrátora při tvorbě zadávací dokumentace?“
-                </p>
-                <p className="text-xs italic text-slate-500">
-                  * Doporučujeme porovnat s případy víceprací evidovanými v CRR nebo judikaturou NSS.
+                  Vážený zadavateli,<br /><br />
+                  v rámci kontroly veřejné zakázky <em>„Modernizace a přístavba Základní školy Brno, Antonínská“</em> bylo zjištěno, že kvalifikační podmínky nebyly jasně definovány a došlo také k navýšení ceny víceprací bez odpovídající kontroly.<br /><br />
+                  V této souvislosti se na Vás obracíme s dotazem:<br />
+                  „Jak byly nastaveny interní kontrolní mechanismy pro posouzení kvalifikačních požadavků a navýšení ceny víceprací? Jaká byla role administrátora při tvorbě zadávací dokumentace?“<br /><br />
+                  Děkujeme za Vaše vyjádření.
                 </p>
               </div>
             </section>
