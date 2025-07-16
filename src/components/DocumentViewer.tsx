@@ -17,7 +17,8 @@ import {
   File,
   FileSpreadsheet,
   Image,
-  X
+  X,
+  ChevronDown
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -44,7 +45,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   const [selectedDocument, setSelectedDocument] = useState<DocumentFile | null>(null);
   const [contractDocuments, setContractDocuments] = useState<DocumentFile[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedDocumentId, setSelectedDocumentId] = useState<string>("");
+  const [isExpanded, setIsExpanded] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -142,7 +143,6 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   };
 
   const displayDocuments = contractDocuments.length > 0 ? contractDocuments : documents;
-  const currentDocument = displayDocuments.find(doc => doc.id === selectedDocumentId);
 
   if (isLoading) {
     return (
@@ -164,9 +164,21 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-base font-semibold text-slate-900 uppercase tracking-wide">
-          Dokumenty ({displayDocuments.length})
-        </h3>
+        <div className="flex items-center gap-2">
+          <h3 className="text-base font-semibold text-slate-900 uppercase tracking-wide">
+            Dokumenty ({displayDocuments.length})
+          </h3>
+          {displayDocuments.length > 0 && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="p-1 h-6 w-6"
+            >
+              <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+            </Button>
+          )}
+        </div>
       </div>
 
       {displayDocuments.length === 0 ? (
@@ -178,75 +190,54 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
           </CardContent>
         </Card>
       ) : (
-        <div className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Výber dokumentu</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Select value={selectedDocumentId} onValueChange={setSelectedDocumentId}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Vyberte dokument na zobrazenie" />
-                </SelectTrigger>
-                <SelectContent>
-                  {displayDocuments.map((doc) => (
-                    <SelectItem key={doc.id} value={doc.id}>
-                      <div className="flex items-center space-x-2">
-                        <div className="text-[#215197]">
-                          {getFileIcon(doc.file_type)}
-                        </div>
-                        <span className="truncate">{doc.name}</span>
-                        <Badge variant="outline" className="ml-auto">
-                          {formatFileSize(doc.file_size)}
-                        </Badge>
+        isExpanded && (
+          <div className="space-y-3">
+            {displayDocuments.map((doc) => (
+              <Card key={doc.id} className="border border-slate-200">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3 flex-1 min-w-0">
+                      <div className="text-[#215197] flex-shrink-0">
+                        {getFileIcon(doc.file_type)}
                       </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </CardContent>
-          </Card>
-
-          {currentDocument && (
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="text-[#215197]">
-                      {getFileIcon(currentDocument.file_type)}
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-medium text-slate-900 truncate">{doc.name}</h4>
+                        <div className="flex items-center gap-2 mt-1">
+                          <Badge variant="outline" className="text-xs">
+                            {formatFileSize(doc.file_size)}
+                          </Badge>
+                          <span className="text-xs text-slate-500">
+                            {new Date(doc.uploaded_at).toLocaleDateString('sk-SK')}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <CardTitle className="text-lg">{currentDocument.name}</CardTitle>
-                      <p className="text-sm text-slate-500">
-                        {formatFileSize(currentDocument.file_size)} • {new Date(currentDocument.uploaded_at).toLocaleDateString('sk-SK')}
-                      </p>
+                    <div className="flex items-center space-x-2 flex-shrink-0">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleViewDocument(doc)}
+                        className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                      >
+                        <Eye className="h-4 w-4 mr-1" />
+                        Zobraziť
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleDownload(doc)}
+                        className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                      >
+                        <Download className="h-4 w-4 mr-1" />
+                        Stiahnuť
+                      </Button>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleViewDocument(currentDocument)}
-                      className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-                    >
-                      <Eye className="h-4 w-4 mr-2" />
-                      Zobraziť
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleDownload(currentDocument)}
-                      className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-                    >
-                      <Download className="h-4 w-4 mr-2" />
-                      Stiahnuť
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-          )}
-        </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )
       )}
 
       {/* Document Viewer Modal */}
