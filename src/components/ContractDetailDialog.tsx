@@ -599,11 +599,10 @@ Děkujeme za Vaše vyjádření.`;
           </Accordion>
 
           {showLoadingPopup && (
-            <div className="fixed inset-0 z-[10050] pointer-events-auto flex items-center justify-center">
-              <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
-              <div className="relative z-10 flex flex-col items-center justify-center">
+            <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-center justify-center">
+              <div className="bg-white rounded-lg shadow-xl p-8 flex flex-col items-center justify-center max-w-sm mx-4">
                 <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-slate-600 text-center">
                   Načítám analýzu{' '}
                   {showLoadingPopup === "zadavatel"
                     ? "zadavatele"
