@@ -266,7 +266,10 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   variant="default"
                   size="sm"
                   className="bg-[#215197] hover:bg-[#1c467f] text-white min-w-[180px]"
-                  onClick={() => setShowSimilar((prev) => !prev)}
+                  onClick={() => {
+                    setShowSimilar(true);
+                    setSimilarContractsOpen((prev) => !prev);
+                  }}
                 >
                   Najít podobné zakázky
                 </Button>
@@ -340,9 +343,9 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               {/* Move the "Navrhnout dotaz na zadavatele" button here */}
               <div className="flex flex-wrap justify-start gap-3 mt-4">
                 <Button
-                  variant="default"
+                  variant="outline"
                   size="sm"
-                  className="bg-[#215197] hover:bg-[#1c467f] text-white min-w-[180px]"
+                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[280px]"
                   onClick={() => {
                     setShowGeneratedQuery((prev) => !prev);
                     setTimeout(() => scrollTo(generatedQueryRef), 100);
@@ -359,7 +362,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                     alert('Tato funkcionalita bude brzy doplněna. Aktuálně připravujeme kontrolu souladu nabídky vybraného dodavatele se zadávací dokumentací.');
                   }}
                 >
-                  Ověřit soulad nabídky vybraného dodavatele se zadávacími podmínkami
+                  Ověřit soulad nabídky se zadávacími podmínkami
                 </Button>
 
                 <Button
