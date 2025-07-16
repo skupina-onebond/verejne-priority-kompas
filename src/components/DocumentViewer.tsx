@@ -1,15 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Card, CardContent } from "@/components/ui/card";
 import { 
   FileText, 
   Download, 
@@ -22,6 +13,7 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { DocumentCard } from './DocumentCard';
 
 interface DocumentFile {
   id: string;
@@ -193,48 +185,12 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         isExpanded && (
           <div className="space-y-3">
             {displayDocuments.map((doc) => (
-              <Card key={doc.id} className="border border-slate-200">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3 flex-1 min-w-0">
-                      <div className="text-[#215197] flex-shrink-0">
-                        {getFileIcon(doc.file_type)}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-medium text-slate-900 truncate">{doc.name}</h4>
-                        <div className="flex items-center gap-2 mt-1">
-                          <Badge variant="outline" className="text-xs">
-                            {formatFileSize(doc.file_size)}
-                          </Badge>
-                          <span className="text-xs text-slate-500">
-                            {new Date(doc.uploaded_at).toLocaleDateString('sk-SK')}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-2 flex-shrink-0">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleViewDocument(doc)}
-                        className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-                      >
-                        <Eye className="h-4 w-4 mr-1" />
-                        Zobraziť
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleDownload(doc)}
-                        className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-                      >
-                        <Download className="h-4 w-4 mr-1" />
-                        Stiahnuť
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <DocumentCard
+                key={doc.id}
+                document={doc}
+                onView={handleViewDocument}
+                onDownload={handleDownload}
+              />
             ))}
           </div>
         )
