@@ -37,8 +37,8 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
 
 
   const sortOptions = [
-  { value: 'risk_low', label: 'Závažnost: Od nejnižší po nejvyšší' },
-  { value: 'risk_high', label: 'Závažnost: Od nejvyšší po nejnižší' },
+  //{ value: 'risk_low', label: 'Závažnost: Od nejnižší po nejvyšší' },
+  //{ value: 'risk_high', label: 'Závažnost: Od nejvyšší po nejnižší' },
   { value: 'value_high', label: 'Cena: Od nejdražší po nejlevnější' },
   { value: 'value_low', label: 'Cena: Od nejlevnější po nejdražší' }
 ];
@@ -56,7 +56,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
       sector: '',
       region: '',
       valueMin: 0,
-      valueMax: 100000000,
+      valueMax: 150000000,
       sortBy: ''
     });
 };
@@ -129,7 +129,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
         <input
           type="range"
           min={0}
-          max={10000000}
+          max={150000000}
           step={50000}
           value={filters.valueMin}
           onChange={(e) =>
