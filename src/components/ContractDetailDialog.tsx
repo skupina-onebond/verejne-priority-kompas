@@ -581,7 +581,7 @@ Děkujeme za Vaše vyjádření.`;
           {showLoadingPopup && (
             <div className="absolute inset-0 z-[10050] pointer-events-auto">
               <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
                 <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
                 <p className="text-sm text-slate-600">
                   Načítám analýzu{' '}
