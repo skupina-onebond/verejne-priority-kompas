@@ -58,6 +58,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [similarContractsOpen, setSimilarContractsOpen] = useState(true);
   const [nestedContract, setNestedContract] = useState<PublicContract | null>(null);
   const [showGeneratedQuery, setShowGeneratedQuery] = useState(false);
+  const [showTenderUniqueness, setShowTenderUniqueness] = useState(false);
+  const tenderUniquenessRef = useRef<HTMLDivElement>(null);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
@@ -370,7 +372,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   size="sm"
                   className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[280px]"
                   onClick={() => {
-                    alert('Tato funkcionalita bude brzy doplněna. Připravujeme porovnání zadávacích podmínek s veřejně dostupnými daty a ověření jejich unikátnosti.');
+                    setShowTenderUniqueness((prev) => !prev);
+                    setTimeout(() => scrollTo(tenderUniquenessRef), 100);
                   }}
                 >
                   Ověřit originalitu zadávacích podmínek
@@ -570,3 +573,37 @@ Děkujeme za Vaše vyjádření.`;
     </>
   );
 };
+
+        {showTenderUniqueness && contract.id === '00001079' && (
+          <section className="section-spacing" ref={tenderUniquenessRef}>
+            <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">
+              Ověření originality zadávacích podmínek
+            </h3>
+            <div className="bg-green-50 border border-green-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+              <p><strong>Konkrétne požiadavky na technickú kvalifikáciu dodávateľa:</strong></p>
+              <ul className="list-disc list-inside space-y-1">
+                <li>2× stavba občanské výstavby za provozu (min. 35 mil. Kč)</li>
+                <li>2× dřevostavba s lamelovými prvky a sendvičovým opláštěním (min. 5 mil. Kč)</li>
+                <li>2× ocelová konstrukce (min. 10 mil. Kč)</li>
+                <li>2× sanace zdiva (min. 1 mil. Kč)</li>
+                <li>2× sportovní podlaha s dřevěným povrchem (min. 1 mil. Kč)</li>
+              </ul>
+              <p><strong>Požiadavky na stavbyvedoucího a jeho zástupcov:</strong></p>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Autorizovaný stavbyvedoucí s praxou na stavbe (min. 35 mil. Kč)</li>
+                <li>Zástupca s praxou na dřevostavbě alebo ocelovej konstrukci</li>
+                <li>Výkon stavbyvedoucího nemožno subdodávateľsky zabezpečiť</li>
+              </ul>
+              <p><strong>Ďalšie technické požiadavky:</strong></p>
+              <ul className="list-disc list-inside space-y-1">
+                <li>3× lepené lamelové rámové vazníky (12,5 × 5,6 m)</li>
+                <li>16× ocelové příhradové vazníky (12 × 1,2 m)</li>
+                <li>24× sbíjené vazníky (12,5 × 2,2 m)</li>
+                <li>Zákaz dopravy medzi budovami</li>
+                <li>Povinné provizórne zastrešenie</li>
+                <li>Montáž sendvičového opláštenia</li>
+              </ul>
+              <p><strong>Celkový verdikt:</strong> Požiadavky sú náročné, ale nevedú k jednému dodávateľovi. Sú technicky splniteľné viacerými firmami.</p>
+            </div>
+          </section>
+        )}
