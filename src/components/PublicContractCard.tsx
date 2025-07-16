@@ -15,6 +15,7 @@ interface PublicContractCardProps {
   onDeepSearch: (subjectName: string) => void;
   mode?: string;
   similarContracts?: PublicContract[];
+  onOpenContractDetail?: (contract: PublicContract) => void;
 }
 
 export const PublicContractCard: React.FC<PublicContractCardProps> = ({
@@ -23,10 +24,10 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   onMove,
   onDeepSearch,
   mode = 'default',
-  similarContracts
+  similarContracts,
+  onOpenContractDetail
 }: PublicContractCardProps) => {
   const [showDetail, setShowDetail] = useState(false);
-  console.log("similarContracts", similarContracts);
   const [analysisResult, setAnalysisResult] = useState<string>();
 
   const formatValue = (value: number) => {
@@ -40,11 +41,32 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
 
   if (mode === 'summary') {
     return (
-      <div className="border rounded p-4 shadow-sm bg-white hover:bg-slate-50 cursor-pointer">
-        <h4 className="text-sm font-semibold text-slate-900">{contract.title}</h4>
-        <p className="text-xs text-slate-700">{formatValue(contract.value)}</p>
-        <p className="text-xs text-slate-600 italic">{contract.sector}</p>
-      </div>
+      <>
+        <div 
+          className="border rounded p-4 shadow-sm bg-white hover:bg-slate-50 cursor-pointer"
+          onClick={() => {
+            if (onOpenContractDetail) {
+              onOpenContractDetail(contract);
+            } else {
+              setShowDetail(true);
+            }
+          }}
+        >
+          <h4 className="text-sm font-semibold text-slate-900">{contract.title}</h4>
+          <p className="text-xs text-slate-700">{formatValue(contract.value)}</p>
+          <p className="text-xs text-slate-600 italic">{contract.sector}</p>
+        </div>
+
+        <ContractDetailDialog
+          contract={contract}
+          isOpen={showDetail}
+          onClose={() => setShowDetail(false)}
+          onDeepSearch={onDeepSearch}
+          analysisResult={analysisResult}
+          similarContracts={similarContracts}
+          onOpenContractDetail={onOpenContractDetail}
+        />
+      </>
     );
   }
 
@@ -257,6 +279,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
         onDeepSearch={handleDeepSearch}
         analysisResult={analysisResult}
         similarContracts={similarContracts}
+        onOpenContractDetail={onOpenContractDetail}
       />
     </>
   );
