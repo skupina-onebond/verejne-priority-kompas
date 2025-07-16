@@ -338,7 +338,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 </section>
               )}
               {/* Move the "Navrhnout dotaz na zadavatele" button here */}
-              <div className="flex justify-center mt-4">
+              <div className="flex flex-wrap justify-start gap-3 mt-4">
                 <Button
                   variant="default"
                   size="sm"
@@ -349,6 +349,28 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   }}
                 >
                   Navrhnout dotaz na zadavatele
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[280px]"
+                  onClick={() => {
+                    alert('Tato funkcionalita bude brzy doplněna. Aktuálně připravujeme kontrolu souladu nabídky vybraného dodavatele se zadávací dokumentací.');
+                  }}
+                >
+                  Ověřit soulad nabídky vybraného dodavatele se zadávacími podmínkami
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[280px]"
+                  onClick={() => {
+                    alert('Tato funkcionalita bude brzy doplněna. Připravujeme porovnání zadávacích podmínek s veřejně dostupnými daty a ověření jejich unikátnosti.');
+                  }}
+                >
+                  Ověřit originalitu zadávacích podmínek
                 </Button>
               </div>
             </div>
