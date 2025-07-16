@@ -137,30 +137,31 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         className={`max-w-4xl max-h-[85vh] ${showLoadingPopup ? "overflow-hidden" : "overflow-y-auto"} px-10 py-10`}
       >
         <DialogHeader className="relative">
-          <div className="flex items-start justify-between">
-            <div className="flex-1 min-w-0">
-              <DialogTitle className="text-2xl font-bold text-slate-900 mb-3 break-words max-w-[80%]">
-                {contract.title}
-              </DialogTitle>
-              <DialogDescription className="text-slate-600 mb-4">
-                Detail veřejné zakázky včetně informací o zadavateli, dodavateli a možných analýz.
-              </DialogDescription>
-              <div className="flex gap-2 mb-2 flex-wrap">
-                <Badge>{contract.sector}</Badge>
-                <Badge>{contract.region}</Badge>
-              </div>
-            </div>
+          <div className="absolute top-0 right-4 mt-4 2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+              onClick={handlePrint}
+            >
+              <Printer className="h-4 w-4 mr-2" />
+              Tisk
+            </Button>
+            {/* Zavírací tlačítko tu ponecháváš vpravo hore, ak používaš default Dialog */}
+          </div>
 
-            <div className="absolute right-[20%] top-0 mt-1">
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-                onClick={handlePrint}
-              >
-                <Printer className="h-4 w-4 mr-2" />
-                Tisk
-              </Button>
+          <div className="flex flex-col items-start pr-28"> {/* padding vpravo kvôli tlačítkam */}
+            <DialogTitle className="text-2xl font-bold text-slate-900 mb-3 break-words max-w-full leading-snug">
+              {contract.title}
+            </DialogTitle>
+
+            <DialogDescription className="text-slate-600 mb-4 text-base">
+              Detail veřejné zakázky včetně informací o zadavateli, dodavateli a možných analýz.
+            </DialogDescription>
+
+            <div className="flex gap-2 mb-2 flex-wrap">
+              <Badge>{contract.sector}</Badge>
+              <Badge>{contract.region}</Badge>
             </div>
           </div>
         </DialogHeader>
