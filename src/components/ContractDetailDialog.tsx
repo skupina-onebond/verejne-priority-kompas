@@ -139,8 +139,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               <DialogTitle className="text-2xl font-bold text-slate-900 mb-3 break-words max-w-[80%]">
                 {contract.title}
               </DialogTitle>
-              <DialogDescription className="sr-only">
-                Tento dialog zobrazuje detail zakázky, informace o zadavateli, dodavateli a administrátorovi.
+              <DialogDescription className="text-slate-600 mb-4">
+                Detail veřejné zakázky včetně informací o zadavateli, dodavateli a možných analýz.
               </DialogDescription>
               <div className="flex gap-2 mb-2 flex-wrap">
                 <Badge>{contract.sector}</Badge>
@@ -294,7 +294,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           </div>
         </div>
 
-        {/* Accordion */}
         <Accordion
           type="multiple"
           defaultValue={[
@@ -394,7 +393,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           );
         })()}
 
-        {/* Loading overlay */}
         {showLoadingPopup && (
           <div className="fixed inset-0 z-[10050] pointer-events-auto">
             <div className="absolute inset-0 bg-transparent cursor-wait z-0" />
