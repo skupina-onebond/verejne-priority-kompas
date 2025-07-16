@@ -200,7 +200,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
       {selectedDocument && (
         <div className="fixed inset-0 z-[10060] bg-black/80 flex items-center justify-center p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] flex flex-col">
-            <div className="flex items-center justify-between p-4 border-b">
+            <div className="flex items-center justify-between p-4">
               <div className="flex items-center space-x-3">
                 {getFileIcon(selectedDocument.file_type)}
                 <div>
