@@ -22,6 +22,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { PublicContractCard } from "./PublicContractCard";
 
+
 interface ContractDetailDialogProps {
   contract: PublicContract;
   isOpen: boolean;
@@ -41,6 +42,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   similarContracts,
   onOpenContractDetail
 }) => {
+  console.log("📦 ContractDetailDialog: similarContracts", similarContracts);
   const [showLoadingPopup, setShowLoadingPopup] = useState<"zadavatel" | "dodavatel" | "administrator" | null>(null);
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
   const [showAnalysis, setShowAnalysis] = useState(false);
