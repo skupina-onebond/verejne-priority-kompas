@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
   return (
@@ -13,12 +14,12 @@ Umožňuje efektivní kontrolu veřejných zakázek z hlediska jejich závažnos
         </p>
 
         {/* ✅ Obyčajný link namiesto tlačidla */}
-        <a
-          href="/seznam"
+        <Link
+          to="/seznam"
           className="inline-block bg-[#215197] hover:bg-[#1a3e78] text-white px-6 py-2 text-lg rounded-md"
         >
           Vstoupit do systému
-        </a>
+        </Link>
       </div>
 
       <div className="absolute bottom-6">
