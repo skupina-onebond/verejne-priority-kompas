@@ -182,12 +182,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               {contract.supplier && (<p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>)}
             </section>
 
-            <div className="flex flex-col items-center gap-4 mb-6">
-              <div className="flex flex-wrap gap-2 justify-center">
+            <div className="flex flex-col items-center gap-6 mb-6">
+              {/* Skupina 3 akčných buttonov vedľa seba */}
+              <div className="flex flex-wrap justify-center gap-3">
                 <Button
                   variant="outline"
                   size="sm"
-                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
                   onClick={() => {
                     setShowLoadingPopup("zadavatel");
                     setTimeout(() => {
@@ -203,9 +204,9 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
                 {contract.administrator && (
                   <Button
-                    variant="secondary"
+                    variant="outline"
                     size="sm"
-                    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
                     onClick={() => {
                       setShowLoadingPopup("administrator");
                       setIsLoadingAdministrator(true);
@@ -226,7 +227,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   <Button
                     variant="default"
                     size="sm"
-                    className="bg-[#215197] hover:bg-[#1c467f] text-white"
+                    className="bg-[#215197] hover:bg-[#1c467f] text-white min-w-[180px]"
                     onClick={() => {
                       setShowLoadingPopup("dodavatel");
                       setTimeout(() => {
@@ -241,15 +242,19 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 )}
               </div>
 
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-[#215197] hover:underline"
-                onClick={() => setShowSimilar((prev) => !prev)}
-              >
-                Najít podobné zakázky
-              </Button>
+              {/* Oddelený button na podobné zakázky */}
+              <div className="pt-2 border-t border-slate-200 w-full flex justify-center">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-[#215197] hover:underline"
+                  onClick={() => setShowSimilar((prev) => !prev)}
+                >
+                  Najít podobné zakázky
+                </Button>
+              </div>
             </div>
+
 
             {showSimilar && (() => {
               console.log("similarContracts", similarContracts);
