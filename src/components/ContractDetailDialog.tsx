@@ -361,7 +361,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                     alert('Tato funkcionalita bude brzy doplněna. Aktuálně připravujeme kontrolu souladu nabídky vybraného dodavatele se zadávací dokumentací.');
                   }}
                 >
-                  Ověřit soulad nabídky se zadávacími podmínkami
+                  Ověřit soulad se zadávacími podmínkami
                 </Button>
 
                 <Button
