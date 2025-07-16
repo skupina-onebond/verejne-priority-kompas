@@ -252,16 +252,9 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             </div>
             
             
-            <Accordion type="multiple">
-              <AccordionItem value="documents">
-                <AccordionTrigger className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">
-                  Dokumenty
-                </AccordionTrigger>
-                <AccordionContent className="mb-6">
-                  <DocumentViewer contractId={contract.id} />
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <section className="mb-6">
+              <DocumentViewer contractId={contract.id} />
+            </section>
 
             {contract.findings?.length > 0 && (
               <section className="mb-6">
