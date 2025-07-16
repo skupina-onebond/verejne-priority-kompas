@@ -390,9 +390,9 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         </Accordion>
 
         {showLoadingPopup && (
-          <div className="fixed inset-0 z-[10050] pointer-events-auto">
-            <div className="absolute inset-0 bg-transparent cursor-wait z-0" />
-            <div className="relative z-10 flex flex-col items-center justify-center w-full h-full bg-white/80 backdrop-blur-sm">
+          <div className="absolute inset-0 z-[10050] pointer-events-auto">
+            <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
               <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
               <p className="text-sm text-slate-600">
                 Načítám analýzu{' '}
