@@ -230,6 +230,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                       onClick={() => {
                         setShowLoadingPopup("administrator");
                         setShowAnalysis(false);
+                        setShowSupplierAnalysis(false);
                         setIsLoadingAdministrator(true);
                         setTimeout(() => {
                           setShowLoadingPopup(null);
@@ -240,7 +241,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                         }, 7000);
                       }}
                     >
-                      Prověřit administrátora VZ<Search className="h-4 w-4 ml-1" />
+                      Prověřit administrátora<Search className="h-4 w-4 ml-1" />
                     </Button>
                   )}
 
