@@ -599,8 +599,8 @@ Děkujeme za Vaše vyjádření.`;
           </Accordion>
 
           {showLoadingPopup && (
-            <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-center justify-center">
-              <div className="bg-white rounded-lg shadow-xl p-8 flex flex-col items-center justify-center max-w-sm mx-4">
+            <div className="fixed inset-0 z-[99999] bg-white/70 backdrop-blur-md flex items-center justify-center" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}>
+              <div className="bg-white rounded-lg shadow-xl p-8 flex flex-col items-center justify-center border border-slate-200">
                 <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
                 <p className="text-sm text-slate-600 text-center">
                   Načítám analýzu{' '}
