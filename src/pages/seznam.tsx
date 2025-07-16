@@ -135,6 +135,7 @@ const ContractListPage = () => {
                 onStatusChange={updateContractStatus}
                 onMove={moveContract}
                 onDeepSearch={handleDeepSearch}
+                similarContracts={contracts}
               />
             ))}
             {activeContracts.length === 0 && (
@@ -154,6 +155,7 @@ const ContractListPage = () => {
                 onStatusChange={updateContractStatus}
                 onMove={moveContract}
                 onDeepSearch={handleDeepSearch}
+                similarContracts={contracts}
               />
             ))}
             {bookmarkedContracts.length === 0 && (
@@ -173,6 +175,7 @@ const ContractListPage = () => {
                 onStatusChange={updateContractStatus}
                 onMove={moveContract}
                 onDeepSearch={handleDeepSearch}
+                similarContracts={contracts}
               />
             ))}
             {hiddenContracts.length === 0 && (
@@ -192,6 +195,7 @@ const ContractListPage = () => {
                 onStatusChange={updateContractStatus}
                 onMove={moveContract}
                 onDeepSearch={handleDeepSearch}
+                similarContracts={contracts}
               />
             ))}
             {completedContracts.length === 0 && (

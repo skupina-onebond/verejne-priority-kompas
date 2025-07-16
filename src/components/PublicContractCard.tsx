@@ -14,6 +14,7 @@ interface PublicContractCardProps {
   onMove: (id: string, direction: "up" | "down") => void;
   onDeepSearch: (subjectName: string) => void;
   mode?: 'default' | 'summary';
+  similarContracts?: PublicContract[];
 }
 
 export const PublicContractCard: React.FC<PublicContractCardProps> = ({
@@ -21,9 +22,11 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   onStatusChange,
   onMove,
   onDeepSearch,
-  mode = 'default'
-}) => {
+  mode = 'default',
+  similarContracts
+}: PublicContractCardProps) => {
   const [showDetail, setShowDetail] = useState(false);
+  console.log("similarContracts", similarContracts);
   const [analysisResult, setAnalysisResult] = useState<string>();
 
   const formatValue = (value: number) => {
@@ -64,11 +67,12 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           <div className="flex justify-between items-start">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <CardTitle asChild>
-                  <button onClick={() => setShowDetail(true)} className="text-left w-full text-lg font-semibold text-slate-900 hover:underline">
-                    {contract.title}
-                  </button>
-                </CardTitle>
+                <h2
+                  onClick={() => setShowDetail(true)}
+                  className="text-left w-full text-lg font-semibold text-slate-900 hover:underline cursor-pointer"
+                >
+                  {contract.title}
+                </h2>
                 {/* {contract.riskScore !== undefined && (
                   <ScoreCircle score={contract.riskScore} size={40}  />                
                 )} */}
