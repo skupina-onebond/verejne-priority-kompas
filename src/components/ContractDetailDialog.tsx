@@ -12,9 +12,14 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Search, Printer } from "lucide-react";
+import { Search, Printer, ChevronDown } from "lucide-react";
 import { PublicContract } from "@/types/contract";
 import { DocumentViewer } from "@/components/DocumentViewer";
 import ReactMarkdown from 'react-markdown';
@@ -51,6 +56,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [isLoadingDodavatel, setIsLoadingDodavatel] = useState(false);
   const [isLoadingAdministrator, setIsLoadingAdministrator] = useState(false);
   const [showSimilar, setShowSimilar] = useState(false);
+  const [similarContractsOpen, setSimilarContractsOpen] = useState(true);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
@@ -243,43 +249,48 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               </div>
 
               {/* Oddelený button na podobné zakázky */}
-                <Button
-                  variant="default"
-                  size="sm"
-                  className="bg-[#215197] hover:bg-[#1c467f] text-white min-w-[180px]"
-                  onClick={() => setShowSimilar((prev) => !prev)}
-                >
-                  Najít podobné zakázky
-                </Button>
-              </div>
+              <Button
+                variant="default"
+                size="sm"
+                className="bg-[#215197] hover:bg-[#1c467f] text-white min-w-[180px]"
+                onClick={() => setShowSimilar((prev) => !prev)}
+              >
+                Najít podobné zakázky
+              </Button>
+            </div>
 
-
-            {showSimilar && (() => {
-              console.log("similarContracts", similarContracts);
-              return filteredSimilarContracts?.length > 0 ? (
-                <section className="mt-10">
-                  <h3 className="text-base font-semibold text-slate-900 mb-4 uppercase tracking-wide">
-                    Podobné zakázky
-                  </h3>
-                  <div className="w-full flex flex-col gap-4">
-                    {filteredSimilarContracts.map((c) => (
-                      <div key={c.id} onClick={() => onOpenContractDetail?.(c)} className="cursor-pointer">
-                        <PublicContractCard
-                          contract={c}
-                          onStatusChange={() => {}}
-                          onMove={() => {}}
-                          onDeepSearch={onDeepSearch}
-                          mode="summary"
-                        />
+            {showSimilar && (
+              <section className="mt-10">
+                <Collapsible open={similarContractsOpen} onOpenChange={setSimilarContractsOpen}>
+                  <CollapsibleTrigger className="flex items-center justify-between w-full group">
+                    <h3 className="text-base font-semibold text-slate-900 mb-4 uppercase tracking-wide">
+                      Podobné zakázky ({filteredSimilarContracts?.length || 0})
+                    </h3>
+                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${similarContractsOpen ? 'rotate-180' : ''}`} />
+                  </CollapsibleTrigger>
+                  
+                  <CollapsibleContent className="space-y-2">
+                    {filteredSimilarContracts?.length > 0 ? (
+                      <div className="w-full flex flex-col gap-4">
+                        {filteredSimilarContracts.map((c) => (
+                          <div key={c.id} onClick={() => onOpenContractDetail?.(c)} className="cursor-pointer">
+                            <PublicContractCard
+                              contract={c}
+                              onStatusChange={() => {}}
+                              onMove={() => {}}
+                              onDeepSearch={onDeepSearch}
+                              mode="summary"
+                            />
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </section>
-              ) : (
-                <p className="text-sm text-slate-500">Nebyly nalezeny žádné podobné zakázky.</p>
-              );
-            })()}
-            
+                    ) : (
+                      <p className="text-sm text-slate-500">Nebyly nalezeny žádné podobné zakázky.</p>
+                    )}
+                  </CollapsibleContent>
+                </Collapsible>
+              </section>
+            )}
             
             <section className="mb-6">
               <DocumentViewer contractId={contract.id} />
@@ -408,6 +419,5 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         )}
       </DialogContent>
     </Dialog>
-    
   );
 };
