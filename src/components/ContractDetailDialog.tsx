@@ -136,6 +136,16 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   };
 
   const handleNestedContractOpen = (selectedContract: PublicContract) => {
+    // Reset all analysis states when opening a new contract
+    setShowSupplierAnalysis(false);
+    setShowAnalysis(false);
+    setShowAdminAnalysis(false);
+    setShowLoadingPopup(null);
+    setIsLoadingZadavatel(false);
+    setIsLoadingDodavatel(false);
+    setIsLoadingAdministrator(false);
+    setShowGeneratedQuery(false);
+    setShowTenderUniqueness(false);
     setNestedContract(selectedContract);
   };
 
