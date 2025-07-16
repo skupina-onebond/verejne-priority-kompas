@@ -155,10 +155,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               {contract.title}
             </DialogTitle>
 
-            <DialogDescription className="text-slate-600 mb-4 text-base">
-              Detail veřejné zakázky včetně informací o zadavateli, dodavateli a možných analýz.
-            </DialogDescription>
-
             <div className="flex gap-2 mb-2 flex-wrap">
               <Badge>{contract.sector}</Badge>
               <Badge>{contract.region}</Badge>
