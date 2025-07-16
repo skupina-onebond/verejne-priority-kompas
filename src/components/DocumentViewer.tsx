@@ -4,10 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { 
   FileText, 
   Download, 
   Eye, 
-  // Upload, // Commented out for now
   File,
   FileSpreadsheet,
   Image,
@@ -38,7 +44,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   const [selectedDocument, setSelectedDocument] = useState<DocumentFile | null>(null);
   const [contractDocuments, setContractDocuments] = useState<DocumentFile[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  // const [isUploading, setIsUploading] = useState(false); // Commented out for now
+  const [selectedDocumentId, setSelectedDocumentId] = useState<string>("");
   const { toast } = useToast();
 
   useEffect(() => {
@@ -135,78 +141,8 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     }
   };
 
-  /* 
-  // UPLOAD FUNCTIONALITY - COMMENTED OUT FOR NOW
-  // Will be used by administrators to upload documents directly to Supabase
-  
-  const handleUpload = () => {
-    const input = window.document.createElement('input');
-    input.type = 'file';
-    input.multiple = true;
-    input.accept = '.pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png';
-    
-    input.onchange = async (e) => {
-      const files = (e.target as HTMLInputElement).files;
-      if (!files) return;
-
-      setIsUploading(true);
-      
-      try {
-        for (const file of Array.from(files)) {
-          await uploadFile(file);
-        }
-        await fetchDocuments(); // Refresh document list
-        toast({
-          title: "Úspech",
-          description: `Úspešne nahratých ${files.length} súborov`,
-        });
-      } catch (error) {
-        console.error('Upload error:', error);
-        toast({
-          title: "Chyba",
-          description: "Nepodarilo sa nahrať súbory",
-          variant: "destructive"
-        });
-      } finally {
-        setIsUploading(false);
-      }
-    };
-    
-    input.click();
-  };
-
-  const uploadFile = async (file: File) => {
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${contractId}/${Date.now()}_${file.name}`;
-
-    // Upload file to storage
-    const { data: uploadData, error: uploadError } = await supabase.storage
-      .from('contract-documents')
-      .upload(fileName, file);
-
-    if (uploadError) {
-      throw uploadError;
-    }
-
-    // Save metadata to database
-    const { error: dbError } = await supabase
-      .from('documents')
-      .insert({
-        contract_id: contractId,
-        name: file.name,
-        file_path: fileName,
-        file_type: file.type,
-        file_size: file.size,
-        uploaded_by: 'admin' 
-      });
-
-    if (dbError) {
-      throw dbError;
-    }
-  };
-  */
-
   const displayDocuments = contractDocuments.length > 0 ? contractDocuments : documents;
+  const currentDocument = displayDocuments.find(doc => doc.id === selectedDocumentId);
 
   if (isLoading) {
     return (
@@ -231,19 +167,6 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         <h3 className="text-base font-semibold text-slate-900 uppercase tracking-wide">
           Dokumenty ({displayDocuments.length})
         </h3>
-        {/* 
-        // UPLOAD BUTTON - COMMENTED OUT FOR NOW
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={handleUpload}
-          disabled={isUploading}
-          className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
-        >
-          <Upload className="h-4 w-4 mr-2" />
-          {isUploading ? 'Nahrávam...' : 'Nahrať dokument'}
-        </Button>
-        */}
       </div>
 
       {displayDocuments.length === 0 ? (
@@ -255,47 +178,74 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-3">
-          {displayDocuments.map((doc) => (
-            <Card key={doc.id} className="hover:shadow-md transition-shadow">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3 flex-1 min-w-0">
-                    <div className="text-[#215197]">
-                      {getFileIcon(doc.file_type)}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-slate-900 truncate">
-                        {doc.name}
-                      </p>
-                      <div className="flex items-center space-x-4 text-xs text-slate-500">
-                        <span>{formatFileSize(doc.file_size)}</span>
-                        <span>{new Date(doc.uploaded_at).toLocaleDateString('sk-SK')}</span>
+        <div className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Výber dokumentu</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Select value={selectedDocumentId} onValueChange={setSelectedDocumentId}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Vyberte dokument na zobrazenie" />
+                </SelectTrigger>
+                <SelectContent>
+                  {displayDocuments.map((doc) => (
+                    <SelectItem key={doc.id} value={doc.id}>
+                      <div className="flex items-center space-x-2">
+                        <div className="text-[#215197]">
+                          {getFileIcon(doc.file_type)}
+                        </div>
+                        <span className="truncate">{doc.name}</span>
+                        <Badge variant="outline" className="ml-auto">
+                          {formatFileSize(doc.file_size)}
+                        </Badge>
                       </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </CardContent>
+          </Card>
+
+          {currentDocument && (
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-[#215197]">
+                      {getFileIcon(currentDocument.file_type)}
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">{currentDocument.name}</CardTitle>
+                      <p className="text-sm text-slate-500">
+                        {formatFileSize(currentDocument.file_size)} • {new Date(currentDocument.uploaded_at).toLocaleDateString('sk-SK')}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Button
-                      variant="ghost"
+                      variant="outline"
                       size="sm"
-                      onClick={() => handleViewDocument(doc)}
-                      className="text-[#215197] hover:bg-[#215197]/10"
+                      onClick={() => handleViewDocument(currentDocument)}
+                      className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
                     >
-                      <Eye className="h-4 w-4" />
+                      <Eye className="h-4 w-4 mr-2" />
+                      Zobraziť
                     </Button>
                     <Button
-                      variant="ghost"
+                      variant="outline"
                       size="sm"
-                      onClick={() => handleDownload(doc)}
-                      className="text-[#215197] hover:bg-[#215197]/10"
+                      onClick={() => handleDownload(currentDocument)}
+                      className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
                     >
-                      <Download className="h-4 w-4" />
+                      <Download className="h-4 w-4 mr-2" />
+                      Stiahnuť
                     </Button>
                   </div>
                 </div>
-              </CardContent>
+              </CardHeader>
             </Card>
-          ))}
+          )}
         </div>
       )}
 
