@@ -495,7 +495,7 @@ Děkujeme za Vaše vyjádření.`;
             </div>
           )}
           
-          {analysisResult && (
+          {analysisResult && showAnalysis && (
             <div ref={zadavatelRef}>
               <AccordionItem value="zadavatel">
                 <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
