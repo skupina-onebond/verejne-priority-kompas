@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Dialog,
   DialogContent,
@@ -597,23 +598,6 @@ Děkujeme za Vaše vyjádření.`;
               </div>
             )}
           </Accordion>
-
-          {showLoadingPopup && (
-            <div className="fixed inset-0 z-[99999] bg-white/70 backdrop-blur-md flex items-center justify-center" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}>
-              <div className="bg-white rounded-lg shadow-xl p-8 flex flex-col items-center justify-center border border-slate-200">
-                <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
-                <p className="text-sm text-slate-600 text-center">
-                  Načítám analýzu{' '}
-                  {showLoadingPopup === "zadavatel"
-                    ? "zadavatele"
-                    : showLoadingPopup === "dodavatel"
-                    ? "dodavatele"
-                    : "administrátora"}
-                  …
-                </p>
-              </div>
-            </div>
-          )}
         </DialogContent>
       </Dialog>
 
@@ -627,6 +611,25 @@ Děkujeme za Vaše vyjádření.`;
           similarContracts={similarContracts}
           onOpenContractDetail={handleNestedContractOpen}
         />
+      )}
+
+      {/* Loading overlay rendered as portal */}
+      {showLoadingPopup && createPortal(
+        <div className="fixed inset-0 z-[99999] bg-white/70 backdrop-blur-md flex items-center justify-center">
+          <div className="bg-white rounded-lg shadow-xl p-8 flex flex-col items-center justify-center border border-slate-200">
+            <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
+            <p className="text-sm text-slate-600 text-center">
+              Načítám analýzu{' '}
+              {showLoadingPopup === "zadavatel"
+                ? "zadavatele"
+                : showLoadingPopup === "dodavatel"
+                ? "dodavatele"
+                : "administrátora"}
+              …
+            </p>
+          </div>
+        </div>,
+        document.body
       )}
     </>
   );
