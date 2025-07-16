@@ -579,10 +579,10 @@ Děkujeme za Vaše vyjádření.`;
             )}
           </Accordion>
 
-          {showLoadingPopup && !showAnalysis && !showAdminAnalysis && !showSupplierAnalysis && (
-            <div className="absolute inset-0 z-[10050] pointer-events-auto">
+          {showLoadingPopup && (
+            <div className="fixed inset-0 z-[10050] pointer-events-auto flex items-center justify-center">
               <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <div className="relative z-10 flex flex-col items-center justify-center">
                 <img src="/CRR-gif-optimized.gif" alt="Načítání..." className="w-24 h-24 mb-4" />
                 <p className="text-sm text-slate-600">
                   Načítám analýzu{' '}
