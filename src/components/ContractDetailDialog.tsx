@@ -225,9 +225,9 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
                 {contract.supplier && (
                   <Button
-                    variant="default"
+                    variant="outline"
                     size="sm"
-                    className="bg-[#215197] hover:bg-[#1c467f] text-white min-w-[180px]"
+                    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
                     onClick={() => {
                       setShowLoadingPopup("dodavatel");
                       setTimeout(() => {
@@ -243,17 +243,15 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               </div>
 
               {/* Oddelený button na podobné zakázky */}
-              <div className="pt-2 border-t border-slate-200 w-full flex justify-center">
                 <Button
-                  variant="ghost"
+                  variant="default"
                   size="sm"
-                  className="text-[#215197] hover:underline"
+                  className="bg-[#215197] hover:bg-[#1c467f] text-white min-w-[180px]"
                   onClick={() => setShowSimilar((prev) => !prev)}
                 >
                   Najít podobné zakázky
                 </Button>
               </div>
-            </div>
 
 
             {showSimilar && (() => {
