@@ -55,8 +55,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [isLoadingZadavatel, setIsLoadingZadavatel] = useState(false);
   const [isLoadingDodavatel, setIsLoadingDodavatel] = useState(false);
   const [isLoadingAdministrator, setIsLoadingAdministrator] = useState(false);
-  const [showSimilar, setShowSimilar] = useState(false);
   const [similarContractsOpen, setSimilarContractsOpen] = useState(true);
+  const [showSimilar, setShowSimilar] = useState(true);
   const [nestedContract, setNestedContract] = useState<PublicContract | null>(null);
   const [showGeneratedQuery, setShowGeneratedQuery] = useState(false);
   const [showTenderUniqueness, setShowTenderUniqueness] = useState(false);
@@ -215,13 +215,12 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
               <div className="flex flex-col items-center gap-6 mb-6">
                 {/* Skupina 4 akčních buttonů ve speciálním boxu */}
-                <div className="flex flex-wrap items-center justify-start gap-3 border border-blue-200 bg-blue-50 p-4 rounded-md mb-6">
+                <div className="w-full flex flex-wrap items-center justify-start gap-3 border border-blue-200 bg-blue-50 p-4 rounded-md mb-6">
                   <Button
                     variant="default"
                     size="sm"
                     className="bg-[#215197] hover:bg-[#1c467f] text-white min-w-[180px]"
                     onClick={() => {
-                      setShowSimilar(true);
                       setSimilarContractsOpen((prev) => !prev);
                     }}
                   >
