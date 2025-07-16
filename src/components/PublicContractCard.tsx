@@ -254,6 +254,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
         onClose={() => setShowDetail(false)}
         onDeepSearch={handleDeepSearch}
         analysisResult={analysisResult}
+        similarContracts={similarContracts}
       />
     </>
   );
