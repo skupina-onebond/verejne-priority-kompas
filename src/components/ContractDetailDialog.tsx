@@ -256,7 +256,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               return filteredSimilarContracts?.length > 0 ? (
                 <section className="mt-10">
                   <h3 className="text-base font-semibold text-slate-900 mb-4 uppercase tracking-wide">
-                    Najít podobné zakázky
+                    Podobné zakázky
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {filteredSimilarContracts.map((c) => (

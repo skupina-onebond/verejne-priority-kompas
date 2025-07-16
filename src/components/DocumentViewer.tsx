@@ -158,7 +158,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <h3 className="text-base font-semibold text-slate-900 uppercase tracking-wide">
-            Dokumenty ({displayDocuments.length})
+            Příslušná dokumentace ({displayDocuments.length})
           </h3>
           {displayDocuments.length > 0 && (
             <Button
@@ -252,10 +252,10 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                   onClick={() => handleDownload(selectedDocument)}
                 >
                   <Download className="h-4 w-4 mr-2" />
-                  Stiahnuť
+                  Stáhnout
                 </Button>
                 <Button onClick={() => setSelectedDocument(null)}>
-                  Zavrieť
+                  Zavřít
                 </Button>
               </div>
             </div>
