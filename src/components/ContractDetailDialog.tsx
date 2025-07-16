@@ -398,10 +398,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
         <Accordion
           type="multiple"
           defaultValue={[
-            analysisResult ? "zadavatel" : "",
-            contract.supplierAnalysis ? "dodavatel" : "",
-            contract.administratorAnalysis ? "administrator" : ""
-          ].filter(Boolean)}
+            "generated-query-00001079",
+            "generated-query-00006628", 
+            "zadavatel",
+            "dodavatel",
+            "administrator",
+            "tender-uniqueness"
+          ]}
         >
           {showGeneratedQuery && contract.id === '00001079' && (
             <div ref={generatedQueryRef}>
