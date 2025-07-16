@@ -164,7 +164,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent
           ref={contentRef}
-          className={`max-w-4xl max-h-[85vh] ${showLoadingPopup ? "overflow-hidden" : "overflow-y-auto"} px-10 py-10`}
+          className={`max-w-6xl max-h-[85vh] ${showLoadingPopup ? "overflow-hidden" : "overflow-y-auto"} px-10 py-10`}
         >
           <DialogHeader className="relative">
             <DialogDescription className="sr-only">Detail veřejné zakázky – {contract.title}</DialogDescription>
@@ -213,50 +213,58 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 {contract.supplier && (<p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>)}
               </section>
 
-              <div className="border border-[#215197] rounded-lg p-4 mb-6">
-                <div className="flex flex-col items-center gap-6">
-                  {/* Skupina 3 akčných buttonov vedľa seba */}
-                  <div className="flex flex-wrap justify-center gap-3">
+              <div className="flex flex-col items-center gap-6 mb-6">
+                {/* Skupina 4 akčních buttonů ve speciálním boxu */}
+                <div className="flex flex-wrap items-center justify-start gap-3 border border-blue-200 bg-blue-50 p-4 rounded-md mb-6">
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="bg-[#215197] hover:bg-[#1c467f] text-white min-w-[180px]"
+                    onClick={() => {
+                      setShowSimilar(true);
+                      setSimilarContractsOpen((prev) => !prev);
+                    }}
+                  >
+                    Najít podobné zakázky
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
+                    onClick={() => {
+                      setShowLoadingPopup("zadavatel");
+                      setTimeout(() => {
+                        setShowLoadingPopup(null);
+                        setShowAnalysis(true);
+                        scrollTo(zadavatelRef);
+                        onDeepSearch(contract.contracting_authority);
+                      }, 7000);
+                    }}
+                  >
+                    Prověřit zadavatele<Search className="h-4 w-4 ml-1" />
+                  </Button>
+                  {contract.administrator && (
                     <Button
                       variant="outline"
                       size="sm"
                       className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
                       onClick={() => {
-                        setShowLoadingPopup("zadavatel");
+                        setShowLoadingPopup("administrator");
+                        setShowAnalysis(false);
+                        setShowSupplierAnalysis(false);
+                        setIsLoadingAdministrator(true);
                         setTimeout(() => {
                           setShowLoadingPopup(null);
-                          setShowAnalysis(true);
-                          scrollTo(zadavatelRef);
-                          onDeepSearch(contract.contracting_authority);
+                          setShowAdminAnalysis(true);
+                          setIsLoadingAdministrator(false);
+                          scrollTo(adminRef);
+                          onDeepSearch(contract.administrator!);
                         }, 7000);
                       }}
                     >
-                      Prověřit zadavatele<Search className="h-4 w-4 ml-1" />
+                      Prověřit administrátora<Search className="h-4 w-4 ml-1" />
                     </Button>
-
-                    {contract.administrator && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
-                        onClick={() => {
-                          setShowLoadingPopup("administrator");
-                          setShowAnalysis(false);
-                          setShowSupplierAnalysis(false);
-                          setIsLoadingAdministrator(true);
-                          setTimeout(() => {
-                            setShowLoadingPopup(null);
-                            setShowAdminAnalysis(true);
-                            setIsLoadingAdministrator(false);
-                            scrollTo(adminRef);
-                            onDeepSearch(contract.administrator!);
-                          }, 7000);
-                        }}
-                      >
-                        Prověřit administrátora<Search className="h-4 w-4 ml-1" />
-                      </Button>
-                    )}
-
+                  )}
                   {contract.supplier && (
                     <Button
                       variant="outline"
@@ -274,20 +282,6 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                       Prověřit dodavatele<Search className="h-4 w-4 ml-1" />
                     </Button>
                   )}
-                </div>
-
-                  {/* Oddelený button na podobné zakázky */}
-                  <Button
-                    variant="default"
-                    size="sm"
-                    className="bg-[#215197] hover:bg-[#1c467f] text-white min-w-[180px]"
-                    onClick={() => {
-                      setShowSimilar(true);
-                      setSimilarContractsOpen((prev) => !prev);
-                    }}
-                  >
-                    Najít podobné zakázky
-                  </Button>
                 </div>
               </div>
 
