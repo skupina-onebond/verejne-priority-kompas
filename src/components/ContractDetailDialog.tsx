@@ -57,6 +57,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [showSimilar, setShowSimilar] = useState(false);
   const [similarContractsOpen, setSimilarContractsOpen] = useState(true);
   const [nestedContract, setNestedContract] = useState<PublicContract | null>(null);
+  const [showGeneratedQuery, setShowGeneratedQuery] = useState(false);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
   const dodavatelRef = useRef<HTMLDivElement>(null);
@@ -238,24 +239,34 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                     </Button>
                   )}
 
-                  {contract.supplier && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
-                      onClick={() => {
-                        setShowLoadingPopup("dodavatel");
-                        setTimeout(() => {
-                          setShowLoadingPopup(null);
-                          setShowSupplierAnalysis(true);
-                          scrollTo(dodavatelRef);
-                        }, 7000);
-                      }}
-                    >
-                      Prověřit dodavatele<Search className="h-4 w-4 ml-1" />
-                    </Button>
-                  )}
-                </div>
+                {contract.supplier && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
+                    onClick={() => {
+                      setShowLoadingPopup("dodavatel");
+                      setTimeout(() => {
+                        setShowLoadingPopup(null);
+                        setShowSupplierAnalysis(true);
+                        scrollTo(dodavatelRef);
+                      }, 7000);
+                    }}
+                  >
+                    Prověřit dodavatele<Search className="h-4 w-4 ml-1" />
+                  </Button>
+                )}
+              </div>
+
+              {/* New button for generating query */}
+              <Button
+                variant="secondary"
+                size="sm"
+                className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
+                onClick={() => setShowGeneratedQuery((prev) => !prev)}
+              >
+                Navrhnout dotaz na zadavatele
+              </Button>
 
                 {/* Oddelený button na podobné zakázky */}
                 <Button
@@ -336,39 +347,83 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             </div>
           </div>
 
-          <Accordion
-            type="multiple"
-            defaultValue={[
-              analysisResult ? "zadavatel" : "",
-              contract.supplierAnalysis ? "dodavatel" : "",
-              contract.administratorAnalysis ? "administrator" : ""
-            ].filter(Boolean)}
-          >
-            {analysisResult && (
-              <div ref={zadavatelRef}>
-                <AccordionItem value="zadavatel">
-                  <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
-                    Analýza zadavatele
-                  </AccordionTrigger>
-                  <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
-                    {isLoadingZadavatel ? (
-                      <div className="flex flex-col items-center justify-center py-4">
-                        <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-2" />
-                        <p className="text-sm text-slate-500">Načítám analýzu zadavatele…</p>
-                      </div>
-                    ) : (
-                      <ReactMarkdown
-                        remarkPlugins={[remarkGfm]}
-                        rehypePlugins={[rehypeRaw]}
-                        className="prose prose-sm max-w-none"
-                      >
-                        {analysisResult}
-                      </ReactMarkdown>
-                    )}
-                  </AccordionContent>
-                </AccordionItem>
+        <Accordion
+          type="multiple"
+          defaultValue={[
+            analysisResult ? "zadavatel" : "",
+            contract.supplierAnalysis ? "dodavatel" : "",
+            contract.administratorAnalysis ? "administrator" : ""
+          ].filter(Boolean)}
+        >
+          {showGeneratedQuery && contract.id === '00001079' && (
+            <section className="section-spacing">
+              <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">
+                Návrh dotazu na zadavatele
+              </h3>
+              <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+                <p>
+                  <strong>Skutkové okolnosti:</strong> V zadávacím řízení byla technická kvalifikace nastavena způsobem, který znemožňoval prokazování prostřednictvím jiných osob. Zakázku získala jediná firma, bez konkurence.
+                </p>
+                <p>
+                  <strong>Možné porušení:</strong> § 83 odst. 1 a § 6 odst. 2 ZZVZ – diskriminace dodavatelů a omezení soutěže.
+                </p>
+                <p>
+                  <strong>Dotaz na zadavatele:</strong> „Z jakého důvodu jste ve veřejné zakázce vyloučili možnost, aby dodavatelé prokazovali kvalifikaci prostřednictvím jiných subjektů? Byla zvažována možnost, že tím může být omezena účast více dodavatelů?“
+                </p>
+                <p className="text-xs italic text-slate-500">
+                  * Podobné případy se objevují např. v rozhodnutích ÚOHS (např. S0375/2020), doporučujeme ověřit i v datech CRR.
+                </p>
               </div>
-            )}
+            </section>
+          )}
+
+          {showGeneratedQuery && contract.id === '00006628' && (
+            <section className="section-spacing">
+              <h3 className="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide">
+                Návrh dotazu na zadavatele
+              </h3>
+              <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+                <p>
+                  <strong>Skutkové okolnosti:</strong> V zakázce nebyly jasně definovány podmínky pro prokázání odborné způsobilosti ani subdodavatelské vztahy. Navíc došlo k vícepracím bez adekvátní kontroly přiměřenosti ceny.
+                </p>
+                <p>
+                  <strong>Možné porušení:</strong> § 36 odst. 3 a § 46 ZZVZ – netransparentnost kvalifikace a nekontrolované navyšování ceny.
+                </p>
+                <p>
+                  <strong>Dotaz na zadavatele:</strong> „Jak byly nastaveny interní kontrolní mechanismy pro posouzení kvalifikačních požadavků a navýšení ceny víceprací? Jaká byla role administrátora při tvorbě zadávací dokumentace?“
+                </p>
+                <p className="text-xs italic text-slate-500">
+                  * Doporučujeme porovnat s případy víceprací evidovanými v CRR nebo judikaturou NSS.
+                </p>
+              </div>
+            </section>
+          )}
+          
+          {analysisResult && (
+            <div ref={zadavatelRef}>
+              <AccordionItem value="zadavatel">
+                <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                  Analýza zadavatele
+                </AccordionTrigger>
+                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+                  {isLoadingZadavatel ? (
+                    <div className="flex flex-col items-center justify-center py-4">
+                      <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-2" />
+                      <p className="text-sm text-slate-500">Načítám analýzu zadavatele…</p>
+                    </div>
+                  ) : (
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      rehypePlugins={[rehypeRaw]}
+                      className="prose prose-sm max-w-none"
+                    >
+                      {analysisResult}
+                    </ReactMarkdown>
+                  )}
+                </AccordionContent>
+              </AccordionItem>
+            </div>
+          )}
 
             {contract.supplierAnalysis && showSupplierAnalysis && (
               <div ref={dodavatelRef}>
