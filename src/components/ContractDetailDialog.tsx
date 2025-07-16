@@ -44,10 +44,9 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   onClose,
   onDeepSearch,
   analysisResult,
-  similarContracts,
+  similarContracts = [],
   onOpenContractDetail
 }) => {
-  console.log("📦 ContractDetailDialog: similarContracts", similarContracts);
   const [showLoadingPopup, setShowLoadingPopup] = useState<"zadavatel" | "dodavatel" | "administrator" | null>(null);
   const [showSupplierAnalysis, setShowSupplierAnalysis] = useState(false);
   const [showAnalysis, setShowAnalysis] = useState(false);
