@@ -144,7 +144,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
         <input
           type="range"
           min={0}
-          max={10000000}
+          max={150000000}
           step={50000}
           value={filters.valueMax}
           onChange={(e) =>
@@ -216,7 +216,7 @@ export const ContractFilters: React.FC<ContractFiltersProps> = ({
           </DropdownMenu>
 
           {/* Reset */}
-        {(filters.sector || filters.region || filters.sortBy || filters.valueMin > 0 || filters.valueMax < 10000000) && (
+        {(filters.sector || filters.region || filters.sortBy || filters.valueMin > 0 || filters.valueMax < 150000000) && (
         <Button variant="ghost" onClick={clearFilters} className="text-red-600">
               Zrušit filtry
             </Button>
