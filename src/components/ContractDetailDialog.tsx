@@ -358,7 +358,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   size="sm"
                   className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[280px]"
                   onClick={() => {
-                    alert('Tato funkcionalita bude brzy doplněna. Aktuálně připravujeme kontrolu souladu nabídky vybraného dodavatele se zadávací dokumentací.');
+                    setShowTenderUniqueness((prev) => !prev);
+                    setTimeout(() => scrollTo(tenderUniquenessRef), 100);
                   }}
                 >
                   Ověřit soulad se zadávacími podmínkami
