@@ -27,6 +27,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { PublicContractCard } from "./PublicContractCard";
+import { PrimaryButton } from "@/components/ui/PrimaryButton";
+import { SecondaryButton } from "@/components/ui/SecondaryButton";
 
 
 interface ContractDetailDialogProps {
@@ -169,15 +171,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           <DialogHeader className="relative">
             <DialogDescription className="sr-only">Detail veřejné zakázky – {contract.title}</DialogDescription>
             <div className="absolute top-0 right-4 mt-4 2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+              <SecondaryButton
                 onClick={handlePrint}
+                className="min-w-[240px]"
               >
-                <Printer className="h-4 w-4 mr-2" />
                 Tisk
-              </Button>
+                <Printer className="h-4 w-4 ml-2" />
+              </SecondaryButton>
               {/* Zavírací tlačítko tu ponechávaš vpravo hore, ak používaš default Dialog */}
             </div>
 
@@ -216,10 +216,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               <div className="flex flex-col items-center gap-6 mb-6">
                 {/* Skupina 4 akčních buttonů ve speciálním boxu */}
                 <div className="w-full flex flex-wrap items-center justify-start gap-3 border border-blue-200 bg-blue-50 p-4 rounded-md mb-6">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
+                  <PrimaryButton
                     onClick={() => {
                       setShowLoadingPopup("zadavatel");
                       setTimeout(() => {
@@ -229,14 +226,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                         onDeepSearch(contract.contracting_authority);
                       }, 7000);
                     }}
+                    className="min-w-[240px]"
                   >
-                    Prověřit zadavatele<Search className="h-4 w-4 ml-1" />
-                  </Button>
+                    Prověřit zadavatele
+                    <Search className="h-4 w-4 ml-2" />
+                  </PrimaryButton>
                   {contract.administrator && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
+                    <PrimaryButton
                       onClick={() => {
                         setShowLoadingPopup("administrator");
                         setShowAnalysis(false);
@@ -250,15 +246,14 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                           onDeepSearch(contract.administrator!);
                         }, 7000);
                       }}
+                      className="min-w-[240px]"
                     >
-                      Prověřit administrátora<Search className="h-4 w-4 ml-1" />
-                    </Button>
+                      Prověřit administrátora
+                      <Search className="h-4 w-4 ml-2" />
+                    </PrimaryButton>
                   )}
                   {contract.supplier && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[180px]"
+                    <PrimaryButton
                       onClick={() => {
                         setShowLoadingPopup("dodavatel");
                         setTimeout(() => {
@@ -267,9 +262,11 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                           scrollTo(dodavatelRef);
                         }, 7000);
                       }}
+                      className="min-w-[240px]"
                     >
-                      Prověřit dodavatele<Search className="h-4 w-4 ml-1" />
-                    </Button>
+                      Prověřit dodavatele
+                      <Search className="h-4 w-4 ml-2" />
+                    </PrimaryButton>
                   )}
                 </div>
               </div>
@@ -341,41 +338,35 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
               )}
               {/* Move the "Navrhnout dotaz na zadavatele" button here */}
               <div className="flex flex-wrap justify-start gap-3 mt-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[280px]"
+                <PrimaryButton
                   onClick={() => {
                     setShowGeneratedQuery((prev) => !prev);
                     setTimeout(() => scrollTo(generatedQueryRef), 100);
                   }}
+                  className="min-w-[240px]"
                 >
                   Navrhnout dotaz na zadavatele
-                </Button>
+                </PrimaryButton>
 
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[280px]"
+                <PrimaryButton
                   onClick={() => {
                     setShowTenderUniqueness((prev) => !prev);
                     setTimeout(() => scrollTo(tenderUniquenessRef), 100);
                   }}
+                  className="min-w-[240px]"
                 >
                   Ověřit soulad se zadávacími podmínkami
-                </Button>
+                </PrimaryButton>
 
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-[#215197] border-[#215197] hover:bg-[#215197]/10 min-w-[280px]"
+                <PrimaryButton
                   onClick={() => {
                     setShowTenderUniqueness((prev) => !prev);
                     setTimeout(() => scrollTo(tenderUniquenessRef), 100);
                   }}
+                  className="min-w-[240px]"
                 >
                   Ověřit originalitu zadávacích podmínek
-                </Button>
+                </PrimaryButton>
               </div>
             </div>
           </div>
@@ -410,10 +401,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                     </p>
                   </div>
                   <div className="flex justify-end mt-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                    <SecondaryButton
                       onClick={() => {
                         const emailText = `Vážený zadavateli,
 
@@ -428,9 +416,10 @@ Děkujeme za Vaše vyjádření.`;
                           alert("Text e-mailu byl zkopírován do schránky.");
                         });
                       }}
+                      className="min-w-[240px]"
                     >
                       Zkopírovat text e-mailu
-                    </Button>
+                    </SecondaryButton>
                   </div>
                 </AccordionContent>
               </AccordionItem>
@@ -456,10 +445,7 @@ Děkujeme za Vaše vyjádření.`;
                     </p>
                   </div>
                   <div className="flex justify-end mt-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
+                    <SecondaryButton
                       onClick={() => {
                         const emailText = `Vážený zadavateli,
 
@@ -474,9 +460,10 @@ Děkujeme za Vaše vyjádření.`;
                           alert("Text e-mailu byl zkopírován do schránky.");
                         });
                       }}
+                      className="min-w-[240px]"
                     >
                       Zkopírovat text e-mailu
-                    </Button>
+                    </SecondaryButton>
                   </div>
                 </AccordionContent>
               </AccordionItem>
