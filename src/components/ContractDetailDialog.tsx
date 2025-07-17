@@ -173,7 +173,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             <div className="absolute top-0 right-4 mt-4 2">
               <SecondaryButton
                 onClick={handlePrint}
-                className="min-w-[240px]"
+                className="min-w-[50px]"
               >
                 Tisk
                 <Printer className="h-4 w-4 ml-2" />
@@ -213,62 +213,59 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 {contract.supplier && (<p><span className="font-medium">Dodavatel:</span> {contract.supplier}</p>)}
               </section>
 
-              <div className="flex flex-col items-center gap-6 mb-6">
-                {/* Skupina 4 akčních buttonů ve speciálním boxu */}
-                <div className="w-full flex flex-wrap items-center justify-start gap-3 border border-blue-200 bg-blue-50 p-4 rounded-md mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 w-full gap-3 mb-6">
+                <PrimaryButton
+                  onClick={() => {
+                    setShowLoadingPopup("zadavatel");
+                    setTimeout(() => {
+                      setShowLoadingPopup(null);
+                      setShowAnalysis(true);
+                      scrollTo(zadavatelRef);
+                      onDeepSearch(contract.contracting_authority);
+                    }, 7000);
+                  }}
+                  className="w-full"
+                >
+                  Prověřit zadavatele
+                  <Search className="h-4 w-4 ml-2" />
+                </PrimaryButton>
+                {contract.administrator && (
                   <PrimaryButton
                     onClick={() => {
-                      setShowLoadingPopup("zadavatel");
+                      setShowLoadingPopup("administrator");
+                      setShowAnalysis(false);
+                      setShowSupplierAnalysis(false);
+                      setIsLoadingAdministrator(true);
                       setTimeout(() => {
                         setShowLoadingPopup(null);
-                        setShowAnalysis(true);
-                        scrollTo(zadavatelRef);
-                        onDeepSearch(contract.contracting_authority);
+                        setShowAdminAnalysis(true);
+                        setIsLoadingAdministrator(false);
+                        scrollTo(adminRef);
+                        onDeepSearch(contract.administrator!);
                       }, 7000);
                     }}
-                    className="min-w-[240px]"
+                    className="w-full"
                   >
-                    Prověřit zadavatele
+                    Prověřit administrátora
                     <Search className="h-4 w-4 ml-2" />
                   </PrimaryButton>
-                  {contract.administrator && (
-                    <PrimaryButton
-                      onClick={() => {
-                        setShowLoadingPopup("administrator");
-                        setShowAnalysis(false);
-                        setShowSupplierAnalysis(false);
-                        setIsLoadingAdministrator(true);
-                        setTimeout(() => {
-                          setShowLoadingPopup(null);
-                          setShowAdminAnalysis(true);
-                          setIsLoadingAdministrator(false);
-                          scrollTo(adminRef);
-                          onDeepSearch(contract.administrator!);
-                        }, 7000);
-                      }}
-                      className="min-w-[240px]"
-                    >
-                      Prověřit administrátora
-                      <Search className="h-4 w-4 ml-2" />
-                    </PrimaryButton>
-                  )}
-                  {contract.supplier && (
-                    <PrimaryButton
-                      onClick={() => {
-                        setShowLoadingPopup("dodavatel");
-                        setTimeout(() => {
-                          setShowLoadingPopup(null);
-                          setShowSupplierAnalysis(true);
-                          scrollTo(dodavatelRef);
-                        }, 7000);
-                      }}
-                      className="min-w-[240px]"
-                    >
-                      Prověřit dodavatele
-                      <Search className="h-4 w-4 ml-2" />
-                    </PrimaryButton>
-                  )}
-                </div>
+                )}
+                {contract.supplier && (
+                  <PrimaryButton
+                    onClick={() => {
+                      setShowLoadingPopup("dodavatel");
+                      setTimeout(() => {
+                        setShowLoadingPopup(null);
+                        setShowSupplierAnalysis(true);
+                        scrollTo(dodavatelRef);
+                      }, 7000);
+                    }}
+                    className="w-full"
+                  >
+                    Prověřit dodavatele
+                    <Search className="h-4 w-4 ml-2" />
+                  </PrimaryButton>
+                )}
               </div>
 
               {showSimilar && (
