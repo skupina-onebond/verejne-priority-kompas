@@ -149,7 +149,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
     setIsLoadingDodavatel(false);
     setIsLoadingAdministrator(false);
     setShowGeneratedQuery(false);
-    setShowTenderUniqueness(false);
+    setShowTenderOriginality(false);
+    setShowTenderAlignment(false);
     setNestedContract(selectedContract);
   };
 
