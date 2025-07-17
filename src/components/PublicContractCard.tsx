@@ -82,7 +82,6 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     }, 1500);
   };
 
-  console.log("👀 PublicContractCard: similarContracts", similarContracts);
 
   return (
     <>

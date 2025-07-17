@@ -76,7 +76,7 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
               className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
             >
               <Eye className="h-4 w-4 mr-1" />
-              Zobraziť
+              Zobrazit
             </Button>
             <Button
               variant="outline"
@@ -85,7 +85,7 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
               className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
             >
               <Download className="h-4 w-4 mr-1" />
-              Stiahnuť
+              Stáhnout
             </Button>
           </div>
         </div>

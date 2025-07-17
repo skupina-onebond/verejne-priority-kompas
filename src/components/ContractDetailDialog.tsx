@@ -175,8 +175,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 onClick={handlePrint}
                 className="min-w-[50px]"
               >
-                Tisk
                 <Printer className="h-4 w-4 ml-2" />
+                Tisk
               </SecondaryButton>
               {/* Zavírací tlačítko tu ponechávaš vpravo hore, ak používaš default Dialog */}
             </div>
@@ -226,8 +226,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   }}
                   className="w-full"
                 >
-                  Prověřit zadavatele
                   <Search className="h-4 w-4 ml-2" />
+                  Prověřit zadavatele
                 </PrimaryButton>
                 {contract.administrator && (
                   <PrimaryButton
@@ -246,8 +246,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                     }}
                     className="w-full"
                   >
-                    Prověřit administrátora
                     <Search className="h-4 w-4 ml-2" />
+                    Prověřit administrátora
                   </PrimaryButton>
                 )}
                 {contract.supplier && (
@@ -262,8 +262,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                     }}
                     className="w-full"
                   >
-                    Prověřit dodavatele
                     <Search className="h-4 w-4 ml-2" />
+                    Prověřit dodavatele
                   </PrimaryButton>
                 )}
               </div>
