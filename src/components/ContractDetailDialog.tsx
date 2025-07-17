@@ -61,7 +61,8 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [showSimilar, setShowSimilar] = useState(true);
   const [nestedContract, setNestedContract] = useState<PublicContract | null>(null);
   const [showGeneratedQuery, setShowGeneratedQuery] = useState(false);
-  const [showTenderUniqueness, setShowTenderUniqueness] = useState(false);
+  const [showTenderOriginality, setShowTenderOriginality] = useState(false);
+  const [showTenderAlignment, setShowTenderAlignment] = useState(false);
   const tenderUniquenessRef = useRef<HTMLDivElement>(null);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
@@ -173,7 +174,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             <div className="absolute top-0 right-4 mt-4 2">
               <SecondaryButton
                 onClick={handlePrint}
-                className="min-w-[50px]"
+                className="min-w-[46px]"
               >
                 <Printer className="h-4 w-4 ml-2" />
                 Tisk
@@ -224,7 +225,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                       onDeepSearch(contract.contracting_authority);
                     }, 7000);
                   }}
-                  className="w-full"
+                  className="w-[200px]"
                 >
                   <Search className="h-4 w-4 ml-2" />
                   Prověřit zadavatele
@@ -244,7 +245,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                         onDeepSearch(contract.administrator!);
                       }, 7000);
                     }}
-                    className="w-full"
+                    className="w-[200px]"
                   >
                     <Search className="h-4 w-4 ml-2" />
                     Prověřit administrátora
@@ -260,7 +261,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                         scrollTo(dodavatelRef);
                       }, 7000);
                     }}
-                    className="w-full"
+                    className="w-[200px]"
                   >
                     <Search className="h-4 w-4 ml-2" />
                     Prověřit dodavatele
@@ -334,7 +335,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                 </section>
               )}
               {/* Move the "Navrhnout dotaz na zadavatele" button here */}
-              <div className="flex flex-wrap justify-start gap-3 mt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 w-full gap-3 mb-6">
                 <PrimaryButton
                   onClick={() => {
                     setShowGeneratedQuery((prev) => !prev);
@@ -347,22 +348,22 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
 
                 <PrimaryButton
                   onClick={() => {
-                    setShowTenderUniqueness((prev) => !prev);
-                    setTimeout(() => scrollTo(tenderUniquenessRef), 100);
-                  }}
-                  className="min-w-[240px]"
-                >
-                  Ověřit soulad se zadávacími podmínkami
-                </PrimaryButton>
-
-                <PrimaryButton
-                  onClick={() => {
-                    setShowTenderUniqueness((prev) => !prev);
+                    setShowTenderOriginality((prev) => !prev);
                     setTimeout(() => scrollTo(tenderUniquenessRef), 100);
                   }}
                   className="min-w-[240px]"
                 >
                   Ověřit originalitu zadávacích podmínek
+                </PrimaryButton>
+
+                <PrimaryButton
+                  onClick={() => {
+                    setShowTenderAlignment((prev) => !prev);
+                    setTimeout(() => scrollTo(tenderUniquenessRef), 100);
+                  }}
+                  className="min-w-[240px]"
+                >
+                  Ověřit soulad se zadávacími podmínkami
                 </PrimaryButton>
               </div>
             </div>
@@ -532,7 +533,7 @@ Děkujeme za Vaše vyjádření.`;
             )}
 
 
-            {showTenderUniqueness && contract.id === '00001079' && (
+            {showTenderOriginality && contract.id === '00001079' && (
               <div ref={tenderUniquenessRef}>
                 <AccordionItem value="tender-uniqueness">
                   <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
@@ -567,30 +568,32 @@ Děkujeme za Vaše vyjádření.`;
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-                {/* --- NOVÝ ODDÍL: Ověření souladu nabídky se zadávacími podmínkami --- */}
-                {showTenderUniqueness && contract.id === '00001079' && (
-                  <AccordionItem value="tender-alignment-00001079">
-                    <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
-                      Ověření souladu nabídky se zadávacími podmínkami
-                    </AccordionTrigger>
-                    <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed">
-                      <div className="bg-blue-50 border border-blue-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
-                        <p><strong>Kontrolované oblasti:</strong></p>
-                        <ul className="list-disc list-inside space-y-1">
-                          <li>Odpovídá nabídka technickým specifikacím?</li>
-                          <li>Byly splněny požadavky na kvalifikaci?</li>
-                          <li>Je doložena potřebná dokumentace?</li>
-                        </ul>
-                        <p><strong>Výsledek kontroly:</strong> V nabídce nebyly zjištěny zásadní nesrovnalosti se zadávacími podmínkami. Nabídka odpovídá požadavkům zadavatele.</p>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                )}
+              </div>
+            )}
+
+            {showTenderAlignment && contract.id === '00001079' && (
+              <div ref={tenderUniquenessRef}>
+                <AccordionItem value="tender-alignment-00001079">
+                  <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                    Ověření souladu nabídky se zadávacími podmínkami
+                  </AccordionTrigger>
+                  <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed">
+                    <div className="bg-blue-50 border border-blue-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+                      <p><strong>Kontrolované oblasti:</strong></p>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Odpovídá nabídka technickým specifikacím?</li>
+                        <li>Byly splněny požadavky na kvalifikaci?</li>
+                        <li>Je doložena potřebná dokumentace?</li>
+                      </ul>
+                      <p><strong>Výsledek kontroly:</strong> V nabídce nebyly zjištěny zásadní nesrovnalosti se zadávacími podmínkami. Nabídka odpovídá požadavkům zadavatele.</p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
               </div>
             )}
 
             {/* --- NOVÝ ODDÍL pro 00006628 --- */}
-            {showTenderUniqueness && contract.id === '00006628' && (
+            {showTenderAlignment && contract.id === '00006628' && (
               <div ref={tenderUniquenessRef}>
                 {/* Zde není tender-uniqueness AccordionItem, pouze tender-alignment */}
                 <AccordionItem value="tender-alignment-00006628">
