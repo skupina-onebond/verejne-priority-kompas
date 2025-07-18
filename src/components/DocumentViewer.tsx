@@ -339,7 +339,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                     <>
                       {/* PDF Navigation */}
                       {numPages && numPages > 1 && (
-                        <div className="flex items-center justify-between p-4 bg-white border-b">
+                        <div className="flex items-center justify-between p-4 bg-white border-b sticky top-0 z-10">
                           <Button
                             variant="outline"
                             size="sm"
@@ -362,16 +362,17 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                         </div>
                       )}
                       
-                      {/* PDF Document */}
+                      {/* PDF Document Container with proper scrolling */}
                       <div 
-                        className="flex-1 overflow-auto bg-white"
+                        className="flex-1 p-4 bg-gray-100"
                         style={{ 
-                          maxHeight: 'calc(100vh - 200px)',
                           overflowY: 'auto',
-                          scrollBehavior: 'smooth'
+                          overflowX: 'auto',
+                          height: 'calc(100vh - 280px)',
+                          WebkitOverflowScrolling: 'touch'
                         }}
                       >
-                        <div className="flex justify-center p-4 min-h-full">
+                        <div className="flex justify-center">
                           <Document
                             file={documentUrl}
                             onLoadSuccess={onDocumentLoadSuccess}
@@ -386,10 +387,10 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                           >
                             <Page
                               pageNumber={pageNumber}
-                              scale={1.1}
+                              scale={1.2}
                               renderTextLayer={true}
                               renderAnnotationLayer={true}
-                              className="shadow-md"
+                              className="shadow-md border border-gray-300"
                             />
                           </Document>
                         </div>

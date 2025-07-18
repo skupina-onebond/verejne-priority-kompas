@@ -72,7 +72,10 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
             <Button
               variant="outline"
               size="sm"
-              onClick={() => onView(document)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onView(document);
+              }}
               className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
             >
               <Eye className="h-4 w-4 mr-1" />
@@ -81,7 +84,10 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
             <Button
               variant="outline"
               size="sm"
-              onClick={() => onDownload(document)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onDownload(document);
+              }}
               className="text-[#215197] border-[#215197] hover:bg-[#215197]/10"
             >
               <Download className="h-4 w-4 mr-1" />
