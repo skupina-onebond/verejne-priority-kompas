@@ -57,7 +57,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   };
 
   const getScoreColor = (score: number) => {
-    return score > 0 ? "bg-blue-500" : "bg-gray-400";
+    return score > 0 ? "bg-[#215197]" : "bg-gray-400";
   };
 
   const getScoreSize = (score: number) => {
