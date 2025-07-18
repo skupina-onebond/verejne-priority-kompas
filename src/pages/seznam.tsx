@@ -45,6 +45,17 @@ const ContractListPage = () => {
     console.log('Deep search for:', subjectName);
   };
 
+  // Generate sample similarity scores for demonstration
+  const generateSimilarityScore = (contractId: string) => {
+    // Simulate different similarity scores based on contract ID for demo
+    const hash = contractId.split('').reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0);
+    return {
+      sector: Math.abs(hash % 40) + 60, // 60-100
+      price: Math.abs((hash * 2) % 50) + 40, // 40-90
+      severity: Math.abs((hash * 3) % 60) + 30, // 30-90
+    };
+  };
+
   const filteredContracts = useMemo(() => {
     return contracts.filter(contract => {
       if (filters.sector && contract.sector !== filters.sector) return false;
@@ -136,6 +147,7 @@ const ContractListPage = () => {
                 onMove={moveContract}
                 onDeepSearch={handleDeepSearch}
                 similarContracts={contracts}
+                similarityScore={generateSimilarityScore(contract.id)}
               />
             ))}
             {activeContracts.length === 0 && (
@@ -156,6 +168,7 @@ const ContractListPage = () => {
                 onMove={moveContract}
                 onDeepSearch={handleDeepSearch}
                 similarContracts={contracts}
+                similarityScore={generateSimilarityScore(contract.id)}
               />
             ))}
             {bookmarkedContracts.length === 0 && (
@@ -176,6 +189,7 @@ const ContractListPage = () => {
                 onMove={moveContract}
                 onDeepSearch={handleDeepSearch}
                 similarContracts={contracts}
+                similarityScore={generateSimilarityScore(contract.id)}
               />
             ))}
             {hiddenContracts.length === 0 && (
@@ -196,6 +210,7 @@ const ContractListPage = () => {
                 onMove={moveContract}
                 onDeepSearch={handleDeepSearch}
                 similarContracts={contracts}
+                similarityScore={generateSimilarityScore(contract.id)}
               />
             ))}
             {completedContracts.length === 0 && (
