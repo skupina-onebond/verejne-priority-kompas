@@ -152,11 +152,13 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     });
   };
 
-  const goToPrevPage = () => {
+  const goToPrevPage = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setPageNumber(prev => Math.max(prev - 1, 1));
   };
 
-  const goToNextPage = () => {
+  const goToNextPage = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setPageNumber(prev => numPages ? Math.min(prev + 1, numPages) : prev);
   };
 
@@ -286,8 +288,20 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         <div 
           className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4"
           style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              if (documentUrl) {
+                URL.revokeObjectURL(documentUrl);
+              }
+              setSelectedDocument(null);
+              setDocumentUrl(null);
+            }
+          }}
         >
-          <div className="bg-white rounded-lg shadow-2xl w-full max-w-6xl h-[95vh] flex flex-col overflow-hidden">
+          <div 
+            className="bg-white rounded-lg shadow-2xl w-full max-w-6xl h-[95vh] flex flex-col overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex items-center justify-between p-3 sm:p-4 border-b bg-white">
               <div className="flex items-center space-x-3 min-w-0 flex-1">
                 {getFileIcon(selectedDocument.file_type)}
