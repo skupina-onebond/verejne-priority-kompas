@@ -9,11 +9,18 @@ import {
   FileSpreadsheet,
   Image,
   X,
-  ChevronDown
+  ChevronDown,
+  Loader2
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { DocumentCard } from './DocumentCard';
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+
+// Set up PDF.js worker
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 interface DocumentFile {
   id: string;
@@ -38,6 +45,10 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   const [contractDocuments, setContractDocuments] = useState<DocumentFile[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isExpanded, setIsExpanded] = useState(true);
+  const [documentUrl, setDocumentUrl] = useState<string | null>(null);
+  const [numPages, setNumPages] = useState<number | null>(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pdfLoading, setPdfLoading] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -90,8 +101,81 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     return <File className="h-4 w-4" />;
   };
 
-  const handleViewDocument = (doc: DocumentFile) => {
+  const handleViewDocument = async (doc: DocumentFile) => {
     setSelectedDocument(doc);
+    setPageNumber(1);
+    setNumPages(null);
+    setDocumentUrl(null);
+    setPdfLoading(true);
+
+    try {
+      const { data, error } = await supabase.storage
+        .from('contract-documents')
+        .download(doc.file_path);
+
+      if (error) {
+        console.error('Error loading document:', error);
+        toast({
+          title: "Chyba",
+          description: "Nepodarilo sa načítať dokument",
+          variant: "destructive"
+        });
+        setPdfLoading(false);
+        return;
+      }
+
+      const url = URL.createObjectURL(data);
+      setDocumentUrl(url);
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: "Chyba",
+        description: "Nepodarilo sa načítať dokument",
+        variant: "destructive"
+      });
+    } finally {
+      setPdfLoading(false);
+    }
+  };
+
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
+    setNumPages(numPages);
+  };
+
+  const onDocumentLoadError = (error: Error) => {
+    console.error('PDF load error:', error);
+    toast({
+      title: "Chyba",
+      description: "Nepodarilo sa načítať PDF dokument",
+      variant: "destructive"
+    });
+  };
+
+  const goToPrevPage = () => {
+    setPageNumber(prev => Math.max(prev - 1, 1));
+  };
+
+  const goToNextPage = () => {
+    setPageNumber(prev => numPages ? Math.min(prev + 1, numPages) : prev);
+  };
+
+  const getOfficeViewerUrl = (doc: DocumentFile) => {
+    const publicUrl = supabase.storage
+      .from('contract-documents')
+      .getPublicUrl(doc.file_path).data.publicUrl;
+    
+    if (doc.file_type.includes('word') || doc.file_type.includes('docx')) {
+      return `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(publicUrl)}`;
+    }
+    if (doc.file_type.includes('excel') || doc.file_type.includes('xlsx') || doc.file_type.includes('spreadsheet')) {
+      return `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(publicUrl)}`;
+    }
+    if (doc.file_type.includes('powerpoint') || doc.file_type.includes('pptx')) {
+      return `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(publicUrl)}`;
+    }
+    
+    // Fallback to Google Docs Viewer
+    return `https://docs.google.com/viewer?url=${encodeURIComponent(publicUrl)}&embedded=true`;
   };
 
   const handleDownload = async (doc: DocumentFile) => {
@@ -213,35 +297,135 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setSelectedDocument(null)}
+                onClick={() => {
+                  if (documentUrl) {
+                    URL.revokeObjectURL(documentUrl);
+                  }
+                  setSelectedDocument(null);
+                  setDocumentUrl(null);
+                }}
               >
                 <X className="h-4 w-4" />
               </Button>
             </div>
-            <div className="flex-1 p-4 overflow-auto bg-gray-50">
+            <div className="flex-1 overflow-auto bg-gray-50">
               {selectedDocument.file_type.includes('pdf') ? (
-                <div className="text-center py-8">
-                  <FileText className="h-16 w-16 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-600 mb-4">PDF dokument: {selectedDocument.name}</p>
-                  <p className="text-sm text-gray-500">
-                    V reálnej aplikácii by sa tu zobrazil PDF viewer
-                  </p>
+                <div className="h-full flex flex-col">
+                  {pdfLoading ? (
+                    <div className="flex-1 flex items-center justify-center">
+                      <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                      <span className="ml-2 text-gray-600">Načítavam PDF...</span>
+                    </div>
+                  ) : documentUrl ? (
+                    <>
+                      {/* PDF Navigation */}
+                      {numPages && numPages > 1 && (
+                        <div className="flex items-center justify-between p-4 bg-white border-b">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={goToPrevPage}
+                            disabled={pageNumber <= 1}
+                          >
+                            Predchádzajúca
+                          </Button>
+                          <span className="text-sm text-gray-600">
+                            Strana {pageNumber} z {numPages}
+                          </span>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={goToNextPage}
+                            disabled={pageNumber >= (numPages || 1)}
+                          >
+                            Ďalšia
+                          </Button>
+                        </div>
+                      )}
+                      
+                      {/* PDF Document */}
+                      <div className="flex-1 overflow-auto p-4 flex justify-center">
+                        <Document
+                          file={documentUrl}
+                          onLoadSuccess={onDocumentLoadSuccess}
+                          onLoadError={onDocumentLoadError}
+                          loading={
+                            <div className="flex items-center justify-center py-8">
+                              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                              <span className="ml-2">Načítavam PDF...</span>
+                            </div>
+                          }
+                        >
+                          <Page
+                            pageNumber={pageNumber}
+                            scale={1.2}
+                            renderTextLayer={true}
+                            renderAnnotationLayer={true}
+                          />
+                        </Document>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex-1 flex items-center justify-center">
+                      <div className="text-center">
+                        <FileText className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+                        <p className="text-gray-600">Nepodarilo sa načítať PDF dokument</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              ) : selectedDocument.file_type.includes('spreadsheet') ? (
-                <div className="text-center py-8">
-                  <FileSpreadsheet className="h-16 w-16 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-600 mb-4">Excel súbor: {selectedDocument.name}</p>
-                  <p className="text-sm text-gray-500">
-                    V reálnej aplikácii by sa tu zobrazil spreadsheet viewer
-                  </p>
+              ) : selectedDocument.file_type.includes('word') || 
+                  selectedDocument.file_type.includes('docx') ||
+                  selectedDocument.file_type.includes('excel') || 
+                  selectedDocument.file_type.includes('xlsx') ||
+                  selectedDocument.file_type.includes('spreadsheet') ||
+                  selectedDocument.file_type.includes('powerpoint') ||
+                  selectedDocument.file_type.includes('pptx') ? (
+                <div className="h-full">
+                  <iframe
+                    src={getOfficeViewerUrl(selectedDocument)}
+                    className="w-full h-full border-0"
+                    title={`Viewer: ${selectedDocument.name}`}
+                    onError={() => {
+                      toast({
+                        title: "Chyba",
+                        description: "Nepodarilo sa načítať dokument vo vieweri",
+                        variant: "destructive"
+                      });
+                    }}
+                  />
+                </div>
+              ) : selectedDocument.file_type.includes('image') ? (
+                <div className="p-4 flex justify-center">
+                  <img 
+                    src={documentUrl || ''}
+                    alt={selectedDocument.name}
+                    className="max-w-full max-h-full object-contain"
+                    onError={() => {
+                      toast({
+                        title: "Chyba", 
+                        description: "Nepodarilo sa načítať obrázok",
+                        variant: "destructive"
+                      });
+                    }}
+                  />
                 </div>
               ) : (
-                <div className="text-center py-8">
-                  <File className="h-16 w-16 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-600 mb-4">Dokument: {selectedDocument.name}</p>
-                  <p className="text-sm text-gray-500">
-                    Preview nie je k dispozícii pre tento typ súboru
-                  </p>
+                <div className="flex-1 flex items-center justify-center p-8">
+                  <div className="text-center">
+                    <File className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+                    <p className="text-gray-600 mb-2">Dokument: {selectedDocument.name}</p>
+                    <p className="text-sm text-gray-500 mb-4">
+                      Nie je k dispozícii náhľad pre tento typ súboru
+                    </p>
+                    <Button
+                      variant="outline"
+                      onClick={() => handleDownload(selectedDocument)}
+                    >
+                      <Download className="h-4 w-4 mr-2" />
+                      Stiahnuť súbor
+                    </Button>
+                  </div>
                 </div>
               )}
             </div>
@@ -254,7 +438,13 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                   <Download className="h-4 w-4 mr-2" />
                   Stáhnout
                 </Button>
-                <Button onClick={() => setSelectedDocument(null)}>
+                <Button onClick={() => {
+                  if (documentUrl) {
+                    URL.revokeObjectURL(documentUrl);
+                  }
+                  setSelectedDocument(null);
+                  setDocumentUrl(null);
+                }}>
                   Zavřít
                 </Button>
               </div>
