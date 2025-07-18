@@ -134,57 +134,126 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           {similarity && (
             <div className="flex items-center gap-3 mt-3 p-2 bg-slate-50 rounded-lg">
               <div className="flex items-center gap-1.5">
-                <Building2 className="w-3 h-3 text-slate-600" />
+                <Tooltip.Provider>
+                  <Tooltip.Root>
+                    <Tooltip.Trigger asChild>
+                      <Building2 className="w-3 h-3 text-slate-600 cursor-help" />
+                    </Tooltip.Trigger>
+                    <Tooltip.Portal>
+                      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+                        Podobnosť oblastí podnikania
+                        <Tooltip.Arrow className="fill-white" />
+                      </Tooltip.Content>
+                    </Tooltip.Portal>
+                  </Tooltip.Root>
+                </Tooltip.Provider>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((dot) => {
                     const score = getScoreFromPercent(similarity.sector);
                     return (
-                      <div
-                        key={dot}
-                        className={`rounded-full transition-all duration-200 ${
-                          dot <= score 
-                            ? `${getScoreColor(score)} ${getScoreSize(score)} animate-scale-in` 
-                            : 'w-1.5 h-1.5 bg-slate-200'
-                        }`}
-                      />
+                      <Tooltip.Provider key={dot}>
+                        <Tooltip.Root>
+                          <Tooltip.Trigger asChild>
+                            <div
+                              className={`rounded-full transition-all duration-200 cursor-help ${
+                                dot <= score 
+                                  ? `${getScoreColor(score)} ${getScoreSize(score)} animate-scale-in` 
+                                  : 'w-1.5 h-1.5 bg-slate-200'
+                              }`}
+                            />
+                          </Tooltip.Trigger>
+                          <Tooltip.Portal>
+                            <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+                              Oblasť: {score}/5 bodov
+                              <Tooltip.Arrow className="fill-white" />
+                            </Tooltip.Content>
+                          </Tooltip.Portal>
+                        </Tooltip.Root>
+                      </Tooltip.Provider>
                     );
                   })}
                 </div>
               </div>
               
               <div className="flex items-center gap-1.5">
-                <DollarSign className="w-3 h-3 text-slate-600" />
+                <Tooltip.Provider>
+                  <Tooltip.Root>
+                    <Tooltip.Trigger asChild>
+                      <DollarSign className="w-3 h-3 text-yellow-600 cursor-help" />
+                    </Tooltip.Trigger>
+                    <Tooltip.Portal>
+                      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+                        Podobnosť finančnej hodnoty
+                        <Tooltip.Arrow className="fill-white" />
+                      </Tooltip.Content>
+                    </Tooltip.Portal>
+                  </Tooltip.Root>
+                </Tooltip.Provider>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((dot) => {
                     const score = getScoreFromPercent(similarity.price);
                     return (
-                      <div
-                        key={dot}
-                        className={`rounded-full transition-all duration-200 ${
-                          dot <= score 
-                            ? `${getScoreColor(score)} ${getScoreSize(score)} animate-scale-in` 
-                            : 'w-1.5 h-1.5 bg-slate-200'
-                        }`}
-                      />
+                      <Tooltip.Provider key={dot}>
+                        <Tooltip.Root>
+                          <Tooltip.Trigger asChild>
+                            <div
+                              className={`rounded-full transition-all duration-200 cursor-help ${
+                                dot <= score 
+                                  ? `bg-yellow-500 ${getScoreSize(score)} animate-scale-in` 
+                                  : 'w-1.5 h-1.5 bg-slate-200'
+                              }`}
+                            />
+                          </Tooltip.Trigger>
+                          <Tooltip.Portal>
+                            <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+                              Cena: {score}/5 bodov
+                              <Tooltip.Arrow className="fill-white" />
+                            </Tooltip.Content>
+                          </Tooltip.Portal>
+                        </Tooltip.Root>
+                      </Tooltip.Provider>
                     );
                   })}
                 </div>
               </div>
               
               <div className="flex items-center gap-1.5">
-                <AlertTriangle className="w-3 h-3 text-slate-600" />
+                <Tooltip.Provider>
+                  <Tooltip.Root>
+                    <Tooltip.Trigger asChild>
+                      <AlertTriangle className="w-3 h-3 text-yellow-600 cursor-help" />
+                    </Tooltip.Trigger>
+                    <Tooltip.Portal>
+                      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+                        Podobnosť závažnosti rizika
+                        <Tooltip.Arrow className="fill-white" />
+                      </Tooltip.Content>
+                    </Tooltip.Portal>
+                  </Tooltip.Root>
+                </Tooltip.Provider>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((dot) => {
                     const score = getScoreFromPercent(similarity.severity);
                     return (
-                      <div
-                        key={dot}
-                        className={`rounded-full transition-all duration-200 ${
-                          dot <= score 
-                            ? `${getScoreColor(score)} ${getScoreSize(score)} animate-scale-in` 
-                            : 'w-1.5 h-1.5 bg-slate-200'
-                        }`}
-                      />
+                      <Tooltip.Provider key={dot}>
+                        <Tooltip.Root>
+                          <Tooltip.Trigger asChild>
+                            <div
+                              className={`rounded-full transition-all duration-200 cursor-help ${
+                                dot <= score 
+                                  ? `bg-yellow-500 ${getScoreSize(score)} animate-scale-in` 
+                                  : 'w-1.5 h-1.5 bg-slate-200'
+                              }`}
+                            />
+                          </Tooltip.Trigger>
+                          <Tooltip.Portal>
+                            <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+                              Závažnosť: {score}/5 bodov
+                              <Tooltip.Arrow className="fill-white" />
+                            </Tooltip.Content>
+                          </Tooltip.Portal>
+                        </Tooltip.Root>
+                      </Tooltip.Provider>
                     );
                   })}
                 </div>
