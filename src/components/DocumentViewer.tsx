@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -280,9 +281,12 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         )
       )}
 
-      {/* Document Viewer Modal */}
-      {selectedDocument && (
-        <div className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+      {/* Document Viewer Modal - Portal to body to avoid dialog positioning issues */}
+      {selectedDocument && createPortal(
+        <div 
+          className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4"
+          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+        >
           <div className="bg-white rounded-lg shadow-2xl w-full max-w-6xl h-[95vh] flex flex-col overflow-hidden">
             <div className="flex items-center justify-between p-3 sm:p-4 border-b bg-white">
               <div className="flex items-center space-x-3 min-w-0 flex-1">
@@ -455,7 +459,8 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
