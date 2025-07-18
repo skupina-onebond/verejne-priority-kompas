@@ -287,7 +287,15 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
       {selectedDocument && createPortal(
         <div 
           className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4"
-          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            overflow: 'auto',
+            WebkitOverflowScrolling: 'touch'
+          }}
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               if (documentUrl) {
@@ -363,15 +371,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                       )}
                       
                       {/* PDF Document Container with proper scrolling */}
-                      <div 
-                        className="flex-1 p-4 bg-gray-100"
-                        style={{ 
-                          overflowY: 'auto',
-                          overflowX: 'auto',
-                          height: 'calc(100vh - 280px)',
-                          WebkitOverflowScrolling: 'touch'
-                        }}
-                      >
+                      <div className="flex-1 overflow-auto p-4 bg-gray-100">
                         <div className="flex justify-center">
                           <Document
                             file={documentUrl}
