@@ -90,9 +90,11 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   };
 
   if (mode === 'summary') {
-    // Find the reference contract (first in similarContracts that's not this contract)
-    const referenceContract = similarContracts?.find(c => c.id !== contract.id);
-    const similarity = referenceContract ? calculateSimilarity(referenceContract, contract) : null;
+    // Find the reference contract (main contract or first in the list if this is not the main one)
+    const referenceContract = similarContracts?.[0];
+    const similarity = referenceContract && referenceContract.id !== contract.id 
+      ? calculateSimilarity(referenceContract, contract) 
+      : null;
     
     return (
       <>
