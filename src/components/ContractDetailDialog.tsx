@@ -222,8 +222,9 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                     setTimeout(() => {
                       setShowLoadingPopup(null);
                       setShowAnalysis(true);
-                      scrollTo(zadavatelRef);
                       onDeepSearch(contract.contracting_authority);
+                      // Scroll after content is rendered
+                      setTimeout(() => scrollTo(zadavatelRef), 300);
                     }, 7000);
                   }}
                   className="w-[200px]"
