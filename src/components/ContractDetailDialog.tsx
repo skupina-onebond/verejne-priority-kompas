@@ -303,6 +303,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                               onMove={() => {}}
                               onDeepSearch={onDeepSearch}
                               mode="summary"
+                              similarContracts={filteredSimilarContracts}
                               onOpenContractDetail={handleNestedContractOpen}
                             />
                           ))}
