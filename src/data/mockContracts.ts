@@ -74,5 +74,43 @@ export const mockContracts: PublicContract[] = [
       'V případech víceprací vždy kontrolovat přiměřenost jednotkových cen vůči původnímu rozpočtu.',
       'Zvážit zajištění právní supervize při tvorbě zadávací dokumentace.'
     ]
-  }
+  },
+  {
+  id: '0000421',
+  title: 'Křižovatka ul. Mostní - ul. Březnická, Zlín',
+  description:
+    'Předmětem veřejné zakázky bylo provedení stavebních úprav na křížení ulic Mostní a Březnická ve Zlíně. Součástí plnění byla výstavba nové průsečné křižovatky řízené světelnou signalizací, obnova a doplnění chodníků a stezek, zřízení nových zastávkových zálivů a následná péče o výsadbu po dobu 5 let. Projekt byl spolufinancován z IROP a realizován formou společného zadávání města Zlín a Ředitelství silnic Zlínského kraje.',
+  value: 79013029,
+  valueCategory: 'high',
+  deadline: '2023-12-31',
+  contracting_authority: 'Statutární město Zlín',
+  administrator: 'Magistrát města Zlína – odbor právní, oddělení veřejných zakázek',
+  administratorAnalysis:
+    'Zadávací řízení administroval přímo odbor právní Magistrátu města Zlína, konkrétně Mgr. Valerie Lukášová. V rámci kontroly projektu byla zadavateli uložena finanční oprava ve výši 5 % kvůli nepřiměřeným požadavkům na technickou kvalifikaci.',
+  supplier: 'EUROVIA CS, a.s. + SMO a.s.',
+  supplierAnalysis:
+    'Zakázku realizovalo sdružení EUROVIA CS, a.s. a SMO a.s. jakožto vítěz konsorcia. Veřejné zdroje neuvádí pochybení na straně dodavatele, předmětem finanční opravy byly výlučně zadávací podmínky.',
+  sector: 'Stavebnictví',
+  region: 'Zlínský kraj',
+  status: 'active',
+  created_at: '2023-01-03',
+  additional_info:
+    'Projekt byl kontrolován Centrem pro regionální rozvoj. V rámci kontroly byla stanovena nevyplacená podpora ve výši 1 275 000 Kč kvůli nepřiměřeným kvalifikačním požadavkům na referenční stavby.',
+  analysis:
+    'Zakázka byla spolufinancována z IROP a zadávána podle § 3 písm. b) ZZVZ v otevřeném podlimitním řízení. Zadavatel požadoval zkušenost s výstavbou průsečných křižovatek, přičemž nebyla doložena přímá věcná souvislost těchto požadavků s technickou náročností stavby. Tento požadavek byl vyhodnocen jako nepřiměřený a diskriminační. Výsledkem je uplatněná finanční oprava ve výši 5 % poskytnuté podpory.',
+  findings: [
+    {
+      severity: 'vysoká',
+      category: 'A.1. Nepřiměřené kvalifikační podmínky',
+      description:
+        'Zadavatel požadoval tři reference na výstavbu průsečné křižovatky, aniž by prokázal, že takové technické omezení bylo nezbytné. Porušení § 6 odst. 1 a 2, § 36 odst. 1 a § 73 odst. 6 písm. b) ZZVZ (Zdroj: Informace o nevyplacení části dotace, CRR).',
+    }
+  ],
+  recommendations: [
+    'Při nastavování kvalifikačních požadavků vždy posoudit jejich přiměřenost vůči předmětu plnění.',
+    'Vyvarovat se formulací, které zužují trh bez přímé vazby na technickou nebo organizační náročnost zakázky.',
+    'V případě potřeby ověřit relevantnost kvalifikačních kritérií se specializovaným právním poradcem.'
+  ]
+}
+
 ];
