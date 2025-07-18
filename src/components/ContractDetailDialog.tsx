@@ -596,13 +596,12 @@ Děkujeme za Vaše vyjádření.`;
                     <div className="bg-blue-50 border border-blue-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
                       <p><strong>Kontrolované oblasti:</strong></p>
                       <ul className="list-disc list-inside space-y-1">
-                        <li>Odpovídá nabídka technickým specifikacím?</li>
-                        <li>Byly splněny požadavky na kvalifikaci?</li>
-                        <li>Je doložena potřebná dokumentace?</li>
+                        <li>Byla nabídka zhotovitele v plném rozsahu v souladu s požadavky uvedenými v technické specifikaci?</li>
+                        <li>Obsahuje nabídka veškeré dokumenty a důkazy prokazující splnění kvalifikačních požadavků (včetně případného využití subdodavatelů)?</li>
+                        <li>Byly veškeré přílohy, čestná prohlášení, certifikace a výkazy zpracovány ve struktuře předepsané zadávací dokumentací?</li>
                       </ul>
-                      <p><strong>Výsledek kontroly:</strong> V nabídce nebyly zjištěny zásadní nesrovnalosti se zadávacími podmínkami. Nabídka odpovídá požadavkům zadavatele.</p>
-                    </div>
-                  </AccordionContent>
+                    <p><strong>Výsledek kontroly:</strong> Analýza doložené nabídky neprokázala žádné nesoulady se zadávacími podmínkami. Technické požadavky i formální náležitosti byly naplněny. Nabídka je považována za úplnou a zadávací dokumentaci odpovídající. Z hlediska kontrolních mechanismů nebyly zjištěny pochybení, která by mohla ovlivnit transparentnost nebo rovnoprávnost zadávacího řízení.</p>                    </div>
+                  </AccordionContent> 
                 </AccordionItem>
               </div>
             )}
@@ -619,12 +618,11 @@ Děkujeme za Vaše vyjádření.`;
                     <div className="bg-blue-50 border border-blue-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
                       <p><strong>Kontrolované oblasti:</strong></p>
                       <ul className="list-disc list-inside space-y-1">
-                        <li>Odpovídá nabídka technickým specifikacím?</li>
-                        <li>Byly dodrženy limity víceprací?</li>
-                        <li>Existuje jasný zápis změn ve smlouvě?</li>
+                        <li>Byla nabídka v souladu s technickými a kvalifikačními požadavky definovanými v zadávací dokumentaci?</li>
+                        <li>Odpovídá rozsah provedených víceprací právnímu rámci a byly tyto změny adekvátně zdokumentovány?</li>
+                        <li>Existuje srozumitelná návaznost mezi původní smlouvou, jejími dodatky a realizovanými pracemi?</li>
                       </ul>
-                      <p><strong>Výsledek kontroly:</strong> Bylo zjištěno navýšení víceprací bez doložení odpovídající dokumentace. Doporučujeme detailní prověření dodatečných nákladů.</p>
-                    </div>
+                    <p><strong>Výsledek kontroly:</strong> V průběhu kontroly byly zjištěny nesrovnalosti v oblasti víceprací. Došlo k navýšení ceny, které nebylo dostatečně odůvodněno a formálně doloženo příslušnými dodatky. Tento postup může vést ke snížení transparentnosti zadávacího procesu. Doporučujeme provést detailní audit všech změn oproti původní smlouvě a přezkoumat, zda byly dodrženy principy hospodárnosti a přiměřenosti.</p></div>
                   </AccordionContent>
                 </AccordionItem>
               </div>
