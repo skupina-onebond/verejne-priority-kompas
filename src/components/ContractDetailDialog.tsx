@@ -62,7 +62,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [nestedContract, setNestedContract] = useState<PublicContract | null>(null);
   const [showGeneratedQuery, setShowGeneratedQuery] = useState(false);
   const [showTenderOriginality, setShowTenderOriginality] = useState(false);
-  const [showTenderAlignment, setShowTenderAlignment] = useState(false);
+  const [showTenderAlignment, setShowTenderAlignment] = useState(true);
   const tenderUniquenessRef = useRef<HTMLDivElement>(null);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
@@ -390,7 +390,9 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
             "zadavatel",
             "dodavatel",
             "administrator",
-            "tender-uniqueness"
+            "tender-uniqueness",
+            "tender-alignment-00001079",
+            "tender-alignment-00006628"
           ]}
         >
           {showGeneratedQuery && contract.id === '00001079' && (
