@@ -57,14 +57,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
   };
 
   const getScoreColor = (score: number) => {
-    switch (score) {
-      case 5: return "bg-emerald-500";
-      case 4: return "bg-green-500";
-      case 3: return "bg-yellow-500";
-      case 2: return "bg-orange-500";
-      case 1: return "bg-red-500";
-      default: return "bg-gray-400";
-    }
+    return score > 0 ? "bg-blue-500" : "bg-gray-400";
   };
 
   const getScoreSize = (score: number) => {
@@ -196,13 +189,13 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                       <Tooltip.Provider key={dot}>
                         <Tooltip.Root>
                           <Tooltip.Trigger asChild>
-                            <div
-                              className={`rounded-full transition-all duration-200 cursor-help ${
-                                dot <= score 
-                                  ? `bg-yellow-500 ${getScoreSize(score)} animate-scale-in` 
-                                  : 'w-1.5 h-1.5 bg-slate-200'
-                              }`}
-                            />
+                             <div
+                               className={`rounded-full transition-all duration-200 cursor-help ${
+                                 dot <= score 
+                                   ? `${getScoreColor(score)} ${getScoreSize(score)} animate-scale-in` 
+                                   : 'w-1.5 h-1.5 bg-slate-200'
+                               }`}
+                             />
                           </Tooltip.Trigger>
                           <Tooltip.Portal>
                             <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
@@ -238,13 +231,13 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                       <Tooltip.Provider key={dot}>
                         <Tooltip.Root>
                           <Tooltip.Trigger asChild>
-                            <div
-                              className={`rounded-full transition-all duration-200 cursor-help ${
-                                dot <= score 
-                                  ? `bg-yellow-500 ${getScoreSize(score)} animate-scale-in` 
-                                  : 'w-1.5 h-1.5 bg-slate-200'
-                              }`}
-                            />
+                             <div
+                               className={`rounded-full transition-all duration-200 cursor-help ${
+                                 dot <= score 
+                                   ? `${getScoreColor(score)} ${getScoreSize(score)} animate-scale-in` 
+                                   : 'w-1.5 h-1.5 bg-slate-200'
+                               }`}
+                             />
                           </Tooltip.Trigger>
                           <Tooltip.Portal>
                             <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
