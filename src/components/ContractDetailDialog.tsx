@@ -62,7 +62,7 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
   const [nestedContract, setNestedContract] = useState<PublicContract | null>(null);
   const [showGeneratedQuery, setShowGeneratedQuery] = useState(false);
   const [showTenderOriginality, setShowTenderOriginality] = useState(false);
-  const [showTenderAlignment, setShowTenderAlignment] = useState(true);
+  const [showTenderAlignment, setShowTenderAlignment] = useState(false);
   const tenderUniquenessRef = useRef<HTMLDivElement>(null);
 
   const zadavatelRef = useRef<HTMLDivElement>(null);
