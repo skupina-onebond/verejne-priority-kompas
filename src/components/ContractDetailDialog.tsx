@@ -223,8 +223,13 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                       setShowLoadingPopup(null);
                       setShowAnalysis(true);
                       onDeepSearch(contract.contracting_authority);
-                      // Scroll after content is rendered
-                      setTimeout(() => scrollTo(zadavatelRef), 300);
+                      // Scroll after accordion content is rendered
+                      setTimeout(() => {
+                        const element = document.querySelector('[data-state="open"] [data-content="zadavatel-analysis"]');
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }, 500);
                     }, 7000);
                   }}
                   className="w-[200px]"
@@ -236,14 +241,20 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
                   <PrimaryButton
                     onClick={() => {
                       setShowLoadingPopup("administrator");
-                      setShowAnalysis(false);
+                      // Don't reset showAnalysis - keep previous analyses visible
                       setShowSupplierAnalysis(false);
                       setIsLoadingAdministrator(true);
                       setTimeout(() => {
                         setShowLoadingPopup(null);
                         setShowAdminAnalysis(true);
                         setIsLoadingAdministrator(false);
-                        scrollTo(adminRef);
+                        // Scroll to admin analysis section
+                        setTimeout(() => {
+                          const element = document.querySelector('[data-state="open"] [data-content="admin-analysis"]');
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          }
+                        }, 500);
                         onDeepSearch(contract.administrator!);
                       }, 7000);
                     }}
@@ -476,7 +487,7 @@ Děkujeme za Vaše vyjádření.`;
                 <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
                   Analýza zadavatele
                 </AccordionTrigger>
-                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap" data-content="zadavatel-analysis">
                   {isLoadingZadavatel ? (
                     <div className="flex flex-col items-center justify-center py-4">
                       <img src="/CRR-logo-gif.gif" alt="Načítání..." className="w-24 h-24 mb-2" />
@@ -521,7 +532,7 @@ Děkujeme za Vaše vyjádření.`;
                   <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
                     Analýza administrátora zakázky
                   </AccordionTrigger>
-                  <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap">
+                  <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed whitespace-pre-wrap" data-content="admin-analysis">
                     <ReactMarkdown
                       remarkPlugins={[remarkGfm]}
                       rehypePlugins={[rehypeRaw]}
