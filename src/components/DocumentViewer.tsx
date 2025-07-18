@@ -332,10 +332,10 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                             onClick={goToPrevPage}
                             disabled={pageNumber <= 1}
                           >
-                            Predchádzajúca
+                            Předchozí
                           </Button>
                           <span className="text-sm text-gray-600">
-                            Strana {pageNumber} z {numPages}
+                            Stránka {pageNumber} z {numPages}
                           </span>
                           <Button
                             variant="outline"
@@ -343,13 +343,20 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                             onClick={goToNextPage}
                             disabled={pageNumber >= (numPages || 1)}
                           >
-                            Ďalšia
+                            Další
                           </Button>
                         </div>
                       )}
                       
                       {/* PDF Document */}
-                      <div className="flex-1 overflow-auto bg-white">
+                      <div 
+                        className="flex-1 overflow-auto bg-white"
+                        style={{ 
+                          maxHeight: 'calc(100vh - 200px)',
+                          overflowY: 'auto',
+                          scrollBehavior: 'smooth'
+                        }}
+                      >
                         <div className="flex justify-center p-4 min-h-full">
                           <Document
                             file={documentUrl}
