@@ -48,22 +48,34 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     return `${value} Kč`;
   };
 
-  const getSimilarityColor = (score: number) => {
-    if (score >= 80) return "text-green-600";
-    if (score >= 60) return "text-yellow-600";
-    return "text-red-600";
+  const getScoreFromPercent = (percent: number): number => {
+    if (percent >= 80) return 5;
+    if (percent >= 60) return 4;
+    if (percent >= 40) return 3;
+    if (percent >= 20) return 2;
+    return 1;
   };
 
-  const getSimilarityBgColor = (score: number) => {
-    if (score >= 80) return "bg-green-100 border-green-200";
-    if (score >= 60) return "bg-yellow-100 border-yellow-200";
-    return "bg-red-100 border-red-200";
+  const getScoreColor = (score: number) => {
+    switch (score) {
+      case 5: return "bg-emerald-500";
+      case 4: return "bg-green-500";
+      case 3: return "bg-yellow-500";
+      case 2: return "bg-orange-500";
+      case 1: return "bg-red-500";
+      default: return "bg-gray-400";
+    }
   };
 
-  const getSimilarityText = (score: number) => {
-    if (score >= 80) return "Vysoká";
-    if (score >= 60) return "Střední";
-    return "Nízká";
+  const getScoreSize = (score: number) => {
+    switch (score) {
+      case 5: return "w-3 h-3";
+      case 4: return "w-2.5 h-2.5";
+      case 3: return "w-2 h-2";
+      case 2: return "w-1.5 h-1.5";
+      case 1: return "w-1 h-1";
+      default: return "w-1 h-1";
+    }
   };
 
   // Calculate similarity score for summary mode (similar contracts view)
@@ -118,20 +130,64 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           <p className="text-xs text-slate-700">{formatValue(contract.value)}</p>
           <p className="text-xs text-slate-600 italic">{contract.sector}</p>
           
-          {/* Subtle similarity indicators */}
+          {/* Visual similarity indicators with 1-5 scale */}
           {similarity && (
-            <div className="flex gap-2 mt-2">
-              <div className="flex items-center gap-1">
-                <div className="w-2 h-2 rounded-full bg-slate-300"></div>
-                <span className="text-xs text-slate-500">Oblast {similarity.sector}%</span>
+            <div className="flex items-center gap-3 mt-3 p-2 bg-slate-50 rounded-lg">
+              <div className="flex items-center gap-1.5">
+                <Building2 className="w-3 h-3 text-slate-600" />
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((dot) => {
+                    const score = getScoreFromPercent(similarity.sector);
+                    return (
+                      <div
+                        key={dot}
+                        className={`rounded-full transition-all duration-200 ${
+                          dot <= score 
+                            ? `${getScoreColor(score)} ${getScoreSize(score)} animate-scale-in` 
+                            : 'w-1.5 h-1.5 bg-slate-200'
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
               </div>
-              <div className="flex items-center gap-1">
-                <div className={`w-2 h-2 rounded-full ${similarity.price >= 70 ? 'bg-green-400' : similarity.price >= 40 ? 'bg-yellow-400' : 'bg-red-400'}`}></div>
-                <span className="text-xs text-slate-500">Cena {similarity.price}%</span>
+              
+              <div className="flex items-center gap-1.5">
+                <DollarSign className="w-3 h-3 text-slate-600" />
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((dot) => {
+                    const score = getScoreFromPercent(similarity.price);
+                    return (
+                      <div
+                        key={dot}
+                        className={`rounded-full transition-all duration-200 ${
+                          dot <= score 
+                            ? `${getScoreColor(score)} ${getScoreSize(score)} animate-scale-in` 
+                            : 'w-1.5 h-1.5 bg-slate-200'
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
               </div>
-              <div className="flex items-center gap-1">
-                <div className={`w-2 h-2 rounded-full ${similarity.severity >= 70 ? 'bg-green-400' : similarity.severity >= 40 ? 'bg-yellow-400' : 'bg-red-400'}`}></div>
-                <span className="text-xs text-slate-500">Závažnost {similarity.severity}%</span>
+              
+              <div className="flex items-center gap-1.5">
+                <AlertTriangle className="w-3 h-3 text-slate-600" />
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((dot) => {
+                    const score = getScoreFromPercent(similarity.severity);
+                    return (
+                      <div
+                        key={dot}
+                        className={`rounded-full transition-all duration-200 ${
+                          dot <= score 
+                            ? `${getScoreColor(score)} ${getScoreSize(score)} animate-scale-in` 
+                            : 'w-1.5 h-1.5 bg-slate-200'
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
           )}
