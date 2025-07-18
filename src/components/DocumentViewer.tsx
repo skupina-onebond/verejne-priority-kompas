@@ -282,13 +282,13 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
 
       {/* Document Viewer Modal */}
       {selectedDocument && (
-        <div className="fixed inset-0 z-[10060] bg-black/80 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] flex flex-col">
-            <div className="flex items-center justify-between p-4 border-b">
-              <div className="flex items-center space-x-3">
+        <div className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+          <div className="bg-white rounded-lg shadow-2xl w-full max-w-6xl h-[95vh] flex flex-col overflow-hidden">
+            <div className="flex items-center justify-between p-3 sm:p-4 border-b bg-white">
+              <div className="flex items-center space-x-3 min-w-0 flex-1">
                 {getFileIcon(selectedDocument.file_type)}
-                <div>
-                  <h3 className="font-medium text-slate-900">{selectedDocument.name}</h3>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-medium text-slate-900 truncate">{selectedDocument.name}</h3>
                   <p className="text-sm text-slate-500">
                     {formatFileSize(selectedDocument.file_size)} • {new Date(selectedDocument.uploaded_at).toLocaleDateString('sk-SK')}
                   </p>
@@ -304,11 +304,12 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                   setSelectedDocument(null);
                   setDocumentUrl(null);
                 }}
+                className="ml-2 flex-shrink-0"
               >
                 <X className="h-4 w-4" />
               </Button>
             </div>
-            <div className="flex-1 overflow-auto bg-gray-50">
+            <div className="flex-1 overflow-hidden bg-gray-50">
               {selectedDocument.file_type.includes('pdf') ? (
                 <div className="h-full flex flex-col">
                   {pdfLoading ? (
@@ -344,25 +345,29 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                       )}
                       
                       {/* PDF Document */}
-                      <div className="flex-1 overflow-auto p-4 flex justify-center">
-                        <Document
-                          file={documentUrl}
-                          onLoadSuccess={onDocumentLoadSuccess}
-                          onLoadError={onDocumentLoadError}
-                          loading={
-                            <div className="flex items-center justify-center py-8">
-                              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-                              <span className="ml-2">Načítavam PDF...</span>
-                            </div>
-                          }
-                        >
-                          <Page
-                            pageNumber={pageNumber}
-                            scale={1.2}
-                            renderTextLayer={true}
-                            renderAnnotationLayer={true}
-                          />
-                        </Document>
+                      <div className="flex-1 overflow-auto bg-white">
+                        <div className="flex justify-center p-4 min-h-full">
+                          <Document
+                            file={documentUrl}
+                            onLoadSuccess={onDocumentLoadSuccess}
+                            onLoadError={onDocumentLoadError}
+                            loading={
+                              <div className="flex items-center justify-center py-8">
+                                <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                                <span className="ml-2">Načítavam PDF...</span>
+                              </div>
+                            }
+                            className="shadow-lg"
+                          >
+                            <Page
+                              pageNumber={pageNumber}
+                              scale={1.1}
+                              renderTextLayer={true}
+                              renderAnnotationLayer={true}
+                              className="shadow-md"
+                            />
+                          </Document>
+                        </div>
                       </div>
                     </>
                   ) : (
