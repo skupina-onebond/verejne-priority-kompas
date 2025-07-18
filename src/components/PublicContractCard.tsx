@@ -66,7 +66,34 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
     return "Nízká";
   };
 
+  // Calculate similarity score for summary mode (similar contracts view)
+  const calculateSimilarity = (baseContract: PublicContract, compareContract: PublicContract) => {
+    if (!baseContract || !compareContract) return null;
+    
+    // Simple similarity calculation
+    const sectorMatch = baseContract.sector === compareContract.sector ? 100 : 0;
+    
+    // Price similarity (closer prices = higher similarity)
+    const priceDiff = Math.abs(baseContract.value - compareContract.value);
+    const maxPrice = Math.max(baseContract.value, compareContract.value);
+    const priceMatch = Math.max(0, 100 - (priceDiff / maxPrice) * 100);
+    
+    // Mock severity similarity based on contract ID
+    const hash = (baseContract.id + compareContract.id).split('').reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0);
+    const severityMatch = Math.abs(hash % 60) + 40;
+    
+    return {
+      sector: Math.round(sectorMatch),
+      price: Math.round(priceMatch),
+      severity: Math.round(severityMatch)
+    };
+  };
+
   if (mode === 'summary') {
+    // Find the reference contract (first in similarContracts that's not this contract)
+    const referenceContract = similarContracts?.find(c => c.id !== contract.id);
+    const similarity = referenceContract ? calculateSimilarity(referenceContract, contract) : null;
+    
     return (
       <>
         <div 
@@ -82,6 +109,24 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           <h4 className="text-sm font-semibold text-slate-900">{contract.title}</h4>
           <p className="text-xs text-slate-700">{formatValue(contract.value)}</p>
           <p className="text-xs text-slate-600 italic">{contract.sector}</p>
+          
+          {/* Subtle similarity indicators */}
+          {similarity && (
+            <div className="flex gap-2 mt-2">
+              <div className="flex items-center gap-1">
+                <div className="w-2 h-2 rounded-full bg-slate-300"></div>
+                <span className="text-xs text-slate-500">Oblast {similarity.sector}%</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className={`w-2 h-2 rounded-full ${similarity.price >= 70 ? 'bg-green-400' : similarity.price >= 40 ? 'bg-yellow-400' : 'bg-red-400'}`}></div>
+                <span className="text-xs text-slate-500">Cena {similarity.price}%</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className={`w-2 h-2 rounded-full ${similarity.severity >= 70 ? 'bg-green-400' : similarity.severity >= 40 ? 'bg-yellow-400' : 'bg-red-400'}`}></div>
+                <span className="text-xs text-slate-500">Závažnost {similarity.severity}%</span>
+              </div>
+            </div>
+          )}
         </div>
 
         <ContractDetailDialog
@@ -284,74 +329,6 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
             </div>
           </div>
 
-          {/* Similarity Analysis */}
-          {similarityScore && (
-            <div className="mt-4 p-4 bg-slate-50 rounded-lg border">
-              <h4 className="text-sm font-semibold text-slate-800 mb-3 flex items-center">
-                <AlertTriangle className="w-4 h-4 mr-2 text-slate-600" />
-                Analýza podobnosti
-              </h4>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {/* Sector Similarity */}
-                <div className={`p-3 rounded-lg border ${getSimilarityBgColor(similarityScore.sector)}`}>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center">
-                      <Building2 className="w-4 h-4 mr-2 text-slate-600" />
-                      <span className="text-xs font-medium text-slate-700">Oblast</span>
-                    </div>
-                    <span className={`text-xs font-semibold ${getSimilarityColor(similarityScore.sector)}`}>
-                      {getSimilarityText(similarityScore.sector)}
-                    </span>
-                  </div>
-                  <Progress value={similarityScore.sector} className="h-2" />
-                  <span className="text-xs text-slate-600 mt-1 block">{similarityScore.sector}% shoda</span>
-                </div>
-
-                {/* Price Similarity */}
-                <div className={`p-3 rounded-lg border ${getSimilarityBgColor(similarityScore.price)}`}>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center">
-                      <DollarSign className="w-4 h-4 mr-2 text-slate-600" />
-                      <span className="text-xs font-medium text-slate-700">Cena</span>
-                    </div>
-                    <span className={`text-xs font-semibold ${getSimilarityColor(similarityScore.price)}`}>
-                      {getSimilarityText(similarityScore.price)}
-                    </span>
-                  </div>
-                  <Progress value={similarityScore.price} className="h-2" />
-                  <span className="text-xs text-slate-600 mt-1 block">{similarityScore.price}% shoda</span>
-                </div>
-
-                {/* Severity Similarity */}
-                <div className={`p-3 rounded-lg border ${getSimilarityBgColor(similarityScore.severity)}`}>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center">
-                      <AlertTriangle className="w-4 h-4 mr-2 text-slate-600" />
-                      <span className="text-xs font-medium text-slate-700">Závažnosti</span>
-                    </div>
-                    <span className={`text-xs font-semibold ${getSimilarityColor(similarityScore.severity)}`}>
-                      {getSimilarityText(similarityScore.severity)}
-                    </span>
-                  </div>
-                  <Progress value={similarityScore.severity} className="h-2" />
-                  <span className="text-xs text-slate-600 mt-1 block">{similarityScore.severity}% shoda</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div className="flex justify-end mt-4">
-            <Button
-              variant="default"
-              size="sm"
-              className="bg-[#215197] hover:bg-[#1c467f] text-white"
-              onClick={() => setShowDetail(true)}
-            >
-              <FileText className="w-4 h-4 mr-2" />
-              Zobrazit detail
-            </Button>
-          </div>
         </CardContent>
       </Card>
 
