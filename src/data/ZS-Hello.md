@@ -1,4 +1,4 @@
-# Analýza zadavatele: OHLA ŽS, a.s. 
+# Analýza zadavatele: Gymnázium, základní škola a mateřská škola Hello s.r.o.
 
 ## ZÁKLADNÍ PROFIL
 
