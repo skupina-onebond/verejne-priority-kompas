@@ -1,6 +1,8 @@
 import { PublicContract } from '@/types/contract';
 import StavosStavba from '@/data/Stavos-Stavba.md?raw';
 import OhlaZS from '@/data/Ohla-ZS.md?raw';
+import ZHello from '@/data/.md?raw';
+
 
 export const mockContracts: PublicContract[] = [
   {
@@ -20,7 +22,7 @@ export const mockContracts: PublicContract[] = [
   status: 'active',
   created_at: '2024-04-05',
   additional_info: 'Zakázka byla podrobena třem kolům kontroly ze strany CRR. Závěrečné stanovisko s analýzou je uvedeno v dokumentu „Stanovisko VZ 1079 1.–3. fáze vč. popisu skutkových zjištění.docx“.',
-  analysis: 'Zakázka probíhala mezi dubnem 2023 a březnem 2024 s podporou z fondů IROP a Mechanismu spravedlivé transformace. Podle dokumentu „Stanovisko VZ 1079 1.–3. fáze vč. popisu skutkových zjištění“ prošla třemi etapami kontroly ze strany CRR. Ve všech fázích byla zakázka shledána jako formálně akceptovatelná, avšak bylo identifikováno jedno závažné porušení zákona (§83 odst. 1 ZZVZ), týkající se omezení možnosti prokazování kvalifikace. Dále bylo CRR doporučeno zvážit úpravu systému fakturace, který může být pro některé dodavatele diskriminační.',
+  analysis: ZHello,
   findings: [
     {
       severity: 'vysoká',
