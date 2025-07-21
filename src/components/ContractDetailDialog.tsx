@@ -388,12 +388,14 @@ export const ContractDetailDialog: React.FC<ContractDetailDialogProps> = ({
           defaultValue={[
             "generated-query-00001079",
             "generated-query-00006628", 
+            "generated-query-0002274",
             "zadavatel",
             "dodavatel",
             "administrator",
             "tender-uniqueness",
             "tender-alignment-00001079",
-            "tender-alignment-00006628"
+            "tender-alignment-00006628",
+            "tender-alignment-0002274"
           ]}
         >
           {showGeneratedQuery && contract.id === '00001079' && (
