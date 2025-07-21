@@ -440,6 +440,29 @@ Děkujeme za Vaše vyjádření.`;
             </div>
           )}
 
+          {showGeneratedQuery && contract.id === '0002274' && (
+            <div ref={generatedQueryRef}>
+              <AccordionItem value="generated-query-0002274">
+                <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                  Návrh dotazu na zadavatele
+                </AccordionTrigger>
+                <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed">
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+                    <p><strong>Předmět:</strong> Dotaz k veřejné zakázce č. 0002274 – rámcová dohoda a zadávací podmínky</p>
+                    <p><strong>Text e-mailu:</strong></p>
+                    <p>
+                      Vážený zadavateli,<br /><br />
+                      v rámci veřejné zakázky <em>„Nákup kloubových nízkopodlažních trolejbusů“</em> nás zajímá, jakým způsobem byly stanoveny kvalifikační požadavky na dodavatele, především ve vztahu k technickým parametrům a předchozím referencím.<br /><br />
+                      V této souvislosti se na Vás obracíme s dotazem:<br />
+                      „Jakým způsobem jste při tvorbě rámcové dohody ověřovali přiměřenost a otevřenost nastavených zadávacích podmínek? Byla konzultována možnost širší účasti dodavatelů například prostřednictvím odborné supervize?“<br /><br />
+                      Děkujeme za Vaše vyjádření.
+                    </p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </div>
+)}
+
           {showGeneratedQuery && contract.id === '00006628' && (
             <div ref={generatedQueryRef}>
               <AccordionItem value="generated-query-00006628">
@@ -587,6 +610,30 @@ Děkujeme za Vaše vyjádření.`;
               </div>
             )}
 
+
+            {showTenderOriginality && contract.id === '0002274' && (
+              <div ref={tenderUniquenessRef}>
+                <AccordionItem value="tender-uniqueness-0002274">
+                  <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                    Ověření originality zadávacích podmínek
+                  </AccordionTrigger>
+                  <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed">
+                    <div className="bg-green-50 border border-green-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+                      <p><strong>Typ zakázky:</strong> sektorová zakázka na dodávky (dodávka trolejbusů)</p>
+                      <p><strong>Způsob zadání:</strong> rámcová dohoda s dílčími kupními smlouvami</p>
+                      <p><strong>Specifika kvalifikace:</strong></p>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Požadavky byly formulovány standardně dle ZZVZ a odpovídaly rozsahu a povaze dodávky.</li>
+                        <li>Nebyly nalezeny důkazy o účelovém zúžení okruhu dodavatelů.</li>
+                        <li>Reference, technické parametry ani zkušenosti nebyly nad rámec běžného praxe.</li>
+                      </ul>
+                      <p><strong>Celkový verdikt:</strong> Zadávací podmínky byly formulovány transparentně a nediskriminačně. Originalita požadavků je standardní pro sektorovou veřejnou dopravu.</p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </div>
+            )}
+
             {showTenderAlignment && contract.id === '00001079' && (
               <div ref={tenderUniquenessRef}>
                 <AccordionItem value="tender-alignment-00001079">
@@ -603,6 +650,27 @@ Děkujeme za Vaše vyjádření.`;
                       </ul>
                     <p><strong>Výsledek kontroly:</strong> Analýza doložené nabídky neprokázala žádné nesoulady se zadávacími podmínkami. Technické požadavky i formální náležitosti byly naplněny. Nabídka je považována za úplnou a zadávací dokumentaci odpovídající. Z hlediska kontrolních mechanismů nebyly zjištěny pochybení, která by mohla ovlivnit transparentnost nebo rovnoprávnost zadávacího řízení.</p>                    </div>
                   </AccordionContent> 
+                </AccordionItem>
+              </div>
+            )}
+
+            {showTenderAlignment && contract.id === '0002274' && (
+              <div ref={tenderUniquenessRef}>
+                <AccordionItem value="tender-alignment-0002274">
+                  <AccordionTrigger className="text-sm font-semibold text-slate-700 uppercase tracking-widest">
+                    Ověření souladu nabídky se zadávacími podmínkami
+                  </AccordionTrigger>
+                  <AccordionContent className="bg-white border border-slate-300 rounded-lg shadow-sm p-6 text-sm text-slate-900 leading-relaxed">
+                    <div className="bg-blue-50 border border-blue-200 rounded-md p-4 text-sm text-slate-800 space-y-2">
+                      <p><strong>Kontrolované oblasti:</strong></p>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Odpovídala nabídka technickým parametrům stanoveným v rámcové dohodě?</li>
+                        <li>Byla každá dílčí dodávka realizována v souladu se specifikací (kapacita, rozměry, přístupnost)?</li>
+                        <li>Byla doložena veškerá předepsaná dokumentace ke každé dílčí kupní smlouvě?</li>
+                      </ul>
+                      <p><strong>Výsledek kontroly:</strong> Veškeré dodávky byly provedeny v souladu se zadávací dokumentací i rámcovou smlouvou. Nebyly zjištěny žádné zásadní nesrovnalosti ani porušení zákona.</p>
+                    </div>
+                  </AccordionContent>
                 </AccordionItem>
               </div>
             )}
