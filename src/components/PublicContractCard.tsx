@@ -125,21 +125,12 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           
           {/* Visual similarity indicators with 1-5 scale */}
           {similarity && (
-            <div className="flex items-center gap-3 mt-3 p-2 bg-slate-50 rounded-lg">
-              <div className="flex items-center gap-1.5">
-                <Tooltip.Provider>
-                  <Tooltip.Root>
-                    <Tooltip.Trigger asChild>
-                      <Building2 className="w-4 h-4 text-[#215197] cursor-help" />
-                    </Tooltip.Trigger>
-                    <Tooltip.Portal>
-                      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-                        Odvětví
-                        <Tooltip.Arrow className="fill-white" />
-                      </Tooltip.Content>
-                    </Tooltip.Portal>
-                  </Tooltip.Root>
-                </Tooltip.Provider>
+            <div className="flex flex-col gap-2 mt-3 p-2 bg-slate-50 rounded-lg">
+              
+              {/* Odvětví */}
+              <div className="flex items-center gap-2">
+                <Building2 className="w-4 h-4 text-[#215197]" />
+                <span className="text-xs text-slate-700 w-24">Odvětví</span>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((dot) => {
                     const score = getScoreFromPercent(similarity.sector);
@@ -149,15 +140,15 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                           <Tooltip.Trigger asChild>
                             <div
                               className={`rounded-full transition-all duration-200 cursor-help ${
-                                dot <= score 
-                                  ? `${getScoreColor(score)} ${getScoreSize(score)} animate-scale-in` 
-                                  : 'w-1.5 h-1.5 bg-slate-200'
+                                dot <= score
+                                  ? `${getScoreColor(score)} ${getScoreSize(score)}`
+                                  : `border border-[#215197] ${getScoreSize(score)}`
                               }`}
                             />
                           </Tooltip.Trigger>
                           <Tooltip.Portal>
                             <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-                              Podobnost odvětví: {score}/5 
+                              Podobnost odvětví: {score}/5
                               <Tooltip.Arrow className="fill-white" />
                             </Tooltip.Content>
                           </Tooltip.Portal>
@@ -167,63 +158,43 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                   })}
                 </div>
               </div>
-              
-              <div className="flex items-center gap-1.5">
-                <Tooltip.Provider>
-                  <Tooltip.Root>
-                    <Tooltip.Trigger asChild>
-                       <DollarSign className="w-4 h-4 text-[#215197] cursor-help" />
-                     </Tooltip.Trigger>
-                     <Tooltip.Portal>
-                       <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-                         Hodnota zakázky
-                         <Tooltip.Arrow className="fill-white" />
-                       </Tooltip.Content>
-                     </Tooltip.Portal>
-                   </Tooltip.Root>
-                 </Tooltip.Provider>
-                 <div className="flex items-center gap-1">
-                   {[1, 2, 3, 4, 5].map((dot) => {
-                     const score = getScoreFromPercent(similarity.price);
-                     return (
-                       <Tooltip.Provider key={dot}>
-                         <Tooltip.Root>
-                           <Tooltip.Trigger asChild>
-                              <div
-                                className={`rounded-full transition-all duration-200 cursor-help ${
-                                  dot <= score 
-                                    ? `${getScoreColor(score)} ${getScoreSize(score)} animate-scale-in` 
-                                    : 'w-1.5 h-1.5 bg-slate-200'
-                                }`}
-                              />
-                           </Tooltip.Trigger>
-                           <Tooltip.Portal>
-                             <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-                               Podobnost hodnota zakázky: {score}/5
-                               <Tooltip.Arrow className="fill-white" />
-                             </Tooltip.Content>
-                           </Tooltip.Portal>
-                         </Tooltip.Root>
-                       </Tooltip.Provider>
-                     );
-                   })}
-                 </div>
-               </div>
-               
-               <div className="flex items-center gap-1.5">
-                 <Tooltip.Provider>
-                   <Tooltip.Root>
-                     <Tooltip.Trigger asChild>
-                       <AlertTriangle className="w-4 h-4 text-[#215197] cursor-help" />
-                    </Tooltip.Trigger>
-                    <Tooltip.Portal>
-                      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-                        Zjištění
-                        <Tooltip.Arrow className="fill-white" />
-                      </Tooltip.Content>
-                    </Tooltip.Portal>
-                  </Tooltip.Root>
-                </Tooltip.Provider>
+
+              {/* Hodnota zakázky */}
+              <div className="flex items-center gap-2">
+                <DollarSign className="w-4 h-4 text-[#215197]" />
+                <span className="text-xs text-slate-700 w-24">Hodnota zakázky</span>
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((dot) => {
+                    const score = getScoreFromPercent(similarity.price);
+                    return (
+                      <Tooltip.Provider key={dot}>
+                        <Tooltip.Root>
+                          <Tooltip.Trigger asChild>
+                            <div
+                              className={`rounded-full transition-all duration-200 cursor-help ${
+                                dot <= score
+                                  ? `${getScoreColor(score)} ${getScoreSize(score)}`
+                                  : `border border-[#215197] ${getScoreSize(score)}`
+                              }`}
+                            />
+                          </Tooltip.Trigger>
+                          <Tooltip.Portal>
+                            <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+                              Podobnost hodnoty zakázky: {score}/5
+                              <Tooltip.Arrow className="fill-white" />
+                            </Tooltip.Content>
+                          </Tooltip.Portal>
+                        </Tooltip.Root>
+                      </Tooltip.Provider>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Závažnost zjištění */}
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-[#215197]" />
+                <span className="text-xs text-slate-700 w-24">Závažnost zjištění</span>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((dot) => {
                     const score = getScoreFromPercent(similarity.severity);
@@ -231,13 +202,13 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                       <Tooltip.Provider key={dot}>
                         <Tooltip.Root>
                           <Tooltip.Trigger asChild>
-                             <div
-                               className={`rounded-full transition-all duration-200 cursor-help ${
-                                 dot <= score 
-                                   ? `${getScoreColor(score)} ${getScoreSize(score)} animate-scale-in` 
-                                   : 'w-1.5 h-1.5 bg-slate-200'
-                               }`}
-                             />
+                            <div
+                              className={`rounded-full transition-all duration-200 cursor-help ${
+                                dot <= score
+                                  ? `${getScoreColor(score)} ${getScoreSize(score)}`
+                                  : `border border-[#215197] ${getScoreSize(score)}`
+                              }`}
+                            />
                           </Tooltip.Trigger>
                           <Tooltip.Portal>
                             <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
@@ -252,7 +223,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                 </div>
               </div>
             </div>
-          )}
+          )}            
         </div>
 
         <ContractDetailDialog
