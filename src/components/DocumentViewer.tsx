@@ -74,7 +74,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         console.error('Error fetching documents:', error);
         toast({
           title: "Chyba",
-          description: "Nepodarilo sa načítať dokumenty",
+          description: "Nepodařilo se načíst dokument",
           variant: "destructive"
         });
       } else {
@@ -118,7 +118,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         console.error('Error loading document:', error);
         toast({
           title: "Chyba",
-          description: "Nepodarilo sa načítať dokument",
+          description: "Nepodařilo se načíst dokument",
           variant: "destructive"
         });
         setPdfLoading(false);
@@ -131,7 +131,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
       console.error('Error:', error);
       toast({
         title: "Chyba",
-        description: "Nepodarilo sa načítať dokument",
+        description: "Nepodařilo se načíst dokument",
         variant: "destructive"
       });
     } finally {
@@ -147,7 +147,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     console.error('PDF load error:', error);
     toast({
       title: "Chyba",
-      description: "Nepodarilo sa načítať PDF dokument",
+      description: "Nepodařilo se načíst dokument",
       variant: "destructive"
     });
   };
@@ -191,7 +191,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         console.error('Error downloading file:', error);
         toast({
           title: "Chyba",
-          description: "Nepodarilo sa stiahnuť súbor",
+          description: "Nepodařilo se stáhnout soubor",
           variant: "destructive"
         });
         return;
@@ -208,14 +208,14 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
       URL.revokeObjectURL(url);
 
       toast({
-        title: "Úspech",
-        description: `Súbor ${doc.name} bol stiahnutý`,
+        title: "Úspěch",
+        description: `Soubor ${doc.name} byl stažen`,
       });
     } catch (error) {
       console.error('Download error:', error);
       toast({
         title: "Chyba",
-        description: "Nepodarilo sa stiahnuť súbor",
+        description: "Nepodařilo se stáhnout soubor",
         variant: "destructive"
       });
     }
@@ -264,8 +264,8 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         <Card>
           <CardContent className="p-6 text-center">
             <FileText className="h-12 w-12 mx-auto text-gray-400 mb-3" />
-            <p className="text-gray-500">Žiadne dokumenty nie sú k dispozícii</p>
-            <p className="text-sm text-gray-400 mt-1">Dokumenty budú nahrané administrátorom</p>
+            <p className="text-gray-500">Žádné dokumenty nejsou k dispozici</p>
+            <p className="text-sm text-gray-400 mt-1">Dokumenty  budou nahrány administrátorem</p>
           </CardContent>
         </Card>
       ) : (
@@ -341,7 +341,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                   {pdfLoading ? (
                     <div className="flex-1 flex items-center justify-center">
                       <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-                      <span className="ml-2 text-gray-600">Načítavam PDF...</span>
+                      <span className="ml-2 text-gray-600">Načítám dokumenty...</span>
                     </div>
                   ) : documentUrl ? (
                     <>
@@ -380,7 +380,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                             loading={
                               <div className="flex items-center justify-center py-8">
                                 <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-                                <span className="ml-2">Načítavam PDF...</span>
+                                <span className="ml-2">Načítám dokumenty...</span>
                               </div>
                             }
                             className="shadow-lg"
@@ -400,7 +400,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                     <div className="flex-1 flex items-center justify-center">
                       <div className="text-center">
                         <FileText className="h-16 w-16 mx-auto text-gray-400 mb-4" />
-                        <p className="text-gray-600">Nepodarilo sa načítať PDF dokument</p>
+                        <p className="text-gray-600">Nepodařilo se načíst dokumenty</p>
                       </div>
                     </div>
                   )}
@@ -420,7 +420,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                     onError={() => {
                       toast({
                         title: "Chyba",
-                        description: "Nepodarilo sa načítať dokument vo vieweri",
+                        description: "Nepodařilo se načíst dokument",
                         variant: "destructive"
                       });
                     }}
@@ -435,7 +435,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                     onError={() => {
                       toast({
                         title: "Chyba", 
-                        description: "Nepodarilo sa načítať obrázok",
+                        description: "Nepodařilo se načíst obrázek",
                         variant: "destructive"
                       });
                     }}
@@ -447,14 +447,14 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                     <File className="h-16 w-16 mx-auto text-gray-400 mb-4" />
                     <p className="text-gray-600 mb-2">Dokument: {selectedDocument.name}</p>
                     <p className="text-sm text-gray-500 mb-4">
-                      Nie je k dispozícii náhľad pre tento typ súboru
+                      Náhled pro tento typ souboru není k dispozici
                     </p>
                     <Button
                       variant="outline"
                       onClick={() => handleDownload(selectedDocument)}
                     >
                       <Download className="h-4 w-4 mr-2" />
-                      Stiahnuť súbor
+                      Stáhnout soubor
                     </Button>
                   </div>
                 </div>
