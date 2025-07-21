@@ -2,6 +2,9 @@ import { PublicContract } from '@/types/contract';
 import StavosStavba from '@/data/Stavos-Stavba.md?raw';
 import OhlaZS from '@/data/Ohla-ZS.md?raw';
 import ZSHello from '@/data/ZS-Hello.md?raw';
+import ReacteCZ from '@/data/ReacteCZ.md?raw';
+import Brno from '@/data/Brno.md?raw';
+
 
 
 export const mockContracts: PublicContract[] = [
@@ -14,7 +17,7 @@ export const mockContracts: PublicContract[] = [
   deadline: '2025-12-31',
   contracting_authority: 'Gymnázium, základní škola a mateřská škola Hello s.r.o.',
   administrator: 'RECTE.CZ, s.r.o.',
-  administratorAnalysis: 'Administrátorem veřejné zakázky byla společnost **RECTE.CZ, s.r.o.**, zastoupená Janou Kobělušovou. Firma má sídlo na adrese Nádražní 612/36, Ostrava – Moravská Ostrava (IČO 61972690). Společnost zajišťovala kompletní administraci zadávacího řízení pro zadavatele Gymnázium, základní škola a mateřská škola Hello s.r.o. V průběhu soutěže nebyly podány žádosti o vysvětlení zadávací dokumentace, řízení proběhlo s jediným účastníkem. Podle stanovisek CRR nebyla zjištěna formální pochybení v rámci přípravy a průběhu zadávacího řízení, přičemž komunikace s administrátorem nebyla předmětem samostatného zkoumání. Ve fázi kontroly byla zodpovědnost za kvalifikační omezení připsána zadavateli.',
+  administratorAnalysis: ReacteCZ,
   supplier: 'Stavos Stavba a.s.',
   supplierAnalysis: StavosStavba,
   sector: 'Stavebnictví',
@@ -55,9 +58,8 @@ export const mockContracts: PublicContract[] = [
     created_at: '2023-02-15',
     additional_info:
       'Kontrola probíhala ve více fázích, přičemž v 6. fázi byla uložena finanční oprava ve výši 5 % z části rozpočtu projektu. K pochybení došlo při stanovení kvalifikačních požadavků a ocenění víceprací.',
-    analysis:
-      'Veřejná zakázka „Modernizace a přístavba ZŠ Brno, Antonínská“ byla kontrolována v rámci 6. fáze kontrol CRR. Podle dokumentu „Stanovisko 6. fáze VZ6628“ došlo k porušení §36 odst. 3 ZZVZ při formulaci technických kvalifikačních podmínek. Byly zjištěny i nesrovnalosti ve finančním ocenění víceprací (navýšení bez řádné kontroly přiměřenosti ceny). Z tohoto důvodu byla zadavateli uložena finanční oprava. Administrátor i zadavatel byli upozorněni na nedostatky v řízení a dokumentaci.',
-    findings: [
+    analysis: Brno,
+      findings: [
       {
         severity: 'vysoká',
         category: 'A.1. Nejasně formulované kvalifikační požadavky',
