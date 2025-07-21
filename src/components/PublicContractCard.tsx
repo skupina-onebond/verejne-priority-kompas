@@ -120,28 +120,27 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           }}
         >
           <h4 className="text-sm font-semibold text-slate-900">{contract.title}</h4>
-          <p className="text-xs text-slate-700">{formatValue(contract.value)}</p>
-          <p className="text-xs text-slate-600 italic">{contract.sector}</p>
+          <p className="text-[11px] text-slate-700">{formatValue(contract.value)}</p>
+          <p className="text-[11px] text-slate-600 italic">{contract.sector}</p>
           
           {/* Visual similarity indicators with 1-5 scale */}
           {similarity && (
-            <div className="flex flex-wrap md:flex-nowrap items-start justify-between gap-4 mt-3 p-3 bg-slate-50 rounded-lg">
-              
+            <div className="flex flex-nowrap flex-row items-center justify-between gap-3 overflow-x-auto">              
               {/* Shoda odvětví */}
               <div className="flex items-center gap-2">
                 <Building2 className="w-4 h-4 text-[#215197]" />
-                <span className="text-xs text-slate-700">Shoda odvětví</span>
+                <span className="text-[11px] text-slate-700">Shoda odvětví</span>
                 {similarity.sector >= 100 ? (
-                  <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">Ano</span>
+                  <span className="bg-green-100 text-green-800 text-[11px] px-2 py-0.5 rounded-full">Ano</span>
                 ) : (
-                  <span className="bg-slate-100 text-slate-600 text-xs px-2 py-0.5 rounded-full">Ne</span>
+                  <span className="bg-slate-100 text-slate-600 text-[11px] px-2 py-0.5 rounded-full">Ne</span>
                 )}
               </div>
 
               {/* Hodnota zakázky */}
               <div className="flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-[#215197]" />
-                <span className="text-xs text-slate-700">Hodnota zakázky</span>
+                <span className="text-[11px] text-slate-700">Hodnota zakázky</span>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((dot) => {
                     const score = getScoreFromPercent(similarity.price);
@@ -158,7 +157,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                             />
                           </Tooltip.Trigger>
                           <Tooltip.Portal>
-                            <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+                            <Tooltip.Content className="bg-white text-black text-[11px] px-2 py-1 rounded shadow-md border z-50">
                               Podobnost hodnoty zakázky: {score}/5
                               <Tooltip.Arrow className="fill-white" />
                             </Tooltip.Content>
@@ -173,7 +172,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               {/* Závažnost zjištění */}
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-[#215197]" />
-                <span className="text-xs text-slate-700">Závažnost zjištění</span>
+                <span className="text-[11px] text-slate-700">Závažnost zjištění</span>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((dot) => {
                     const score = getScoreFromPercent(similarity.severity);
@@ -190,7 +189,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                             />
                           </Tooltip.Trigger>
                           <Tooltip.Portal>
-                            <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+                            <Tooltip.Content className="bg-white text-black text-[11px] px-2 py-1 rounded shadow-md border z-50">
                               Podobnost zjištění: {score}/5
                               <Tooltip.Arrow className="fill-white" />
                             </Tooltip.Content>
@@ -204,21 +203,21 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
 
               {/* Shoda dodavatele */}
               <div className="flex items-center gap-2">
-                <span className="text-xs text-slate-700">Rovnaký dodavatel</span>
+                <span className="text-[11px] text-slate-700">Rovnaký dodavatel</span>
                 {contract.supplier && referenceContract?.supplier && contract.supplier === referenceContract.supplier ? (
-                  <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">Ano</span>
+                  <span className="bg-green-100 text-green-800 text-[11px] px-2 py-0.5 rounded-full">Ano</span>
                 ) : (
-                  <span className="bg-slate-100 text-slate-600 text-xs px-2 py-0.5 rounded-full">Ne</span>
+                  <span className="bg-slate-100 text-slate-600 text-[11px] px-2 py-0.5 rounded-full">Ne</span>
                 )}
               </div>
 
               {/* Shoda administrátora */}
               <div className="flex items-center gap-2">
-                <span className="text-xs text-slate-700">Rovnaký administrátor</span>
+                <span className="text-[11px] text-slate-700">Rovnaký administrátor</span>
                 {contract.administrator && referenceContract?.administrator && contract.administrator === referenceContract.administrator ? (
-                  <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">Ano</span>
+                  <span className="bg-green-100 text-green-800 text-[11px] px-2 py-0.5 rounded-full">Ano</span>
                 ) : (
-                  <span className="bg-slate-100 text-slate-600 text-xs px-2 py-0.5 rounded-full">Ne</span>
+                  <span className="bg-slate-100 text-slate-600 text-[11px] px-2 py-0.5 rounded-full">Ne</span>
                 )}
               </div>
             </div>
@@ -288,7 +287,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                         className={contract.status === 'bookmarked' ? 'text-yellow-600 hover:text-yellow-700' : 'text-gray-600 hover:text-gray-700'}
                       >
                         <Bookmark
-                          className={`h-4 w-4 p-[2px] rounded-sm ring-1 ${contract.status === 'bookmarked' ? 'ring-yellow-500 stroke-yellow-600 fill-yellow-600' : 'ring-yellow-400 stroke-yellow-500'}`}
+                          className={`h-3.5 w-3.5 p-[2px] rounded-sm ring-1 ${contract.status === 'bookmarked' ? 'ring-yellow-500 stroke-yellow-600 fill-yellow-600' : 'ring-yellow-400 stroke-yellow-500'}`}
                         />
                       </Button>
                     </Tooltip.Trigger>
@@ -312,9 +311,9 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                         className="text-gray-600 hover:text-gray-700"
                       >
                         {contract.status === 'hidden' ? (
-                          <EyeOff className="h-4 w-4 p-[2px] rounded-sm ring-1 ring-[#215197] stroke-[#215197]" />
+                          <EyeOff className="h-3.5 w-3.5 p-[2px] rounded-sm ring-1 ring-[#215197] stroke-[#215197]" />
                         ) : (
-                          <Eye className="h-4 w-4 p-[2px] rounded-sm ring-1 ring-[#215197] stroke-[#215197]" />
+                          <Eye className="h-3.5 w-3.5 p-[2px] rounded-sm ring-1 ring-[#215197] stroke-[#215197]" />
                         )}
                       </Button>
                     </Tooltip.Trigger>
@@ -341,11 +340,11 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                             : "text-green-600 hover:text-green-700"
                         }
                       >
-                        <Check className={`h-4 w-4 ${contract.status === 'completed' ? 'stroke-white' : ''}`} />
+                        <Check className={`h-3.5 w-3.5 ${contract.status === 'completed' ? 'stroke-white' : ''}`} />
                       </Button>
                     </Tooltip.Trigger>
                     <Tooltip.Portal>
-                      <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
+                      <Tooltip.Content className="bg-white text-black text-[11px] px-2 py-1 rounded shadow-md border z-50">
                         Zkontrolováno
                         <Tooltip.Arrow className="fill-white" />
                       </Tooltip.Content>
