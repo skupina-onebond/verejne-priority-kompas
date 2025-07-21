@@ -2,7 +2,7 @@ import { PublicContract } from '@/types/contract';
 import StavosStavba from '@/data/Stavos-Stavba.md?raw';
 import OhlaZS from '@/data/Ohla-ZS.md?raw';
 import ZSHello from '@/data/ZS-Hello.md?raw';
-import ReacteCZ from '@/data/ReacteCZ.md?raw';
+import ReacteCZ from '@/data/RecteCZ.md?raw';
 import Brno from '@/data/Brno.md?raw';
 
 
