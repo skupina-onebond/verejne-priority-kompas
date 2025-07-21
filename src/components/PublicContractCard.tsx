@@ -134,7 +134,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                     </Tooltip.Trigger>
                     <Tooltip.Portal>
                       <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-                        Podobnosť oblastí podnikania
+                        Odvětví
                         <Tooltip.Arrow className="fill-white" />
                       </Tooltip.Content>
                     </Tooltip.Portal>
@@ -157,7 +157,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                           </Tooltip.Trigger>
                           <Tooltip.Portal>
                             <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-                              Oblasť: {score}/5 bodov
+                              Podobnost odvětví: {score}/5 
                               <Tooltip.Arrow className="fill-white" />
                             </Tooltip.Content>
                           </Tooltip.Portal>
@@ -176,7 +176,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                      </Tooltip.Trigger>
                      <Tooltip.Portal>
                        <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-                         Podobnosť finančnej hodnoty
+                         Hodnota zakázky
                          <Tooltip.Arrow className="fill-white" />
                        </Tooltip.Content>
                      </Tooltip.Portal>
@@ -199,7 +199,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                            </Tooltip.Trigger>
                            <Tooltip.Portal>
                              <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-                               Cena: {score}/5 bodov
+                               Podobnost hodnota zakázky: {score}/5
                                <Tooltip.Arrow className="fill-white" />
                              </Tooltip.Content>
                            </Tooltip.Portal>
@@ -218,7 +218,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                     </Tooltip.Trigger>
                     <Tooltip.Portal>
                       <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-                        Podobnosť závažnosti rizika
+                        Zjištění
                         <Tooltip.Arrow className="fill-white" />
                       </Tooltip.Content>
                     </Tooltip.Portal>
@@ -241,7 +241,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                           </Tooltip.Trigger>
                           <Tooltip.Portal>
                             <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-                              Závažnosť: {score}/5 bodov
+                              Podobnost zjištění: {score}/5
                               <Tooltip.Arrow className="fill-white" />
                             </Tooltip.Content>
                           </Tooltip.Portal>
