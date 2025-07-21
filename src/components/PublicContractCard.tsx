@@ -125,44 +125,23 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
           
           {/* Visual similarity indicators with 1-5 scale */}
           {similarity && (
-            <div className="flex flex-col gap-2 mt-3 p-2 bg-slate-50 rounded-lg">
+            <div className="flex flex-wrap md:flex-nowrap items-start justify-between gap-4 mt-3 p-3 bg-slate-50 rounded-lg">
               
-              {/* Odvětví */}
+              {/* Shoda odvětví */}
               <div className="flex items-center gap-2">
                 <Building2 className="w-4 h-4 text-[#215197]" />
-                <span className="text-xs text-slate-700 w-24">Odvětví</span>
-                <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map((dot) => {
-                    const score = getScoreFromPercent(similarity.sector);
-                    return (
-                      <Tooltip.Provider key={dot}>
-                        <Tooltip.Root>
-                          <Tooltip.Trigger asChild>
-                            <div
-                              className={`rounded-full transition-all duration-200 cursor-help ${
-                                dot <= score
-                                  ? `${getScoreColor(score)} ${getScoreSize(score)}`
-                                  : `border border-[#215197] ${getScoreSize(score)}`
-                              }`}
-                            />
-                          </Tooltip.Trigger>
-                          <Tooltip.Portal>
-                            <Tooltip.Content className="bg-white text-black text-xs px-2 py-1 rounded shadow-md border z-50">
-                              Podobnost odvětví: {score}/5
-                              <Tooltip.Arrow className="fill-white" />
-                            </Tooltip.Content>
-                          </Tooltip.Portal>
-                        </Tooltip.Root>
-                      </Tooltip.Provider>
-                    );
-                  })}
-                </div>
+                <span className="text-xs text-slate-700">Shoda odvětví</span>
+                {similarity.sector >= 100 ? (
+                  <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">Ano</span>
+                ) : (
+                  <span className="bg-slate-100 text-slate-600 text-xs px-2 py-0.5 rounded-full">Ne</span>
+                )}
               </div>
 
               {/* Hodnota zakázky */}
               <div className="flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-[#215197]" />
-                <span className="text-xs text-slate-700 w-24">Hodnota zakázky</span>
+                <span className="text-xs text-slate-700">Hodnota zakázky</span>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((dot) => {
                     const score = getScoreFromPercent(similarity.price);
@@ -173,8 +152,8 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                             <div
                               className={`rounded-full transition-all duration-200 cursor-help ${
                                 dot <= score
-                                  ? `${getScoreColor(score)} ${getScoreSize(score)}`
-                                  : `border border-[#215197] ${getScoreSize(score)}`
+                                  ? `bg-[#215197] w-2.5 h-2.5`
+                                  : `border border-[#215197] w-2.5 h-2.5`
                               }`}
                             />
                           </Tooltip.Trigger>
@@ -194,7 +173,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
               {/* Závažnost zjištění */}
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-[#215197]" />
-                <span className="text-xs text-slate-700 w-24">Závažnost zjištění</span>
+                <span className="text-xs text-slate-700">Závažnost zjištění</span>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((dot) => {
                     const score = getScoreFromPercent(similarity.severity);
@@ -205,8 +184,8 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                             <div
                               className={`rounded-full transition-all duration-200 cursor-help ${
                                 dot <= score
-                                  ? `${getScoreColor(score)} ${getScoreSize(score)}`
-                                  : `border border-[#215197] ${getScoreSize(score)}`
+                                  ? `bg-[#215197] w-2.5 h-2.5`
+                                  : `border border-[#215197] w-2.5 h-2.5`
                               }`}
                             />
                           </Tooltip.Trigger>
@@ -222,8 +201,28 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
                   })}
                 </div>
               </div>
+
+              {/* Shoda dodavatele */}
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-slate-700">Rovnaký dodavatel</span>
+                {contract.supplier && referenceContract?.supplier && contract.supplier === referenceContract.supplier ? (
+                  <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">Ano</span>
+                ) : (
+                  <span className="bg-slate-100 text-slate-600 text-xs px-2 py-0.5 rounded-full">Ne</span>
+                )}
+              </div>
+
+              {/* Shoda administrátora */}
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-slate-700">Rovnaký administrátor</span>
+                {contract.administrator && referenceContract?.administrator && contract.administrator === referenceContract.administrator ? (
+                  <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">Ano</span>
+                ) : (
+                  <span className="bg-slate-100 text-slate-600 text-xs px-2 py-0.5 rounded-full">Ne</span>
+                )}
+              </div>
             </div>
-          )}            
+          )}           
         </div>
 
         <ContractDetailDialog
