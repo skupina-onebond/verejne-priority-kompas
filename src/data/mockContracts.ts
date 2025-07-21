@@ -1,7 +1,7 @@
 import { PublicContract } from '@/types/contract';
 import StavosStavba from '@/data/Stavos-Stavba.md?raw';
 import OhlaZS from '@/data/Ohla-ZS.md?raw';
-import ZHello from '@/data/.md?raw';
+import ZSHello from '@/data/ZS-Hello.md?raw';
 
 
 export const mockContracts: PublicContract[] = [
@@ -22,7 +22,7 @@ export const mockContracts: PublicContract[] = [
   status: 'active',
   created_at: '2024-04-05',
   additional_info: 'Zakázka byla podrobena třem kolům kontroly ze strany CRR. Závěrečné stanovisko s analýzou je uvedeno v dokumentu „Stanovisko VZ 1079 1.–3. fáze vč. popisu skutkových zjištění.docx“.',
-  analysis: ZHello,
+  analysis: ZSHello,
   findings: [
     {
       severity: 'vysoká',
