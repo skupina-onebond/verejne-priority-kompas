@@ -5,8 +5,6 @@ import ZSHello from '@/data/ZS-Hello.md?raw';
 import ReacteCZ from '@/data/RecteCZ.md?raw';
 import Brno from '@/data/Brno.md?raw';
 
-
-
 export const mockContracts: PublicContract[] = [
   {
   id: '00001079',
