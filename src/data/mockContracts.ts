@@ -2,7 +2,7 @@ import { PublicContract } from '@/types/contract';
 import StavosStavba from '@/data/Stavos-Stavba.md?raw';
 import OhlaZS from '@/data/Ohla-ZS.md?raw';
 import ZSHello from '@/data/ZS-Hello.md?raw';
-import ReacteCZ from '@/data/RecteCZ.md?raw';
+import RecteCZ from '@/data/RecteCZ.md?raw';
 import Brno from '@/data/Brno.md?raw';
 
 export const mockContracts: PublicContract[] = [
@@ -15,7 +15,7 @@ export const mockContracts: PublicContract[] = [
   deadline: '2025-12-31',
   contracting_authority: 'Gymnázium, základní škola a mateřská škola Hello s.r.o.',
   administrator: 'RECTE.CZ, s.r.o.',
-  administratorAnalysis: ReacteCZ,
+  administratorAnalysis: RecteCZ,
   supplier: 'Stavos Stavba a.s.',
   supplierAnalysis: StavosStavba,
   sector: 'Stavebnictví',
