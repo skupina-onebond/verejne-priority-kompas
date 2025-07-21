@@ -203,7 +203,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
 
               {/* Shoda dodavatele */}
               <div className="min-w-[110px] flex items-center gap-1">
-                <span className="text-[11px] text-slate-700">Rovnaký dodavatel</span>
+                <span className="text-[11px] text-slate-700">Shoda dodavatele</span>
                 {contract.supplier && referenceContract?.supplier && contract.supplier === referenceContract.supplier ? (
                   <span className="bg-green-100 text-green-800 text-[11px] px-2 py-0.5 rounded-full">Ano</span>
                 ) : (
@@ -213,7 +213,7 @@ export const PublicContractCard: React.FC<PublicContractCardProps> = ({
 
               {/* Shoda administrátora */}
                 <div className="min-w-[110px] flex items-center gap-1">
-                <span className="text-[11px] text-slate-700">Rovnaký administrátor</span>
+                <span className="text-[11px] text-slate-700">Shoda administrátora</span>
                 {contract.administrator && referenceContract?.administrator && contract.administrator === referenceContract.administrator ? (
                   <span className="bg-green-100 text-green-800 text-[11px] px-2 py-0.5 rounded-full">Ano</span>
                 ) : (
