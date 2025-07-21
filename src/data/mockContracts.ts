@@ -78,7 +78,7 @@ export const mockContracts: PublicContract[] = [
     ]
   },
   {
-  id: '0000421',
+  id: '0002274',
   title: 'Křižovatka ul. Mostní - ul. Březnická, Zlín',
   description:
     'Předmětem veřejné zakázky bylo provedení stavebních úprav na křížení ulic Mostní a Březnická ve Zlíně. Součástí plnění byla výstavba nové průsečné křižovatky řízené světelnou signalizací, obnova a doplnění chodníků a stezek, zřízení nových zastávkových zálivů a následná péče o výsadbu po dobu 5 let. Projekt byl spolufinancován z IROP a realizován formou společného zadávání města Zlín a Ředitelství silnic Zlínského kraje.',
